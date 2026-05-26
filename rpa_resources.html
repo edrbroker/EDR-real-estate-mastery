@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDR Realty — Agent Resources</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-pale: #F5EDD4;
+    --navy: #0F1B2D;
+    --navy-mid: #1A2D46;
+    --navy-light: #243A57;
+    --cream: #FAF7F2;
+    --text: #1C1C1C;
+    --text-mid: #4A4A4A;
+    --text-light: #7A7A7A;
+    --white: #FFFFFF;
+    --success: #2E7D52;
+    --border: rgba(201,168,76,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 20%;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 50%;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 32px 40px;
+    position: relative;
+    z-index: 2;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .badge svg { width: 14px; height: 14px; }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  header h1 span { color: var(--gold); }
+  header p {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.6;
+  }
+  .header-meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+  }
+  .meta-item svg { color: var(--gold); width: 15px; height: 15px; }
+
+  /* ── TAB NAV ── */
+  .tab-nav {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 16px 24px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.8); }
+  .tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .section-desc {
+    color: var(--text-mid);
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 32px;
+    max-width: 620px;
+    line-height: 1.6;
+  }
+
+  /* ── SCENARIO BANNER ── */
+  .scenario-banner {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario-banner::before {
+    content: '';
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+  }
+  .scenario-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .scenario-banner p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .scenario-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .pill {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  /* ── RPA FORM ── */
+  .rpa-form {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .form-section-header {
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .form-section-header span.num {
+    background: rgba(201,168,76,0.2);
+    color: var(--gold-light);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .field-wrap {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(0,0,0,0.05);
+  }
+  .field-wrap.full { grid-column: 1 / -1; }
+  .field-wrap label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 6px;
+  }
+  .field-wrap .para-ref {
+    font-size: 9px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-left: 4px;
+    opacity: 0.8;
+  }
+  .field-wrap input,
+  .field-wrap select,
+  .field-wrap textarea {
+    width: 100%;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .field-wrap input:focus,
+  .field-wrap select:focus,
+  .field-wrap textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+    background: var(--white);
+  }
+  .field-wrap input.prefilled {
+    background: #F0F7FF;
+    border-color: #B8D4EE;
+    color: #1A3A5C;
+    font-weight: 500;
+  }
+  .field-wrap textarea { resize: vertical; min-height: 80px; }
+  .field-wrap .field-note {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+
+  /* Checkbox group */
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-mid);
+    cursor: pointer;
+  }
+  .check-item input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--navy);
+    cursor: pointer;
+  }
+
+  /* ── FORM ACTIONS ── */
+  .form-actions {
+    padding: 24px;
+    background: var(--gold-pale);
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--gold);
+    border: 1px solid var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--navy-light); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1px solid #D0D0D0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--text); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-gold:hover { background: var(--gold-light); }
+
+  /* ── RESOURCES GRID ── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .resource-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .resource-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+  .resource-card:hover::before { transform: scaleX(1); }
+  .card-icon {
+    width: 48px; height: 48px;
+    background: var(--gold-pale);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: var(--gold);
+  }
+  .card-icon svg { width: 22px; height: 22px; }
+  .resource-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .resource-card p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-pale);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .card-action {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── CHEAT SHEET (inline) ── */
+  .cheatsheet {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 24px;
+  }
+  .cheatsheet-header {
+    background: var(--navy);
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cheatsheet-header h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 18px;
+  }
+  .cheatsheet-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 0;
+  }
+  .cs-section {
+    padding: 20px 24px;
+    border-right: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .cs-section h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px dotted rgba(0,0,0,0.07);
+    font-size: 13px;
+  }
+  .cs-row:last-child { border-bottom: none; }
+  .cs-key { color: var(--text-mid); font-weight: 300; flex: 1; min-width: 0; word-wrap: break-word; }
+  .cs-val { color: var(--navy); font-weight: 600; text-align: right; flex-shrink: 0; max-width: 55%; word-wrap: break-word; }
+
+  /* ── PRINT / PDF STYLES ── */
+  @media print {
+    header, .tab-nav, .form-actions, .btn-primary, .btn-secondary, .btn-gold { display: none !important; }
+    .tab-panel { display: block !important; }
+    body { background: white; }
+    .rpa-form { border: 1px solid #ccc; }
+    .scenario-banner { background: #f0f0f0; color: #000; print-color-adjust: exact; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .header-inner { padding: 32px 20px 28px; }
+    main { padding: 24px 20px 60px; }
+    .tab-nav-inner { padding: 0 12px; }
+    .tab-btn { padding: 14px 14px; font-size: 12px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .scenario-banner { grid-template-columns: 1fr; }
+    .form-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary, .btn-gold { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+      Final Quiz Passed — Resources Unlocked
+    </div>
+    <h1>Your <span>Agent Resource</span> Hub</h1>
+    <p>Congratulations on completing the RPA Mastery Course. Everything you need to write your first real offer is right here.</p>
+    <div class="header-meta">
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        5555 Winners Lane, Los Angeles CA 90210
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        List Price: $1,250,000
+      </div>
+      <div class="meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Buyers: Marcus & Priya Okonkwo
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── TAB NAV ── -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('practice-rpa')">Practice RPA Form</button>
+    <button class="tab-btn" onclick="switchTab('downloads')">Downloads</button>
+    <button class="tab-btn" onclick="switchTab('cheatsheet')">Quick Reference</button>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- TAB 1: PRACTICE RPA -->
+  <div class="tab-panel active" id="tab-practice-rpa">
+    <p class="section-label">Scenario Exercise</p>
+    <h2 class="section-title">Practice RPA — Fill Out Your Offer</h2>
+    <p class="section-desc">Use this form to write your offer for 5555 Winners Lane. Pre-filled fields are locked (blue). Fill in every blank field — your instructor reviews all submitted offers personally.</p>
+
+    <!-- Scenario Info Banner -->
+    <div class="scenario-banner">
+      <div>
+        <h3>5555 Winners Lane, Los Angeles CA 90210</h3>
+        <p>Single-Family Home · List Price $1,250,000 · Your clients are Marcus &amp; Priya Okonkwo<br>Write the strongest offer you can. Show your math. Explain your strategy.</p>
+        <div class="scenario-pills">
+          <span class="pill">RPA Revised 12/25</span>
+          <span class="pill">Buyer's Agent POV</span>
+          <span class="pill">C.A.R. Form</span>
+          <span class="pill">Aligned with CA DRE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rpa-form">
+
+      <!-- SECTION 1: PARTIES & PROPERTY -->
+      <div class="form-section-header"><span class="num">1</span> Parties &amp; Property</div>
+      <div class="form-grid">
+        <div class="field-wrap full">
+          <label>Property Address <span class="para-ref">¶ 1</span></label>
+          <input type="text" class="prefilled" value="5555 Winners Lane, Los Angeles, CA 90210" readonly>
+        </div>
+        <div class="field-wrap">
+          <label>Buyer Name 1 <span class="para-ref">¶ 1</span></label>
+          <input type="text" class="prefilled" value="Marcus Okonkwo" readonly>
+        </div>
+        <div class="field-wrap">
+          <label>Buyer Name 2 <span class="para-ref">¶ 1</span></label>
+          <input type="text" class="prefilled" value="Priya Okonkwo" readonly>
+        </div>
+        <div class="field-wrap">
+          <label>Offer Date <span class="para-ref">¶ 1</span></label>
+          <input type="date" id="offer-date">
+        </div>
+        <div class="field-wrap">
+          <label>Offer Expiration <span class="para-ref">¶ 1</span></label>
+          <input type="date" id="offer-expiry">
+          <div class="field-note">Date &amp; time offer expires if not accepted</div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: PURCHASE PRICE & FINANCING -->
+      <div class="form-section-header"><span class="num">2</span> Purchase Price &amp; Financing <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none;margin-left:8px;opacity:0.7">¶ 3, 5, 6</span></div>
+      <div class="form-grid">
+        <div class="field-wrap">
+          <label>Purchase Price <span class="para-ref">¶ 3A</span></label>
+          <input type="text" id="purchase-price" placeholder="e.g. $1,200,000" oninput="calcFinancing()">
+          <div class="field-note">List price is $1,250,000 — justify your number</div>
+        </div>
+        <div class="field-wrap">
+          <label>Financing Type <span class="para-ref">¶ 3B</span></label>
+          <select id="finance-type" onchange="toggleFinancing()">
+            <option value="">— Select —</option>
+            <option>Conventional Loan</option>
+            <option>FHA Loan</option>
+            <option>VA Loan</option>
+            <option>All Cash</option>
+            <option>Seller Financing</option>
+          </select>
+        </div>
+        <div class="field-wrap">
+          <label>Down Payment % <span class="para-ref">¶ 3B(2)</span></label>
+          <input type="number" id="down-pct" placeholder="e.g. 20" min="0" max="100" oninput="calcFinancing()">
+        </div>
+        <div class="field-wrap">
+          <label>Down Payment Amount <span class="para-ref">¶ 3B(2)</span></label>
+          <input type="text" id="down-amt" placeholder="Auto-calculated" readonly style="background:#F5F5F5;">
+        </div>
+        <div class="field-wrap">
+          <label>Loan Amount <span class="para-ref">¶ 3B(1)</span></label>
+          <input type="text" id="loan-amt" placeholder="Auto-calculated" readonly style="background:#F5F5F5;">
+        </div>
+        <div class="field-wrap">
+          <label>Interest Rate (approx.) <span class="para-ref">¶ 3B</span></label>
+          <input type="text" id="interest-rate" placeholder="e.g. 6.75%">
+        </div>
+        <div class="field-wrap">
+          <label>Initial Deposit (EMD) <span class="para-ref">¶ 3D(1)</span></label>
+          <input type="text" id="emd" placeholder="e.g. $25,000" oninput="calcFinancing()">
+          <div class="field-note">Typically 1–3% of purchase price. Must be delivered within 3 business days of acceptance.</div>
+        </div>
+        <div class="field-wrap">
+          <label>EMD Delivered Via <span class="para-ref">¶ 3D(1)</span></label>
+          <select>
+            <option value="">— Select —</option>
+            <option>Personal check</option>
+            <option>Cashier's check</option>
+            <option>Wire transfer</option>
+            <option>Electronic funds transfer</option>
+          </select>
+        </div>
+        <div class="field-wrap full">
+          <label>Increased Deposit (if any) <span class="para-ref">¶ 3D(2)</span></label>
+          <input type="text" placeholder="e.g. $50,000 within 10 days of acceptance (optional)">
+        </div>
+      </div>
+
+      <!-- SECTION 3: CLOSE OF ESCROW -->
+      <div class="form-section-header"><span class="num">3</span> Close of Escrow <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none;margin-left:8px;opacity:0.7">¶ 3H</span></div>
+      <div class="form-grid">
+        <div class="field-wrap">
+          <label>COE Type <span class="para-ref">¶ 3H</span></label>
+          <select id="coe-type">
+            <option value="">— Select —</option>
+            <option>Specific Date</option>
+            <option>Days After Acceptance</option>
+          </select>
+        </div>
+        <div class="field-wrap">
+          <label>COE Date or # of Days <span class="para-ref">¶ 3H</span></label>
+          <input type="text" id="coe-val" placeholder="e.g. 30 days or MM/DD/YYYY">
+          <div class="field-note">Standard is 30 days. Competitive offers may go shorter.</div>
+        </div>
+        <div class="field-wrap">
+          <label>Possession Time <span class="para-ref">¶ 3J</span></label>
+          <select>
+            <option>6 PM on day of COE</option>
+            <option>Upon recordation</option>
+            <option>Other (specify in Other Terms)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SECTION 4: SELLER CREDITS & CONCESSIONS -->
+      <div class="form-section-header"><span class="num">4</span> Seller Credits &amp; Concessions <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none;margin-left:8px;opacity:0.7">¶ 3G, 18A</span></div>
+      <div class="form-grid">
+        <div class="field-wrap">
+          <label>Seller Credit to Buyer <span class="para-ref">¶ G(1)</span></label>
+          <input type="text" placeholder="e.g. $10,000 for closing costs (or $0)">
+          <div class="field-note">Credits reduce seller's net. Use strategically.</div>
+        </div>
+        <div class="field-wrap">
+          <label>Buyer's Broker Compensation <span class="para-ref">¶ G(3)</span></label>
+          <input type="text" placeholder="e.g. 2.5% of purchase price">
+          <div class="field-note">Seller payment to compensate buyer's broker</div>
+        </div>
+        <div class="field-wrap">
+          <label>Home Warranty <span class="para-ref">¶ Q(18)</span></label>
+          <select>
+            <option value="">— Select —</option>
+            <option>Buyer to purchase</option>
+            <option>Seller to provide (up to $625)</option>
+            <option>No home warranty</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SECTION 5: CONTINGENCIES -->
+      <div class="form-section-header"><span class="num">5</span> Contingencies <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none;margin-left:8px;opacity:0.7">¶ 8, Section L</span></div>
+      <div class="form-grid">
+        <div class="field-wrap full">
+          <label>Select Contingencies <span class="para-ref">¶ L(1)–L(8)</span></label>
+          <div class="checkbox-group">
+            <label class="check-item"><input type="checkbox" checked> Loan Contingency (¶ L1)</label>
+            <label class="check-item"><input type="checkbox" checked> Appraisal Contingency (¶ L2)</label>
+            <label class="check-item"><input type="checkbox" checked> Investigation/Inspection (¶ L3)</label>
+            <label class="check-item"><input type="checkbox" checked> Insurance Contingency (¶ L4)</label>
+            <label class="check-item"><input type="checkbox" checked> Review of Seller Docs (¶ L5)</label>
+            <label class="check-item"><input type="checkbox" checked> Title Review (¶ L6)</label>
+            <label class="check-item"><input type="checkbox"> Common Interest Disclosures (¶ L7)</label>
+            <label class="check-item"><input type="checkbox"> Review of Leased Items (¶ L8)</label>
+          </div>
+          <div class="field-note" style="margin-top:10px;">⚠️ Removing contingencies makes the offer more competitive but increases your client's risk. Always discuss with your client before waiving.</div>
+        </div>
+        <div class="field-wrap">
+          <label>Loan Contingency Deadline <span class="para-ref">¶ L(1)</span></label>
+          <input type="text" placeholder="Default: 17 days after acceptance">
+        </div>
+        <div class="field-wrap">
+          <label>Appraisal Contingency Deadline <span class="para-ref">¶ L(2)</span></label>
+          <input type="text" placeholder="Default: 17 days after acceptance">
+        </div>
+        <div class="field-wrap">
+          <label>Inspection Deadline <span class="para-ref">¶ L(3)</span></label>
+          <input type="text" placeholder="Default: 17 days after acceptance">
+        </div>
+        <div class="field-wrap">
+          <label>Minimum Appraisal Value <span class="para-ref">¶ L(2)</span></label>
+          <input type="text" placeholder="e.g. Purchase price or $____">
+        </div>
+      </div>
+
+      <!-- SECTION 6: ITEMS INCLUDED/EXCLUDED -->
+      <div class="form-section-header"><span class="num">6</span> Items Included &amp; Excluded <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none;margin-left:8px;opacity:0.7">¶ 9 — Section P</span></div>
+      <div class="form-grid">
+        <div class="field-wrap full">
+          <label>Appliances &amp; Items Included <span class="para-ref">¶ P(1)</span></label>
+          <div class="checkbox-group">
+            <label class="check-item"><input type="checkbox" checked> Stove / Oven</label>
+            <label class="check-item"><input type="checkbox" checked> Refrigerator</label>
+            <label class="check-item"><input type="checkbox" checked> Dishwasher</label>
+            <label class="check-item"><input type="checkbox" checked> Microwave</label>
+            <label class="check-item"><input type="checkbox"> Washer</label>
+            <label class="check-item"><input type="checkbox"> Dryer</label>
+            <label class="check-item"><input type="checkbox"> Wine Refrigerator</label>
+            <label class="check-item"><input type="checkbox"> Electric Car Charging</label>
+            <label class="check-item"><input type="checkbox"> Above-Ground Pool/Spa</label>
+          </div>
+        </div>
+        <div class="field-wrap full">
+          <label>Additional Items to Include <span class="para-ref">¶ P(1)</span></label>
+          <input type="text" placeholder="e.g. Outdoor furniture, playground equipment, security cameras...">
+        </div>
+        <div class="field-wrap full">
+          <label>Items Excluded by Seller <span class="para-ref">¶ P(2)</span></label>
+          <input type="text" placeholder="e.g. Chandelier in dining room, piano, garden sculptures...">
+        </div>
+      </div>
+
+      <!-- SECTION 7: ALLOCATION OF COSTS -->
+      <div class="form-section-header"><span class="num">7</span> Allocation of Costs <span style="font-size:9px;font-weight:400;letter-spacing:0;text-transform:none;margin-left:8px;opacity:0.7">Section Q</span></div>
+      <div class="form-grid">
+        <div class="field-wrap">
+          <label>Natural Hazard Zone Disclosure <span class="para-ref">¶ Q(1)</span></label>
+          <select><option>Seller pays</option><option>Buyer pays</option><option>Split equally</option></select>
+        </div>
+        <div class="field-wrap">
+          <label>Escrow Fee <span class="para-ref">¶ Q(7)</span></label>
+          <select><option>Each party pays own fees</option><option>Buyer pays</option><option>Seller pays</option><option>Split equally</option></select>
+        </div>
+        <div class="field-wrap">
+          <label>Owner's Title Insurance <span class="para-ref">¶ Q(8)</span></label>
+          <select><option>Seller pays</option><option>Buyer pays</option><option>Split equally</option></select>
+        </div>
+        <div class="field-wrap">
+          <label>County Transfer Tax <span class="para-ref">¶ Q(10)</span></label>
+          <select><option>Seller pays</option><option>Buyer pays</option><option>Split equally</option></select>
+        </div>
+        <div class="field-wrap">
+          <label>Smoke/CO Detector Compliance <span class="para-ref">¶ Q(4)</span></label>
+          <select><option>Seller pays</option><option>Buyer pays</option><option>Split equally</option></select>
+        </div>
+      </div>
+
+      <!-- SECTION 8: OTHER TERMS -->
+      <div class="form-section-header"><span class="num">8</span> Other Terms &amp; Strategy</div>
+      <div class="form-grid">
+        <div class="field-wrap full">
+          <label>Other Terms <span class="para-ref">¶ R</span></label>
+          <textarea id="other-terms" placeholder="Add any additional terms here — escalation clauses, leaseback, AS-IS language, personal letters (note: CA law limits these), etc."></textarea>
+        </div>
+        <div class="field-wrap full">
+          <label>Your Offer Strategy — Explain Your Reasoning</label>
+          <textarea id="strategy" style="min-height:120px;" placeholder="Why did you choose this price? Why these contingencies? What's your competitive advantage? What's your client's risk tolerance? Your instructor reads this personally — be specific."></textarea>
+        </div>
+      </div>
+
+      <!-- FORM ACTIONS -->
+      <div class="form-actions">
+        <button class="btn-primary" onclick="printForm()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / Save as PDF
+        </button>
+        <button class="btn-secondary" onclick="clearForm()">Clear My Entries</button>
+        <button class="btn-gold" onclick="copyToClipboard()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          Copy Summary to Submit
+        </button>
+        <span id="copy-confirm" style="color:var(--success);font-size:13px;font-weight:600;display:none;">✓ Copied! Paste into the course submission box.</span>
+      </div>
+
+    </div>
+  </div><!-- /tab-practice-rpa -->
+
+  <!-- TAB 2: DOWNLOADS -->
+  <div class="tab-panel" id="tab-downloads">
+    <p class="section-label">Your Resource Pack</p>
+    <h2 class="section-title">Download Everything You Need</h2>
+    <p class="section-desc">All resources below are for internal EDR Realty training use only. The RPA is a C.A.R. form — use only for your licensed transactions and training exercises.</p>
+
+    <div class="resources-grid">
+
+      <div class="resource-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Blank RPA (C.A.R. Form)</h3>
+        <p>The full California Residential Purchase Agreement and Joint Escrow Instructions — Revised December 2025. All fields blank, ready to fill.</p>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+          <button onclick="downloadFile('RPA_blank.pdf')" style="flex:1;background:var(--navy);color:var(--gold);border:none;border-radius:6px;padding:9px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;min-width:100px;">↓ Download PDF</button>
+          <a href="https://app.glide.com/auth/login/" target="_blank" style="flex:1;background:var(--gold-pale);border:1px solid var(--border);border-radius:6px;padding:9px 14px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:var(--navy);text-decoration:none;text-align:center;min-width:100px;">✍️ Open in Glide</a>
+        </div>
+        <div class="card-meta" style="margin-top:10px;">
+          <span class="card-tag">PDF · 29 Pages</span>
+          <span style="font-size:11px;color:var(--text-light);">Includes all advisories</span>
+        </div>
+      </div>
+
+      <div class="resource-card" onclick="downloadFile('RPA_quickref.pdf')">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3>RPA Quick Reference Card</h3>
+        <p>One-page cheat sheet covering all 17 sections, default deadlines, key paragraph numbers, and what each contingency means. Print and keep on your desk.</p>
+        <div class="card-meta">
+          <span class="card-tag">Printable · 1 Page</span>
+          <span class="card-action">Download ↓</span>
+        </div>
+      </div>
+
+      <div class="resource-card" onclick="downloadFile('RPA_glossary.pdf')">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3>Key Terms Glossary</h3>
+        <p>Every important term defined in plain English — EMD, COE, contingency, liquidated damages, vesting, prorations, and 40+ more. No legalese.</p>
+        <div class="card-meta">
+          <span class="card-tag">Reference · 2 Pages</span>
+          <span class="card-action">Download ↓</span>
+        </div>
+      </div>
+
+      <div class="resource-card" onclick="downloadFile('RPA_timeline.pdf')">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Transaction Timeline Tracker</h3>
+        <p>A blank 30-day calendar template showing when each milestone is due — offer acceptance, deposit, inspections, contingency removals, COE. Fill in your dates.</p>
+        <div class="card-meta">
+          <span class="card-tag">Template · 1 Page</span>
+          <span class="card-action">Download ↓</span>
+        </div>
+      </div>
+
+      <div class="resource-card" onclick="downloadFile('RPA_scenario.pdf')">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>5555 Winners Lane Scenario</h3>
+        <p>Full scenario brief for the Marcus &amp; Priya Okonkwo offer exercise — property details, client backstory, goals, and the submission checklist your instructor uses to grade offers.</p>
+        <div class="card-meta">
+          <span class="card-tag">Scenario · PDF</span>
+          <span class="card-action">Download ↓</span>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /tab-downloads -->
+
+  <!-- TAB 3: CHEAT SHEET -->
+  <div class="tab-panel" id="tab-cheatsheet">
+    <p class="section-label">Quick Reference</p>
+    <h2 class="section-title">RPA Cheat Sheet</h2>
+    <p class="section-desc">The most important numbers, deadlines, and concepts from the RPA — all in one place. Aligned with C.A.R. Form RPA Revised 12/25 and CA DRE requirements.</p>
+
+    <div class="cheatsheet">
+      <div class="cheatsheet-header">
+        <h3>California RPA — At a Glance</h3>
+        <button class="btn-gold" onclick="window.print()" style="font-size:12px;padding:8px 18px;">Print This</button>
+      </div>
+      <div class="cheatsheet-body">
+
+        <div class="cs-section">
+          <h4>Default Deadlines — Calendar Days Unless Noted</h4>
+          <div class="cs-row"><span class="cs-key">EMD to Escrow ⚠️ BUSINESS DAYS</span><span class="cs-val">3 business days after acceptance ¶3D(1)</span></div>
+          <div class="cs-row"><span class="cs-key">Loan Contingency</span><span class="cs-val">17 days after acceptance ¶L(1)</span></div>
+          <div class="cs-row"><span class="cs-key">Appraisal Contingency</span><span class="cs-val">17 days after acceptance ¶L(2)</span></div>
+          <div class="cs-row"><span class="cs-key">Inspection / Investigation</span><span class="cs-val">17 days after acceptance ¶L(3)</span></div>
+          <div class="cs-row"><span class="cs-key">Insurance Contingency</span><span class="cs-val">17 days after acceptance ¶L(4)</span></div>
+          <div class="cs-row"><span class="cs-key">Review of Seller Documents</span><span class="cs-val">17 days or 5 days after delivery ¶L(5)</span></div>
+          <div class="cs-row"><span class="cs-key">Title / Preliminary Report</span><span class="cs-val">17 days or 5 days after delivery ¶L(6)</span></div>
+          <div class="cs-row"><span class="cs-key">Seller Deliver All Docs</span><span class="cs-val">7 days after acceptance ¶N(1)</span></div>
+          <div class="cs-row"><span class="cs-key">Sign Escrow Instructions</span><span class="cs-val">5 days after delivery ¶N(2)</span></div>
+          <div class="cs-row"><span class="cs-key">HOA Documents Ordered</span><span class="cs-val">3 days after acceptance ¶N(3)</span></div>
+          <div class="cs-row"><span class="cs-key">Smoke/CO/Water Heater</span><span class="cs-val">7 days after acceptance ¶N(4)</span></div>
+          <div class="cs-row"><span class="cs-key">Final Walkthrough</span><span class="cs-val">5 days BEFORE COE ¶J/16</span></div>
+          <div class="cs-row"><span class="cs-key">Offer Expiration</span><span class="cs-val">3 calendar days at 5 PM ¶3C/32A</span></div>
+          <div class="cs-row"><span class="cs-key">Standard Close of Escrow</span><span class="cs-val">30 days — negotiable ¶3B</span></div>
+          <div class="cs-row"><span class="cs-key">Contingency Removal</span><span class="cs-val">Written only — C.A.R. Form CR-B ¶14</span></div>
+        </div>
+
+        <div class="cs-section">
+          <h4>Key Dollar Rules &amp; Possession</h4>
+          <div class="cs-row"><span class="cs-key">Liquidated damages cap</span><span class="cs-val">3% of purchase price — 1 to 4 unit owner-occ. — ¶29 must be initialed</span></div>
+          <div class="cs-row"><span class="cs-key">Typical EMD range</span><span class="cs-val">1%–3% of purchase price — paid to escrow</span></div>
+          <div class="cs-row"><span class="cs-key">Home warranty max (seller)</span><span class="cs-val">$625 ¶Q(18)</span></div>
+          <div class="cs-row"><span class="cs-key">Civil penalty — wrongful cancel</span><span class="cs-val">Up to $1,000 — Civil Code §1057.3</span></div>
+          <div class="cs-row"><span class="cs-key">Prorations based on</span><span class="cs-val">30-day month ¶17</span></div>
+          <div class="cs-row"><span class="cs-key" style="font-weight:600;color:var(--navy);">POSSESSION</span><span class="cs-val"></span></div>
+          <div class="cs-row"><span class="cs-key">Default possession time</span><span class="cs-val">6 PM on COE date upon recordation ¶3M</span></div>
+          <div class="cs-row"><span class="cs-key">Leaseback 29 days or fewer</span><span class="cs-val">C.A.R. Form SIP ¶3M(2)</span></div>
+          <div class="cs-row"><span class="cs-key">Leaseback 30 days or more</span><span class="cs-val">C.A.R. Form RLAS — landlord-tenant relationship</span></div>
+          <div class="cs-row"><span class="cs-key">Tenant-occupied property</span><span class="cs-val">C.A.R. Form TOPA ¶4A</span></div>
+          <div class="cs-row"><span class="cs-key" style="font-weight:600;color:var(--navy);">DISPUTE RESOLUTION</span><span class="cs-val"></span></div>
+          <div class="cs-row"><span class="cs-key">Step 1 — Required first</span><span class="cs-val">Mediation — consumermediation.org ¶30</span></div>
+          <div class="cs-row"><span class="cs-key">Step 2 — If initialed ¶31E</span><span class="cs-val">Binding arbitration — waives jury trial right</span></div>
+          <div class="cs-row"><span class="cs-key">Notice to Perform</span><span class="cs-val">Min. 2 days — NBP (buyer) or NSP (seller)</span></div>
+          <div class="cs-row"><span class="cs-key">Demand to Close Escrow</span><span class="cs-val">Min. 3 days before cancellation — DCE form</span></div>
+        </div>
+
+        <div class="cs-section">
+          <h4>The Big 5 Contingencies — What They Protect</h4>
+          <div class="cs-row"><span class="cs-key">Loan ¶L(1)/8A</span><span class="cs-val">Buyer can cancel if loan falls through after acceptance</span></div>
+          <div class="cs-row"><span class="cs-key">Appraisal ¶L(2)/8B</span><span class="cs-val">Buyer can cancel if home appraises below purchase price</span></div>
+          <div class="cs-row"><span class="cs-key">Inspection ¶L(3)/8C</span><span class="cs-val">Buyer can cancel after reviewing property condition</span></div>
+          <div class="cs-row"><span class="cs-key">Insurance ¶L(4)/8D</span><span class="cs-val">Buyer can cancel if insurance is unavailable or too costly</span></div>
+          <div class="cs-row"><span class="cs-key">Title Review ¶L(6)/8F</span><span class="cs-val">Buyer can cancel if title defects found in prelim report</span></div>
+          <div class="cs-row"><span class="cs-key">To remove any contingency</span><span class="cs-val">Written only — C.A.R. Form CR-B — verbal = no legal effect</span></div>
+          <div class="cs-row"><span class="cs-key">Removing at time of offer</span><span class="cs-val">Against Agent Advice — stated in RPA Paragraph 8I</span></div>
+        </div>
+
+        <div class="cs-section">
+          <h4>Cost Allocation Defaults — Paragraph Q</h4>
+          <div class="cs-row"><span class="cs-key">NHD Report ¶Q(1)</span><span class="cs-val">Seller pays</span></div>
+          <div class="cs-row"><span class="cs-key">Escrow Fee ¶Q(7)</span><span class="cs-val">Each party pays their own</span></div>
+          <div class="cs-row"><span class="cs-key">Owner's Title Insurance ¶Q(8)</span><span class="cs-val">Seller pays</span></div>
+          <div class="cs-row"><span class="cs-key">Buyer's Lender Title Policy ¶Q(9)</span><span class="cs-val">Buyer pays</span></div>
+          <div class="cs-row"><span class="cs-key">County Transfer Tax ¶Q(10)</span><span class="cs-val">Seller pays</span></div>
+          <div class="cs-row"><span class="cs-key">City Transfer Tax ¶Q(11)</span><span class="cs-val">Seller pays</span></div>
+          <div class="cs-row"><span class="cs-key">HOA Disclosure Fee ¶Q(12)</span><span class="cs-val">Seller pays</span></div>
+          <div class="cs-row"><span class="cs-key">HOA Certification Fee ¶Q(13)</span><span class="cs-val">Buyer pays</span></div>
+          <div class="cs-row"><span class="cs-key">Home Warranty (if seller) ¶Q(18)</span><span class="cs-val">Seller max $625</span></div>
+          <div class="cs-row"><span class="cs-key">Smoke/CO Compliance ¶Q(4)</span><span class="cs-val">Negotiated</span></div>
+        </div>
+
+        <div class="cs-section">
+          <h4>Key C.A.R. Forms</h4>
+          <div class="cs-row"><span class="cs-key">CR-B</span><span class="cs-val">Remove buyer contingencies — must be in writing</span></div>
+          <div class="cs-row"><span class="cs-key">NBP</span><span class="cs-val">Notice to Buyer to Perform — min. 2 days</span></div>
+          <div class="cs-row"><span class="cs-key">NSP</span><span class="cs-val">Notice to Seller to Perform — min. 2 days</span></div>
+          <div class="cs-row"><span class="cs-key">DCE</span><span class="cs-val">Demand to Close Escrow — min. 3 days</span></div>
+          <div class="cs-row"><span class="cs-key">CC</span><span class="cs-val">Cancellation of Contract</span></div>
+          <div class="cs-row"><span class="cs-key">RR</span><span class="cs-val">Request for Repair</span></div>
+          <div class="cs-row"><span class="cs-key">SIP</span><span class="cs-val">Seller In Possession — leaseback 29 days or fewer</span></div>
+          <div class="cs-row"><span class="cs-key">RLAS</span><span class="cs-val">Residential Lease After Sale — 30 days or more</span></div>
+          <div class="cs-row"><span class="cs-key">TOPA</span><span class="cs-val">Tenant Occupied Property Addendum</span></div>
+          <div class="cs-row"><span class="cs-key">AD</span><span class="cs-val">Agency Disclosure — give to buyer before the offer</span></div>
+          <div class="cs-row"><span class="cs-key">TDS</span><span class="cs-val">Transfer Disclosure Statement — seller delivers</span></div>
+          <div class="cs-row"><span class="cs-key">SPQ</span><span class="cs-val">Seller Property Questionnaire — seller delivers</span></div>
+          <div class="cs-row"><span class="cs-key">AVID</span><span class="cs-val">Agent Visual Inspection Disclosure — required every transaction</span></div>
+          <div class="cs-row"><span class="cs-key">FVAC</span><span class="cs-val">FHA/VA Amendatory Clause — required for FHA/VA loans</span></div>
+          <div class="cs-row"><span class="cs-key">IDA</span><span class="cs-val">Increased Deposit Addendum</span></div>
+          <div class="cs-row"><span class="cs-key">WFA</span><span class="cs-val">Wire Fraud Advisory — warn your client about wire fraud</span></div>
+        </div>
+
+        <div class="cs-section">
+          <h4>Always Remember</h4>
+          <div class="cs-row"><span class="cs-key">EMD goes to...</span><span class="cs-val">ESCROW — never directly to the seller</span></div>
+          <div class="cs-row"><span class="cs-key">Remove contingencies...</span><span class="cs-val">In WRITING only — CR-B form — verbal has no effect</span></div>
+          <div class="cs-row"><span class="cs-key">Days means...</span><span class="cs-val">CALENDAR days — EMD is the only exception (business days)</span></div>
+          <div class="cs-row"><span class="cs-key">Buyer agent is...</span><span class="cs-val">NOT a party to the RPA — see Paragraph 1D</span></div>
+          <div class="cs-row"><span class="cs-key">Present offers...</span><span class="cs-val">As soon as practicable — DRE fiduciary duty</span></div>
+          <div class="cs-row"><span class="cs-key">Dual agency requires...</span><span class="cs-val">Written consent from BOTH parties</span></div>
+          <div class="cs-row"><span class="cs-key">AVID required...</span><span class="cs-val">Every transaction — your own visual inspection</span></div>
+          <div class="cs-row"><span class="cs-key">Acceptance means...</span><span class="cs-val">Signed AND delivered to the offering party</span></div>
+          <div class="cs-row"><span class="cs-key">Verbal agreements...</span><span class="cs-val">Mean nothing — get everything in writing</span></div>
+          <div class="cs-row"><span class="cs-key">Liquidated damages...</span><span class="cs-val">3% cap ONLY if Paragraph 29 is initialed by both parties</span></div>
+          <div class="cs-row"><span class="cs-key">TDS cancel right...</span><span class="cs-val">3 days after personal delivery — 5 days after mail/email</span></div>
+          <div class="cs-row"><span class="cs-key">All changes to RPA...</span><span class="cs-val">Must be in writing signed by both parties — Paragraph 28</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-top:16px;padding:16px 20px;background:rgba(201,168,76,0.1);border:1px solid var(--border);border-radius:8px;">
+      <p style="font-size:12px;color:var(--text-mid);line-height:1.6;">
+        <strong style="color:var(--navy);">Note:</strong> All deadlines are calendar days unless otherwise noted. "Days" in the RPA means calendar days per Paragraph 23. Deadlines falling on a Saturday, Sunday, or CA legal holiday extend to the next business day. Always verify current C.A.R. form versions at <strong>car.org</strong>. Aligned with C.A.R. Form RPA Revised 12/25.
+      </p>
+    </div>
+  </div><!-- /tab-cheatsheet -->
+
+</main>
+
+<script>
+// ── TAB SWITCHING ──
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── FINANCING MATH ──
+function calcFinancing() {
+  const priceRaw = document.getElementById('purchase-price').value.replace(/[$,]/g, '');
+  const price = parseFloat(priceRaw);
+  const pct = parseFloat(document.getElementById('down-pct').value);
+
+  if (!isNaN(price) && !isNaN(pct)) {
+    const down = price * (pct / 100);
+    const loan = price - down;
+    document.getElementById('down-amt').value = '$' + down.toLocaleString('en-US', {minimumFractionDigits: 0});
+    document.getElementById('loan-amt').value = '$' + loan.toLocaleString('en-US', {minimumFractionDigits: 0});
+  }
+}
+
+function toggleFinancing() {
+  const type = document.getElementById('finance-type').value;
+  const downPct = document.getElementById('down-pct');
+  const loanAmt = document.getElementById('loan-amt');
+  if (type === 'All Cash') {
+    downPct.value = 100;
+    loanAmt.value = '$0';
+    calcFinancing();
+  }
+}
+
+// ── PRINT ──
+function printForm() {
+  window.print();
+}
+
+// ── CLEAR ──
+function clearForm() {
+  if (!confirm('Clear all your entries? Pre-filled fields will stay.')) return;
+  document.querySelectorAll('.rpa-form input:not(.prefilled), .rpa-form select, .rpa-form textarea').forEach(el => {
+    if (el.type === 'checkbox') { el.checked = true; }
+    else { el.value = ''; }
+  });
+}
+
+// ── COPY SUMMARY ──
+function copyToClipboard() {
+  const price = document.getElementById('purchase-price').value || '(not entered)';
+  const emd = document.getElementById('emd').value || '(not entered)';
+  const downPct = document.getElementById('down-pct').value || '(not entered)';
+  const loanAmt = document.getElementById('loan-amt').value || '(not entered)';
+  const coe = document.getElementById('coe-val').value || '(not entered)';
+  const strategy = document.getElementById('strategy').value || '(not entered)';
+  const otherTerms = document.getElementById('other-terms').value || 'None';
+
+  const contingencies = [];
+  document.querySelectorAll('.checkbox-group input[type="checkbox"]:checked').forEach(cb => {
+    contingencies.push(cb.parentElement.textContent.trim());
+  });
+
+  const summary = `=== EDR REALTY — SCENARIO OFFER SUMMARY ===
+Property: 5555 Winners Lane, Los Angeles CA 90210
+Buyers: Marcus & Priya Okonkwo
+
+OFFER TERMS:
+Purchase Price: ${price}
+Initial Deposit (EMD): ${emd}
+Down Payment: ${downPct}%
+Loan Amount: ${loanAmt}
+Close of Escrow: ${coe}
+
+CONTINGENCIES SELECTED:
+${contingencies.join('\n')}
+
+OTHER TERMS:
+${otherTerms}
+
+OFFER STRATEGY:
+${strategy}
+
+===========================================`;
+
+  navigator.clipboard.writeText(summary).then(() => {
+    const confirm = document.getElementById('copy-confirm');
+    confirm.style.display = 'inline';
+    setTimeout(() => { confirm.style.display = 'none'; }, 4000);
+  }).catch(() => {
+    alert('Copy failed — please select and copy the text manually.');
+  });
+}
+
+// ── DOWNLOAD STUBS (replace with real files on GitHub) ──
+function downloadFile(filename) {
+  const a = document.createElement('a');
+  a.href = filename;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+function downloadCheatsheet() { downloadFile('RPA_glossary.pdf'); }
+function downloadGlossary()   { downloadFile('RPA_glossary.pdf'); }
+function downloadDeadlines()  { downloadFile('RPA_timeline.pdf'); }
+</script>
+</body>
+</html>
