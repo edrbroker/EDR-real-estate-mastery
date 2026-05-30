@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Course 2 · Lesson 3 — The 17-Day Window | EDR Realty Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{--navy:#0b0f1f;--navy2:#111827;--card:#161d30;--border:#1e2a42;--gold:#c9a84c;--gold-light:#e8c96e;--gold-dim:rgba(201,168,76,0.15);--green:#22c55e;--red:#ef4444;--text:#e8eaf0;--muted:#8b93a8;--white:#ffffff;--blue:#3b82f6;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;min-height:100vh;}
+  .header{background:var(--navy2);border-bottom:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.1rem;}
+  .badge{background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+  .hero{background:linear-gradient(135deg,#0d1a35 0%,#0b0f1f 60%);border-bottom:1px solid var(--border);padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);border-radius:50%;}
+  .course-tag{display:inline-block;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold);padding:5px 16px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.4rem);color:var(--white);line-height:1.2;margin-bottom:12px;}
+  .hero h1 span{color:var(--gold);}
+  .hero-sub{color:var(--muted);font-size:.95rem;max-width:480px;margin:0 auto 24px;}
+  .hero-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
+  .meta-item{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);}
+  .meta-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .main{max-width:720px;margin:0 auto;padding:32px 20px 60px;}
+  .story-block{background:linear-gradient(135deg,#1a2040,#111827);border:1px solid var(--gold);border-radius:12px;padding:28px 24px;margin-bottom:36px;}
+  .story-block::before{content:'📖 THE STORY CONTINUES';display:block;font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:14px;}
+  .story-block p{color:var(--text);margin-bottom:12px;}
+  .story-block p:last-child{margin-bottom:0;}
+  .story-block strong{color:var(--gold-light);}
+  .section-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  .section-title span{color:var(--gold);}
+  .content p{color:var(--text);margin-bottom:16px;}
+  .content strong{color:var(--gold-light);}
+  .callout{border-radius:10px;padding:20px 22px;margin:20px 0;font-size:.9rem;}
+  .callout-gold{background:var(--gold-dim);border-left:3px solid var(--gold);}
+  .callout-gold .callout-label{color:var(--gold);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+  .callout-red{background:rgba(239,68,68,.08);border-left:3px solid var(--red);}
+  .callout-red .callout-label{color:#f87171;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+  .agent-tip{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:18px 20px;margin:20px 0;}
+  .agent-tip .tip-label{color:var(--green);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+  .agent-tip p{font-size:.9rem;color:var(--text);}
+  .scope-box{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:18px 20px;margin:24px 0;}
+  .scope-box .scope-label{color:#f87171;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+  .scope-box p{font-size:.88rem;color:var(--muted);}
+  .para-ref{display:inline-block;background:rgba(59,130,246,.1);color:#93c5fd;padding:1px 6px;border-radius:3px;font-size:.72rem;font-weight:600;}
+  .day-row{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);}
+  .day-row:last-child{border-bottom:none;}
+  .day-num{min-width:80px;font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);font-weight:700;}
+  .day-content{flex:1;}
+  .day-content .task{font-weight:600;color:var(--white);font-size:.93rem;}
+  .day-content .detail{font-size:.85rem;color:var(--muted);margin-top:2px;}
+  .day-row.deadline .day-num{color:#f87171;}
+  .day-row.deadline .task{color:#f87171;}
+  .divider{border:none;border-top:1px solid var(--border);margin:40px 0;}
+  .quiz-header{text-align:center;margin-bottom:28px;}
+  .quiz-header h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--white);margin-bottom:6px;}
+  .quiz-header p{color:var(--muted);font-size:.88rem;}
+  .question-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;}
+  .q-number{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+  .q-type-badge{display:inline-block;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:3px;margin-left:8px;background:var(--gold-dim);color:var(--gold);}
+  .question-text{font-size:.97rem;color:var(--white);font-weight:500;margin-bottom:18px;line-height:1.5;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .option-btn{background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:13px 16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.9rem;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:12px;}
+  .option-btn:hover:not(:disabled){border-color:var(--gold);color:var(--white);background:var(--gold-dim);}
+  .option-btn:disabled{cursor:default;}
+  .option-btn.correct{background:rgba(34,197,94,.12);border-color:var(--green);color:var(--white);}
+  .option-btn.incorrect{background:rgba(239,68,68,.1);border-color:var(--red);color:var(--white);}
+  .option-btn.revealed{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3);}
+  .option-letter{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;min-width:24px;border-radius:50%;background:var(--border);color:var(--muted);font-weight:700;font-size:.75rem;flex-shrink:0;margin-top:1px;}
+  .option-btn.correct .option-letter{background:var(--green);color:#fff;}
+  .option-btn.incorrect .option-letter{background:var(--red);color:#fff;}
+  .option-btn.revealed .option-letter{background:rgba(34,197,94,.3);color:#fff;}
+  .feedback-box{margin-top:14px;padding:14px 16px;border-radius:8px;font-size:.88rem;line-height:1.5;display:none;}
+  .feedback-box.show{display:block;}
+  .feedback-box.correct-fb{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac;}
+  .feedback-box.incorrect-fb{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5;}
+  .feedback-box .fb-label{font-weight:700;margin-bottom:4px;}
+  .score-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 28px;text-align:center;margin-top:32px;display:none;}
+  .score-card.show{display:block;}
+  .score-circle{width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;margin:0 auto 20px;}
+  .score-circle.pass{background:rgba(34,197,94,.15);border:3px solid var(--green);color:var(--green);}
+  .score-circle.fail{background:rgba(239,68,68,.1);border:3px solid var(--red);color:var(--red);}
+  .score-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:8px;}
+  .score-msg{color:var(--muted);font-size:.9rem;margin-bottom:24px;}
+  .retry-btn{background:var(--gold);color:var(--navy);border:none;border-radius:8px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s;}
+  .retry-btn:hover{background:var(--gold-light);}
+  .next-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;margin-left:12px;transition:background .2s;}
+  .next-btn:hover{background:#16a34a;}
+  .progress-bar-wrap{width:100%;height:4px;background:var(--border);border-radius:2px;margin-top:20px;}
+  .progress-bar-fill{height:4px;background:var(--gold);border-radius:2px;transition:width .4s;}
+  .footer{text-align:center;padding:24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);margin-top:40px;}
+  @media(max-width:480px){.hero{padding:36px 16px 28px;}.main{padding:24px 16px 48px;}.question-card{padding:18px 16px;}}
+</style>
+</head>
+<body>
+<header class="header"><div class="brand">EDR Realty Group</div><div class="badge">Course 2 · Buyer Side</div></header>
+<section class="hero">
+  <div class="course-tag">Lesson 3 of 11</div>
+  <h1>The <span>17-Day Window</span></h1>
+  <p class="hero-sub">What Your Buyer Must Do Before It Closes — And What Happens If They Miss It</p>
+  <div class="hero-meta">
+    <span class="meta-item"><span class="meta-dot"></span>~30 min read</span>
+    <span class="meta-item"><span class="meta-dot"></span>RPA Paragraph 3L / 14B</span>
+    <span class="meta-item"><span class="meta-dot"></span>5 Quiz Questions</span>
+  </div>
+</section>
+<div class="main">
+  <div class="story-block">
+    <p>Day 5. You've confirmed the EMD hit escrow. Marcus texted to say the lender called — they need a few more documents. Priya got three insurance quotes and they're all high because of the fire zone.</p>
+    <p>You look at your calendar. <strong>Day 17 is in 12 days.</strong> That's when every major contingency deadline lands. Twelve days to complete inspections, get the appraisal back, solve the insurance problem, review the title report, and review seller documents.</p>
+    <p>Twelve days sounds like a lot. But in a real transaction, <strong>it disappears fast.</strong></p>
+  </div>
+
+  <div class="content">
+    <h2 class="section-title">Why <span>17 Days</span> Is the Critical Number</h2>
+    <p>Under the RPA (Revised 12/25), Paragraph 3L, the default time to remove all major buyer contingencies is <strong>17 calendar days after acceptance.</strong> This single deadline covers the loan, appraisal, inspection, insurance, title, and seller document review contingencies simultaneously.</p>
+    <p>The parties can negotiate a different timeline — shorter in competitive markets, longer in complex transactions — but 17 days is what the RPA defaults to if nothing else is agreed upon.</p>
+    <div class="callout callout-gold">
+      <div class="callout-label">⚠️ RPA Rule — Paragraph 14</div>
+      <p>Time periods in the RPA may only be extended, altered, or changed by <strong>mutual written agreement.</strong> One side cannot unilaterally extend a deadline. Both buyer and seller must agree in writing — and that agreement must be delivered to both parties before the deadline passes.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Day by Day: <span>What Must Get Done</span></h2>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px;">
+    <div class="day-row">
+      <div class="day-num">Day 0</div>
+      <div class="day-content"><div class="task">Acceptance — clock starts</div><div class="detail">Send congratulations, build deal calendar, confirm EMD wire initiated. <span class="para-ref">¶1 / 3C</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 1–3 (bus.)</div>
+      <div class="day-content"><div class="task">EMD delivered to escrow</div><div class="detail">3 business days — the only business day deadline in the RPA. Confirm receipt with escrow. <span class="para-ref">¶3D(1)</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 3</div>
+      <div class="day-content"><div class="task">Loan application & verification of funds submitted</div><div class="detail">Buyer submits full loan application. Down payment and closing cost verification attached or due within 3 days. <span class="para-ref">¶H(2,3)</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 5</div>
+      <div class="day-content"><div class="task">Sign and return escrow instructions</div><div class="detail">5 days after delivery from escrow. Both parties sign. <span class="para-ref">¶N(2)</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 7</div>
+      <div class="day-content"><div class="task">Seller delivers all disclosures</div><div class="detail">TDS, SPQ, NHD, and all required docs. If late, buyer's review window extends to 5 days after delivery. <span class="para-ref">¶14A / N(1)</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 7</div>
+      <div class="day-content"><div class="task">HOA documents ordered (if applicable)</div><div class="detail">Seller pays the fee and orders HOA docs within 3 days of acceptance. <span class="para-ref">¶N(3)</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 7–10</div>
+      <div class="day-content"><div class="task">Schedule and complete home inspection</div><div class="detail">Buyer hires and pays. General, pest, roof, and any specialized inspections all before Day 17. <span class="para-ref">¶8C</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 7–10</div>
+      <div class="day-content"><div class="task">Review preliminary title report</div><div class="detail">Look for liens, easements, encumbrances. Flag anything unusual immediately. <span class="para-ref">¶8F / L(6)</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 1–14</div>
+      <div class="day-content"><div class="task">Start insurance search immediately</div><div class="detail">California's insurance market — especially fire zones — requires early action. Do not wait. <span class="para-ref">¶8D</span></div></div>
+    </div>
+    <div class="day-row">
+      <div class="day-num">Day 14</div>
+      <div class="day-content"><div class="task">Appraisal ordered by lender</div><div class="detail">Lender typically orders by Day 5–7; results often come back around Day 14. Review immediately. <span class="para-ref">¶8B / L(2)</span></div></div>
+    </div>
+    <div class="day-row deadline">
+      <div class="day-num">⚠️ Day 17</div>
+      <div class="day-content"><div class="task">ALL MAJOR CONTINGENCY DEADLINES</div><div class="detail">Loan · Appraisal · Inspection · Insurance · Title · Seller Documents. Remove or cancel — in writing. <span class="para-ref">¶3L(1–6)</span></div></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2 class="section-title">What Happens <span>When Day 17 Passes</span> Without Action?</h2>
+    <p>This is where many new agents make a dangerous mistake. They assume that if the buyer doesn't remove a contingency by Day 17, the contingency just "stays active." <strong>That is not entirely correct.</strong></p>
+    <p>Under RPA Paragraph 14B(4), even after Day 17 passes, the buyer <strong>retains the right to remove remaining contingencies or cancel</strong> — BUT only until the seller delivers a Notice to Buyer to Perform (NBP). Once the seller sends that notice, the buyer has a limited window to act. If they don't — the seller can cancel.</p>
+    <p>And critically: <strong>the seller cannot simply cancel without first sending the NBP.</strong> The process must be followed in the correct order. We cover NBP in detail in Lesson 5.</p>
+
+    <div class="callout callout-red">
+      <div class="callout-label">🚨 The Real Danger of Silence</div>
+      <p>If Day 17 passes and your buyer hasn't removed contingencies OR cancelled — they are in a gray zone. The deal is technically in breach. The seller can start the NBP process. Your buyer's deposit may be at risk depending on what happens next. <strong>Never let Day 17 pass silently.</strong> Either remove contingencies, cancel, or have a written extension in place.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2 class="section-title">How to <span>Request a Written Extension</span></h2>
+    <p>Sometimes 17 days isn't enough. The appraisal is delayed. The inspection found issues you're still evaluating. The lender needs more time. That's OK — but the solution must be documented properly.</p>
+    <p>To extend any deadline in the RPA, both buyer and seller must sign a written agreement — typically through an Amendment (C.A.R. Form AM) or a written addendum. This must be completed <strong>before the deadline passes.</strong></p>
+    <p>As the buyer's agent, if you think you need more time, reach out to the listing agent early — not on Day 16 at 11pm. Professional communication and planning will get you an extension far more often than last-minute panicking.</p>
+  </div>
+
+  <div class="agent-tip">
+    <div class="tip-label">🏡 Pro Move — The Day 10 Check-In</div>
+    <p>On Day 10, proactively contact your buyer, lender, and escrow officer. Confirm what's been done and what's still pending. You have 7 days to solve any problems before the deadline. At Day 16, your options are much more limited. The agents who never have emergencies are the ones who check in at Day 10.</p>
+  </div>
+
+  <div class="scope-box">
+    <div class="scope-label">⚖️ Stay Within Your License</div>
+    <p>If your buyer is considering missing the deadline on purpose as a negotiation tactic — advise them strongly against it. That is not within your scope of advice and could create legal exposure for you and your client. Any strategy involving intentional contract breach should go to their real estate attorney, not their agent.</p>
+  </div>
+
+  <hr class="divider"/>
+  <div class="quiz-header"><h2>Knowledge Check</h2><p>5 questions · You need 4 out of 5 (80%) to pass</p></div>
+  <div id="quiz-container">
+    <div class="question-card" id="q1">
+      <div class="q-number">Question 1 <span class="q-type-badge">Multiple Choice</span></div>
+      <div class="question-text">Under the RPA, what is the default number of days a buyer has to remove all major contingencies after acceptance?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(1,'A')"><span class="option-letter">A</span>7 calendar days</button>
+        <button class="option-btn" onclick="answer(1,'B')"><span class="option-letter">B</span>17 calendar days</button>
+        <button class="option-btn" onclick="answer(1,'C')"><span class="option-letter">C</span>21 business days</button>
+        <button class="option-btn" onclick="answer(1,'D')"><span class="option-letter">D</span>30 calendar days</button>
+      </div>
+      <div class="feedback-box" id="fb1"></div>
+    </div>
+    <div class="question-card" id="q2">
+      <div class="q-number">Question 2 <span class="q-type-badge">Multiple Choice</span></div>
+      <div class="question-text">Marcus and Priya's lender needs 5 more days to complete the loan approval process — they won't be ready by Day 17. What is the correct way to extend the loan contingency deadline?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(2,'A')"><span class="option-letter">A</span>The buyer's agent can unilaterally email both parties stating the deadline is extended</button>
+        <button class="option-btn" onclick="answer(2,'B')"><span class="option-letter">B</span>Both buyer and seller must sign a written agreement extending the deadline before Day 17 passes</button>
+        <button class="option-btn" onclick="answer(2,'C')"><span class="option-letter">C</span>The deadline automatically extends if the lender submits a delay letter to escrow</button>
+        <button class="option-btn" onclick="answer(2,'D')"><span class="option-letter">D</span>Extensions are not allowed under the RPA — the buyer must remove or cancel by Day 17 no exceptions</button>
+      </div>
+      <div class="feedback-box" id="fb2"></div>
+    </div>
+    <div class="question-card" id="q3">
+      <div class="q-number">Question 3 <span class="q-type-badge">Multiple Choice</span></div>
+      <div class="question-text">Day 17 has passed and the Okonkwos have not removed their inspection contingency or cancelled. What is the seller's correct next step if they want to cancel the contract?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(3,'A')"><span class="option-letter">A</span>The seller can immediately cancel and keep the deposit since the buyer missed the deadline</button>
+        <button class="option-btn" onclick="answer(3,'B')"><span class="option-letter">B</span>The seller must first deliver a Notice to Buyer to Perform (NBP) and give the buyer at least 2 days to act before cancelling</button>
+        <button class="option-btn" onclick="answer(3,'C')"><span class="option-letter">C</span>The seller must file a complaint with the California DRE before cancelling</button>
+        <button class="option-btn" onclick="answer(3,'D')"><span class="option-letter">D</span>The seller cannot cancel — the buyer retains all contingency rights indefinitely</button>
+      </div>
+      <div class="feedback-box" id="fb3"></div>
+    </div>
+    <div class="question-card" id="q4">
+      <div class="q-number">Question 4 <span class="q-type-badge">Multiple Choice</span></div>
+      <div class="question-text">The seller at 5555 Winners Lane delivers the TDS and SPQ on Day 10 — three days late. When is the Okonkwos' deadline to review those seller documents under the RPA?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(4,'A')"><span class="option-letter">A</span>Day 13 — exactly 3 days after the documents were delivered</button>
+        <button class="option-btn" onclick="answer(4,'B')"><span class="option-letter">B</span>Day 17 — the original deadline always applies</button>
+        <button class="option-btn" onclick="answer(4,'C')"><span class="option-letter">C</span>Day 17 — because Day 17 is later than 5 days after delivery (Day 15), the original deadline stands</button>
+        <button class="option-btn" onclick="answer(4,'D')"><span class="option-letter">D</span>Day 20 — any late delivery automatically adds 10 days</button>
+      </div>
+      <div class="feedback-box" id="fb4"></div>
+    </div>
+    <div class="question-card" id="q5">
+      <div class="q-number">Question 5 <span class="q-type-badge">Multiple Choice</span></div>
+      <div class="question-text">As the buyer's agent, what is the most professional and protective action to take on Day 10 of the Okonkwos' transaction?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(5,'A')"><span class="option-letter">A</span>Wait for the lender and escrow to update you — it's unprofessional to contact them too frequently</button>
+        <button class="option-btn" onclick="answer(5,'B')"><span class="option-letter">B</span>Proactively contact your buyers, the lender, and escrow to confirm what's been completed and what's still pending — giving you 7 days to solve any problems before Day 17</button>
+        <button class="option-btn" onclick="answer(5,'C')"><span class="option-letter">C</span>Send the seller an email asking for a 7-day extension on all contingencies</button>
+        <button class="option-btn" onclick="answer(5,'D')"><span class="option-letter">D</span>Begin the contingency removal process on Day 10 to avoid any risk of missing Day 17</button>
+      </div>
+      <div class="feedback-box" id="fb5"></div>
+    </div>
+  </div>
+  <div class="score-card" id="score-card">
+    <div class="score-circle" id="score-circle"></div>
+    <div class="score-title" id="score-title"></div>
+    <p class="score-msg" id="score-msg"></p>
+    <div>
+      <button class="retry-btn" onclick="retryQuiz()" id="retry-btn" style="display:none;">Retake Quiz</button>
+      <button class="next-btn" id="next-btn" style="display:none;" onclick="alert('Lesson 3 complete! Move to Lesson 4.')">Next Lesson →</button>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div>
+  </div>
+</div>
+<footer class="footer">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 3 of 11<br/>Aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards · rashaad@edrrealtygroup.com</footer>
+<script>
+  const answers={
+    1:{correct:'B',explanation:'<span class="fb-label">✓ Correct: B — 17 Calendar Days</span><br/>RPA Paragraph 3L sets the default contingency removal deadline at 17 calendar days after acceptance for all major buyer contingencies. This covers loan, appraisal, inspection, insurance, title, and seller document review. The parties can negotiate a different timeline, but 17 days is the RPA default.'},
+    2:{correct:'B',explanation:'<span class="fb-label">✓ Correct: B — Mutual Written Agreement Before Deadline</span><br/>Under RPA Paragraph 14, time periods may only be extended by mutual written agreement — meaning both buyer AND seller must sign. One party cannot unilaterally extend. The lender\'s delay does not automatically extend the contractual deadline. The extension must be documented in writing and delivered before Day 17 passes.'},
+    3:{correct:'B',explanation:'<span class="fb-label">✓ Correct: B — NBP First, Then Cancel</span><br/>Even after Day 17 passes, the seller cannot simply cancel the contract. Under RPA Paragraph 14C(1), the seller must first deliver a Notice to Buyer to Perform (C.A.R. Form NBP) giving the buyer at least 2 days to act. Only if the buyer fails to respond can the seller then cancel. We cover the NBP process in detail in Lesson 5.'},
+    4:{correct:'C',explanation:'<span class="fb-label">✓ Correct: C — Day 17</span><br/>Under RPA Paragraph L(5)/8E, the deadline is 17 days after acceptance OR 5 days after delivery — whichever is LATER. Seller delivered on Day 10, so 5 days after delivery = Day 15. The original deadline is Day 17. Since Day 17 comes after Day 15, Day 17 remains the deadline. If the seller had delivered on Day 14, the 5-day window would run to Day 19 — making Day 19 the new deadline since it\'s later than Day 17.'},
+    5:{correct:'B',explanation:'<span class="fb-label">✓ Correct: B — Day 10 Check-In</span><br/>The most professional agents are proactive. On Day 10, you have 7 days to solve any problems before Day 17. Contacting your buyers, the lender, and escrow to assess where things stand gives you time to act — not just react. Waiting until Day 16 leaves you with almost no options. Option D is wrong because removing contingencies prematurely without completing investigations puts your buyer at risk.'}
+  };
+  const userAnswers={};let answeredCount=0;
+  function answer(q,selected){
+    if(userAnswers[q])return;userAnswers[q]=selected;answeredCount++;
+    const card=document.getElementById('q'+q);const btns=card.querySelectorAll('.option-btn');const fb=document.getElementById('fb'+q);
+    const correct=answers[q].correct;const isCorrect=selected===correct;
+    btns.forEach(btn=>{btn.disabled=true;const l=btn.querySelector('.option-letter').textContent.trim();if(l===correct)btn.classList.add(isCorrect&&l===selected?'correct':'revealed');if(l===selected&&!isCorrect)btn.classList.add('incorrect');});
+    fb.innerHTML=answers[q].explanation;fb.className='feedback-box show '+(isCorrect?'correct-fb':'incorrect-fb');
+    if(answeredCount===5)showScore();
+  }
+  function showScore(){
+    const correct=Object.keys(userAnswers).filter(q=>userAnswers[q]===answers[q].correct).length;const pct=Math.round(correct/5*100);const passed=correct>=4;
+    document.getElementById('score-circle').textContent=correct+'/5';document.getElementById('score-circle').className='score-circle '+(passed?'pass':'fail');
+    document.getElementById('score-title').textContent=passed?'🎉 Lesson 3 Complete!':'Keep Practicing';
+    document.getElementById('score-msg').textContent=passed?'You scored '+pct+'% — you know the 17-day window. On to Lesson 4.':'You scored '+pct+'%. You need 80% to pass. Review the explanations and retake.';
+    document.getElementById('score-card').classList.add('show');document.getElementById('progress-bar').style.width=pct+'%';
+    if(passed)document.getElementById('next-btn').style.display='inline-block';else document.getElementById('retry-btn').style.display='inline-block';
+  }
+  function retryQuiz(){
+    Object.keys(userAnswers).forEach(q=>delete userAnswers[q]);answeredCount=0;
+    for(let i=1;i<=5;i++){const c=document.getElementById('q'+i);c.querySelectorAll('.option-btn').forEach(b=>{b.disabled=false;b.classList.remove('correct','incorrect','revealed');});const f=document.getElementById('fb'+i);f.className='feedback-box';f.innerHTML='';}
+    document.getElementById('score-card').classList.remove('show');document.getElementById('retry-btn').style.display='none';document.getElementById('next-btn').style.display='none';document.getElementById('progress-bar').style.width='0%';window.scrollTo({top:0,behavior:'smooth'});
+  }
+</script>
+</body>
+</html>

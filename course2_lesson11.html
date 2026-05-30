@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Course 2 Lesson 11 | EDR Realty Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--n:#0b0f1f;--n2:#111827;--c:#161d30;--b:#1e2a42;--g:#c9a84c;--gl:#e8c96e;--gd:rgba(201,168,76,.15);--gr:#22c55e;--r:#ef4444;--t:#e8eaf0;--m:#8b93a8;--w:#fff;--bl:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--n);color:var(--t);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7}
+.hdr{background:var(--n2);border-bottom:1px solid var(--b);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99}
+.brand{font-family:'Playfair Display',serif;color:var(--g);font-size:1.05rem}
+.badge{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.hero{background:linear-gradient(135deg,#0d1a35,#0b0f1f);border-bottom:1px solid var(--b);padding:44px 20px 36px;text-align:center}
+.ctag{display:inline-block;background:var(--gd);color:var(--g);border:1px solid var(--g);padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--w);line-height:1.25;margin-bottom:10px}
+.hero h1 span{color:var(--g)}
+.hero p{color:var(--m);font-size:.92rem;max-width:460px;margin:0 auto 20px}
+.hmeta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.hmi{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--m)}
+.hmd{width:5px;height:5px;border-radius:50%;background:var(--g)}
+.main{max-width:700px;margin:0 auto;padding:28px 18px 56px}
+.story{background:linear-gradient(135deg,#1a2040,#111827);border:1px solid var(--g);border-radius:12px;padding:24px;margin-bottom:32px}
+.stag{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--g);margin-bottom:12px}
+.story p{color:var(--t);margin-bottom:10px}
+.story p:last-child{margin-bottom:0}
+.story strong{color:var(--gl)}
+h2.st{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--w);margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--b)}
+h2.st span{color:var(--g)}
+.cp{color:var(--t);margin-bottom:14px}
+.cp strong{color:var(--gl)}
+.ca{border-radius:10px;padding:18px 20px;margin:16px 0;font-size:.88rem}
+.ca-g{background:var(--gd);border-left:3px solid var(--g)}
+.ca-b{background:rgba(59,130,246,.08);border-left:3px solid var(--bl)}
+.ca-r{background:rgba(239,68,68,.07);border-left:3px solid var(--r)}
+.cal{font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.ca-g .cal{color:var(--g)}.ca-b .cal{color:#60a5fa}.ca-r .cal{color:#f87171}
+.tip{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:16px 18px;margin:18px 0}
+.tipl{color:var(--gr);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.tip p{font-size:.88rem;color:var(--t);margin-bottom:7px}
+.tip p:last-child{margin-bottom:0}
+.scope{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:10px;padding:16px 18px;margin:20px 0}
+.scopel{color:#f87171;font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.scope p{font-size:.85rem;color:var(--m)}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.ic{background:var(--c);border:1px solid var(--b);border-radius:8px;padding:12px}
+.icl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:5px}
+.icv{font-size:.85rem;color:var(--t)}
+.ctw{overflow-x:auto;margin:16px 0}
+.ct{width:100%;border-collapse:collapse;font-size:.83rem}
+.ct th{background:var(--gd);color:var(--g);font-weight:600;padding:9px 12px;text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--g)}
+.ct td{padding:9px 12px;border-bottom:1px solid var(--b);color:var(--t);vertical-align:top}
+.ct tr:last-child td{border-bottom:none}
+.si{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.sn{width:30px;height:30px;min-width:30px;border-radius:50%;background:var(--gd);border:1px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--g);font-size:.88rem}
+.sc{flex:1}
+.sc strong{color:var(--gl);display:block;margin-bottom:3px}
+.sc p{font-size:.88rem;color:var(--t);margin:0}
+.hb{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:18px;margin:14px 0}
+.hbt{font-family:'Playfair Display',serif;color:var(--g);font-size:.95rem;margin-bottom:8px}
+.hb p{font-size:.88rem;color:var(--t);margin-bottom:7px}
+.hb p:last-child{margin-bottom:0}
+.trow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--b)}
+.trow:last-child{border-bottom:none}
+.td{min-width:75px;font-weight:700;color:var(--g);font-size:.82rem}
+.tc{flex:1;font-size:.88rem;color:var(--t)}
+.tc strong{color:var(--gl)}
+.divhr{border:none;border-top:1px solid var(--b);margin:36px 0}
+.qhdr{text-align:center;margin-bottom:24px}
+.qhdr h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:5px}
+.qhdr p{color:var(--m);font-size:.85rem}
+.qc{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:22px;margin-bottom:18px}
+.qn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:9px}
+.qb{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:7px;background:var(--gd);color:var(--g)}
+.qt{font-size:.94rem;color:var(--w);font-weight:500;margin-bottom:16px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:9px}
+.ob{background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:12px 14px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.87rem;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px}
+.ob:hover:not(:disabled){border-color:var(--g);color:var(--w);background:var(--gd)}
+.ob:disabled{cursor:default}
+.ob.correct{background:rgba(34,197,94,.12);border-color:var(--gr);color:var(--w)}
+.ob.wrong{background:rgba(239,68,68,.1);border-color:var(--r);color:var(--w)}
+.ob.rev{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3)}
+.ol{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--b);color:var(--m);font-weight:700;font-size:.72rem;flex-shrink:0;margin-top:1px}
+.ob.correct .ol{background:var(--gr);color:#fff}
+.ob.wrong .ol{background:var(--r);color:#fff}
+.ob.rev .ol{background:rgba(34,197,94,.35);color:#fff}
+.fb{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.5;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac}
+.fb.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5}
+.sc-card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:32px 24px;text-align:center;margin-top:28px;display:none}
+.sc-card.show{display:block}
+.sc-circ{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;margin:0 auto 18px}
+.sc-circ.pass{background:rgba(34,197,94,.15);border:3px solid var(--gr);color:var(--gr)}
+.sc-circ.fail{background:rgba(239,68,68,.1);border:3px solid var(--r);color:var(--r)}
+.sc-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--w);margin-bottom:7px}
+.sc-msg{color:var(--m);font-size:.88rem;margin-bottom:20px}
+.rbtn{background:var(--g);color:var(--n);border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer}
+.nbtn{background:var(--gr);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer;margin-left:10px}
+.pbw{width:100%;height:4px;background:var(--b);border-radius:2px;margin-top:18px}
+.pbf{height:4px;background:var(--g);border-radius:2px;transition:width .4s}
+.ftr{text-align:center;padding:22px;color:var(--m);font-size:.76rem;border-top:1px solid var(--b);margin-top:36px}
+@media(max-width:480px){.hero{padding:32px 14px 26px}.main{padding:20px 14px 44px}.qc{padding:16px 14px}.ig{grid-template-columns:1fr}}
+</style></head><body>
+<header class="hdr"><div class="brand">EDR Realty Group</div><div class="badge">Course 2 · Buyer Side</div></header>
+<section class="hero">
+<div class="ctag">Lesson 11 of 11</div>
+<h1>Full Scenario:<br/><span>5555 Winners Lane</span> Goes Sideways</h1>
+<p>Everything Goes Wrong — Practice Making the Right Calls</p>
+<div class="hmeta">
+<span class="hmi"><span class="hmd"></span>~30 min</span>
+<span class="hmi"><span class="hmd"></span>All RPA Paragraphs Covered in Course 2</span>
+<span class="hmi"><span class="hmd"></span>5 Questions</span>
+</div></section>
+<div class="main">
+<div class="story"><div class="stag">📖 THE STORY CONTINUES</div><p>Welcome to the final lesson of Course 2. This is where everything you have learned comes together — and where Marcus and Priya's deal at 5555 Winners Lane stops going smoothly.</p><p>In this lesson we run through a complete scenario where <strong>multiple things go wrong at once.</strong> Your job is to identify the right move at every turn.</p><p>This is not a simple deal. This is the kind of deal that separates trained agents from agents who wing it. <strong>Let us see what you have got.</strong></p></div>
+<h2 class="st">The <span>Full Story</span> — 5555 Winners Lane Goes Sideways</h2>
+<div class="hb"><div class="hbt">Day 0 — Acceptance</div>
+<p>Marcus and Priya Okonkwo go into escrow on 5555 Winners Lane at $1,250,000. EMD: $25,000. Close of escrow: Day 30. The property is in an HOA with a $450/month fee. All 5 core contingencies are active. Default timelines apply.</p></div>
+<div class="hb"><div class="hbt">Day 7 — Seller Misses Disclosure Deadline</div>
+<p>The seller was supposed to deliver the TDS, SPQ, and NHD by Day 7. Nothing arrives. You call the listing agent twice. No response.</p>
+<p><strong>What you do:</strong> You prepare a Notice to Seller to Perform (C.A.R. Form NSP), get it signed by Marcus and Priya, and deliver it to the seller's agent. This gives the seller 2 days to deliver the required disclosures. You document everything.</p></div>
+<div class="hb"><div class="hbt">Day 9 — HOA Documents Arrive, Disclosures Still Missing</div>
+<p>The HOA documents arrive. The seller's disclosures still have not come. The NSP 2-day window expires at end of Day 9.</p>
+<p><strong>What you do:</strong> Your buyers now have the right to cancel and recover their deposit. However, Marcus and Priya decide to give the seller one more day. You document this decision and note that the cancellation right still exists.</p></div>
+<div class="hb"><div class="hbt">Day 10 — Disclosures Arrive, HOA Red Flags Found</div>
+<p>The seller's disclosures arrive 3 days late. The HOA documents reveal: reserve fund at 18%, and board minutes showing a vote to assess all units $9,500 for roof repairs within 6 months.</p>
+<p><strong>What you know:</strong> The HOA contingency deadline is now Day 14 (5 days after Day 9 delivery). The seller disclosures deadline is Day 17 (5 days after Day 10 delivery equals Day 15, which is before Day 17, so Day 17 applies). You note both extended deadlines.</p></div>
+<div class="hb"><div class="hbt">Day 12 — Inspection Reveals Foundation Issues</div>
+<p>The home inspector finds significant foundation cracking and evidence of unpermitted work. Estimated repair cost: $22,000. Marcus is upset. Priya wants to cancel.</p>
+<p><strong>Three options while the inspection contingency is active:</strong> (1) Cancel using C.A.R. Form CC — recover the deposit. (2) Submit a Request for Repair (C.A.R. Form RR) asking the seller to credit $22,000 or make repairs. (3) Accept the property as-is and remove the inspection contingency. Your buyers choose Option 2.</p></div>
+<div class="hb"><div class="hbt">Day 14 — Seller Counters, HOA Deadline Arrives</div>
+<p>The seller counters with a $10,000 credit — not the full $22,000. The HOA contingency deadline is also today.</p>
+<p><strong>What you do:</strong> On the HOA: you get a written extension of the HOA contingency to Day 20, signed by both buyer and seller. On the repair request: Marcus and Priya accept the $10,000 credit. The inspection contingency is not yet removed.</p></div>
+<div class="hb"><div class="hbt">Day 17 — The Big Deadline Day</div>
+<p>Appraisal came in at value. Lender verbally says the loan looks good but no written approval yet. Insurance confirmed at $8,400/year. Seller documents reviewed. Title looks clean.</p>
+<p><strong>What you remove:</strong> Inspection (done, credit agreed), insurance (policy confirmed), seller documents (reviewed), title (clean). <strong>What you keep:</strong> Loan (no written approval yet), HOA (extended to Day 20). You deliver a partial CR-B removing four of six contingencies.</p></div>
+<div class="hb"><div class="hbt">Day 18 — Seller Sends an NBP for Loan Contingency</div>
+<p>The listing agent sends an NBP requiring removal of the loan contingency. The deadline was Day 17, so the NBP is valid. You have 2 days to respond.</p>
+<p><strong>What you do:</strong> Immediately call the lender. The lender says written approval will arrive on Day 19. You communicate this to the seller's agent and commit to delivering the CR-B on Day 19.</p></div>
+<div class="hb"><div class="hbt">Day 19 — Loan Approved, HOA Decision Time</div>
+<p>Written loan approval arrives. You remove the loan contingency with CR-B. The HOA extended deadline is tomorrow — Day 20. After reviewing everything, Marcus and Priya decide they can live with the HOA situation.</p>
+<p><strong>What you do:</strong> Remove the HOA contingency on Day 19 using CR-B. All contingencies are now removed. The deal is fully committed. Close of escrow confirmed for Day 30.</p></div>
+<div class="hb"><div class="hbt">Day 28 — Lender Funding Delay</div>
+<p>The lender calls. Loan docs will not be ready until Day 32. COE is Day 30. All contingencies are removed.</p>
+<p><strong>What you do:</strong> Immediately contact the seller's agent, explain the situation, and request a written extension of the COE to Day 33 — signed by both parties. If the seller agrees, the crisis is averted. If they refuse, they can send a DCE on Day 28 giving 3 days — until Day 31 — to close. The lender cannot fund until Day 32. You advise your buyers to consult a real estate attorney if the seller refuses the extension.</p></div>
+<div class="hb"><div class="hbt">Day 30 — The Seller Agrees</div>
+<p>The seller agrees to extend COE to Day 33 in exchange for a $500/day occupancy fee if the deal closes after Day 30. Both parties sign the amendment. The lender funds on Day 32. Marcus and Priya close on 5555 Winners Lane. The deal is done.</p></div>
+<div class="ca ca-g"><div class="cal">What This Scenario Taught You</div>
+<p>Track seller obligations just as carefully as buyer obligations — NSP is your tool when the seller drops the ball. HOA red flags require careful review before removing the HOA contingency. Remove contingencies selectively — one at a time as each is resolved. An NBP after a missed deadline is valid — respond within 2 days. All contingencies removed plus a late close equals DCE territory and deposit at risk. Written extensions prevent emergencies — always get them signed before deadlines hit.</p></div>
+<div class="tip"><div class="tipl">You Are Now Ahead of Most Agents</div>
+<p>Most agents learn contingency management the hard way — through a deal that went wrong. You just walked through every major failure point in a real transaction without losing a client's deposit. That is what this course was for.</p></div>
+<hr class="divhr"/>
+<div class="qhdr"><h2>Knowledge Check</h2><p>5 questions · 4/5 (80%) to pass · Read every explanation</p></div>
+<div id="quiz"><div class="qc" id="q1"><div class="qn">Question 1 <span class="qb">Multiple Choice</span></div><div class="qt">In the 5555 Winners Lane scenario, the seller missed the Day 7 disclosure deadline. Before the buyers could cancel for seller non-performance, what was the required first step?</div><div class="opts"><button class="ob" onclick="ans(1,'A')"><span class="ol">A</span>Immediately send C.A.R. Form CC to cancel the agreement</button>
+<button class="ob" onclick="ans(1,'B')"><span class="ol">B</span>Send a Notice to Seller to Perform (C.A.R. Form NSP) giving the seller 2 days to deliver the required disclosures</button>
+<button class="ob" onclick="ans(1,'C')"><span class="ol">C</span>Send a Demand to Close Escrow (DCE) requiring immediate delivery of disclosures</button>
+<button class="ob" onclick="ans(1,'D')"><span class="ol">D</span>Contact the California DRE to report the seller's violation</button>
+</div><div class="fb" id="fb1"></div></div><div class="qc" id="q2"><div class="qn">Question 2 <span class="qb">Multiple Choice</span></div><div class="qt">When the HOA documents arrived on Day 9 with significant red flags, the agent got a written extension of the HOA contingency to Day 20. Why was a written extension necessary?</div><div class="opts"><button class="ob" onclick="ans(2,'A')"><span class="ol">A</span>It was not necessary — the HOA contingency automatically extends when red flags are found</button>
+<button class="ob" onclick="ans(2,'B')"><span class="ol">B</span>Without a written extension, the seller could have sent an NBP on Day 12 requiring removal of the HOA contingency by Day 14, putting the buyers at risk</button>
+<button class="ob" onclick="ans(2,'C')"><span class="ol">C</span>Written extensions are only required for loan and appraisal contingencies</button>
+<button class="ob" onclick="ans(2,'D')"><span class="ol">D</span>The HOA contingency can never be extended under California law</button>
+</div><div class="fb" id="fb2"></div></div><div class="qc" id="q3"><div class="qn">Question 3 <span class="qb">Multiple Choice</span></div><div class="qt">On Day 17, the agent submitted a partial CR-B removing four contingencies but keeping the loan and HOA contingencies active. The seller's agent argues all contingencies must be removed at once. Is the seller's agent correct?</div><div class="opts"><button class="ob" onclick="ans(3,'A')"><span class="ol">A</span>Yes — the RPA requires all contingencies to be removed together on a single CR-B</button>
+<button class="ob" onclick="ans(3,'B')"><span class="ol">B</span>No — the RPA allows buyers to remove contingencies selectively using C.A.R. Form CR-B, checking only those being removed</button>
+<button class="ob" onclick="ans(3,'C')"><span class="ol">C</span>Yes — partial removal of contingencies is only allowed if both parties agree in writing</button>
+<button class="ob" onclick="ans(3,'D')"><span class="ol">D</span>No — but partial removal requires the seller's written consent for each contingency kept open</button>
+</div><div class="fb" id="fb3"></div></div><div class="qc" id="q4"><div class="qn">Question 4 <span class="qb">Multiple Choice</span></div><div class="qt">On Day 28, all contingencies were removed and COE was Day 30, but the lender could not fund until Day 32. The agent immediately requested a written COE extension from the seller. Why was this the right move instead of waiting?</div><div class="opts"><button class="ob" onclick="ans(4,'A')"><span class="ol">A</span>It was not the right move — the buyers should have cancelled immediately to avoid a DCE</button>
+<button class="ob" onclick="ans(4,'B')"><span class="ol">B</span>It was the right move because the seller could send a DCE as early as Day 27 — waiting until Day 30 to ask for an extension leaves the buyers exposed to a DCE they cannot beat</button>
+<button class="ob" onclick="ans(4,'C')"><span class="ol">C</span>It was the right move because California law requires buyers to request extensions 30 days in advance</button>
+<button class="ob" onclick="ans(4,'D')"><span class="ol">D</span>It was not necessary — the DCE automatically gives the buyer a 30-day extension</button>
+</div><div class="fb" id="fb4"></div></div><div class="qc" id="q5"><div class="qn">Question 5 <span class="qb">Multiple Choice</span></div><div class="qt">Looking back at the entire 5555 Winners Lane transaction, which single practice MOST protected the Okonkwos throughout every challenge they faced?</div><div class="opts"><button class="ob" onclick="ans(5,'A')"><span class="ol">A</span>Removing all contingencies as early as possible to show the seller they were serious buyers</button>
+<button class="ob" onclick="ans(5,'B')"><span class="ol">B</span>Tracking every deadline proactively, using the correct C.A.R. forms at the correct times, and getting written extensions before deadlines passed — never reacting after the fact</button>
+<button class="ob" onclick="ans(5,'C')"><span class="ol">C</span>Relying on the lender and escrow officer to manage all deadlines automatically</button>
+<button class="ob" onclick="ans(5,'D')"><span class="ol">D</span>Verbally communicating all decisions to the listing agent to maintain a good relationship</button>
+</div><div class="fb" id="fb5"></div></div></div>
+<div class="sc-card" id="sc-card">
+<div class="sc-circ" id="sc-circ"></div>
+<div class="sc-title" id="sc-title"></div>
+<p class="sc-msg" id="sc-msg"></p>
+<div><button class="rbtn" onclick="retry()" id="rb" style="display:none">Retake Quiz</button>
+<button class="nbtn" id="nb" style="display:none" onclick="alert('Proceed to the Final Quiz')">Next Lesson →</button></div>
+<div class="pbw"><div class="pbf" id="pb" style="width:0%"></div></div>
+</div></div>
+<footer class="ftr">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 11 of 11<br/>
+Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards. Questions? rashaad@edrrealtygroup.com</footer>
+<script>
+const A={1:{c:"B",e:"Under RPA Paragraph 14D, before a buyer can cancel for seller non-performance of a contractual obligation, the buyer must first deliver a Notice to Seller to Perform (NSP). The NSP gives the seller at least 2 days to cure the failure. Only after the NSP window passes without performance can the buyer cancel and recover their deposit. Jumping straight to cancellation without the NSP first would be procedurally incorrect and could complicate the deposit recovery."},2:{c:"B",e:"The HOA contingency deadline was Day 14 (5 days after delivery on Day 9). Without a written extension, the seller could have sent an NBP on Day 12 (2 days before Day 14) demanding removal. If the buyers did not act within 2 days, the seller could cancel. A written extension signed by both parties — as required by RPA Paragraph 14 — moved the deadline to Day 20, giving the buyers proper time to evaluate the red flags. This is proactive deal management: always get extensions signed before the deadline."},3:{c:"B",e:"C.A.R. Form CR-B allows buyers to check specific contingencies being removed while leaving others active. Partial contingency removal is fully permitted under the RPA and is best practice — remove each contingency only when fully satisfied with that specific item. The seller's agent is incorrect. The loan contingency remained active because written loan approval had not arrived yet, and the HOA contingency was still under evaluation. Never remove contingencies because the other side is pressuring you. (RPA Paragraph 14B(3) and Form CR-B)"},4:{c:"B",e:"Once all contingencies are removed, a late close puts the deposit at risk via DCE. The seller can send a DCE as early as 3 days before the scheduled COE — Day 27. If a DCE is sent and 3 days pass without closing, the seller can cancel and the deposit is not automatically returned. By requesting a written extension before Day 27 — or as early as possible once the delay was known — the agent gave the seller a chance to cooperate and prevented the DCE clock from starting. Proactive communication saves deals and deposits. (RPA Paragraph 14G)"},5:{c:"B",e:"The entire Course 2 curriculum comes down to this: proactive deadline management with the correct written forms at the correct times. Every challenge the Okonkwos faced — seller's late disclosures (NSP), HOA red flags (written extension), partial contingency removal (selective CR-B), lender delay (written COE extension) — was navigated correctly because the agent acted before deadlines expired, used the right forms, and always got agreements in writing. Verbal communication, early contingency removal, or passive reliance on others are the patterns that cost buyers their deposits and cost agents their licenses."}};
+const ua={};let ac=0;
+function ans(q,s){
+  if(ua[q])return;ua[q]=s;ac++;
+  const card=document.getElementById('q'+q);
+  const btns=card.querySelectorAll('.ob');
+  const fb=document.getElementById('fb'+q);
+  const c=A[q].c;const ok=s===c;
+  btns.forEach(b=>{b.disabled=true;const l=b.querySelector('.ol').textContent.trim();
+    if(l===c)b.classList.add(ok&&l===s?'correct':'rev');
+    if(l===s&&!ok)b.classList.add('wrong');});
+  fb.innerHTML=A[q].e;fb.className='fb show '+(ok?'ok':'no');
+  if(ac===5)score();
+}
+function score(){
+  const cor=Object.keys(ua).filter(q=>ua[q]===A[q].c).length;
+  const pct=Math.round(cor/5*100);const pass=cor>=4;
+  document.getElementById('sc-circ').textContent=cor+'/5';
+  document.getElementById('sc-circ').className='sc-circ '+(pass?'pass':'fail');
+  document.getElementById('sc-title').textContent=pass?'Lesson Complete!':'Keep Practicing';
+  document.getElementById('sc-msg').textContent=pass?'You scored '+pct+'% - Proceed to the Final Quiz.':'You scored '+pct+'%. You need 80% to pass. Review and retake.';
+  document.getElementById('sc-card').classList.add('show');
+  document.getElementById('pb').style.width=pct+'%';
+  if(pass)document.getElementById('nb').style.display='inline-block';
+  else document.getElementById('rb').style.display='inline-block';
+}
+function retry(){
+  Object.keys(ua).forEach(q=>delete ua[q]);ac=0;
+  for(let i=1;i<=5;i++){
+    document.getElementById('q'+i).querySelectorAll('.ob').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong','rev');});
+    const fb=document.getElementById('fb'+i);fb.className='fb';fb.innerHTML='';
+  }
+  document.getElementById('sc-card').classList.remove('show');
+  document.getElementById('rb').style.display='none';
+  document.getElementById('nb').style.display='none';
+  document.getElementById('pb').style.width='0%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script></body></html>
