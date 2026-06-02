@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Course 2 Lesson 7 | EDR Realty Group</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
@@ -99,8 +100,25 @@ h2.st span{color:var(--g)}
 .pbf{height:4px;background:var(--g);border-radius:2px;transition:width .4s}
 .ftr{text-align:center;padding:22px;color:var(--m);font-size:.76rem;border-top:1px solid var(--b);margin-top:36px}
 @media(max-width:480px){.hero{padding:32px 14px 26px}.main{padding:20px 14px 44px}.qc{padding:16px 14px}.ig{grid-template-columns:1fr}}
+
+.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
+.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
+.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
+.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
+.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
+.auth-tab.active{background:#c9a84c;color:#0b0f1f}
+.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
+.ainp:focus{border-color:#c9a84c}
+.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
+.abtn:hover{background:#e8c96e}
+.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
+.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
+.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
+
 </style></head><body>
-<header class="hdr"><div class="brand">EDR Realty Group</div><div class="badge">Course 2 · Buyer Side</div></header>
+<header class="hdr"><div class="brand">EDR Realty Group</div><span class="agent-name-badge" id="nb-badge" style="display:none"></span>
+<div class="badge">Course 2 · Buyer Side</div></header>
 <section class="hero">
 <div class="ctag">Lesson 7 of 11</div>
 <h1>HOA Properties:<br/>The <span>Extra Layer</span></h1>
@@ -168,6 +186,7 @@ h2.st span{color:var(--g)}
 <div class="sc-circ" id="sc-circ"></div>
 <div class="sc-title" id="sc-title"></div>
 <p class="sc-msg" id="sc-msg"></p>
+<p id="sc-saved" style="font-size:.78rem;color:#22c55e;margin-bottom:16px"></p>
 <div><button class="rbtn" onclick="retry()" id="rb" style="display:none">Retake Quiz</button>
 <button class="nbtn" id="nb" style="display:none" onclick="alert('Proceed to Lesson 8')">Next Lesson →</button></div>
 <div class="pbw"><div class="pbf" id="pb" style="width:0%"></div></div>
