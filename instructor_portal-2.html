@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EDR Realty Group — Instructor Portal</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--n:#0b0f1f;--n2:#111827;--c:#161d30;--b:#1e2a42;--g:#c9a84c;--gl:#e8c96e;--gd:rgba(201,168,76,.15);--gr:#22c55e;--r:#ef4444;--t:#e8eaf0;--m:#8b93a8;--w:#fff;--bl:#3b82f6}
+body{background:var(--n);color:var(--t);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--n2);border-bottom:1px solid var(--b);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.brand{font-family:'Playfair Display',serif;color:var(--g);font-size:1.1rem;letter-spacing:.02em}
+.brand span{color:var(--m);font-size:.75rem;font-family:'DM Sans',sans-serif;margin-left:10px;font-weight:400}
+.hdr-right{display:flex;align-items:center;gap:12px}
+.inst-pill{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.lo-btn{background:transparent;border:1px solid var(--b);color:var(--m);padding:6px 14px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .15s}
+.lo-btn:hover{border-color:var(--r);color:var(--r)}
+
+/* LOGIN */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:44px 36px;width:100%;max-width:400px;text-align:center}
+.login-card h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--w);margin-bottom:8px}
+.login-card p{color:var(--m);font-size:.88rem;margin-bottom:32px}
+.inp{width:100%;background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:13px 16px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:14px;outline:none;transition:border-color .15s}
+.inp:focus{border-color:var(--g)}
+.sbtn{width:100%;background:var(--g);color:var(--n);border:none;border-radius:8px;padding:14px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s}
+.sbtn:hover{background:var(--gl)}
+.lerr{color:#f87171;font-size:.82rem;margin-bottom:12px;display:none}
+
+/* MAIN LAYOUT */
+.dashboard{display:none}
+.sidebar{position:fixed;left:0;top:57px;bottom:0;width:220px;background:var(--n2);border-right:1px solid var(--b);padding:20px 0;overflow-y:auto;z-index:50}
+.nav-section{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--m);padding:16px 20px 8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--m);cursor:pointer;transition:all .15s;font-size:.85rem;border-left:3px solid transparent}
+.nav-item:hover{color:var(--t);background:rgba(255,255,255,.03)}
+.nav-item.active{color:var(--g);border-left-color:var(--g);background:var(--gd)}
+.nav-icon{font-size:1rem;min-width:20px;text-align:center}
+.content{margin-left:220px;padding:28px 32px;min-height:calc(100vh - 57px)}
+
+/* PAGE SECTIONS */
+.page{display:none}.page.active{display:block}
+.page-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--w);margin-bottom:4px}
+.page-sub{color:var(--m);font-size:.83rem;margin-bottom:24px}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:28px}
+.stat-card{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:20px;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--g);font-weight:700;line-height:1}
+.stat-label{font-size:.72rem;color:var(--m);margin-top:6px;text-transform:uppercase;letter-spacing:.06em}
+.stat-sub{font-size:.75rem;color:var(--t);margin-top:2px}
+
+/* CARDS */
+.card{background:var(--c);border:1px solid var(--b);border-radius:12px;margin-bottom:16px;overflow:hidden}
+.card-hdr{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s}
+.card-hdr:hover{background:rgba(255,255,255,.02)}
+.card-hdr.open{border-bottom:1px solid var(--b)}
+.card-body{padding:16px 20px;display:none}
+.card-body.open{display:block}
+.chev{color:var(--g);transition:transform .2s;font-size:.9rem}
+.chev.open{transform:rotate(180deg)}
+
+/* AGENT ROWS */
+.agent-name{font-weight:600;color:var(--w);font-size:.9rem}
+.agent-email{font-size:.75rem;color:var(--m);margin-top:2px}
+.agent-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.pill{font-size:.65rem;padding:2px 8px;border-radius:10px;font-weight:700}
+.pill-c1{background:rgba(59,130,246,.15);color:#93c5fd}
+.pill-c2{background:var(--gd);color:var(--g)}
+.pill-pass{background:rgba(34,197,94,.12);color:var(--gr)}
+.pill-fail{background:rgba(239,68,68,.1);color:#f87171}
+.pill-none{background:var(--b);color:var(--m)}
+
+/* PROGRESS ROWS */
+.progress-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(30,42,66,.6);font-size:.83rem}
+.progress-row:last-child{border-bottom:none}
+.pr-name{color:var(--t);flex:1}
+.score-badge{padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700;white-space:nowrap}
+.badge-pass{background:rgba(34,197,94,.12);color:var(--gr)}
+.badge-fail{background:rgba(239,68,68,.1);color:#f87171}
+.badge-none{background:var(--b);color:var(--m);font-weight:400}
+.progress-section{margin-top:14px}
+.progress-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);padding-top:12px;border-top:1px solid var(--b);margin-bottom:10px}
+.prog-bar-wrap{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.prog-bar{flex:1;height:6px;background:var(--b);border-radius:3px;overflow:hidden}
+.prog-fill{height:6px;background:var(--g);border-radius:3px;transition:width .4s}
+.prog-pct{font-size:.78rem;color:var(--g);font-weight:700;min-width:38px;text-align:right}
+
+/* COURSE TILES */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:24px}
+.course-tile{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:20px}
+.course-tile-name{font-weight:600;color:var(--w);font-size:.92rem;margin-bottom:4px}
+.course-tile-meta{font-size:.75rem;color:var(--m);margin-bottom:14px}
+.toggle-wrap{display:flex;align-items:center;justify-content:space-between}
+.toggle-label{font-size:.78rem;color:var(--m)}
+.toggle{position:relative;width:44px;height:24px;cursor:pointer}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#2d3748;border-radius:12px;transition:.3s}
+.toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.toggle-slider{background:var(--g)}
+.toggle input:checked+.toggle-slider:before{transform:translateX(20px)}
+
+/* ANNOUNCEMENT */
+.announce-box{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:24px;margin-bottom:20px}
+.announce-box h3{font-weight:600;color:var(--w);margin-bottom:6px;font-size:.92rem}
+.announce-box p{font-size:.82rem;color:var(--m);margin-bottom:16px}
+.announce-textarea{width:100%;background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:12px 14px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.88rem;resize:vertical;min-height:80px;outline:none;transition:border-color .15s}
+.announce-textarea:focus{border-color:var(--g)}
+.btn-row{display:flex;gap:10px;margin-top:12px}
+.btn-gold{background:var(--g);color:var(--n);border:none;border-radius:7px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer}
+.btn-gold:hover{background:var(--gl)}
+.btn-ghost{background:transparent;color:var(--m);border:1px solid var(--b);border-radius:7px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer}
+.btn-ghost:hover{border-color:var(--r);color:var(--r)}
+.btn-green{background:var(--gr);color:#fff;border:none;border-radius:7px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer}
+
+/* DUE DATE */
+.due-date-box{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:24px;margin-bottom:20px}
+.due-date-box h3{font-weight:600;color:var(--w);margin-bottom:4px;font-size:.92rem}
+.due-date-box p{font-size:.82rem;color:var(--m);margin-bottom:16px}
+.date-inp{background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:11px 14px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;margin-right:10px}
+.date-inp:focus{border-color:var(--g)}
+
+/* CONTENT BROWSER */
+.lesson-list{padding:4px 0}
+.lesson-item{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(30,42,66,.5);font-size:.83rem}
+.lesson-item:last-child{border-bottom:none}
+.lesson-num{color:var(--g);font-weight:700;min-width:60px}
+.lesson-name-text{color:var(--t);flex:1}
+.open-link{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:4px 10px;border-radius:5px;text-decoration:none;font-size:.72rem;font-weight:600;white-space:nowrap}
+.open-link:hover{background:var(--g);color:var(--n)}
+
+/* LOADING / EMPTY */
+.loading{text-align:center;color:var(--m);padding:48px;font-size:.88rem}
+.refresh-btn{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:8px 16px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;margin-bottom:20px}
+.refresh-btn:hover{background:var(--g);color:var(--n)}
+.info-note{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:14px 18px;font-size:.83rem;color:var(--t);margin-bottom:16px}
+.warn-note{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);border-radius:10px;padding:14px 18px;font-size:.83rem;color:var(--m);margin-bottom:16px}
+
+@media(max-width:768px){
+  .sidebar{display:none}
+  .content{margin-left:0;padding:20px 16px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .course-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="brand">EDR Realty Group <span>Instructor Portal</span></div>
+  <div class="hdr-right" id="hdr-right" style="display:none">
+    <div class="inst-pill">Instructor</div>
+    <button class="lo-btn" onclick="logout()">Sign Out</button>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-card">
+    <h2>Instructor Portal</h2>
+    <p>EDR Realty Group &mdash; Agent Training Program<br/>Sign in to access the dashboard</p>
+    <div class="lerr" id="lerr">Incorrect password. Please try again.</div>
+    <input class="inp" type="password" id="lpw" placeholder="Instructor password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="sbtn" onclick="doLogin()">Access Dashboard</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" onclick="showPage('overview',this)"><span class="nav-icon">📊</span>Overview</div>
+    <div class="nav-item" onclick="showPage('agents',this)"><span class="nav-icon">👥</span>Agent Progress</div>
+    <div class="nav-section">Courses</div>
+    <div class="nav-item" onclick="showPage('courses',this)"><span class="nav-icon">🎓</span>Course Management</div>
+    <div class="nav-item" onclick="showPage('content',this)"><span class="nav-icon">📖</span>Content Browser</div>
+    <div class="nav-section">Settings</div>
+    <div class="nav-item" onclick="showPage('announce',this)"><span class="nav-icon">📢</span>Announcements</div>
+    <div class="nav-item" onclick="showPage('duedate',this)"><span class="nav-icon">📅</span>Due Dates</div>
+  </nav>
+
+  <div class="content">
+
+    <!-- OVERVIEW PAGE -->
+    <div class="page active" id="page-overview">
+      <div class="page-title">Dashboard Overview</div>
+      <div class="page-sub">EDR Realty Group &mdash; Agent Training Program &mdash; All Courses</div>
+      <div class="stats-grid" id="stats-grid"><div class="loading">Loading...</div></div>
+      <div class="warn-note" id="announce-preview" style="display:none"></div>
+      <div class="card">
+        <div class="card-hdr open"><span style="font-weight:600;color:var(--w)">Quick Links</span></div>
+        <div class="card-body open">
+          <div class="lesson-item">
+            <span class="lesson-name-text">Course 1 &mdash; RPA Mastery (17 lessons)</span>
+            <a href="rpa_course_v2.html" target="_blank" class="open-link">Open Course →</a>
+          </div>
+          <div class="lesson-item">
+            <span class="lesson-name-text">Course 2 &mdash; Contingencies: Buyer Side (11 lessons)</span>
+            <a href="course2_lesson1.html" target="_blank" class="open-link">Open Course →</a>
+          </div>
+          <div class="lesson-item">
+            <span class="lesson-name-text">Course 2 &mdash; Final Quiz (20 questions)</span>
+            <a href="course2_final_quiz.html" target="_blank" class="open-link">Open Quiz →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENTS PAGE -->
+    <div class="page" id="page-agents">
+      <div class="page-title">Agent Progress</div>
+      <div class="page-sub">All agents &mdash; All courses &mdash; Live from Supabase</div>
+      <button class="refresh-btn" onclick="loadAgents()">&#8635; Refresh Data</button>
+      <div id="agents-body"><div class="loading">Loading agent data...</div></div>
+    </div>
+
+    <!-- COURSES PAGE -->
+    <div class="page" id="page-courses">
+      <div class="page-title">Course Management</div>
+      <div class="page-sub">Toggle courses active or coming soon for your agents</div>
+      <div class="info-note">Toggling a course here updates what agents see on their training portal. Active courses are unlocked. Coming Soon courses are visible but locked.</div>
+      <div class="course-grid" id="course-grid"></div>
+    </div>
+
+    <!-- CONTENT BROWSER PAGE -->
+    <div class="page" id="page-content">
+      <div class="page-title">Content Browser</div>
+      <div class="page-sub">View all lessons for every course. Click to open any lesson directly.</div>
+      <div class="card">
+        <div class="card-hdr open"><div><div style="font-weight:600;color:var(--w)">Course 1 &mdash; RPA Mastery</div><div style="font-size:.75rem;color:var(--m);margin-top:2px">17 Lessons + Final Quiz + Scenario</div></div><span class="chev open">&#9660;</span></div>
+        <div class="card-body open">
+          <div class="lesson-list" id="c1-lessons"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hdr" onclick="toggleCard(this)"><div><div style="font-weight:600;color:var(--w)">Course 2 &mdash; Contingencies &amp; Timelines: Buyer Side</div><div style="font-size:.75rem;color:var(--m);margin-top:2px">11 Lessons + Final Quiz (20 questions)</div></div><span class="chev">&#9660;</span></div>
+        <div class="card-body">
+          <div class="lesson-list" id="c2-lessons"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENTS PAGE -->
+    <div class="page" id="page-announce">
+      <div class="page-title">Announcements</div>
+      <div class="page-sub">Post a message that agents see when they log in to their portal</div>
+      <div class="announce-box">
+        <h3>Current Announcement</h3>
+        <p>Leave blank for no announcement. Agents see this at the top of their dashboard.</p>
+        <textarea class="announce-textarea" id="announce-text" placeholder="e.g. Office hours Friday 2-4pm. Questions? Call 555-0100"></textarea>
+        <div class="btn-row">
+          <button class="btn-gold" onclick="saveAnnouncement()">Post Announcement</button>
+          <button class="btn-ghost" onclick="clearAnnouncement()">Clear</button>
+        </div>
+        <div id="announce-status" style="font-size:.78rem;color:var(--gr);margin-top:10px;display:none"></div>
+      </div>
+    </div>
+
+    <!-- DUE DATES PAGE -->
+    <div class="page" id="page-duedate">
+      <div class="page-title">Due Dates</div>
+      <div class="page-sub">Set a course completion deadline. Agents see a countdown on their portal.</div>
+      <div class="due-date-box">
+        <h3>Course Due Date</h3>
+        <p>Agents see a countdown to this date in their training portal.</p>
+        <input class="date-inp" type="date" id="due-date-inp"/>
+        <button class="btn-gold" onclick="saveDueDate()">Set Due Date</button>
+        <button class="btn-ghost" onclick="clearDueDate()" style="margin-left:8px">Clear</button>
+        <div id="due-status" style="font-size:.78rem;color:var(--gr);margin-top:10px;display:none"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const SB = window.supabase.createClient('https://zthiyivbiemgvojcrlyg.supabase.co','sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V');
+const PASS = 'RashaadEDR2025!';
+
+// ── COURSES CONFIG ─────────────────────────────────────────────────────────
+// Add new courses here as you build them
+const COURSES = [
+  {id:'course1', name:'RPA Mastery', sub:'Course 1', lessons:17, key:'course1',
+   lessonNames:['Introduction to the RPA','Property Info & Parties','Purchase Price & Deposit','Loan Terms','Allocation of Costs','Closing & Possession','Contingencies Intro','Loan Contingency','Appraisal Contingency','Inspection Contingency','Insurance Contingency','Title Contingency','Seller Disclosures','HOA Disclosures','Cancellation Rights','Final Verification','Close of Escrow'],
+   url:'rpa_course_v2.html', finalTotal:17},
+  {id:'course2', name:'Contingencies & Timelines: Buyer Side', sub:'Course 2', lessons:11, key:'course2',
+   lessonNames:['The Clock Starts Now','The 5 Core Buyer Contingencies','The 17-Day Window','Contingency Removal: Point of No Return','When the Seller Pushes Back (NBP)','Your Buyer Power Move (NSP)','HOA Properties: The Extra Layer','DCE: Close of Escrow Is Here','NBP vs. DCE: Know the Difference','Cancellation Rights & Getting the Deposit Back','Full Scenario: 5555 Winners Lane Goes Sideways'],
+   url:'course2_lesson1.html', finalTotal:20},
+  // FUTURE COURSES — add here:
+  // {id:'course3', name:'Contingencies & Timelines: Seller Side', sub:'Course 3', lessons:11, key:'course3', lessonNames:[...], url:'course3_lesson1.html', finalTotal:20},
+];
+
+// ── AUTH ───────────────────────────────────────────────────────────────────
+function doLogin(){
+  const pw = document.getElementById('lpw').value;
+  if(pw === PASS){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    document.getElementById('hdr-right').style.display='flex';
+    initDashboard();
+  } else {
+    document.getElementById('lerr').style.display='block';
+  }
+}
+function logout(){
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('hdr-right').style.display='none';
+  document.getElementById('lpw').value='';
+  document.getElementById('lerr').style.display='none';
+}
+
+// ── NAV ────────────────────────────────────────────────────────────────────
+function showPage(id, el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(el) el.classList.add('active');
+  if(id==='agents') loadAgents();
+}
+function toggleCard(hdr){
+  const body=hdr.nextElementSibling;
+  const chev=hdr.querySelector('.chev');
+  const open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  hdr.classList.toggle('open',!open);
+  if(chev) chev.classList.toggle('open',!open);
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+async function initDashboard(){
+  loadOverview();
+  buildCourseGrid();
+  buildContentBrowser();
+  loadSettings();
+}
+
+// ── OVERVIEW ───────────────────────────────────────────────────────────────
+async function loadOverview(){
+  const {data:agents} = await SB.from('agents').select('id').eq('is_admin',false);
+  const {data:progress} = await SB.from('progress').select('agent_id,course,lesson_id');
+  const {data:fq} = await SB.from('final_quiz').select('agent_id,course,passed');
+  
+  const totalAgents = agents ? agents.length : 0;
+  let html = '';
+  
+  html += '<div class="stat-card"><div class="stat-num">'+totalAgents+'</div><div class="stat-label">Total Agents</div></div>';
+  
+  COURSES.forEach(course => {
+    const courseProgress = (progress||[]).filter(p=>p.course===course.key);
+    const activeAgents = new Set(courseProgress.map(p=>p.agent_id)).size;
+    const passedFQ = (fq||[]).filter(f=>f.course===course.key&&f.passed).length;
+    html += '<div class="stat-card"><div class="stat-num">'+activeAgents+'</div><div class="stat-label">'+course.sub+' Active</div><div class="stat-sub">'+passedFQ+' passed final</div></div>';
+  });
+  
+  const totalLessons = COURSES.reduce((a,c)=>a+c.lessons,0);
+  const totalProgress = (progress||[]).length;
+  html += '<div class="stat-card"><div class="stat-num">'+totalLessons+'</div><div class="stat-label">Total Lessons</div></div>';
+  html += '<div class="stat-card"><div class="stat-num">'+totalProgress+'</div><div class="stat-label">Lessons Completed</div></div>';
+  
+  document.getElementById('stats-grid').innerHTML = html;
+}
+
+// ── AGENTS ─────────────────────────────────────────────────────────────────
+async function loadAgents(){
+  document.getElementById('agents-body').innerHTML='<div class="loading">Loading from Supabase...</div>';
+  const {data:agents,error} = await SB.from('agents').select('id,full_name,email,created_at').eq('is_admin',false).order('full_name');
+  if(error||!agents||!agents.length){document.getElementById('agents-body').innerHTML='<div class="loading">No agents found.</div>';return;}
+  const {data:progress} = await SB.from('progress').select('agent_id,lesson_id,score,course,completed_at').order('lesson_id');
+  const {data:fq} = await SB.from('final_quiz').select('agent_id,score,passed,course,completed_at');
+  
+  const pm={}, fm={};
+  (progress||[]).forEach(p=>{const k=p.agent_id+'|'+p.course;if(!pm[k])pm[k]={};pm[k][p.lesson_id]=p;});
+  (fq||[]).forEach(f=>{fm[f.agent_id+'|'+f.course]=f;});
+  
+  let html='';
+  agents.forEach(agent=>{
+    let pills='<div class="agent-pills">';
+    COURSES.forEach(course=>{
+      const done=Object.keys(pm[agent.id+'|'+course.key]||{}).length;
+      const f=fm[agent.id+'|'+course.key];
+      pills+='<span class="pill pill-c'+(course.id==='course1'?'1':'2')+'">'+course.sub+': '+done+'/'+course.lessons+'</span>';
+      if(f)pills+='<span class="pill '+(f.passed?'pill-pass':'pill-fail')+'">'+(f.passed?'Final PASS':'Final FAIL')+'</span>';
+    });
+    pills+='</div>';
+    
+    html+='<div class="card"><div class="card-hdr" onclick="toggleCard(this)">';
+    html+='<div><div class="agent-name">'+agent.full_name+'</div><div class="agent-email">'+agent.email+'</div>'+pills+'</div>';
+    html+='<span class="chev">&#9660;</span></div>';
+    html+='<div class="card-body"><div class="progress-section">';
+    
+    COURSES.forEach(course=>{
+      const cData=pm[agent.id+'|'+course.key]||{};
+      const cFQ=fm[agent.id+'|'+course.key];
+      const done=Object.keys(cData).length;
+      const pct=Math.round(done/course.lessons*100);
+      
+      html+='<div class="progress-label">'+course.sub+' &mdash; '+course.name+' ('+done+'/'+course.lessons+')</div>';
+      html+='<div class="prog-bar-wrap"><div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%"></div></div><div class="prog-pct">'+pct+'%</div></div>';
+      
+      course.lessonNames.forEach((name,i)=>{
+        const lid=i+1;
+        const p=cData[lid];
+        const badge=p?'<span class="score-badge '+(p.score>=(course.id==='course1'?14:4)?'badge-pass':'badge-fail')+'">'+p.score+'/'+(course.id==='course1'?17:5)+'</span>':'<span class="score-badge badge-none">Not started</span>';
+        html+='<div class="progress-row"><span class="pr-name">L'+lid+'. '+name+'</span>'+badge+'</div>';
+      });
+      
+      if(cFQ){
+        const total=course.finalTotal;
+        html+='<div class="progress-row" style="border-top:1px solid var(--b);margin-top:6px;padding-top:10px"><span class="pr-name" style="font-weight:600">Final Quiz</span><span class="score-badge '+(cFQ.passed?'badge-pass':'badge-fail')+'">'+cFQ.score+'/'+total+' &mdash; '+(cFQ.passed?'PASS':'FAIL')+'</span></div>';
+      }
+      
+      html+='<div style="margin-bottom:16px"></div>';
+    });
+    
+    html+='</div></div></div>';
+  });
+  
+  document.getElementById('agents-body').innerHTML=html;
+}
+
+// ── COURSE GRID ────────────────────────────────────────────────────────────
+function buildCourseGrid(){
+  let html='';
+  COURSES.forEach(course=>{
+    html+='<div class="course-tile">';
+    html+='<div class="course-tile-name">'+course.name+'</div>';
+    html+='<div class="course-tile-meta">'+course.sub+' &middot; '+course.lessons+' lessons</div>';
+    html+='<div class="toggle-wrap"><span class="toggle-label">Active for agents</span>';
+    html+='<label class="toggle"><input type="checkbox" id="toggle-'+course.id+'" onchange="saveCourseSetting(''+course.id+'',this.checked)"/><span class="toggle-slider"></span></label></div>';
+    html+='<div style="margin-top:12px"><a href="'+course.url+'" target="_blank" style="font-size:.75rem;color:var(--g);text-decoration:none">Open course →</a></div>';
+    html+='</div>';
+  });
+  document.getElementById('course-grid').innerHTML=html;
+}
+
+// ── CONTENT BROWSER ────────────────────────────────────────────────────────
+function buildContentBrowser(){
+  let html1='';
+  COURSES[0].lessonNames.forEach((name,i)=>{
+    const n=i+1;
+    html1+='<div class="lesson-item"><span class="lesson-num">Lesson '+n+'</span><span class="lesson-name-text">'+name+'</span><a href="rpa_course_v2.html" target="_blank" class="open-link">Open &#8594;</a></div>';
+  });
+  html1+='<div class="lesson-item"><span class="lesson-num">Final Quiz</span><span class="lesson-name-text">Final Quiz (17 questions)</span><a href="rpa_course_v2.html" target="_blank" class="open-link">Open &#8594;</a></div>';
+  document.getElementById('c1-lessons').innerHTML=html1;
+
+  let html2='';
+  COURSES[1].lessonNames.forEach((name,i)=>{
+    const n=i+1;
+    html2+='<div class="lesson-item"><span class="lesson-num">Lesson '+n+'</span><span class="lesson-name-text">'+COURSES[1].lessonNames[i]+'</span><a href="course2_lesson'+n+'.html" target="_blank" class="open-link">Open &#8594;</a></div>';
+  });
+  html2+='<div class="lesson-item"><span class="lesson-num">Final Quiz</span><span class="lesson-name-text">Final Quiz (20 questions)</span><a href="course2_final_quiz.html" target="_blank" class="open-link">Open &#8594;</a></div>';
+  document.getElementById('c2-lessons').innerHTML=html2;
+}
+
+// ── SETTINGS (Announcements + Due Dates) ───────────────────────────────────
+async function loadSettings(){
+  const {data} = await SB.from('settings').select('key,value').in('key',['announcement','due_date']);
+  if(data){
+    data.forEach(row=>{
+      if(row.key==='announcement'){
+        document.getElementById('announce-text').value=row.value||'';
+        if(row.value){
+          const ap=document.getElementById('announce-preview');
+          ap.innerHTML='<b style="color:var(--g);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase">Active Announcement</b><br/>'+row.value;
+          ap.style.display='block';
+        }
+      }
+      if(row.key==='due_date'&&row.value){
+        document.getElementById('due-date-inp').value=row.value;
+      }
+    });
+  }
+  // Load course toggles
+  const {data:courseSettings} = await SB.from('settings').select('key,value').like('key','active_%');
+  if(courseSettings){
+    courseSettings.forEach(row=>{
+      const courseId=row.key.replace('active_','');
+      const el=document.getElementById('toggle-'+courseId);
+      if(el) el.checked=row.value==='true';
+    });
+  }
+}
+async function saveAnnouncement(){
+  const val=document.getElementById('announce-text').value.trim();
+  await SB.from('settings').upsert({key:'announcement',value:val},{onConflict:'key'});
+  const st=document.getElementById('announce-status');
+  st.textContent=val?'Announcement posted.':'Announcement cleared.';
+  st.style.display='block';
+  setTimeout(()=>st.style.display='none',3000);
+}
+async function clearAnnouncement(){
+  document.getElementById('announce-text').value='';
+  await saveAnnouncement();
+}
+async function saveDueDate(){
+  const val=document.getElementById('due-date-inp').value;
+  await SB.from('settings').upsert({key:'due_date',value:val},{onConflict:'key'});
+  const st=document.getElementById('due-status');
+  st.textContent=val?'Due date set to '+val+'.':'Due date cleared.';
+  st.style.display='block';
+  setTimeout(()=>st.style.display='none',3000);
+}
+async function clearDueDate(){
+  document.getElementById('due-date-inp').value='';
+  await saveDueDate();
+}
+async function saveCourseSetting(courseId,active){
+  await SB.from('settings').upsert({key:'active_'+courseId,value:String(active)},{onConflict:'key'});
+}
+</script>
+</body>
+</html>
