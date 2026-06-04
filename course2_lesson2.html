@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Course 2 · Lesson 2 — The 5 Core Buyer Contingencies | EDR Realty Group</title>
@@ -163,8 +165,36 @@
 </style>
 </head>
 <body>
+<div id="auth-overlay" style="position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#161d30;border:1px solid #1e2a42;border-radius:16px;padding:40px 32px;width:100%;max-width:380px;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:6px">EDR Realty Group</div>
+<div style="color:#8b93a8;font-size:.85rem;margin-bottom:28px">Sign in to access Course 2</div>
+<div id="aerr" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:14px;display:none;text-align:left"></div>
+<div id="aspin" style="display:none;color:#8b93a8;font-size:.85rem;margin-bottom:12px">Signing in...</div>
+<input id="si-em" type="email" placeholder="Email address" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:12px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="si-pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:12px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:14px;outline:none;box-sizing:border-box"/>
+<button onclick="doSI()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-bottom:14px">Sign In</button>
+<div style="font-size:.78rem;color:#8b93a8">New agent? Register at the <a href="index.html" style="color:#c9a84c;text-decoration:none">EDR Training Portal</a></div>
+</div></div>
 
-<header class="header">
+<div id="aerr" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none"></div>
+<div id="aspin" style="display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0">Please wait...</div>
+<div id="aform-si">
+<input id="si-em" type="email" placeholder="Email address" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="si-pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<button onclick="doSI()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer">Sign In</button>
+</div>
+<div id="aform-reg" style="display:none">
+<input id="rg-nm" type="text" placeholder="Full name" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-em" type="email" placeholder="Email address" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-pw" type="password" placeholder="Create password (min 6 chars)" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-cd" type="text" placeholder="Course access code (EDR2026)" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<button onclick="doReg()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer">Create Account</button>
+</div>
+</div></div>
+
+
+<div id="lc" style="display:none"><header class="header">
   <div class="brand">EDR Realty Group</div>
   <span class="agent-name-badge" id="nb-badge" style="display:none"></span>
 <div class="badge">Course 2 · Buyer Side</div>
@@ -474,6 +504,7 @@
   Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.<br/>
   Questions? Contact Rashaad Dixon · rashaad@edrrealtygroup.com
 </footer>
+</div>
 
 <script>
   const answers = {
@@ -547,79 +578,69 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-const _SB=window.supabase.createClient('https://zthiyivbiemgvojcrlyg.supabase.co','sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V');
-let _AG=null;
-async function _H(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
-function aTab(t){
-  ['si','reg'].forEach(x=>{document.getElementById('atab-'+x).classList.remove('active');document.getElementById('aform-'+x).style.display='none';});
-  document.getElementById('atab-'+t).classList.add('active');document.getElementById('aform-'+t).style.display='block';
-  document.getElementById('aerr').style.display='none';
-}
-function _aerr(m){const e=document.getElementById('aerr');e.textContent=m;e.style.display='block';document.getElementById('aspin').style.display='none';}
-function _ashow(){
-  document.getElementById('auth-overlay').style.display='none';
-  const lc=document.getElementById('lc');if(lc)lc.style.display='block';
-  const nb=document.getElementById('nb-badge');if(nb){nb.textContent=_AG.name;nb.style.display='inline-block';}
-}
-function _achk(){
-  const id=sessionStorage.getItem('edr2_id'),name=sessionStorage.getItem('edr2_name'),email=sessionStorage.getItem('edr2_email');
-  if(id&&name){_AG={id,name,email};_ashow();}
-}
-async function doSI(){
-  const em=document.getElementById('si-em').value.trim().toLowerCase();
-  const pw=document.getElementById('si-pw').value;
-  if(!em||!pw){_aerr('Please enter your email and password.');return;}
-  document.getElementById('aspin').style.display='block';document.getElementById('aerr').style.display='none';
-  const hash=await _H(pw);
-  const {data,error}=await _SB.from('agents').select('id,full_name,email,password_hash').eq('email',em).limit(1);
-  document.getElementById('aspin').style.display='none';
-  if(error||!data||!data.length){_aerr('No account found with that email. Please register.');return;}
-  if(data[0].password_hash!==hash){_aerr('Incorrect password. Please try again.');return;}
-  _AG={id:data[0].id,name:data[0].full_name,email:data[0].email};
-  sessionStorage.setItem('edr2_id',_AG.id);sessionStorage.setItem('edr2_name',_AG.name);sessionStorage.setItem('edr2_email',_AG.email);
-  _ashow();
-}
-async function doReg(){
-  const nm=document.getElementById('rg-nm').value.trim();
-  const em=document.getElementById('rg-em').value.trim().toLowerCase();
-  const pw=document.getElementById('rg-pw').value;
-  const cd=document.getElementById('rg-cd').value.trim().toUpperCase();
-  if(!nm||!em||!pw||!cd){_aerr('Please fill in all fields.');return;}
-  if(cd!=='EDR2026'){_aerr('Invalid access code. Contact your instructor.');return;}
-  if(pw.length<6){_aerr('Password must be at least 6 characters.');return;}
-  document.getElementById('aspin').style.display='block';document.getElementById('aerr').style.display='none';
-  const hash=await _H(pw);
-  const {data:ex}=await _SB.from('agents').select('id,full_name,password_hash').eq('email',em).limit(1);
-  if(ex&&ex.length){
-    document.getElementById('aspin').style.display='none';
-    if(ex[0].password_hash!==hash){_aerr('Email already registered. Please sign in.');return;}
-    _AG={id:ex[0].id,name:ex[0].full_name,email:em};
-    sessionStorage.setItem('edr2_id',_AG.id);sessionStorage.setItem('edr2_name',_AG.name);sessionStorage.setItem('edr2_email',em);
-    _ashow();return;
-  }
-  const {data,error}=await _SB.from('agents').insert({full_name:nm,email:em,password_hash:hash,course_code:cd,is_admin:false}).select().single();
-  document.getElementById('aspin').style.display='none';
-  if(error){_aerr('Registration failed. Please try again.');return;}
-  _AG={id:data.id,name:data.full_name,email:data.email};
-  sessionStorage.setItem('edr2_id',_AG.id);sessionStorage.setItem('edr2_name',_AG.name);sessionStorage.setItem('edr2_email',_AG.email);
-  _ashow();
-}
-async function _saveLP(lid,score,passed,ua){
-  if(!_AG)return false;
-  try{
-    const {error}=await _SB.from('progress').upsert({agent_id:_AG.id,lesson_id:lid,score,answers:ua,completed_at:new Date().toISOString(),course:'course2'},{onConflict:'agent_id,lesson_id,course'});
-    return !error;
-  }catch(e){return false;}
-}
-async function _saveFQ(score,passed,ua){
-  if(!_AG)return false;
-  try{
-    const {error}=await _SB.from('final_quiz').upsert({agent_id:_AG.id,score,passed,answers:ua,course:'course2'},{onConflict:'agent_id,course'});
-    return !error;
-  }catch(e){return false;}
-}
-window.addEventListener('DOMContentLoaded',_achk);
 
 </script>
+
+
+
+
+<script id="edr-auth">
+(function(){
+  const SB=window.supabase.createClient('https://zthiyivbiemgvojcrlyg.supabase.co','sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V');
+  
+  function getSession(){
+    try{return JSON.parse(localStorage.getItem('edr_agent'));}catch(e){return null;}
+  }
+  function setSession(ag){
+    localStorage.setItem('edr_agent',JSON.stringify(ag));
+  }
+  
+  function showContent(ag){
+    const o=document.getElementById('auth-overlay');
+    if(o)o.style.display='none';
+    const lc=document.getElementById('lc');
+    if(lc)lc.style.display='block';
+    const b=document.getElementById('nb-badge');
+    if(b&&ag){b.textContent=ag.name;b.style.display='inline-block';}
+    window._currentAgent=ag;
+  }
+  
+  window.doSI=async function(){
+    const em=document.getElementById('si-em').value.trim().toLowerCase();
+    const pw=document.getElementById('si-pw').value;
+    const err=document.getElementById('aerr');
+    const spin=document.getElementById('aspin');
+    if(!em||!pw){if(err){err.textContent='Please enter your email and password.';err.style.display='block';}return;}
+    if(spin)spin.style.display='block';
+    if(err)err.style.display='none';
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
+    const hash=Array.from(new Uint8Array(buf)).map(x=>x.toString(16).padStart(2,'0')).join('');
+    const {data,error}=await SB.from('agents').select('id,full_name,email,password_hash').eq('email',em).limit(1);
+    if(spin)spin.style.display='none';
+    if(error||!data||!data.length){if(err){err.textContent='No account found. Register at the EDR Training Portal.';err.style.display='block';}return;}
+    if(data[0].password_hash!==hash){if(err){err.textContent='Incorrect password. Please try again.';err.style.display='block';}return;}
+    const ag={id:data[0].id,name:data[0].full_name,email:data[0].email};
+    setSession(ag);
+    showContent(ag);
+  };
+  
+  window._saveLP=async function(lid,score,passed,ua){
+    const ag=window._currentAgent;if(!ag)return false;
+    try{const {error}=await SB.from('progress').upsert({agent_id:ag.id,lesson_id:lid,score,answers:ua,completed_at:new Date().toISOString(),course:'course2'},{onConflict:'agent_id,lesson_id,course'});return !error;}catch(e){return false;}
+  };
+  window._saveFQ=async function(score,passed,ua){
+    const ag=window._currentAgent;if(!ag)return false;
+    try{const {error}=await SB.from('final_quiz').upsert({agent_id:ag.id,score,passed,answers:ua,course:'course2'},{onConflict:'agent_id,course'});return !error;}catch(e){return false;}
+  };
+  
+  // Check session on load
+  window.addEventListener('DOMContentLoaded',function(){
+    const ag=getSession();
+    if(ag&&ag.id){showContent(ag);}
+    // else overlay stays visible
+  });
+})();
+</script>
+
 </body>
 </html>

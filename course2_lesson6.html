@@ -117,7 +117,35 @@ h2.st span{color:var(--g)}
 .agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
 
 </style></head><body>
-<header class="hdr"><div class="brand">EDR Realty Group</div><span class="agent-name-badge" id="nb-badge" style="display:none"></span>
+<div id="auth-overlay" style="position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#161d30;border:1px solid #1e2a42;border-radius:16px;padding:40px 32px;width:100%;max-width:380px;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:6px">EDR Realty Group</div>
+<div style="color:#8b93a8;font-size:.85rem;margin-bottom:28px">Sign in to access Course 2</div>
+<div id="aerr" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:14px;display:none;text-align:left"></div>
+<div id="aspin" style="display:none;color:#8b93a8;font-size:.85rem;margin-bottom:12px">Signing in...</div>
+<input id="si-em" type="email" placeholder="Email address" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:12px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="si-pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:12px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:14px;outline:none;box-sizing:border-box"/>
+<button onclick="doSI()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-bottom:14px">Sign In</button>
+<div style="font-size:.78rem;color:#8b93a8">New agent? Register at the <a href="index.html" style="color:#c9a84c;text-decoration:none">EDR Training Portal</a></div>
+</div></div>
+
+<div id="aerr" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none"></div>
+<div id="aspin" style="display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0">Please wait...</div>
+<div id="aform-si">
+<input id="si-em" type="email" placeholder="Email address" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="si-pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<button onclick="doSI()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer">Sign In</button>
+</div>
+<div id="aform-reg" style="display:none">
+<input id="rg-nm" type="text" placeholder="Full name" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-em" type="email" placeholder="Email address" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-pw" type="password" placeholder="Create password (min 6 chars)" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-cd" type="text" placeholder="Course access code (EDR2026)" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<button onclick="doReg()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer">Create Account</button>
+</div>
+</div></div>
+
+<div id="lc" style="display:none"><header class="hdr"><div class="brand">EDR Realty Group</div><span class="agent-name-badge" id="nb-badge" style="display:none"></span>
 <div class="badge">Course 2 · Buyer Side</div></header>
 <section class="hero">
 <div class="ctag">Lesson 6 of 11</div>
@@ -186,6 +214,7 @@ h2.st span{color:var(--g)}
 </div></div>
 <footer class="ftr">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 6 of 11<br/>
 Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards. Questions? rashaad@edrrealtygroup.com</footer>
+</div>
 <script>
 const A={1:{c:"C",e:"The NSP (Notice to Seller to Perform) is correct here. Under RPA Paragraph 14D(2), when the seller has not delivered required documents by the specified time, the buyer — after first delivering an NSP — may cancel. The NSP gives the seller at least 2 days to perform. The NBP is used by the seller against the buyer — not by the buyer against the seller. Using the wrong form could undermine your buyer's contractual position."},2:{c:"B",e:"If the seller performs within the NSP window, the notice is satisfied and the transaction continues normally. The NSP is a cure mechanism — it gives the other party a chance to fix their failure before cancellation. The Okonkwos now have until Day 17 or 5 days after the Day 11 delivery (Day 16) — whichever is later — to review the disclosures, meaning Day 17 applies. (RPA Paragraph 14D / L(5))"},3:{c:"C",e:"Just like the NBP, the NSP must be signed by the applicable party — in this case, the buyer. An NSP signed only by the buyer's agent is invalid and void under RPA Paragraph 14E. Always get Marcus and Priya's signatures on the NSP before delivering it. In practice, agents use DocuSign or similar for electronic signatures and deliver immediately. Speed matters — but so does proper execution."},4:{c:"D",e:"The NSP is a buyer tool used when the SELLER fails to perform an obligation. Removing their own loan contingency is a buyer action — the Okonkwos would use C.A.R. Form CR-B for that, not an NSP. The other three options are all valid NSP triggers because they all involve seller non-performance of a contractual obligation. (RPA Paragraph 14D)"},5:{c:"B",e:"Under RPA Paragraph 14D, the buyer must first deliver an NSP before canceling for seller non-performance. This parallels the seller's requirement to send an NBP before canceling for buyer non-performance. The NSP gives the seller a required 2-day opportunity to cure. Without sending the NSP first, a buyer cancellation for seller non-delivery may not be contractually valid. Correct sequence: seller misses deadline → buyer sends NSP → seller has 2 days → if seller still fails, buyer can cancel and recover deposit."}};
 const ua={};let ac=0;
@@ -225,4 +254,66 @@ function retry(){
   document.getElementById('pb').style.width='0%';
   window.scrollTo({top:0,behavior:'smooth'});
 }
-</script></body></html>
+</script>
+
+
+
+<script id="edr-auth">
+(function(){
+  const SB=window.supabase.createClient('https://zthiyivbiemgvojcrlyg.supabase.co','sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V');
+  
+  function getSession(){
+    try{return JSON.parse(localStorage.getItem('edr_agent'));}catch(e){return null;}
+  }
+  function setSession(ag){
+    localStorage.setItem('edr_agent',JSON.stringify(ag));
+  }
+  
+  function showContent(ag){
+    const o=document.getElementById('auth-overlay');
+    if(o)o.style.display='none';
+    const lc=document.getElementById('lc');
+    if(lc)lc.style.display='block';
+    const b=document.getElementById('nb-badge');
+    if(b&&ag){b.textContent=ag.name;b.style.display='inline-block';}
+    window._currentAgent=ag;
+  }
+  
+  window.doSI=async function(){
+    const em=document.getElementById('si-em').value.trim().toLowerCase();
+    const pw=document.getElementById('si-pw').value;
+    const err=document.getElementById('aerr');
+    const spin=document.getElementById('aspin');
+    if(!em||!pw){if(err){err.textContent='Please enter your email and password.';err.style.display='block';}return;}
+    if(spin)spin.style.display='block';
+    if(err)err.style.display='none';
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
+    const hash=Array.from(new Uint8Array(buf)).map(x=>x.toString(16).padStart(2,'0')).join('');
+    const {data,error}=await SB.from('agents').select('id,full_name,email,password_hash').eq('email',em).limit(1);
+    if(spin)spin.style.display='none';
+    if(error||!data||!data.length){if(err){err.textContent='No account found. Register at the EDR Training Portal.';err.style.display='block';}return;}
+    if(data[0].password_hash!==hash){if(err){err.textContent='Incorrect password. Please try again.';err.style.display='block';}return;}
+    const ag={id:data[0].id,name:data[0].full_name,email:data[0].email};
+    setSession(ag);
+    showContent(ag);
+  };
+  
+  window._saveLP=async function(lid,score,passed,ua){
+    const ag=window._currentAgent;if(!ag)return false;
+    try{const {error}=await SB.from('progress').upsert({agent_id:ag.id,lesson_id:lid,score,answers:ua,completed_at:new Date().toISOString(),course:'course2'},{onConflict:'agent_id,lesson_id,course'});return !error;}catch(e){return false;}
+  };
+  window._saveFQ=async function(score,passed,ua){
+    const ag=window._currentAgent;if(!ag)return false;
+    try{const {error}=await SB.from('final_quiz').upsert({agent_id:ag.id,score,passed,answers:ua,course:'course2'},{onConflict:'agent_id,course'});return !error;}catch(e){return false;}
+  };
+  
+  // Check session on load
+  window.addEventListener('DOMContentLoaded',function(){
+    const ag=getSession();
+    if(ag&&ag.id){showContent(ag);}
+    // else overlay stays visible
+  });
+})();
+</script>
+
+</body></html>

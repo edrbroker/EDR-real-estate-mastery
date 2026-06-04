@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Course 2 Final Quiz | EDR Realty Group</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
@@ -104,8 +105,53 @@ h2.st span{color:var(--g)}
 .prog-label{font-size:.8rem;color:var(--m)}
 .prog-val{font-size:.88rem;color:var(--g);font-weight:700}
 .hidden{display:none}
+
+.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
+.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
+.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
+.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
+.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
+.auth-tab.active{background:#c9a84c;color:#0b0f1f}
+.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
+.ainp:focus{border-color:#c9a84c}
+.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
+.abtn:hover{background:#e8c96e}
+.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
+.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
+.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
+
 </style></head><body>
-<header class="hdr"><div class="brand">EDR Realty Group</div><div class="badge">Course 2 · Final Quiz</div></header>
+<div id="auth-overlay" style="position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#161d30;border:1px solid #1e2a42;border-radius:16px;padding:40px 32px;width:100%;max-width:380px;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:6px">EDR Realty Group</div>
+<div style="color:#8b93a8;font-size:.85rem;margin-bottom:28px">Sign in to access Course 2</div>
+<div id="aerr" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:14px;display:none;text-align:left"></div>
+<div id="aspin" style="display:none;color:#8b93a8;font-size:.85rem;margin-bottom:12px">Signing in...</div>
+<input id="si-em" type="email" placeholder="Email address" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:12px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="si-pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:12px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:14px;outline:none;box-sizing:border-box"/>
+<button onclick="doSI()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-bottom:14px">Sign In</button>
+<div style="font-size:.78rem;color:#8b93a8">New agent? Register at the <a href="index.html" style="color:#c9a84c;text-decoration:none">EDR Training Portal</a></div>
+</div></div>
+
+<div id="aerr" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none"></div>
+<div id="aspin" style="display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0">Please wait...</div>
+<div id="aform-si">
+<input id="si-em" type="email" placeholder="Email address" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="si-pw" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doSI()" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<button onclick="doSI()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer">Sign In</button>
+</div>
+<div id="aform-reg" style="display:none">
+<input id="rg-nm" type="text" placeholder="Full name" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-em" type="email" placeholder="Email address" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-pw" type="password" placeholder="Create password (min 6 chars)" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<input id="rg-cd" type="text" placeholder="Course access code (EDR2026)" style="width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none;box-sizing:border-box"/>
+<button onclick="doReg()" style="width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer">Create Account</button>
+</div>
+</div></div>
+
+<div id="lc" style="display:none"><header class="hdr"><div class="brand">EDR Realty Group</div><span class="agent-name-badge" id="nb-badge" style="display:none"></span>
+<div class="badge">Course 2 · Final Quiz</div></header>
 <section class="hero">
 <div class="ctag">Course 2 — Buyer Side</div>
 <h1>Final <span>Quiz</span></h1>
@@ -207,6 +253,7 @@ h2.st span{color:var(--g)}
 <div class="sc-circ" id="sc-circ"></div>
 <div class="sc-title" id="sc-title"></div>
 <p class="sc-msg" id="sc-msg"></p>
+<p id="sc-saved" style="font-size:.78rem;color:#22c55e;margin-bottom:16px"></p>
 <div style="margin-bottom:16px">
 <button class="rbtn" onclick="retry()" id="rb" style="display:none">Retake Final Quiz</button>
 <button class="nbtn" id="nb" style="display:none" onclick="alert('Congratulations! You have completed Course 2: Contingencies and Timelines — Buyer Side. Proceed to Course 3: Seller Side in your training portal.')">Complete Course 2 →</button>
@@ -218,6 +265,7 @@ h2.st span{color:var(--g)}
 <footer class="ftr">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Final Quiz<br/>
 Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.<br/>
 Questions? Contact Rashaad Dixon · rashaad@edrrealtygroup.com</footer>
+</div>
 <script>
 const A={1:{c:"B",e:"Acceptance is the moment all RPA timelines begin. It occurs when the signed offer is delivered to the buyer or buyer's agent. From that moment, every deadline — EMD, contingency removals, close of escrow — starts counting. (RPA Paragraph 1 and 3C)"},2:{c:"B",e:"Under RPA Paragraph 3D(1), the EMD must be delivered to escrow within 3 BUSINESS days of acceptance — the only major deadline that uses business days instead of calendar days. All other standard timelines use calendar days, meaning weekends and holidays count."},3:{c:"B",e:"This is one of the most important and misunderstood rules in the RPA. Under Paragraph 8A(1): if the buyer removed the appraisal contingency and the loan is denied solely because of the low appraisal, and the buyer is otherwise qualified, the buyer CANNOT use the loan contingency to escape the contract. However, removing the appraisal contingency does NOT automatically remove the loan contingency — they are always separate. (RPA Paragraph 8A(4))"},4:{c:"C",e:"The insurance contingency under RPA Paragraph 8D and L(4) is specifically designed for this situation. The RPA also states that the loan contingency cannot be used to cancel if the actual reason is an insurance failure — these are separate contingencies that serve separate purposes. (RPA Paragraph 8A(2)). California's insurance crisis makes this contingency more important than ever."},5:{c:"C",e:"When a contingency deadline is approaching and something is unresolved, the correct move is a written extension signed by both parties before the deadline. Verbal agreements have no legal effect under the RPA. Waiting until Day 17 is too late if you need an extension. Removing the contingency without the appraisal in hand creates serious financial risk for your buyer. (RPA Paragraph 14)"},6:{c:"B",e:"Under RPA Paragraph 14B(4), even after the contingency deadline passes, the buyer retains the right to remove contingencies or cancel in writing — as long as the seller has NOT yet sent an NBP and cancelled. This window is narrow but it exists. This is why agents must act fast the moment a deadline passes without resolution."},7:{c:"C",e:"Under RPA Paragraph 14F(1), removing a contingency means the buyer is conclusively deemed to have: (i) completed all investigations, (ii) elected to proceed, and (iii) assumed all liability for related issues. There are NO reserved rights or grace periods after removal. Once a contingency is removed, that protection is gone permanently — which is exactly why timing of contingency removal is so critical."},8:{c:"B",e:"The RPA allows buyers to remove contingencies selectively. C.A.R. Form CR-B lets buyers check specific contingencies being removed while leaving others active. This is best practice — remove each contingency only when you have fully resolved that specific item. (RPA Paragraph 14B(3) and Form CR-B)"},9:{c:"C",e:"Under RPA Paragraph 14C(1), when a seller cancels after properly issuing an NBP, the seller must authorize return of the buyer's deposit (less fees already paid by escrow). The seller does NOT get to keep the deposit in an NBP cancellation. This is critically different from a DCE cancellation. This distinction is one of the most tested concepts in California real estate practice."},10:{c:"B",e:"Under RPA Paragraph 14E, the NBP must be signed by the applicable buyer or seller — not just their agent. An NBP signed only by the listing agent is invalid and void. Notify the listing agent in writing immediately. However, the seller can quickly cure this by sending a corrected NBP — do not assume your buyer's deadline problem has disappeared."},11:{c:"C",e:"The NSP (Notice to Seller to Perform, C.A.R. Form NSP) is the buyer's tool when the seller fails to perform a contractual obligation. Under RPA Paragraph 14D(2), the buyer must first deliver an NSP before canceling for seller non-performance. The NSP gives the seller at least 2 days to cure the failure. The NBP is the seller's tool against the buyer — never confuse these two forms."},12:{c:"B",e:"Under RPA Paragraph 14D, the buyer must first deliver an NSP before canceling for seller non-performance. This parallels the seller's requirement to send an NBP before canceling for buyer non-performance. The NSP gives the seller a required 2-day opportunity to cure. Without sending the NSP first, a buyer cancellation for seller non-delivery may not be contractually valid. (RPA Paragraph 14D)"},13:{c:"C",e:"Under RPA Paragraph N(3), the seller must order HOA documents within 3 days of acceptance and the seller pays the fee. This is one of the earliest deadlines in the entire transaction. If the seller delays, documents may not arrive until after the buyer's contingency period. As the buyer's agent, confirm the HOA document order has been placed on Day 1 or 2."},14:{c:"B",e:"Under RPA Paragraph L(7), the HOA contingency deadline is 17 days after acceptance OR 5 days after delivery — whichever is LATER. Documents arrived Day 14. Five days after Day 14 equals Day 19. Since Day 19 is later than Day 17, the deadline automatically extends to Day 19. Always calculate both dates and use the later one."},15:{c:"C",e:"Under RPA Paragraph 14G, before either party may cancel for failure to close escrow, they must first deliver a Demand to Close Escrow (C.A.R. Form DCE) — not an NBP. The DCE must give the other party at least 3 days after delivery to close escrow. Without first delivering a DCE, the seller cannot legally cancel for failure to close. This is one of the most common form-selection errors in California real estate."},16:{c:"B",e:"This is the critical distinction between NBP and DCE cancellations. Under RPA Paragraph 14C(1), an NBP cancellation requires the seller to return the buyer's deposit. After a DCE cancellation (Paragraph 14G), the deposit is NOT automatically returned — the seller may have a claim, and release requires mutual signed instructions or a court or arbitration order. Using the wrong form can completely change who gets the money."},17:{c:"B",e:"Under RPA Paragraph 14H, escrow cannot unilaterally release the deposit to either party. The funds sit in escrow until both parties sign mutual release instructions, or a court judgment or arbitration award directs escrow on how to release the funds. Additionally, Civil Code Section 1057.3 provides for a civil penalty of up to $1,000 against a party who refuses to sign cancellation instructions without a good faith dispute."},18:{c:"C",e:"Under RPA Paragraph 29, for 1 to 4 unit owner-occupied residential properties, liquidated damages are capped at 3% of the purchase price if Paragraph 29 was properly initialed by both parties. On a $1,250,000 purchase: $1,250,000 times 3% equals $37,500. This is the maximum the seller can claim — not a guaranteed amount. The deposit itself is the source of these funds."},19:{c:"C",e:"Under RPA Paragraph L(5), the seller document review deadline is 17 days after acceptance OR 5 days after delivery — whichever is LATER. Five days after Day 11 delivery equals Day 16. The original deadline is Day 17. Since Day 17 is later than Day 16, the deadline remains Day 17. The 'whichever is later' rule protects buyers from being rushed when sellers deliver documents late — but only when the 5-day count exceeds the original deadline."},20:{c:"B",e:"Every challenge in the scenario — seller's late disclosures (NSP), HOA red flags (written extension), partial contingency removal (selective CR-B), lender delay (written COE extension) — was resolved correctly because the agent acted before deadlines expired, used the correct written forms, and never relied on verbal agreements. Proactive deadline management with proper documentation is the foundation of protecting buyers in California real estate transactions."}};
 const ua={};let ac=0;
@@ -268,4 +316,66 @@ function retry(){
   document.getElementById('score-breakdown').innerHTML='';
   window.scrollTo({top:0,behavior:'smooth'});
 }
-</script></body></html>
+</script>
+
+
+
+<script id="edr-auth">
+(function(){
+  const SB=window.supabase.createClient('https://zthiyivbiemgvojcrlyg.supabase.co','sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V');
+  
+  function getSession(){
+    try{return JSON.parse(localStorage.getItem('edr_agent'));}catch(e){return null;}
+  }
+  function setSession(ag){
+    localStorage.setItem('edr_agent',JSON.stringify(ag));
+  }
+  
+  function showContent(ag){
+    const o=document.getElementById('auth-overlay');
+    if(o)o.style.display='none';
+    const lc=document.getElementById('lc');
+    if(lc)lc.style.display='block';
+    const b=document.getElementById('nb-badge');
+    if(b&&ag){b.textContent=ag.name;b.style.display='inline-block';}
+    window._currentAgent=ag;
+  }
+  
+  window.doSI=async function(){
+    const em=document.getElementById('si-em').value.trim().toLowerCase();
+    const pw=document.getElementById('si-pw').value;
+    const err=document.getElementById('aerr');
+    const spin=document.getElementById('aspin');
+    if(!em||!pw){if(err){err.textContent='Please enter your email and password.';err.style.display='block';}return;}
+    if(spin)spin.style.display='block';
+    if(err)err.style.display='none';
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
+    const hash=Array.from(new Uint8Array(buf)).map(x=>x.toString(16).padStart(2,'0')).join('');
+    const {data,error}=await SB.from('agents').select('id,full_name,email,password_hash').eq('email',em).limit(1);
+    if(spin)spin.style.display='none';
+    if(error||!data||!data.length){if(err){err.textContent='No account found. Register at the EDR Training Portal.';err.style.display='block';}return;}
+    if(data[0].password_hash!==hash){if(err){err.textContent='Incorrect password. Please try again.';err.style.display='block';}return;}
+    const ag={id:data[0].id,name:data[0].full_name,email:data[0].email};
+    setSession(ag);
+    showContent(ag);
+  };
+  
+  window._saveLP=async function(lid,score,passed,ua){
+    const ag=window._currentAgent;if(!ag)return false;
+    try{const {error}=await SB.from('progress').upsert({agent_id:ag.id,lesson_id:lid,score,answers:ua,completed_at:new Date().toISOString(),course:'course2'},{onConflict:'agent_id,lesson_id,course'});return !error;}catch(e){return false;}
+  };
+  window._saveFQ=async function(score,passed,ua){
+    const ag=window._currentAgent;if(!ag)return false;
+    try{const {error}=await SB.from('final_quiz').upsert({agent_id:ag.id,score,passed,answers:ua,course:'course2'},{onConflict:'agent_id,course'});return !error;}catch(e){return false;}
+  };
+  
+  // Check session on load
+  window.addEventListener('DOMContentLoaded',function(){
+    const ag=getSession();
+    if(ag&&ag.id){showContent(ag);}
+    // else overlay stays visible
+  });
+})();
+</script>
+
+</body></html>
