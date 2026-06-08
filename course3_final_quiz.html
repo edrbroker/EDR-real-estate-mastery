@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 3 Final Quiz — Contingencies & Timelines: Seller Side | EDR Realty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy-mid:#152444;--gold:#c9a84c;--gold-light:#e8c97a;--white:#fff;--off-white:#f4f2ee;--gray-light:#f0ede6;--gray-mid:#d4cfc4;--gray-text:#6b6560;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-family:Georgia,serif;font-size:2.2rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-family:Georgia,serif;font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-family:Georgia,serif;font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:.82rem;color:rgba(255,255,255,.7);}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;font-family:'Helvetica Neue',sans-serif;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+table.info tr:last-child td{border-bottom:none;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-family:Georgia,serif;font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-section .quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);color:var(--white);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-family:Georgia,serif;font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{display:inline-block;background:var(--green);color:var(--white);border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;}
+.btn-next:hover{background:#246040;}
+.btn-retry{display:inline-block;background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 3 · SELLER SIDE</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="lesson-num">COURSE 3 FINAL QUIZ</div>
+  <h1>Contingencies & Timelines<br><span>Seller Side</span></h1>
+  <div class="hero-sub">20 questions covering all 11 lessons. You need 16/20 (80%) to pass.</div>
+  <div class="hero-meta">
+    <span class="meta-dot">20 Questions</span>
+    <span class="meta-dot">80% to Pass</span>
+    <span class="meta-dot">All RPA References</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="story-card">
+    <div class="story-label">📋 Final Assessment</div>
+    <p>This quiz covers everything from the 7-day disclosure deadline through NBP, NSP, DCE, deposit disputes, and the Chen family scenario. Take your time — read each question carefully before answering.</p>
+    <p>Good luck.</p>
+  </div>
+
+  <div class="quiz-section">
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 20</div>
+          <div class="q-text">Under RPA ¶3N(1), how many calendar days does the seller have to deliver required disclosures after acceptance?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(1,'A')">A. 3 days</button>
+            <button class="option-btn" data-opt="B" onclick="ans(1,'B')">B. 5 days</button>
+            <button class="option-btn" data-opt="C" onclick="ans(1,'C')">C. 7 days</button>
+            <button class="option-btn" data-opt="D" onclick="ans(1,'D')">D. 14 days</button>
+          </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 20</div>
+          <div class="q-text">A seller delivers the TDS 10 days after acceptance — 3 days late. What right does this give the buyer?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(2,'A')">A. The transaction automatically cancels</button>
+            <button class="option-btn" data-opt="B" onclick="ans(2,'B')">B. A new 5-day right to cancel from the date of late delivery</button>
+            <button class="option-btn" data-opt="C" onclick="ans(2,'C')">C. A price reduction equal to 1% of the purchase price</button>
+            <button class="option-btn" data-opt="D" onclick="ans(2,'D')">D. No additional rights — the deadline is not legally enforceable</button>
+          </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 20</div>
+          <div class="q-text">Under ¶11A(2), which sections must be completed for a TDS to be considered 'fully completed'?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(3,'A')">A. Seller's section only</button>
+            <button class="option-btn" data-opt="B" onclick="ans(3,'B')">B. Seller's section and buyer's acknowledgment</button>
+            <button class="option-btn" data-opt="C" onclick="ans(3,'C')">C. Seller's section and the listing agent's section (or AVID)</button>
+            <button class="option-btn" data-opt="D" onclick="ans(3,'D')">D. All sections including the escrow officer's certification</button>
+          </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 20</div>
+          <div class="q-text">During escrow, the seller discovers a plumbing issue that wasn't on the original TDS. Per ¶11A(4), the seller must:</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(4,'A')">A. Do nothing if the issue was discovered after the disclosure deadline</button>
+            <button class="option-btn" data-opt="B" onclick="ans(4,'B')">B. Promptly deliver an amended TDS disclosing the new condition</button>
+            <button class="option-btn" data-opt="C" onclick="ans(4,'C')">C. Disclose only if the repair cost exceeds $5,000</button>
+            <button class="option-btn" data-opt="D" onclick="ans(4,'D')">D. Wait until close of escrow to disclose</button>
+          </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 20</div>
+          <div class="q-text">When a seller delivers an amended TDS during escrow, how many days does the buyer have to cancel based on the amended disclosure?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(5,'A')">A. 2 days</button>
+            <button class="option-btn" data-opt="B" onclick="ans(5,'B')">B. 3 days</button>
+            <button class="option-btn" data-opt="C" onclick="ans(5,'C')">C. 5 days</button>
+            <button class="option-btn" data-opt="D" onclick="ans(5,'D')">D. 7 days</button>
+          </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+
+        <div class="question-card" id="q6">
+          <div class="q-label">Question 6 of 20</div>
+          <div class="q-text">Under the RPA, which contingency has a DEFAULT deadline of 21 calendar days?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(6,'A')">A. Inspection contingency</button>
+            <button class="option-btn" data-opt="B" onclick="ans(6,'B')">B. Appraisal contingency</button>
+            <button class="option-btn" data-opt="C" onclick="ans(6,'C')">C. Loan contingency</button>
+            <button class="option-btn" data-opt="D" onclick="ans(6,'D')">D. Title contingency</button>
+          </div>
+          <div class="feedback-box" id="fb6"></div>
+        </div>
+
+        <div class="question-card" id="q7">
+          <div class="q-label">Question 7 of 20</div>
+          <div class="q-text">The seller receives a higher offer while in contract with active buyer contingencies. The seller may legally:</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(7,'A')">A. Cancel the current contract and accept the new offer</button>
+            <button class="option-btn" data-opt="B" onclick="ans(7,'B')">B. Send an NBP to pressure the current buyer to cancel</button>
+            <button class="option-btn" data-opt="C" onclick="ans(7,'C')">C. Accept the new offer as a backup offer in writing only</button>
+            <button class="option-btn" data-opt="D" onclick="ans(7,'D')">D. Demand the current buyer match the higher offer within 24 hours</button>
+          </div>
+          <div class="feedback-box" id="fb7"></div>
+        </div>
+
+        <div class="question-card" id="q8">
+          <div class="q-label">Question 8 of 20</div>
+          <div class="q-text">Under ¶14E, which of the following makes an NBP INVALID?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(8,'A')">A. It is delivered on Day 18 for a Day 17 deadline</button>
+            <button class="option-btn" data-opt="B" onclick="ans(8,'B')">B. The listing agent signs it instead of the seller</button>
+            <button class="option-btn" data-opt="C" onclick="ans(8,'C')">C. It is delivered via email rather than in person</button>
+            <button class="option-btn" data-opt="D" onclick="ans(8,'D')">D. It specifies a 3-day cure period instead of 2 days</button>
+          </div>
+          <div class="feedback-box" id="fb8"></div>
+        </div>
+
+        <div class="question-card" id="q9">
+          <div class="q-label">Question 9 of 20</div>
+          <div class="q-text">The contingency removal deadline is June 17. What is the EARLIEST the seller can send an NBP for that deadline?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(9,'A')">A. June 13</button>
+            <button class="option-btn" data-opt="B" onclick="ans(9,'B')">B. June 15</button>
+            <button class="option-btn" data-opt="C" onclick="ans(9,'C')">C. June 16</button>
+            <button class="option-btn" data-opt="D" onclick="ans(9,'D')">D. June 17 or after</button>
+          </div>
+          <div class="feedback-box" id="fb9"></div>
+        </div>
+
+        <div class="question-card" id="q10">
+          <div class="q-label">Question 10 of 20</div>
+          <div class="q-text">The seller sends a valid NBP, the buyer fails to perform, and the seller cancels. What happens to the deposit?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(10,'A')">A. Seller keeps deposit as liquidated damages</button>
+            <button class="option-btn" data-opt="B" onclick="ans(10,'B')">B. Deposit is split 50/50</button>
+            <button class="option-btn" data-opt="C" onclick="ans(10,'C')">C. Deposit is returned to buyer (minus fees incurred by buyer)</button>
+            <button class="option-btn" data-opt="D" onclick="ans(10,'D')">D. Deposit remains in escrow until arbitration</button>
+          </div>
+          <div class="feedback-box" id="fb10"></div>
+        </div>
+
+        <div class="question-card" id="q11">
+          <div class="q-label">Question 11 of 20</div>
+          <div class="q-text">Who must sign a Notice to Seller to Perform (NSP)?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(11,'A')">A. The buyer's agent</button>
+            <button class="option-btn" data-opt="B" onclick="ans(11,'B')">B. The buyer</button>
+            <button class="option-btn" data-opt="C" onclick="ans(11,'C')">C. The escrow officer</button>
+            <button class="option-btn" data-opt="D" onclick="ans(11,'D')">D. The listing agent</button>
+          </div>
+          <div class="feedback-box" id="fb11"></div>
+        </div>
+
+        <div class="question-card" id="q12">
+          <div class="q-label">Question 12 of 20</div>
+          <div class="q-text">Under California Civil Code §4525, who is responsible for delivering the HOA document package to the buyer?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(12,'A')">A. The HOA management company directly</button>
+            <button class="option-btn" data-opt="B" onclick="ans(12,'B')">B. The buyer's agent</button>
+            <button class="option-btn" data-opt="C" onclick="ans(12,'C')">C. The escrow officer</button>
+            <button class="option-btn" data-opt="D" onclick="ans(12,'D')">D. The seller</button>
+          </div>
+          <div class="feedback-box" id="fb12"></div>
+        </div>
+
+        <div class="question-card" id="q13">
+          <div class="q-label">Question 13 of 20</div>
+          <div class="q-text">Why should listing agents order HOA documents on the day of acceptance (Day 0)?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(13,'A')">A. Escrow requires it to open</button>
+            <button class="option-btn" data-opt="B" onclick="ans(13,'B')">B. HOA management companies take 5-10 business days, risking missing the 7-day disclosure deadline if ordered late</button>
+            <button class="option-btn" data-opt="C" onclick="ans(13,'C')">C. The buyer's lender requires them within 24 hours</button>
+            <button class="option-btn" data-opt="D" onclick="ans(13,'D')">D. The RPA requires a 3-day delivery buffer</button>
+          </div>
+          <div class="feedback-box" id="fb13"></div>
+        </div>
+
+        <div class="question-card" id="q14">
+          <div class="q-label">Question 14 of 20</div>
+          <div class="q-text">Under RPA ¶14G, the Demand to Close Escrow (DCE) must give the other party at least how many days to close?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(14,'A')">A. 1 day</button>
+            <button class="option-btn" data-opt="B" onclick="ans(14,'B')">B. 2 days</button>
+            <button class="option-btn" data-opt="C" onclick="ans(14,'C')">C. 3 days</button>
+            <button class="option-btn" data-opt="D" onclick="ans(14,'D')">D. 5 days</button>
+          </div>
+          <div class="feedback-box" id="fb14"></div>
+        </div>
+
+        <div class="question-card" id="q15">
+          <div class="q-label">Question 15 of 20</div>
+          <div class="q-text">The buyer has removed all contingencies but fails to close on the scheduled COE date. The seller's correct next step is to:</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(15,'A')">A. Send an NBP for failure to close</button>
+            <button class="option-btn" data-opt="B" onclick="ans(15,'B')">B. Cancel immediately since the deadline passed</button>
+            <button class="option-btn" data-opt="C" onclick="ans(15,'C')">C. Send a DCE giving the buyer at least 3 days to close</button>
+            <button class="option-btn" data-opt="D" onclick="ans(15,'D')">D. Contact escrow to release the deposit automatically</button>
+          </div>
+          <div class="feedback-box" id="fb15"></div>
+        </div>
+
+        <div class="question-card" id="q16">
+          <div class="q-label">Question 16 of 20</div>
+          <div class="q-text">Under RPA ¶29, which THREE conditions must be met for a seller to retain a buyer's deposit as liquidated damages?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(16,'A')">A. Seller sent a valid NBP, buyer failed to perform, and seller canceled within 30 days</button>
+            <button class="option-btn" data-opt="B" onclick="ans(16,'B')">B. Liquidated damages clause was initialed, deposit is 3% or less of purchase price, and buyer breached the contract</button>
+            <button class="option-btn" data-opt="C" onclick="ans(16,'C')">C. Seller sent a valid DCE, buyer failed to close, and deposit exceeds $10,000</button>
+            <button class="option-btn" data-opt="D" onclick="ans(16,'D')">D. All contingencies were removed, buyer defaulted, and seller gave 5 days notice</button>
+          </div>
+          <div class="feedback-box" id="fb16"></div>
+        </div>
+
+        <div class="question-card" id="q17">
+          <div class="q-label">Question 17 of 20</div>
+          <div class="q-text">Civil Code §1057.3 imposes a penalty of up to $1,000 on a party who:</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(17,'A')">A. Closes escrow more than 5 days late</button>
+            <button class="option-btn" data-opt="B" onclick="ans(17,'B')">B. Fails to deliver disclosures within 7 days</button>
+            <button class="option-btn" data-opt="C" onclick="ans(17,'C')">C. Unreasonably refuses to sign cancellation instructions when there is no good faith deposit dispute</button>
+            <button class="option-btn" data-opt="D" onclick="ans(17,'D')">D. Submits an NSP with less than 2 days notice</button>
+          </div>
+          <div class="feedback-box" id="fb17"></div>
+        </div>
+
+        <div class="question-card" id="q18">
+          <div class="q-label">Question 18 of 20</div>
+          <div class="q-text">A seller cancels a transaction improperly to accept a higher offer. Which buyer remedy could prevent the seller from selling the property to ANYONE else until litigation resolves?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(18,'A')">A. Filing a complaint with the DRE</button>
+            <button class="option-btn" data-opt="B" onclick="ans(18,'B')">B. Demanding a price reduction via the RR form</button>
+            <button class="option-btn" data-opt="C" onclick="ans(18,'C')">C. Recording a lis pendens on the property</button>
+            <button class="option-btn" data-opt="D" onclick="ans(18,'D')">D. Sending a DCE to the seller</button>
+          </div>
+          <div class="feedback-box" id="fb18"></div>
+        </div>
+
+        <div class="question-card" id="q19">
+          <div class="q-label">Question 19 of 20</div>
+          <div class="q-text">After a transaction cancels, the seller re-lists the property. What must the seller disclose to the new buyer regarding the prior transaction?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(19,'A')">A. Nothing — the cancelled transaction is confidential</button>
+            <button class="option-btn" data-opt="B" onclick="ans(19,'B')">B. Only items that were in the original TDS</button>
+            <button class="option-btn" data-opt="C" onclick="ans(19,'C')">C. Any material defects or conditions discovered during the cancelled transaction</button>
+            <button class="option-btn" data-opt="D" onclick="ans(19,'D')">D. Only the reason the prior transaction cancelled</button>
+          </div>
+          <div class="feedback-box" id="fb19"></div>
+        </div>
+
+        <div class="question-card" id="q20">
+          <div class="q-label">Question 20 of 20</div>
+          <div class="q-text">In the Chen scenario, the seller sent a DCE on June 23 (the scheduled COE). The buyer closed on June 25. What was the outcome?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="ans(20,'A')">A. The seller kept the deposit as liquidated damages since the COE was missed</button>
+            <button class="option-btn" data-opt="B" onclick="ans(20,'B')">B. The transaction closed successfully — the buyer performed within the 3-day DCE window</button>
+            <button class="option-btn" data-opt="C" onclick="ans(20,'C')">C. Escrow was extended automatically for 30 days</button>
+            <button class="option-btn" data-opt="D" onclick="ans(20,'D')">D. The seller was penalized for sending the DCE prematurely</button>
+          </div>
+          <div class="feedback-box" id="fb20"></div>
+        </div>
+
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/20</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div>
+      <br>
+      <button class="btn-next" id="nb" style="display:none" onclick="window.location.href='index.html'">← Return to Portal</button>
+      <button class="btn-retry" id="rb" style="display:none" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  EDR Realty Group · Course 3: Contingencies &amp; Timelines — Seller Side · Final Quiz<br>
+  Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.<br>
+  Questions? Contact Rashaad Dixon · rashaad@edrrealtygroup.com
+</footer>
+</div>
+
+<script>
+  let ua = {};
+  let ac = 0;
+  const A = {
+    1: { c: "C", e: `¶3N(1) — 7 calendar days from acceptance. Day 1 begins the day after acceptance.` },
+    2: { c: "B", e: `Civil Code §1102.3 — late TDS delivery triggers a new 5-day cancellation right for the buyer, regardless of contingency status.` },
+    3: { c: "C", e: `Per ¶11A(2), the TDS requires both the seller to complete Sections I and II, and the listing agent to complete Section III — or an AVID to be completed instead.` },
+    4: { c: "B", e: `¶11A(4) — the disclosure obligation is ongoing until COE. Any newly discovered material condition must be disclosed via an amended TDS or SPQ immediately.` },
+    5: { c: "C", e: `An amended TDS triggers the same 5-day cancellation right as a late original TDS under Civil Code §1102.3 — measured from delivery.` },
+    6: { c: "C", e: `Per ¶3L(1), the loan contingency defaults to 21 calendar days. All other major contingencies — inspection, appraisal, title, and seller documents — default to 17 days.` },
+    7: { c: "C", e: `While under contract, a seller's ONLY option with a competing offer is to accept it as a written backup offer. Canceling to take a better deal exposes the seller to specific performance claims.` },
+    8: { c: "B", e: `¶14E requires the NBP to be signed by the SELLER. An agent-signed NBP is invalid and void. The seller must personally sign this notice.` },
+    9: { c: "B", e: `Per ¶14E, the NBP cannot be delivered earlier than 2 days before the scheduled performance day. June 17 minus 2 days = June 15.` },
+    10: { c: "C", e: `Per ¶14C(1), after a valid NBP cancellation for contingency non-removal, the seller SHALL authorize the RETURN of the buyer's deposit. This is different from a DCE cancellation where liquidated damages may apply.` },
+    11: { c: "B", e: `Per ¶14E, the NSP must be signed by the BUYER — just as the NBP must be signed by the seller. Agent-signed notices are invalid.` },
+    12: { c: "D", e: `The obligation to deliver HOA documents is the SELLER's under Civil Code §4525. The management company is a vendor — the seller and their agent are responsible for ensuring timely delivery.` },
+    13: { c: "B", e: `HOA document packages typically take 5-10 business days to prepare. Ordering late risks missing the 7-day disclosure deadline and triggering a new buyer cancellation right.` },
+    14: { c: "C", e: `¶14G — the DCE requires at least 3 days after delivery to close escrow. This is one day more than the NBP/NSP minimum of 2 days.` },
+    15: { c: "C", e: `The DCE is the correct tool for failure to close escrow, not the NBP. The NBP handles contingency and contractual obligation failures. After all contingencies are removed, failure to close requires a DCE.` },
+    16: { c: "B", e: `¶29 — all three conditions required: (1) liquidated damages clause initialed by both parties, (2) deposit ≤3% of purchase price for residential 1-4 units, and (3) buyer BREACH (not valid cancellation).` },
+    17: { c: "C", e: `§1057.3 — the $1,000 penalty applies when a party unreasonably refuses to sign cancellation/release instructions despite having no legitimate good-faith dispute about who is entitled to the deposit.` },
+    18: { c: "C", e: `A lis pendens (notice of pending action) recorded on title clouds the property and prevents any sale until the lawsuit is resolved. It is one of the most powerful tools available to a wrongfully cancelled buyer.` },
+    19: { c: "C", e: `The disclosure obligation follows the seller and the property. Material defects discovered during a cancelled transaction must be disclosed to every subsequent buyer.` },
+    20: { c: "B", e: `The buyer closed on June 25 — 2 days after the DCE was delivered on June 23, within the 3-day window. Since the buyer performed within the DCE window, the transaction closed normally with no deposit dispute.` },
+  };
+
+  function ans(q, selected) {
+    if (ua[q]) return;
+    ua[q] = selected;
+    ac++;
+    const card = document.getElementById('q' + q);
+    card.querySelectorAll('.option-btn').forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) btn.classList.add(selected === A[q].c ? 'correct' : 'wrong');
+      if (btn.dataset.opt === A[q].c) btn.classList.add('correct');
+    });
+    const fb = document.getElementById('fb' + q);
+    fb.className = 'feedback-box show';
+    fb.style.background = selected === A[q].c ? 'rgba(45,122,79,.15)' : 'rgba(163,45,45,.15)';
+    fb.style.border = selected === A[q].c ? '1px solid rgba(45,122,79,.3)' : '1px solid rgba(163,45,45,.3)';
+    fb.innerHTML = (selected === A[q].c ? '<span class="fb-label" style="color:#7ed4a0">✓ Correct</span>' : '<span class="fb-label" style="color:#e88">✗ Incorrect</span>') + ' — ' + A[q].e;
+    card.classList.add('revealed');
+    document.querySelector('.progress-fill').style.width = (ac / 20 * 100) + '%';
+    if (ac === 20) setTimeout(showScore, 700);
+  }
+
+  async function showScore() {
+    const correct = Object.keys(ua).filter(q => ua[q] === A[q].c).length;
+    const pct = Math.round(correct / 20 * 100);
+    const passed = correct >= 16;
+    const circ = document.getElementById('sc-circ');
+    circ.textContent = correct + '/20';
+    circ.className = 'sc-circ ' + (passed ? 'pass' : 'fail');
+    document.getElementById('sc-title').textContent = passed ? '🎉 Course 3 Complete!' : 'Keep Practicing';
+    document.getElementById('sc-msg').textContent = passed
+      ? 'You scored ' + pct + '% — you understand the seller side of contingencies. Course 3 is complete.'
+      : 'You scored ' + pct + '%. You need 80% (16/20) to pass. Review the lessons and try again.';
+    if (passed) document.getElementById('nb').style.display = 'inline-block';
+    else document.getElementById('rb').style.display = 'inline-block';
+    document.getElementById('score-card').classList.add('show');
+    try { await window._saveFQ(correct, passed, ua); } catch(e) {}
+  }
+
+  function retryQuiz() {
+    ua = {}; ac = 0;
+    for (let i = 1; i <= 20; i++) {
+      const card = document.getElementById('q' + i);
+      card.classList.remove('revealed');
+      card.querySelectorAll('.option-btn').forEach(b => { b.disabled = false; b.classList.remove('correct','wrong'); });
+      const fb = document.getElementById('fb' + i);
+      fb.className = 'feedback-box'; fb.innerHTML = '';
+    }
+    document.getElementById('score-card').classList.remove('show');
+    document.getElementById('nb').style.display = 'none';
+    document.getElementById('rb').style.display = 'none';
+    document.querySelector('.progress-fill').style.width = '0%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course3&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course3");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course3"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

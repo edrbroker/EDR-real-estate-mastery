@@ -564,7 +564,7 @@ const ADMIN_PASSWORD = "RashaadEDR2025!";
 const ALL_COURSES = [
   {id:1, title:"RPA Mastery", sub:"Residential Purchase Agreement — the foundation of every transaction", lessons:17, active:true},
   {id:2, title:"Contingencies & Timelines: Buyer Side", sub:"The 17-day window, all 5 buyer contingencies, NBP, NSP, DCE and how to protect your buyer", lessons:11, active:false, courseUrl:'course2_lesson1.html', courseKey:'course2'},
-  {id:3, title:"Buyer Representation", sub:"Buyer's rep agreements, consultations, and agency law", lessons:10, active:false},
+  {id:3, title:"Contingencies & Timelines: Seller Side", sub:"TDS, SPQ, NBP, NSP, DCE, and how to protect your seller at every step", lessons:11, active:false, courseUrl:'course3_lesson1.html', courseKey:'course3'},
   {id:4, title:"Escrow & Title", sub:"How escrow works, title insurance, and closing costs", lessons:10, active:false},
   {id:5, title:"Disclosures & Compliance", sub:"TDS, SPQ, NHD, AVID, and California DRE requirements", lessons:10, active:false},
   {id:6, title:"Negotiation Strategies", sub:"Counter offers, multiple offer situations, and win rates", lessons:10, active:false},
@@ -803,26 +803,27 @@ function renderPortal() {
         </div>
       </div>`;
     } else if (c.courseUrl && isActive) {
-      const c2p = window._course2Progress || {};
-      const c2done = Object.keys(c2p).length;
-      const c2pct = Math.round(c2done / c.lessons * 100);
-      const c2fqp = window._course2FQPassed || false;
-      const c2started = c2done > 0;
+      const cxKey = c.courseKey || ('course' + c.id);
+      const cxProg = window['_' + cxKey + 'Progress'] || {};
+      const cxDone = Object.keys(cxProg).length;
+      const cxPct = Math.round(cxDone / c.lessons * 100);
+      const cxFQP = window['_' + cxKey + 'FQPassed'] || false;
+      const cxStarted = cxDone > 0;
       return `<div class="course-card">
         <div class="course-card-header">
           <div><div class="course-card-num">Course ${c.id} of ${ALL_COURSES.length}</div></div>
-          <span class="course-card-badge ${c2fqp?'badge-done':'badge-active'}">${c2fqp?'✓ Completed':'Active'}</span>
+          <span class="course-card-badge ${cxFQP?'badge-done':'badge-active'}">${cxFQP?'✓ Completed':'Active'}</span>
         </div>
         <div class="course-card-body">
           <div class="course-card-title">${c.title}</div>
           <div class="course-card-sub">${c.sub}</div>
           <div class="course-card-meta">
             <div class="course-card-lessons">${c.lessons} lessons · ~30 min each</div>
-            <div style="font-size:11px;color:var(--gray-text);">${c2done}/${c.lessons}</div>
+            <div style="font-size:11px;color:var(--gray-text);">${cxDone}/${c.lessons}</div>
           </div>
-          <div class="course-card-progress-bar"><div class="course-card-progress-fill" style="width:${c2pct}%"></div></div>
-          <button class="btn-course ${c2started?'btn-course-continue':'btn-course-start'}" onclick="window.location.href='${c.courseUrl}'">
-            ${c2fqp ? '📖 Review Course' : c2started ? '▶ Continue Course' : '▶ Start Course'}
+          <div class="course-card-progress-bar"><div class="course-card-progress-fill" style="width:${cxPct}%"></div></div>
+          <button class="btn-course ${cxStarted?'btn-course-continue':'btn-course-start'}" onclick="window.location.href='${c.courseUrl}'">
+            ${cxFQP ? '📖 Review Course' : cxStarted ? '▶ Continue Course' : '▶ Start Course'}
           </button>
         </div>
       </div>`;
@@ -923,6 +924,14 @@ async function syncProgressFromDB() {
     }
     const c2fq = await sb('final_quiz','GET',null,`?agent_id=eq.${currentAgent.id}&course=eq.course2&select=*`);
     window._course2FQPassed = c2fq && c2fq.length > 0 ? c2fq[0].passed : false;
+    // Course 3 progress
+    const c3rows = await sb('progress','GET',null,`?agent_id=eq.${currentAgent.id}&course=eq.course3&select=*`);
+    window._course3Progress = {};
+    if (c3rows && c3rows.length > 0) {
+      c3rows.forEach(r => { window._course3Progress[r.lesson_id] = r.score; });
+    }
+    const c3fq = await sb('final_quiz','GET',null,`?agent_id=eq.${currentAgent.id}&course=eq.course3&select=*`);
+    window._course3FQPassed = c3fq && c3fq.length > 0 ? c3fq[0].passed : false;
     // Check resource unlock
     const agentRow = await sb('agents','GET',null,`?id=eq.${currentAgent.id}&select=resources_unlocked`);
     if (agentRow && agentRow.length > 0) {
@@ -1663,6 +1672,7 @@ async function loadAdminData() {
     if (!agents || agents.length===0) {
       agentsTable.innerHTML = '<div class="empty-state">No agents registered yet. Share course code <strong>EDR2026</strong> to get started.</div>';
     } else {
+
       agentsTable.innerHTML = `<table class="admin-table">
         <thead><tr>
           <th>Agent</th><th>Course 1</th><th>C1 Final</th><th>Course 2</th><th>C2 Final</th><th>Scenario</th><th>Actions</th>

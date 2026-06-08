@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 3 · Lesson 6 — Notice to Seller to Perform (NSP) | EDR Realty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy-mid:#152444;--gold:#c9a84c;--gold-light:#e8c97a;--white:#fff;--off-white:#f4f2ee;--gray-light:#f0ede6;--gray-mid:#d4cfc4;--gray-text:#6b6560;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-family:Georgia,serif;font-size:2.2rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-family:Georgia,serif;font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-family:Georgia,serif;font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:.82rem;color:rgba(255,255,255,.7);}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;font-family:'Helvetica Neue',sans-serif;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+table.info tr:last-child td{border-bottom:none;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-family:Georgia,serif;font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-section .quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);color:var(--white);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-family:Georgia,serif;font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{display:inline-block;background:var(--green);color:var(--white);border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;}
+.btn-next:hover{background:#246040;}
+.btn-retry{display:inline-block;background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 3 · SELLER SIDE</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="lesson-num">LESSON 6 OF 11</div>
+  <h1>Notice to Seller to Perform (NSP)<br><span></span></h1>
+  <div class="hero-sub">When the Buyer Sends YOU a Notice — How to Respond Correctly</div>
+  <div class="hero-meta">
+    <span class="meta-dot">~30 min read</span><span class="meta-dot">RPA ¶14D, ¶14E</span><span class="meta-dot">5 Quiz Questions</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="story-card">
+    <div class="story-label">📩 Day 10 — A Notice Arrives</div>
+    <p>You check your email. There is a signed Notice to Seller to Perform (NSP) from the Okonkwos' agent. The buyers are claiming the Chens have not yet delivered the HOA documents. The NSP gives the Chens 2 days to deliver.</p>
+    <p>David calls you, confused: <em>"They're threatening us? Can they do that?"</em> Yes, they can. And here's how you handle it.</p>
+  </div>
+  <div class="section">
+    <h2>What Is the NSP?</h2>
+    <p>The Notice to Seller to Perform (C.A.R. Form NSP) is the buyer's equivalent of the seller's NBP. It is a formal notice that the buyer sends when the <strong>seller has failed to perform a contractual obligation</strong>. Just like the NBP, it is a required prerequisite before the buyer can cancel based on a seller default.</p>
+    <div class="rpa-ref"><strong>RPA Reference:</strong> ¶14D — Buyer's right to cancel for seller non-performance, which requires delivery of an NSP first. The NSP follows the exact same rules as the NBP under ¶14E.</div>
+  </div>
+  <div class="section">
+    <h2>When Can a Buyer Send an NSP?</h2>
+    <p>The buyer may send an NSP when the seller fails to:</p>
+    <ul>
+      <li>Deliver any item specified in ¶3N(1) by the deadline — TDS, SPQ, HOA documents, etc.</li>
+      <li>Perform any seller contractual obligation included in the agreement by the time specified</li>
+      <li>Remove seller contingencies (if any) by the deadline</li>
+    </ul>
+    <p>Common triggers for NSPs include late disclosure delivery, failure to order or deliver HOA documents, and failure to make agreed repairs.</p>
+  </div>
+  <div class="section">
+    <h2>NSP Requirements — Same as the NBP</h2>
+    <p>Under ¶14E, the NSP has the same three requirements as the NBP:</p>
+    <ol>
+      <li>Must be <strong>in writing</strong></li>
+      <li>Must be <strong>signed by the buyer</strong></li>
+      <li>Must give the seller <strong>at least 2 days after delivery</strong> to perform</li>
+    </ol>
+    <p>And the same restrictions apply — it cannot be delivered more than 2 days before the scheduled performance day, and an invalid NSP is void.</p>
+  </div>
+  <div class="section">
+    <h2>How to Respond to an NSP</h2>
+    <p>When your seller receives an NSP, your response strategy is straightforward:</p>
+    <ol>
+      <li><strong>Identify exactly what the buyer is claiming you haven't done</strong></li>
+      <li><strong>Verify whether the claim is valid</strong> — did you actually miss the obligation?</li>
+      <li><strong>Cure the defect immediately</strong> if valid — deliver the missing document within the 2-day window</li>
+      <li><strong>Dispute the NSP in writing</strong> if invalid — document that you already complied</li>
+    </ol>
+    <div class="tip-box">
+      <div class="callout-title">✓ The Chens' Response</div>
+      <p>You pull up your delivery confirmation. The HOA documents were emailed to the buyer's agent on Day 8. You send a written response with the timestamp showing delivery. The NSP is based on a misunderstanding. Transaction continues.</p>
+    </div>
+    <div class="callout">
+      <div class="callout-title">📌 When the NSP Is Valid</div>
+      <p>If the seller genuinely missed a deadline, cure it within the 2-day window without dispute. Arguing over a valid NSP wastes the window and can cause the buyer to cancel with full deposit return.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>NSP vs. NBP — Know the Difference</h2>
+    <div class="table-wrap">
+      <table class="info">
+        <tr><th>Feature</th><th>NBP (Seller sends)</th><th>NSP (Buyer sends)</th></tr>
+        <tr><td>Who sends it</td><td>Seller</td><td>Buyer</td></tr>
+        <tr><td>Who signs it</td><td>Seller</td><td>Buyer</td></tr>
+        <tr><td>Used when</td><td>Buyer fails to perform</td><td>Seller fails to perform</td></tr>
+        <tr><td>Response window</td><td>2 days minimum</td><td>2 days minimum</td></tr>
+        <tr><td>If not cured</td><td>Seller can cancel, deposit returned to buyer</td><td>Buyer can cancel, deposit returned to buyer</td></tr>
+        <tr><td>RPA reference</td><td>¶14C, ¶14E</td><td>¶14D, ¶14E</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">Who sends the Notice to Seller to Perform (NSP)?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. The seller's agent</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. The escrow officer</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. The buyer (signed by the buyer)</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. The listing broker</button>
+          </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">Which of the following seller failures would most likely trigger an NSP?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. The buyer's appraisal came in low</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. The seller failed to deliver HOA documents by the deadline</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. The buyer's lender requested more time</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. The seller rejected the buyer's repair request</button>
+          </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">Under ¶14E, how much time must the seller be given after delivery of an NSP to cure the defect?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. 24 hours</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. At least 2 days</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. At least 3 days</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. 5 business days</button>
+          </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">The buyer sends an NSP claiming the seller never delivered the SPQ. You have proof it was emailed 5 days ago. What should you do?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. Ignore the NSP since it's based on false information</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. Have the seller immediately re-deliver the SPQ and respond in writing with proof of original delivery</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. Send an NBP back to the buyer as a counter-measure</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. Contact escrow to freeze the deposit</button>
+          </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">If the seller receives a valid NSP and fails to perform within the 2-day window, what happens to the buyer's deposit?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. The seller keeps the deposit as compensation for the buyer's cancellation</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. The deposit is held in escrow until a court decides</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. The buyer cancels and the deposit is returned to the buyer</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. The deposit is split between buyer and seller</button>
+          </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div>
+      <br>
+      <button class="btn-next" id="nb" style="display:none" onclick="window.location.href='course3_lesson7.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" style="display:none" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  EDR Realty Group · Course 3: Contingencies &amp; Timelines — Seller Side · Lesson 6 of 11<br>
+  Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.<br>
+  Questions? Contact Rashaad Dixon · rashaad@edrrealtygroup.com
+</footer>
+</div>
+<script>
+  let userAnswers = {};
+  let answeredCount = 0;
+  const answers = {
+    1: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — The buyer (signed by buyer)</span><br>The NSP is sent and signed by the BUYER, just as the NBP is sent and signed by the seller. Under ¶14E, the notice must be signed by the applicable party — not their agent.` },
+    2: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Failure to deliver HOA documents</span><br>The NSP is used when the seller fails to meet a contractual obligation — like delivering HOA documents, disclosures, or completing required repairs. A low appraisal or buyer lender issues are not seller failures.` },
+    3: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — At least 2 days</span><br>Under ¶14E, both the NBP and NSP must give the receiving party at least 2 days after delivery to perform. This is a minimum — the parties can agree to more time.` },
+    4: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Re-deliver and respond with proof</span><br>Even if the NSP is based on a misunderstanding, the safest approach is to re-deliver the document immediately AND provide written proof of the original delivery. This cures any potential default and preserves the transaction.` },
+    5: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Buyer cancels, deposit returned to buyer</span><br>Per ¶14D(2), if the seller fails to perform after an NSP, the buyer may cancel and the seller shall authorize return of the buyer's deposit. The seller does not get to keep the deposit simply because the buyer canceled due to seller non-performance.` },
+  };
+
+  function answer(q, selected) {
+    if (userAnswers[q]) return;
+    userAnswers[q] = selected;
+    answeredCount++;
+    const card = document.getElementById('q' + q);
+    const btns = card.querySelectorAll('.option-btn');
+    btns.forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) {
+        btn.classList.add(selected === answers[q].correct ? 'correct' : 'wrong');
+      }
+      if (btn.dataset.opt === answers[q].correct) {
+        btn.classList.add('correct');
+      }
+    });
+    const fb = document.getElementById('fb' + q);
+    fb.className = 'feedback-box show';
+    fb.style.background = selected === answers[q].correct ? 'rgba(45,122,79,.15)' : 'rgba(163,45,45,.15)';
+    fb.style.border = selected === answers[q].correct ? '1px solid rgba(45,122,79,.3)' : '1px solid rgba(163,45,45,.3)';
+    fb.innerHTML = answers[q].explanation;
+    card.classList.add('revealed');
+    const total = Object.keys(answers).length;
+    document.querySelector('.progress-fill').style.width = (answeredCount / total * 100) + '%';
+    if (answeredCount === total) {
+      setTimeout(showScore, 600);
+    }
+  }
+
+  async function showScore() {
+    const total = Object.keys(answers).length;
+    const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
+    const pct = Math.round(correct / total * 100);
+    const passed = correct >= 4;
+    const card = document.getElementById('score-card');
+    const circ = document.getElementById('sc-circ');
+    circ.textContent = correct + '/' + total;
+    circ.className = 'sc-circ ' + (passed ? 'pass' : 'fail');
+    document.getElementById('sc-title').textContent = passed ? '🎉 Lesson 6 Complete!' : 'Keep Practicing';
+    document.getElementById('sc-msg').textContent = passed ? 'NSP mastered. You can handle it from both sides. On to Lesson 7 — HOA obligations.' : 'You scored ' + pct + '%. You need 80% to pass. Review the lesson and try again.';
+    if (passed) { document.getElementById('nb').style.display = 'inline-block'; }
+    else { document.getElementById('rb').style.display = 'inline-block'; }
+    card.classList.add('show');
+    try { await window._saveLP(6, correct, passed, userAnswers); } catch(e) {}
+  }
+
+  function retryQuiz() {
+    userAnswers = {};
+    answeredCount = 0;
+    const total = Object.keys(answers).length;
+    for (let i = 1; i <= total; i++) {
+      const card = document.getElementById('q' + i);
+      card.classList.remove('revealed');
+      card.querySelectorAll('.option-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+      const fb = document.getElementById('fb' + i);
+      fb.className = 'feedback-box';
+      fb.innerHTML = '';
+    }
+    document.getElementById('score-card').classList.remove('show');
+    document.getElementById('nb').style.display = 'none';
+    document.getElementById('rb').style.display = 'none';
+    document.querySelector('.progress-fill').style.width = '0%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+  };
+  window._saveLP=async function(lid,sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course3&select=id");
+    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course3");}
+    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course3"});}
+    return true;}catch(e){return false;}
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course3&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course3");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course3"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

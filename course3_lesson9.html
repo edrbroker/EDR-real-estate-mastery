@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 3 · Lesson 9 — Deposit Disputes | EDR Realty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy-mid:#152444;--gold:#c9a84c;--gold-light:#e8c97a;--white:#fff;--off-white:#f4f2ee;--gray-light:#f0ede6;--gray-mid:#d4cfc4;--gray-text:#6b6560;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-family:Georgia,serif;font-size:2.2rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-family:Georgia,serif;font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-family:Georgia,serif;font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:.82rem;color:rgba(255,255,255,.7);}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;font-family:'Helvetica Neue',sans-serif;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+table.info tr:last-child td{border-bottom:none;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-family:Georgia,serif;font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-section .quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);color:var(--white);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-family:Georgia,serif;font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{display:inline-block;background:var(--green);color:var(--white);border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;}
+.btn-next:hover{background:#246040;}
+.btn-retry{display:inline-block;background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 3 · SELLER SIDE</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="lesson-num">LESSON 9 OF 11</div>
+  <h1>Deposit Disputes<br><span></span></h1>
+  <div class="hero-sub">Liquidated Damages, Mutual Release, and the $1,000 Civil Penalty</div>
+  <div class="hero-meta">
+    <span class="meta-dot">~30 min read</span><span class="meta-dot">RPA ¶14H, ¶29, Civil Code §1057.3</span><span class="meta-dot">5 Quiz Questions</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="story-card">
+    <div class="story-label">💰 The Hardest Conversation</div>
+    <p>A colleague calls you. Their seller's deal fell apart after the buyer failed to close. The buyer walked. The seller sent a valid DCE, the buyer didn't close, and now both parties are fighting over the $37,500 deposit sitting in escrow. The buyer wants it back. The seller wants to keep it.</p>
+    <p>Who's right? It depends on a few critical factors — and this lesson explains exactly how to sort it out.</p>
+  </div>
+  <div class="section">
+    <h2>How Deposit Disputes Work</h2>
+    <p>When a transaction cancels, the disposition of the earnest money deposit depends entirely on <strong>why</strong> the deal fell apart and <strong>how</strong> the cancellation was executed. There is no automatic rule that says "seller keeps the deposit" — it depends on the path taken.</p>
+  </div>
+  <div class="section">
+    <h2>The Mutual Release Requirement</h2>
+    <p>Under ¶14H, when either party gives written notice of cancellation, both parties must sign mutual release instructions authorizing escrow to release the deposit. Escrow cannot release the deposit unilaterally — both signatures are required.</p>
+    <p>This creates the standoff: if the buyer won't sign a release to the seller and the seller won't sign a release to the buyer, the deposit sits in escrow. Neither party can touch it without the other's cooperation — or a court order or arbitration award.</p>
+    <div class="warning-box">
+      <div class="callout-title">🚨 The $1,000 Penalty — Civil Code §1057.3</div>
+      <p>Here's the leverage clause: California Civil Code §1057.3 states that if either party unreasonably refuses to sign cancellation instructions when they have no good faith dispute about who is entitled to the deposit, that party may be subject to a civil penalty of up to <strong>$1,000</strong>, plus attorney's fees and actual damages.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>When Can the Seller Keep the Deposit?</h2>
+    <p>The seller's right to retain the deposit as liquidated damages depends on three conditions under ¶29:</p>
+    <ol>
+      <li>The <strong>liquidated damages clause (¶29) was initialed</strong> by both buyer and seller at the time of the offer</li>
+      <li>The buyer's deposit was <strong>3% or less of the purchase price</strong> (for 1–4 unit residential property)</li>
+      <li>The buyer <strong>breached the contract</strong> — meaning they failed to perform without a valid contractual right to cancel</li>
+    </ol>
+    <div class="callout">
+      <div class="callout-title">📌 The Key Distinction: Buyer's RIGHT to Cancel vs. Breach</div>
+      <p>If the buyer canceled using a valid contingency (inspection, loan, etc.) — that is a RIGHT, not a breach. The seller gets the deposit BACK. Only if the buyer walks away with NO valid contractual right to cancel is their departure a breach — and only then does the liquidated damages clause apply.</p>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Cancellation Path and Deposit Outcome</h2>
+    <div class="table-wrap">
+      <table class="info">
+        <tr><th>How Deal Ended</th><th>Who Gets Deposit</th></tr>
+        <tr><td>Buyer canceled using valid contingency (inspection, loan, etc.)</td><td>Buyer gets deposit back</td></tr>
+        <tr><td>Seller sent NBP, buyer didn't perform, seller canceled</td><td>Buyer gets deposit back (minus fees)</td></tr>
+        <tr><td>Seller sent DCE, buyer didn't close, seller canceled + liquidated damages initialed + deposit ≤3%</td><td>Seller may keep deposit</td></tr>
+        <tr><td>Seller canceled improperly (no NBP, no DCE)</td><td>Buyer gets deposit back + potential legal liability for seller</td></tr>
+        <tr><td>Buyer walked without any valid right to cancel</td><td>Seller may keep deposit (if liquidated damages initialed)</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Practical Advice for Your Sellers</h2>
+    <p>When a deposit dispute arises, advise your sellers to:</p>
+    <ul>
+      <li>Never tell the buyer "we're keeping your deposit" unless all three ¶29 conditions are met</li>
+      <li>Sign the mutual cancellation instructions promptly when they agree the deposit goes to the buyer — refusing when there's no good faith dispute triggers the §1057.3 penalty</li>
+      <li>Consult a real estate attorney before refusing to sign any release in a contested deposit situation</li>
+    </ul>
+    <div class="tip-box">
+      <div class="callout-title">✓ The Cardinal Rule</div>
+      <p>Neither agents nor escrow officers are qualified to advise which party is entitled to a disputed deposit. When there is a genuine dispute, refer both parties to an attorney.</p>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">Under RPA ¶14H, who must sign the mutual release instructions before escrow can release a disputed deposit?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. The listing agent and buyer's agent</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. The escrow officer</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. Both the buyer and the seller</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. Only the party entitled to the deposit</button>
+          </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">Under the RPA's liquidated damages clause (¶29), what is the MAXIMUM deposit amount that qualifies for seller retention as liquidated damages on a 1-4 unit residential property?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. 1% of the purchase price</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. 2% of the purchase price</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. 3% of the purchase price</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. 5% of the purchase price</button>
+          </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">A buyer cancels using their valid inspection contingency on Day 14. What happens to the deposit?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. The seller keeps the deposit since the buyer is backing out</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. The deposit is split 50/50</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. The buyer gets the deposit back — exercising a valid contingency is a RIGHT, not a breach</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. The deposit goes to escrow for 30 days before release</button>
+          </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">California Civil Code §1057.3 may impose a civil penalty of up to $1,000 on a party who:</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. Fails to close escrow on time</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. Unreasonably refuses to sign cancellation instructions when there is no good faith deposit dispute</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. Sends an improperly timed NBP</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. Fails to complete the TDS within 7 days</button>
+          </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">A buyer walks away with no valid contingency right to cancel, having initialed the liquidated damages clause, on a $1,200,000 sale with a $36,000 deposit. Can the seller keep the deposit?</div>
+          <div class="options">
+            <button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. No — sellers can never keep a buyer's deposit in California</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. No — the deposit is $36,000 which exceeds the 3% limit of $36,000</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. Yes — the deposit is exactly 3% of purchase price, liquidated damages was initialed, and the buyer had no right to cancel</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. Only if the seller sends a DCE first</button>
+          </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div>
+      <br>
+      <button class="btn-next" id="nb" style="display:none" onclick="window.location.href='course3_lesson10.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" style="display:none" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  EDR Realty Group · Course 3: Contingencies &amp; Timelines — Seller Side · Lesson 9 of 11<br>
+  Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.<br>
+  Questions? Contact Rashaad Dixon · rashaad@edrrealtygroup.com
+</footer>
+</div>
+<script>
+  let userAnswers = {};
+  let answeredCount = 0;
+  const answers = {
+    1: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Both buyer and seller</span><br>Per ¶14H, both parties must sign mutual release instructions before escrow can release the deposit. Neither party can unilaterally direct escrow to release funds. This is why deposit disputes can become protracted standoffs.` },
+    2: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — 3% of the purchase price</span><br>Per ¶29, the liquidated damages clause applies when the deposit is 3% or less of the purchase price for 1–4 unit residential property. If the deposit exceeds 3%, the liquidated damages clause does not apply to the excess.` },
+    3: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Buyer gets deposit back</span><br>A buyer who cancels using a valid, unremoved contingency is exercising a contractual RIGHT — not breaching the contract. When the buyer has a right to cancel, the deposit is returned. The liquidated damages clause only applies to a buyer BREACH.` },
+    4: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Unreasonable refusal to sign</span><br>Civil Code §1057.3 imposes the $1,000 penalty on parties who unreasonably refuse to sign cancellation instructions when they have no legitimate good-faith dispute about entitlement. It is designed to prevent parties from holding deposits hostage.` },
+    5: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Yes, seller may keep the deposit</span><br>$36,000 is exactly 3% of $1,200,000. All three conditions are met: (1) liquidated damages was initialed, (2) deposit does not exceed 3%, and (3) the buyer had no valid contractual right to cancel. The seller may keep the deposit.` },
+  };
+
+  function answer(q, selected) {
+    if (userAnswers[q]) return;
+    userAnswers[q] = selected;
+    answeredCount++;
+    const card = document.getElementById('q' + q);
+    const btns = card.querySelectorAll('.option-btn');
+    btns.forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) {
+        btn.classList.add(selected === answers[q].correct ? 'correct' : 'wrong');
+      }
+      if (btn.dataset.opt === answers[q].correct) {
+        btn.classList.add('correct');
+      }
+    });
+    const fb = document.getElementById('fb' + q);
+    fb.className = 'feedback-box show';
+    fb.style.background = selected === answers[q].correct ? 'rgba(45,122,79,.15)' : 'rgba(163,45,45,.15)';
+    fb.style.border = selected === answers[q].correct ? '1px solid rgba(45,122,79,.3)' : '1px solid rgba(163,45,45,.3)';
+    fb.innerHTML = answers[q].explanation;
+    card.classList.add('revealed');
+    const total = Object.keys(answers).length;
+    document.querySelector('.progress-fill').style.width = (answeredCount / total * 100) + '%';
+    if (answeredCount === total) {
+      setTimeout(showScore, 600);
+    }
+  }
+
+  async function showScore() {
+    const total = Object.keys(answers).length;
+    const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
+    const pct = Math.round(correct / total * 100);
+    const passed = correct >= 4;
+    const card = document.getElementById('score-card');
+    const circ = document.getElementById('sc-circ');
+    circ.textContent = correct + '/' + total;
+    circ.className = 'sc-circ ' + (passed ? 'pass' : 'fail');
+    document.getElementById('sc-title').textContent = passed ? '🎉 Lesson 9 Complete!' : 'Keep Practicing';
+    document.getElementById('sc-msg').textContent = passed ? 'Deposit disputes mastered. On to Lesson 10 — seller cancellation rights.' : 'You scored ' + pct + '%. You need 80% to pass. Review the lesson and try again.';
+    if (passed) { document.getElementById('nb').style.display = 'inline-block'; }
+    else { document.getElementById('rb').style.display = 'inline-block'; }
+    card.classList.add('show');
+    try { await window._saveLP(9, correct, passed, userAnswers); } catch(e) {}
+  }
+
+  function retryQuiz() {
+    userAnswers = {};
+    answeredCount = 0;
+    const total = Object.keys(answers).length;
+    for (let i = 1; i <= total; i++) {
+      const card = document.getElementById('q' + i);
+      card.classList.remove('revealed');
+      card.querySelectorAll('.option-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('correct', 'wrong');
+      });
+      const fb = document.getElementById('fb' + i);
+      fb.className = 'feedback-box';
+      fb.innerHTML = '';
+    }
+    document.getElementById('score-card').classList.remove('show');
+    document.getElementById('nb').style.display = 'none';
+    document.getElementById('rb').style.display = 'none';
+    document.querySelector('.progress-fill').style.width = '0%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+  };
+  window._saveLP=async function(lid,sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course3&select=id");
+    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course3");}
+    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course3"});}
+    return true;}catch(e){return false;}
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course3&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course3");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course3"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
