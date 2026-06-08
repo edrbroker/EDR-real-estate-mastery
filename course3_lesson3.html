@@ -96,8 +96,8 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div>
-id="lc" style="display:none">
+</div></div>
+<div id="lc" style="display:none">
 <header class="header">
   <div class="header-brand">EDR Realty Group</div>
   <div class="header-right">
@@ -119,12 +119,12 @@ id="lc" style="display:none">
 <div class="main">
   <div class="story-card">
     <div class="story-label">📅 Day 6 — The Panicked Call</div>
-    <p>Your phone rings at 8pm. It's another agent in your office. Their seller is under contract and today is <strong>Day 6</strong>. The TDS isn't signed yet. The NHD company says the report won't be ready until tomorrow morning. And the seller just told them there's a <em>"small issue with the retaining wall they forgot to mention."</em></p>
+    <p>Your phone rings at 8pm. It's another agent in your office. Their seller is under contract and today is <strong>Day 6</strong>. The TDS isn\'t signed yet. The NHD company says the report won\'t be ready until tomorrow morning. And the seller just told them there's a <em>"small issue with the retaining wall they forgot to mention."</em></p>
     <p>This is the situation you never want to be in. Let's make sure it never happens to the Chens — or to you.</p>
   </div>
   <div class="section">
     <h2>Why the Deadline Matters So Much</h2>
-    <p>The 7-day disclosure deadline under ¶3N(1) isn't just a timeline — it's a contractual trigger. When your seller misses it, the buyer gains rights they didn't have before. Understanding exactly what those rights are is essential for managing your clients' expectations and protecting the transaction.</p>
+    <p>The 7-day disclosure deadline under ¶3N(1) isn\'t just a timeline — it\'s a contractual trigger. When your seller misses it, the buyer gains rights they didn\'t have before. Understanding exactly what those rights are is essential for managing your clients' expectations and protecting the transaction.</p>
   </div>
   <div class="section">
     <h2>Late Delivery: The Buyer's New Cancellation Window</h2>
@@ -142,7 +142,7 @@ id="lc" style="display:none">
   </div>
   <div class="section">
     <h2>Amended Disclosures During Escrow</h2>
-    <p>Even after the initial 7-day window closes, the seller's disclosure obligation continues. Under ¶11A(4), if the seller or their agent becomes aware of:</p>
+    <p>Even after the initial 7-day window closes, the seller\'s disclosure obligation continues. Under ¶11A(4), if the seller or their agent becomes aware of:</p>
     <ul>
       <li>An adverse condition materially affecting the property</li>
       <li>Any material inaccuracy in previously provided disclosures</li>
@@ -162,7 +162,7 @@ id="lc" style="display:none">
         <tr><td>Day 1–2</td><td>Schedule TDS/SPQ meeting with sellers</td><td>Listing agent</td></tr>
         <tr><td>Day 3–4</td><td>Complete TDS and SPQ with sellers, get signatures</td><td>Seller + agent</td></tr>
         <tr><td>Day 4–5</td><td>Complete AVID, confirm NHD delivery</td><td>Listing agent</td></tr>
-        <tr><td>Day 5–6</td><td>Deliver complete disclosure package to buyer's agent</td><td>Listing agent</td></tr>
+        <tr><td>Day 5–6</td><td>Deliver complete disclosure package to buyer\'s agent</td><td>Listing agent</td></tr>
         <tr><td>Day 7</td><td>Deadline — everything must be delivered</td><td>Hard deadline</td></tr>
       </table>
     </div>
@@ -207,7 +207,7 @@ id="lc" style="display:none">
             <button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. Only if the buyer requests one</button>
             <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. Only before contingency removal</button>
             <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. When the seller becomes aware of new adverse conditions or inaccuracies in prior disclosures at any time before close of escrow</button>
-            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. Only if the defect was discovered by the seller's contractor</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. Only if the defect was discovered by the seller\'s contractor</button>
           </div>
           <div class="feedback-box" id="fb3"></div>
         </div>
@@ -224,12 +224,12 @@ id="lc" style="display:none">
         </div>
         <div class="question-card" id="q5">
           <div class="q-label">Question 5 of 5</div>
-          <div class="q-text">Which professional does NOT typically contribute to the seller's initial disclosure package?</div>
+          <div class="q-text">Which professional does NOT typically contribute to the seller\'s initial disclosure package?</div>
           <div class="options">
             <button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. The NHD report company</button>
             <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. The listing agent (AVID)</button>
             <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. The seller (TDS, SPQ)</button>
-            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. The buyer's home inspector</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. The buyer\'s home inspector</button>
           </div>
           <div class="feedback-box" id="fb5"></div>
         </div>
@@ -259,7 +259,7 @@ id="lc" style="display:none">
     2: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Yes, the late delivery itself is the trigger</span><br>Late delivery of the TDS creates a new cancellation right under Civil Code §1102.3 regardless of what the TDS says or whether contingencies were already removed. The timing violation is the issue, not the content.` },
     3: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Any time before close of escrow</span><br>Per ¶11A(4), the amended disclosure obligation runs continuously until close of escrow. If the seller learns of a new condition on Day 30 of a 45-day escrow, they must still disclose it.` },
     4: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Deliver an amended TDS immediately</span><br>The ongoing disclosure obligation under ¶11A(4) requires prompt disclosure of newly discovered conditions regardless of contingency status. Failure to disclose exposes your sellers to post-close litigation.` },
-    5: { correct: 'D', explanation: `<span class="fb-label">✓ Correct: D — The buyer's home inspector</span><br>The home inspector is hired by and works for the BUYER. The seller's disclosure package comes from the seller (TDS, SPQ), the listing agent (AVID), and the NHD company.` },
+    5: { correct: 'D', explanation: `<span class="fb-label">✓ Correct: D — The buyer\'s home inspector</span><br>The home inspector is hired by and works for the BUYER. The seller\'s disclosure package comes from the seller (TDS, SPQ), the listing agent (AVID), and the NHD company.` },
   };
 
   function answer(q, selected) {

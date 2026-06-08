@@ -96,8 +96,8 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div>
-id="lc" style="display:none">
+</div></div>
+<div id="lc" style="display:none">
 <header class="header">
   <div class="header-brand">EDR Realty Group</div>
   <div class="header-right">
@@ -119,7 +119,7 @@ id="lc" style="display:none">
 <div class="main">
   <div class="story-card">
     <div class="story-label">⚠️ Scenario Shift — A Different Transaction</div>
-    <p>Let's step away from the Chens for a moment. Your colleague has a seller whose buyer has gone silent. Day 18. No contingency removal. No communication from the buyer's agent for 3 days. The seller is frustrated: <em>"Can we just cancel? I have another offer waiting."</em></p>
+    <p>Let's step away from the Chens for a moment. Your colleague has a seller whose buyer has gone silent. Day 18. No contingency removal. No communication from the buyer\'s agent for 3 days. The seller is frustrated: <em>"Can we just cancel? I have another offer waiting."</em></p>
     <p>Not without the NBP. Here's how it works.</p>
   </div>
   <div class="section">
@@ -158,10 +158,10 @@ id="lc" style="display:none">
   <div class="section">
     <h2>What Happens After the NBP?</h2>
     <p>The buyer has <strong>at least 2 days</strong> after the NBP is delivered to perform the required action. If they do — remove contingencies, deposit the EMD, etc. — the transaction continues. If they do NOT perform within the 2-day window, the seller may then formally cancel by delivering a written cancellation notice.</p>
-    <p>Critical point: After a valid NBP + non-performance, the seller's cancellation results in the <strong>return of the buyer's deposit</strong> (minus fees). The seller cannot keep the deposit simply because the buyer failed to remove contingencies. If the seller wants the deposit, that requires a different path — the DCE and liquidated damages clause. (More in Lessons 8 and 9.)</p>
+    <p>Critical point: After a valid NBP + non-performance, the seller\'s cancellation results in the <strong>return of the buyer\'s deposit</strong> (minus fees). The seller cannot keep the deposit simply because the buyer failed to remove contingencies. If the seller wants the deposit, that requires a different path — the DCE and liquidated damages clause. (More in Lessons 8 and 9.)</p>
     <div class="tip-box">
       <div class="callout-title">✓ What the NBP Actually Does</div>
-      <p>Think of the NBP as a formal warning shot. It puts the buyer on notice that they are in default and gives them one last chance to perform. It also creates the paper trail you need to justify a cancellation if they don't.</p>
+      <p>Think of the NBP as a formal warning shot. It puts the buyer on notice that they are in default and gives them one last chance to perform. It also creates the paper trail you need to justify a cancellation if they don\'t.</p>
     </div>
   </div>
 
@@ -206,11 +206,11 @@ id="lc" style="display:none">
         </div>
         <div class="question-card" id="q4">
           <div class="q-label">Question 4 of 5</div>
-          <div class="q-text">After a valid NBP and buyer non-performance, what happens to the buyer's deposit when the seller cancels?</div>
+          <div class="q-text">After a valid NBP and buyer non-performance, what happens to the buyer\'s deposit when the seller cancels?</div>
           <div class="options">
             <button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. The seller keeps the full deposit as liquidated damages</button>
             <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. The deposit is split equally between buyer and seller</button>
-            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. The buyer's deposit is returned, except for fees incurred by the buyer</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. The buyer\'s deposit is returned, except for fees incurred by the buyer</button>
             <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. The deposit goes to escrow until both parties agree</button>
           </div>
           <div class="feedback-box" id="fb4"></div>
@@ -251,7 +251,7 @@ id="lc" style="display:none">
     1: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Signed by the listing agent</span><br>Per ¶14E, the NBP must be signed by the SELLER, not the agent. An agent-signed NBP is invalid. The seller must sign this form personally.` },
     2: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — No earlier than 2 days before</span><br>Per ¶14E, the NBP cannot be delivered earlier than 2 days prior to the scheduled performance day. Sending it too early makes it void — timing is critical.` },
     3: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Transaction continues</span><br>The NBP gives the buyer at least 2 days to perform. If the buyer removes contingencies within that window (even on Day 19), they have cured their default and the transaction continues normally.` },
-    4: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Deposit returned to buyer (minus fees)</span><br>Per ¶14C(1), when the seller cancels after a valid NBP for contingency non-removal, the seller SHALL authorize the RETURN of the buyer's deposit. The seller does not keep it in this scenario.` },
+    4: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Deposit returned to buyer (minus fees)</span><br>Per ¶14C(1), when the seller cancels after a valid NBP for contingency non-removal, the seller SHALL authorize the RETURN of the buyer\'s deposit. The seller does not keep it in this scenario.` },
     5: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Invalid and void</span><br>Per ¶14E, an incorrectly delivered or signed NBP "shall be deemed invalid and void." If the cancellation was based on a void NBP, the seller cannot legally cancel — they must re-serve a valid NBP.` },
   };
 

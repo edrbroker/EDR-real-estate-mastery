@@ -96,8 +96,8 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div>
-id="lc" style="display:none">
+</div></div>
+<div id="lc" style="display:none">
 <header class="header">
   <div class="header-brand">EDR Realty Group</div>
   <div class="header-right">
@@ -137,7 +137,7 @@ id="lc" style="display:none">
     <p>This is what agents need to communicate clearly to their seller clients:</p>
     <ul>
       <li><strong>Cannot cancel to accept a better offer</strong> — once in contract, the seller is bound</li>
-      <li><strong>Cannot cancel because they changed their mind</strong> — seller's remorse is not a legal basis</li>
+      <li><strong>Cannot cancel because they changed their mind</strong> — seller\'s remorse is not a legal basis</li>
       <li><strong>Cannot cancel because a buyer contingency is still active</strong> — active contingencies protect the buyer, not the seller</li>
       <li><strong>Cannot issue an ultimatum</strong> without the proper notice form (NBP/DCE)</li>
     </ul>
@@ -152,10 +152,10 @@ id="lc" style="display:none">
   </div>
   <div class="section">
     <h2>The Disclosure Obligation Survives Cancellation</h2>
-    <p>Even if the transaction cancels, the seller's obligation to disclose known material defects does not disappear. If the seller cancels and then relists — they must still disclose everything they know about the property. Any defect they became aware of during the cancelled transaction must be disclosed to the next buyer.</p>
+    <p>Even if the transaction cancels, the seller\'s obligation to disclose known material defects does not disappear. If the seller cancels and then relists — they must still disclose everything they know about the property. Any defect they became aware of during the cancelled transaction must be disclosed to the next buyer.</p>
     <div class="callout">
       <div class="callout-title">📌 Advising David Chen</div>
-      <p>You explain to David that they are contractually bound. Taking the higher offer isn't an option — unless the Okonkwos voluntarily agree to cancel, which is unlikely. The only path forward is to honor the contract and close the transaction. The right time to negotiate for a higher price was before signing.</p>
+      <p>You explain to David that they are contractually bound. Taking the higher offer isn\'t an option — unless the Okonkwos voluntarily agree to cancel, which is unlikely. The only path forward is to honor the contract and close the transaction. The right time to negotiate for a higher price was before signing.</p>
     </div>
   </div>
   <div class="section">
@@ -185,7 +185,7 @@ id="lc" style="display:none">
             <button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. A higher offer arrives during escrow</button>
             <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. The seller changes their mind about selling</button>
             <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. A valid NBP was delivered and the buyer failed to perform within 2 days</button>
-            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. The buyer's inspection revealed issues the seller was unaware of</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. The buyer\'s inspection revealed issues the seller was unaware of</button>
           </div>
           <div class="feedback-box" id="fb1"></div>
         </div>
@@ -213,11 +213,11 @@ id="lc" style="display:none">
         </div>
         <div class="question-card" id="q4">
           <div class="q-label">Question 4 of 5</div>
-          <div class="q-text">The seller's disclosure obligations after a transaction cancels:</div>
+          <div class="q-text">The seller\'s disclosure obligations after a transaction cancels:</div>
           <div class="options">
             <button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. End immediately — once the deal is dead, they owe nothing further</button>
             <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. Continue — they must disclose defects learned during the cancelled transaction to the next buyer</button>
-            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. Transfer to the buyer's agent, who must disclose to the next buyer</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. Transfer to the buyer\'s agent, who must disclose to the next buyer</button>
             <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. Only apply if the seller knew about defects before the original listing</button>
           </div>
           <div class="feedback-box" id="fb4"></div>
@@ -229,7 +229,7 @@ id="lc" style="display:none">
             <button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. Send an NBP immediately to create a paper trail for cancellation</button>
             <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. This is not a valid basis for cancellation — he is bound by the contract and could face specific performance or damages if he cancels</button>
             <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. Counter the higher offer while the current deal is still open</button>
-            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. Request the buyer's permission to cancel in exchange for releasing the deposit</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. Request the buyer\'s permission to cancel in exchange for releasing the deposit</button>
           </div>
           <div class="feedback-box" id="fb5"></div>
         </div>
@@ -255,7 +255,7 @@ id="lc" style="display:none">
   let userAnswers = {};
   let answeredCount = 0;
   const answers = {
-    1: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Valid NBP + buyer non-performance</span><br>The seller's legitimate cancellation path requires a valid NBP followed by buyer non-performance. Higher offers, seller's remorse, and inspection findings (that the seller wasn't aware of) are NOT valid cancellation grounds.` },
+    1: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Valid NBP + buyer non-performance</span><br>The seller\'s legitimate cancellation path requires a valid NBP followed by buyer non-performance. Higher offers, seller\'s remorse, and inspection findings (that the seller wasn't aware of) are NOT valid cancellation grounds.` },
     2: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Multiple remedies</span><br>An improperly cancelled buyer has three major remedies: specific performance (forcing the sale), damages lawsuit, or a lis pendens recorded on title. The lis pendens is particularly powerful — it clouds title and prevents the seller from selling to anyone else until the lawsuit resolves.` },
     3: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Per ¶14F(2)</span><br>When a seller removes any contingency, they conclusively agree to three things: (i) satisfied themselves, (ii) elected to proceed, and (iii) given up cancellation rights based on that contingency. This is permanent and cannot be reversed.` },
     4: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Must disclose to next buyer</span><br>The disclosure obligation follows the seller and the property, not the transaction. A seller who cancels must disclose to their next buyer everything they learned about the property during the cancelled transaction. Cancellation is not a reset button on disclosure obligations.` },
