@@ -730,10 +730,13 @@ function showPortal() {
   // Use currentAgent (course scope) or fall back to localStorage
   if (!currentAgent) {
     const a = sessionStorage.getItem('edr_agent') || localStorage.getItem('edr_agent');
-    if (a) { try { currentAgent = JSON.parse(a); } catch(e) {} }
+    if (a) { try { 
+      currentAgent = JSON.parse(a);
+      currentAgent.full_name = currentAgent.full_name || currentAgent.name || 'Agent';
+    } catch(e) {} }
   }
   if (!currentAgent) { doLogout(); return; }
-  const firstName = (currentAgent.full_name || currentAgent.name || 'Agent').split(' ')[0];
+  const firstName = (currentAgent.full_name || 'Agent').split(' ')[0];
   document.getElementById('portal-user-name').textContent = firstName;
   document.getElementById('portal-greeting-text').textContent = 'Welcome back, ' + firstName;
   // Load settings first so Course 2 toggle is applied before rendering
@@ -846,10 +849,17 @@ function renderPortal() {
 }
 
 function startCourse(courseId, mode) {
+  // Re-load session if currentAgent somehow cleared
+  if (!currentAgent) {
+    const raw = sessionStorage.getItem('edr_agent') || localStorage.getItem('edr_agent');
+    if (raw) { try { currentAgent = JSON.parse(raw); } catch(e) {} }
+  }
+  if (!currentAgent) { doLogout(); return; }
   isStudyMode = mode === 'study';
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('app-screen').classList.add('active');
-  document.getElementById('topbar-user').textContent = currentAgent.full_name;
+  const tbu = document.getElementById('topbar-user');
+  if (tbu) tbu.textContent = currentAgent.full_name || currentAgent.name || 'Agent';
   buildSidebar();
   showView('welcome');
 }
@@ -1563,18 +1573,17 @@ async function clearDueDate() {
 }
 
 async function loadCourseSettings() {
-  const settings = await sb('settings','GET',null,'?key=eq.course_settings');
-  if (settings && settings.length>0) {
-    try {
+  try {
+    const settings = await sb('settings','GET',null,'?key=eq.course_settings');
+    if (settings && settings.length>0) {
       const raw = JSON.parse(settings[0].value)||{};
       courseSettings = {};
-      // Normalize: store with BOTH string and number keys so either works
       Object.keys(raw).forEach(k => {
         courseSettings[k] = raw[k];
         courseSettings[parseInt(k)] = raw[k];
       });
-    } catch(e){}
-  }
+    }
+  } catch(e) { console.warn('loadCourseSettings error:', e); }
 }
 
 // ============================================================
@@ -1628,15 +1637,18 @@ async function renderCourseToggles() {
 }
 
 async function toggleCourse(courseId, active) {
-  courseSettings[courseId] = active;
   courseSettings[String(courseId)] = active;
-  const existing = await sb('settings','GET',null,'?key=eq.course_settings');
   const val = JSON.stringify(courseSettings);
-  if (existing && existing.length>0) {
-    await sb('settings','PATCH',{value:val},'?key=eq.course_settings');
-  } else {
-    await sb('settings','POST',{key:'course_settings',value:val});
-  }
+  try {
+    const existing = await sb('settings','GET',null,'?key=eq.course_settings');
+    if (existing && existing.length>0) {
+      await sb('settings','PATCH',{value:val},'?key=eq.course_settings');
+    } else {
+      await sb('settings','POST',{key:'course_settings',value:val});
+    }
+    console.log('Course',courseId,'toggled',active,'→',val);
+  } catch(e) { alert('Failed to save toggle. Check Supabase settings table policy.'); }
+  renderCourseToggles();
 }
 
 async function loadAdminData() {
