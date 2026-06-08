@@ -96,8 +96,8 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div></div>
-<div id="lc" style="display:none">
+</div>
+id="lc" style="display:none">
 <header class="header">
   <div class="header-brand">EDR Realty Group</div>
   <div class="header-right">
@@ -293,7 +293,7 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
     circ.textContent = correct + '/' + total;
     circ.className = 'sc-circ ' + (passed ? 'pass' : 'fail');
     document.getElementById('sc-title').textContent = passed ? '🎉 Lesson 11 Complete!' : 'Keep Practicing';
-    document.getElementById('sc-msg').textContent = passed ? 'Full scenario complete. You're ready for the Course 3 Final Quiz — good luck!' : 'You scored ' + pct + '%. You need 80% to pass. Review the lesson and try again.';
+    document.getElementById('sc-msg').textContent = passed ? 'Full scenario complete. You\'re ready for the Course 3 Final Quiz — good luck!' : 'You scored ' + pct + '%. You need 80% to pass. Review the lesson and try again.';
     if (passed) { document.getElementById('nb').style.display = 'inline-block'; }
     else { document.getElementById('rb').style.display = 'inline-block'; }
     card.classList.add('show');

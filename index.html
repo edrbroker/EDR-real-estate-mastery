@@ -534,7 +534,7 @@ input:checked + .toggle-slider:before{transform:translateX(20px);}
     <div class="admin-card">
       <div class="admin-card-header">
         <span class="admin-card-title">Agent Progress</span>
-        <button class="admin-refresh-btn" onclick="loadAdminData()">↻ Refresh</button>
+        <button class="admin-refresh-btn" onclick="this.textContent='↻ Loading...';loadAdminData().then(()=>{this.textContent='↻ Refresh';})">↻ Refresh</button>
       </div>
       <div id="admin-agents-table"><div class="empty-state">Loading...</div></div>
     </div>
@@ -595,22 +595,16 @@ let modalCallback = null;
 // ============================================================
 async function sb(table, method, body, filter="") {
   const url = `${SUPABASE_URL}/rest/v1/${table}${filter}`;
-  const opts = {
-    method,
-    headers: {
-      "apikey": SUPABASE_ANON,
-      "Authorization": `Bearer ${SUPABASE_ANON}`,
-      "Content-Type": "application/json",
-      "Prefer": method==="POST" ? "return=representation" : "return=minimal"
-    }
-  };
-  if (body) opts.body = JSON.stringify(body);
+  const headers = {"apikey":SUPABASE_ANON,"Authorization":`Bearer ${SUPABASE_ANON}`,"Content-Type":"application/json"};
+  if (method==="POST") headers["Prefer"] = "return=representation";
+  const opts = {method, headers, body: body ? JSON.stringify(body) : undefined};
   try {
     const res = await fetch(url, opts);
     if (method==="GET") {
       const data = await res.json();
-      return Array.isArray(data) ? data : []; // Always return array, never error objects
+      return Array.isArray(data) ? data : [];
     }
+    if (!res.ok) console.warn(`sb ${method} ${table} ${res.status}`);
     return res.ok;
   } catch(e) { return method==="GET" ? [] : false; }
 }
@@ -1754,7 +1748,8 @@ function deleteAgent(agentId, name) {
     await sb('progress','DELETE',null,`?agent_id=eq.${agentId}`);
     await sb('final_quiz','DELETE',null,`?agent_id=eq.${agentId}`);
     await sb('submissions','DELETE',null,`?agent_id=eq.${agentId}`);
-    await sb('agents','DELETE',null,`?id=eq.${agentId}`);
+    const ok = await sb('agents','DELETE',null,`?id=eq.${agentId}`);
+    if (!ok) { alert('Delete failed — run the DELETE policy SQL in Supabase first.'); }
     await loadAdminData();
   }, true);
 }
