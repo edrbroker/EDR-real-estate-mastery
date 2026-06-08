@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Course 2 Lesson 7 | EDR Realty Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--n:#0b0f1f;--n2:#111827;--c:#161d30;--b:#1e2a42;--g:#c9a84c;--gl:#e8c96e;--gd:rgba(201,168,76,.15);--gr:#22c55e;--r:#ef4444;--t:#e8eaf0;--m:#8b93a8;--w:#fff;--bl:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--n);color:var(--t);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7}
+.hdr{background:var(--n2);border-bottom:1px solid var(--b);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99}
+.brand{font-family:'Playfair Display',serif;color:var(--g);font-size:1.05rem}
+.badge{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.hero{background:linear-gradient(135deg,#0d1a35,#0b0f1f);border-bottom:1px solid var(--b);padding:44px 20px 36px;text-align:center}
+.ctag{display:inline-block;background:var(--gd);color:var(--g);border:1px solid var(--g);padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--w);line-height:1.25;margin-bottom:10px}
+.hero h1 span{color:var(--g)}
+.hero p{color:var(--m);font-size:.92rem;max-width:460px;margin:0 auto 20px}
+.hmeta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.hmi{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--m)}
+.hmd{width:5px;height:5px;border-radius:50%;background:var(--g)}
+.main{max-width:700px;margin:0 auto;padding:28px 18px 56px}
+.story{background:linear-gradient(135deg,#1a2040,#111827);border:1px solid var(--g);border-radius:12px;padding:24px;margin-bottom:32px}
+.stag{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--g);margin-bottom:12px}
+.story p{color:var(--t);margin-bottom:10px}
+.story p:last-child{margin-bottom:0}
+.story strong{color:var(--gl)}
+h2.st{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--w);margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--b)}
+h2.st span{color:var(--g)}
+.cp{color:var(--t);margin-bottom:14px}
+.cp strong{color:var(--gl)}
+.ca{border-radius:10px;padding:18px 20px;margin:16px 0;font-size:.88rem}
+.ca-g{background:var(--gd);border-left:3px solid var(--g)}
+.ca-b{background:rgba(59,130,246,.08);border-left:3px solid var(--bl)}
+.ca-r{background:rgba(239,68,68,.07);border-left:3px solid var(--r)}
+.cal{font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.ca-g .cal{color:var(--g)}.ca-b .cal{color:#60a5fa}.ca-r .cal{color:#f87171}
+.tip{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:16px 18px;margin:18px 0}
+.tipl{color:var(--gr);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.tip p{font-size:.88rem;color:var(--t);margin-bottom:7px}
+.tip p:last-child{margin-bottom:0}
+.scope{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:10px;padding:16px 18px;margin:20px 0}
+.scopel{color:#f87171;font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.scope p{font-size:.85rem;color:var(--m)}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.ic{background:var(--c);border:1px solid var(--b);border-radius:8px;padding:12px}
+.icl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:5px}
+.icv{font-size:.85rem;color:var(--t)}
+.ctw{overflow-x:auto;margin:16px 0}
+.ct{width:100%;border-collapse:collapse;font-size:.83rem}
+.ct th{background:var(--gd);color:var(--g);font-weight:600;padding:9px 12px;text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--g)}
+.ct td{padding:9px 12px;border-bottom:1px solid var(--b);color:var(--t);vertical-align:top}
+.ct tr:last-child td{border-bottom:none}
+.si{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.sn{width:30px;height:30px;min-width:30px;border-radius:50%;background:var(--gd);border:1px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--g);font-size:.88rem}
+.sc{flex:1}
+.sc strong{color:var(--gl);display:block;margin-bottom:3px}
+.sc p{font-size:.88rem;color:var(--t);margin:0}
+.hb{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:18px;margin:14px 0}
+.hbt{font-family:'Playfair Display',serif;color:var(--g);font-size:.95rem;margin-bottom:8px}
+.hb p{font-size:.88rem;color:var(--t);margin-bottom:7px}
+.hb p:last-child{margin-bottom:0}
+.trow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--b)}
+.trow:last-child{border-bottom:none}
+.td{min-width:75px;font-weight:700;color:var(--g);font-size:.82rem}
+.tc{flex:1;font-size:.88rem;color:var(--t)}
+.tc strong{color:var(--gl)}
+.divhr{border:none;border-top:1px solid var(--b);margin:36px 0}
+.qhdr{text-align:center;margin-bottom:24px}
+.qhdr h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:5px}
+.qhdr p{color:var(--m);font-size:.85rem}
+.qc{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:22px;margin-bottom:18px}
+.qn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:9px}
+.qb{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:7px;background:var(--gd);color:var(--g)}
+.qt{font-size:.94rem;color:var(--w);font-weight:500;margin-bottom:16px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:9px}
+.ob{background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:12px 14px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.87rem;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px}
+.ob:hover:not(:disabled){border-color:var(--g);color:var(--w);background:var(--gd)}
+.ob:disabled{cursor:default}
+.ob.correct{background:rgba(34,197,94,.12);border-color:var(--gr);color:var(--w)}
+.ob.wrong{background:rgba(239,68,68,.1);border-color:var(--r);color:var(--w)}
+.ob.rev{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3)}
+.ol{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--b);color:var(--m);font-weight:700;font-size:.72rem;flex-shrink:0;margin-top:1px}
+.ob.correct .ol{background:var(--gr);color:#fff}
+.ob.wrong .ol{background:var(--r);color:#fff}
+.ob.rev .ol{background:rgba(34,197,94,.35);color:#fff}
+.fb{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.5;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac}
+.fb.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5}
+.sc-card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:32px 24px;text-align:center;margin-top:28px;display:none}
+.sc-card.show{display:block}
+.sc-circ{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;margin:0 auto 18px}
+.sc-circ.pass{background:rgba(34,197,94,.15);border:3px solid var(--gr);color:var(--gr)}
+.sc-circ.fail{background:rgba(239,68,68,.1);border:3px solid var(--r);color:var(--r)}
+.sc-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--w);margin-bottom:7px}
+.sc-msg{color:var(--m);font-size:.88rem;margin-bottom:20px}
+.rbtn{background:var(--g);color:var(--n);border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer}
+.nbtn{background:var(--gr);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer;margin-left:10px}
+.pbw{width:100%;height:4px;background:var(--b);border-radius:2px;margin-top:18px}
+.pbf{height:4px;background:var(--g);border-radius:2px;transition:width .4s}
+.ftr{text-align:center;padding:22px;color:var(--m);font-size:.76rem;border-top:1px solid var(--b);margin-top:36px}
+@media(max-width:480px){.hero{padding:32px 14px 26px}.main{padding:20px 14px 44px}.qc{padding:16px 14px}.ig{grid-template-columns:1fr}}
+
+.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
+.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
+.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
+.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
+.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
+.auth-tab.active{background:#c9a84c;color:#0b0f1f}
+.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
+.ainp:focus{border-color:#c9a84c}
+.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
+.abtn:hover{background:#e8c96e}
+.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
+.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
+.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
+
+</style></head><body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-family:sans-serif;font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div>
+<div id="lc" style="display:none"><header class="hdr"><div class="brand">EDR Realty Group</div><a href="index.html" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:'Helvetica Neue',sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;">← Portal</a>
+<span class="agent-name-badge" id="nb-badge" style="display:none"></span>
+<div class="badge">Course 2 · Buyer Side</div></header>
+<section class="hero">
+<div class="ctag">Lesson 7 of 11</div>
+<h1>HOA Properties:<br/>The <span>Extra Layer</span></h1>
+<p>What Your Buyer Must Know Before Removing the HOA Contingency</p>
+<div class="hmeta">
+<span class="hmi"><span class="hmd"></span>~30 min</span>
+<span class="hmi"><span class="hmd"></span>RPA Paragraph 8G / L(7) / Civil Code Section 4525</span>
+<span class="hmi"><span class="hmd"></span>5 Questions</span>
+</div></section>
+<div class="main">
+<div class="story"><div class="stag">📖 THE STORY CONTINUES</div><p>You are reviewing the listing for 5555 Winners Lane on Day 2 when you notice in the remarks: 'HOA — $450/month. CC&amp;Rs, rules and regs apply.'</p><p>You flag it immediately. The Okonkwos are buying into a Homeowners Association — an extra layer of disclosures, deadlines, and documents on top of everything else.</p><p>Marcus asks: 'Does that matter?' You tell him: <strong>'It matters a lot. Let me walk you through it.'</strong></p></div>
+<h2 class="st">The <span>HOA Contingency</span> — Section L(7)</h2>
+<p class="cp">When a property is part of a condominium, planned development, or any common interest development, the buyer gets an additional contingency: the Common Interest Disclosures contingency (RPA Paragraph 8G / L(7)).</p>
+<div class="ca ca-g"><div class="cal">RPA Paragraph 8G / L(7) — Common Interest Disclosures Contingency</div>
+<p>The agreement is contingent upon the buyer's review and approval of Common Interest Disclosures required by <strong>California Civil Code Section 4525</strong>. The deadline is 17 days after acceptance OR 5 days after delivery of HOA documents — whichever is LATER.</p></div>
+<h2 class="st">What the <span>Seller Must Deliver</span></h2>
+<p class="cp">The seller must order HOA documents within <strong>3 days of acceptance</strong> (RPA Paragraph N(3)) and the seller pays the fee. Civil Code Section 4525 specifies what must be provided:</p>
+<div class="ig">
+<div class="ic"><div class="icl">CC&amp;Rs</div><div class="icv">Rules governing what owners can and cannot do with the property</div></div>
+<div class="ic"><div class="icl">Bylaws</div><div class="icv">How the HOA is governed and operated</div></div>
+<div class="ic"><div class="icl">Financial Documents</div><div class="icv">HOA budget, reserve fund study, and financial statements</div></div>
+<div class="ic"><div class="icl">Meeting Minutes</div><div class="icv">Reveals pending assessments, litigation, and disputes</div></div>
+<div class="ic"><div class="icl">Rules and Regulations</div><div class="icv">Pet policies, rental restrictions, parking rules, renovation approval</div></div>
+<div class="ic"><div class="icl">Pending Assessments</div><div class="icv">Any special assessments coming — can mean thousands in extra costs</div></div>
+</div>
+<h2 class="st">What Your Buyer <span>Must Review</span></h2>
+<div class="si"><div class="sn">1</div><div class="sc"><strong>Reserve Fund Health</strong><p>A well-funded HOA has 70% or more of projected needs in reserve. Underfunded = future special assessments. This is a major red flag.</p></div></div>
+<div class="si"><div class="sn">2</div><div class="sc"><strong>Pending or Threatened Litigation</strong><p>Check board minutes for lawsuits against or by the HOA. This can affect insurance, financing, and property value.</p></div></div>
+<div class="si"><div class="sn">3</div><div class="sc"><strong>Rental Restrictions</strong><p>Some HOAs prohibit renting units entirely. If your buyers ever want to rent the property, this is critical.</p></div></div>
+<div class="si"><div class="sn">4</div><div class="sc"><strong>Special Assessments</strong><p>Any approved but unbilled assessment the new buyer may be responsible for. Check the budget and minutes carefully.</p></div></div>
+<div class="si"><div class="sn">5</div><div class="sc"><strong>Pet and Renovation Policies</strong><p>Does the HOA allow your buyers' pets? Do they need board approval to renovate? CC&amp;Rs spell this out.</p></div></div>
+<h2 class="st">HOA and <span>Financing</span> — The Hidden Risk</h2>
+<div class="ca ca-r"><div class="cal">Non-Warrantable Condo Warning</div>
+<p>Some lenders will not fund loans on properties in HOAs with too many non-owner-occupied units, HOAs in active litigation, or HOAs with less than 10% reserves — called a <strong>non-warrantable condo.</strong> If this applies, the Okonkwos' conventional loan may be denied. Confirm HOA warrantability with the lender BEFORE removing the loan contingency. This is a common deal killer for new agents.</p></div>
+<h2 class="st">HOA Prorations at <span>Close of Escrow</span></h2>
+<p class="cp">Under RPA Paragraph 17, HOA regular assessments are prorated at close of escrow on a 30-day month basis. Special or emergency assessments approved or due before close are paid by the seller. Assessments that come after close are the buyer's responsibility. Always confirm the proration with escrow.</p>
+<div class="tip"><div class="tipl">Pro Move on HOA Deals</div>
+<p>On Day 1 of any HOA transaction, confirm the seller's agent has ordered the HOA documents. HOA document packages can take 7 to 10 days to arrive — a late order can push documents past your contingency deadline. If HOA documents are not ordered within 3 days, send an NSP immediately. Do not let the HOA doc timeline catch you off guard.</p></div>
+<div class="scope"><div class="scopel">Stay Within Your License</div>
+<p>You can help buyers understand what HOA documents to review and flag concerns. You cannot provide legal interpretations of CC&amp;Rs, advise on HOA litigation exposure, or tell buyers whether an underfunded reserve is legally acceptable. For complex HOA document review, recommend a real estate attorney specializing in common interest developments.</p></div>
+<hr class="divhr"/>
+<div class="qhdr"><h2>Knowledge Check</h2><p>5 questions · 4/5 (80%) to pass · Read every explanation</p></div>
+<div id="quiz"><div class="qc" id="q1"><div class="qn">Question 1 <span class="qb">Multiple Choice</span></div><div class="qt">5555 Winners Lane is part of an HOA. Under the default RPA timeline, when must the seller order the HOA documents?</div><div class="opts"><button class="ob" onclick="ans(1,'A')"><span class="ol">A</span>Within 7 days of acceptance</button>
+<button class="ob" onclick="ans(1,'B')"><span class="ol">B</span>Within 3 days of acceptance, and the seller pays the ordering fee</button>
+<button class="ob" onclick="ans(1,'C')"><span class="ol">C</span>Within 17 days of acceptance — the same as other contingency deadlines</button>
+<button class="ob" onclick="ans(1,'D')"><span class="ol">D</span>The buyer orders and pays for HOA documents directly</button>
+</div><div class="fb" id="fb1"></div></div><div class="qc" id="q2"><div class="qn">Question 2 <span class="qb">Multiple Choice</span></div><div class="qt">The HOA documents arrive on Day 14 — one week after they were supposed to be ordered. The Okonkwos' contingency deadline is Day 17. Under the RPA, when must they complete their HOA document review?</div><div class="opts"><button class="ob" onclick="ans(2,'A')"><span class="ol">A</span>Day 17 — the original deadline always applies</button>
+<button class="ob" onclick="ans(2,'B')"><span class="ol">B</span>Day 19 — 5 days after delivery on Day 14, which is later than Day 17</button>
+<button class="ob" onclick="ans(2,'C')"><span class="ol">C</span>Day 14 — review must happen immediately upon delivery</button>
+<button class="ob" onclick="ans(2,'D')"><span class="ol">D</span>Day 21 — HOA contingency always gets an automatic 7-day extension</button>
+</div><div class="fb" id="fb2"></div></div><div class="qc" id="q3"><div class="qn">Question 3 <span class="qb">Multiple Choice</span></div><div class="qt">The HOA financial documents show the reserve fund is only 22% funded and board minutes reveal a pending vote on an $8,500 special assessment for roof repairs. What is the most appropriate advice?</div><div class="opts"><button class="ob" onclick="ans(3,'A')"><span class="ol">A</span>Remove the HOA contingency immediately — reserve fund issues are the HOA's problem, not the buyer's</button>
+<button class="ob" onclick="ans(3,'B')"><span class="ol">B</span>Advise the buyers these are significant financial risks they must fully understand before removing the HOA contingency — options include cancel, renegotiate a seller credit, or proceed with full awareness</button>
+<button class="ob" onclick="ans(3,'C')"><span class="ol">C</span>Tell the buyers the seller is responsible for all future special assessments so they have nothing to worry about</button>
+<button class="ob" onclick="ans(3,'D')"><span class="ol">D</span>Remove all contingencies immediately to prevent the seller from backing out</button>
+</div><div class="fb" id="fb3"></div></div><div class="qc" id="q4"><div class="qn">Question 4 <span class="qb">Multiple Choice</span></div><div class="qt">The Okonkwos' lender tells you on Day 12 that 5555 Winners Lane may be a non-warrantable condo because the HOA has pending litigation and less than 10% reserves. What is the most immediate risk?</div><div class="opts"><button class="ob" onclick="ans(4,'A')"><span class="ol">A</span>The property will automatically be removed from the MLS</button>
+<button class="ob" onclick="ans(4,'B')"><span class="ol">B</span>The lender may not be able to fund a conventional loan on the property, jeopardizing the Okonkwos' financing</button>
+<button class="ob" onclick="ans(4,'C')"><span class="ol">C</span>The HOA will automatically dissolve and the property reverts to fee simple ownership</button>
+<button class="ob" onclick="ans(4,'D')"><span class="ol">D</span>The buyers will be required to increase their down payment by 25%</button>
+</div><div class="fb" id="fb4"></div></div><div class="qc" id="q5"><div class="qn">Question 5 <span class="qb">Multiple Choice</span></div><div class="qt">The Okonkwos discover in the HOA CC&amp;Rs that the development does not allow any rentals ever. They had planned to eventually rent the property. Which contingency protects their right to cancel based on this restriction?</div><div class="opts"><button class="ob" onclick="ans(5,'A')"><span class="ol">A</span>The loan contingency — rental restrictions affect the property's income potential</button>
+<button class="ob" onclick="ans(5,'B')"><span class="ol">B</span>The HOA or Common Interest Disclosures contingency — rental restrictions are disclosed in the CC&amp;Rs reviewed under the HOA contingency</button>
+<button class="ob" onclick="ans(5,'C')"><span class="ol">C</span>The inspection contingency — rental restrictions are a physical condition of the property</button>
+<button class="ob" onclick="ans(5,'D')"><span class="ol">D</span>The title contingency — rental restrictions are title defects</button>
+</div><div class="fb" id="fb5"></div></div></div>
+<div class="sc-card" id="sc-card">
+<div class="sc-circ" id="sc-circ"></div>
+<div class="sc-title" id="sc-title"></div>
+<p class="sc-msg" id="sc-msg"></p>
+<p id="sc-saved" style="font-size:.78rem;color:#22c55e;margin-bottom:16px"></p>
+<div><button class="rbtn" onclick="retry()" id="rb" style="display:none">Retake Quiz</button>
+<button class="nbtn" id="nb" style="display:none" onclick="window.location.href='course2_lesson8.html'">Next Lesson →</button></div>
+<div class="pbw"><div class="pbf" id="pb" style="width:0%"></div></div>
+</div></div>
+<footer class="ftr">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 7 of 11<br/>
+Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards. Questions? rashaad@edrrealtygroup.com</footer>
+</div>
+<script>
+const A={1:{c:"B",e:"Under RPA Paragraph N(3), the seller must order HOA documents within 3 days of acceptance and the seller pays the fee. This is one of the earliest deadlines in the entire transaction. If the seller delays ordering, documents may not arrive until after the buyer's contingency period — creating pressure to extend. As the buyer's agent, confirm on Day 1 or 2 that the seller's agent has placed the HOA document order."},2:{c:"B",e:"Under RPA Paragraph L(7), the HOA contingency deadline is 17 days after acceptance OR 5 days after delivery — whichever is LATER. Documents arrived Day 14. Five days after Day 14 equals Day 19. Since Day 19 is later than Day 17, the deadline automatically extends to Day 19. This protection exists for buyers when sellers deliver documents late. Always calculate both dates and use the later one."},3:{c:"B",e:"An underfunded reserve (22% vs recommended 70% or more) means the HOA is at risk of levying special assessments — extra charges above the monthly HOA fee. A pending $8,500 special assessment could fall to the new owner. The agent's job is to explain the risk, present all options, and document the conversation. Never remove the HOA contingency before your buyers understand what they are accepting."},4:{c:"B",e:"A non-warrantable condo does not meet Fannie Mae or Freddie Mac guidelines — often due to pending HOA litigation, insufficient reserves, or high investor ownership. When this happens, conventional lenders typically cannot fund the loan. The buyers may need to find portfolio lenders at higher rates or cancel under the loan contingency. Alert the lender to HOA status on Day 1 — not Day 12. This is a common deal killer that catches new agents off guard."},5:{c:"B",e:"Rental restrictions found in HOA CC&Rs are part of the Common Interest Disclosures package reviewed under the HOA contingency (RPA Paragraph 8G / L(7)). If the Okonkwos find the rental restriction unacceptable, they can cancel under the HOA contingency — as long as it has not been removed. Many buyers do not discover this restriction until after they have closed. This is exactly why buyers must read the CC&Rs carefully before removing the HOA contingency."}};
+const ua={};let ac=0;
+function ans(q,s){
+  if(ua[q])return;ua[q]=s;ac++;
+  const card=document.getElementById('q'+q);
+  const btns=card.querySelectorAll('.ob');
+  const fb=document.getElementById('fb'+q);
+  const c=A[q].c;const ok=s===c;
+  btns.forEach(b=>{b.disabled=true;const l=b.querySelector('.ol').textContent.trim();
+    if(l===c)b.classList.add(ok&&l===s?'correct':'rev');
+    if(l===s&&!ok)b.classList.add('wrong');});
+  fb.innerHTML=A[q].e;fb.className='fb show '+(ok?'ok':'no');
+  if(ac===5)score();
+}
+async function score(){
+  const cor=Object.keys(ua).filter(q=>ua[q]===A[q].c).length;
+  const pct=Math.round(cor/5*100);const pass=cor>=4;
+  document.getElementById('sc-circ').textContent=cor+'/5';
+  document.getElementById('sc-circ').className='sc-circ '+(pass?'pass':'fail');
+  document.getElementById('sc-title').textContent=pass?'Lesson Complete!':'Keep Practicing';
+  document.getElementById('sc-msg').textContent=pass?'You scored '+pct+'% - Proceed to Lesson 8.':'You scored '+pct+'%. You need 80% to pass. Review and retake.';
+  document.getElementById('sc-card').classList.add('show');
+  document.getElementById('pb').style.width=pct+'%';
+  if(pass)document.getElementById('nb').style.display='inline-block';
+  else document.getElementById('rb').style.display='inline-block';
+
+  try{await window._saveLP(7,cor,pass,ua);}catch(e){}
+}
+function retry(){
+  Object.keys(ua).forEach(q=>delete ua[q]);ac=0;
+  for(let i=1;i<=5;i++){
+    document.getElementById('q'+i).querySelectorAll('.ob').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong','rev');});
+    const fb=document.getElementById('fb'+i);fb.className='fb';fb.innerHTML='';
+  }
+  document.getElementById('sc-card').classList.remove('show');
+  document.getElementById('rb').style.display='none';
+  document.getElementById('nb').style.display='none';
+  document.getElementById('pb').style.width='0%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+
+
+
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+  };
+  window._saveLP=async function(lid,sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2&select=id");
+    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2");}
+    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course2"});}
+    return true;}catch(e){return false;}
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course2&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course2");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course2"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+  });
+})();
+</script>
+</body></html>

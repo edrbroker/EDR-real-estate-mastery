@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Course 2 Lesson 8 | EDR Realty Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--n:#0b0f1f;--n2:#111827;--c:#161d30;--b:#1e2a42;--g:#c9a84c;--gl:#e8c96e;--gd:rgba(201,168,76,.15);--gr:#22c55e;--r:#ef4444;--t:#e8eaf0;--m:#8b93a8;--w:#fff;--bl:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--n);color:var(--t);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7}
+.hdr{background:var(--n2);border-bottom:1px solid var(--b);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99}
+.brand{font-family:'Playfair Display',serif;color:var(--g);font-size:1.05rem}
+.badge{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.hero{background:linear-gradient(135deg,#0d1a35,#0b0f1f);border-bottom:1px solid var(--b);padding:44px 20px 36px;text-align:center}
+.ctag{display:inline-block;background:var(--gd);color:var(--g);border:1px solid var(--g);padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--w);line-height:1.25;margin-bottom:10px}
+.hero h1 span{color:var(--g)}
+.hero p{color:var(--m);font-size:.92rem;max-width:460px;margin:0 auto 20px}
+.hmeta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.hmi{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--m)}
+.hmd{width:5px;height:5px;border-radius:50%;background:var(--g)}
+.main{max-width:700px;margin:0 auto;padding:28px 18px 56px}
+.story{background:linear-gradient(135deg,#1a2040,#111827);border:1px solid var(--g);border-radius:12px;padding:24px;margin-bottom:32px}
+.stag{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--g);margin-bottom:12px}
+.story p{color:var(--t);margin-bottom:10px}
+.story p:last-child{margin-bottom:0}
+.story strong{color:var(--gl)}
+h2.st{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--w);margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--b)}
+h2.st span{color:var(--g)}
+.cp{color:var(--t);margin-bottom:14px}
+.cp strong{color:var(--gl)}
+.ca{border-radius:10px;padding:18px 20px;margin:16px 0;font-size:.88rem}
+.ca-g{background:var(--gd);border-left:3px solid var(--g)}
+.ca-b{background:rgba(59,130,246,.08);border-left:3px solid var(--bl)}
+.ca-r{background:rgba(239,68,68,.07);border-left:3px solid var(--r)}
+.cal{font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.ca-g .cal{color:var(--g)}.ca-b .cal{color:#60a5fa}.ca-r .cal{color:#f87171}
+.tip{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:16px 18px;margin:18px 0}
+.tipl{color:var(--gr);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.tip p{font-size:.88rem;color:var(--t);margin-bottom:7px}
+.tip p:last-child{margin-bottom:0}
+.scope{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:10px;padding:16px 18px;margin:20px 0}
+.scopel{color:#f87171;font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.scope p{font-size:.85rem;color:var(--m)}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.ic{background:var(--c);border:1px solid var(--b);border-radius:8px;padding:12px}
+.icl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:5px}
+.icv{font-size:.85rem;color:var(--t)}
+.ctw{overflow-x:auto;margin:16px 0}
+.ct{width:100%;border-collapse:collapse;font-size:.83rem}
+.ct th{background:var(--gd);color:var(--g);font-weight:600;padding:9px 12px;text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--g)}
+.ct td{padding:9px 12px;border-bottom:1px solid var(--b);color:var(--t);vertical-align:top}
+.ct tr:last-child td{border-bottom:none}
+.si{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.sn{width:30px;height:30px;min-width:30px;border-radius:50%;background:var(--gd);border:1px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--g);font-size:.88rem}
+.sc{flex:1}
+.sc strong{color:var(--gl);display:block;margin-bottom:3px}
+.sc p{font-size:.88rem;color:var(--t);margin:0}
+.hb{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:18px;margin:14px 0}
+.hbt{font-family:'Playfair Display',serif;color:var(--g);font-size:.95rem;margin-bottom:8px}
+.hb p{font-size:.88rem;color:var(--t);margin-bottom:7px}
+.hb p:last-child{margin-bottom:0}
+.trow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--b)}
+.trow:last-child{border-bottom:none}
+.td{min-width:75px;font-weight:700;color:var(--g);font-size:.82rem}
+.tc{flex:1;font-size:.88rem;color:var(--t)}
+.tc strong{color:var(--gl)}
+.divhr{border:none;border-top:1px solid var(--b);margin:36px 0}
+.qhdr{text-align:center;margin-bottom:24px}
+.qhdr h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:5px}
+.qhdr p{color:var(--m);font-size:.85rem}
+.qc{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:22px;margin-bottom:18px}
+.qn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:9px}
+.qb{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:7px;background:var(--gd);color:var(--g)}
+.qt{font-size:.94rem;color:var(--w);font-weight:500;margin-bottom:16px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:9px}
+.ob{background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:12px 14px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.87rem;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px}
+.ob:hover:not(:disabled){border-color:var(--g);color:var(--w);background:var(--gd)}
+.ob:disabled{cursor:default}
+.ob.correct{background:rgba(34,197,94,.12);border-color:var(--gr);color:var(--w)}
+.ob.wrong{background:rgba(239,68,68,.1);border-color:var(--r);color:var(--w)}
+.ob.rev{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3)}
+.ol{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--b);color:var(--m);font-weight:700;font-size:.72rem;flex-shrink:0;margin-top:1px}
+.ob.correct .ol{background:var(--gr);color:#fff}
+.ob.wrong .ol{background:var(--r);color:#fff}
+.ob.rev .ol{background:rgba(34,197,94,.35);color:#fff}
+.fb{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.5;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac}
+.fb.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5}
+.sc-card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:32px 24px;text-align:center;margin-top:28px;display:none}
+.sc-card.show{display:block}
+.sc-circ{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;margin:0 auto 18px}
+.sc-circ.pass{background:rgba(34,197,94,.15);border:3px solid var(--gr);color:var(--gr)}
+.sc-circ.fail{background:rgba(239,68,68,.1);border:3px solid var(--r);color:var(--r)}
+.sc-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--w);margin-bottom:7px}
+.sc-msg{color:var(--m);font-size:.88rem;margin-bottom:20px}
+.rbtn{background:var(--g);color:var(--n);border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer}
+.nbtn{background:var(--gr);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer;margin-left:10px}
+.pbw{width:100%;height:4px;background:var(--b);border-radius:2px;margin-top:18px}
+.pbf{height:4px;background:var(--g);border-radius:2px;transition:width .4s}
+.ftr{text-align:center;padding:22px;color:var(--m);font-size:.76rem;border-top:1px solid var(--b);margin-top:36px}
+@media(max-width:480px){.hero{padding:32px 14px 26px}.main{padding:20px 14px 44px}.qc{padding:16px 14px}.ig{grid-template-columns:1fr}}
+
+.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
+.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
+.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
+.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
+.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
+.auth-tab.active{background:#c9a84c;color:#0b0f1f}
+.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
+.ainp:focus{border-color:#c9a84c}
+.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
+.abtn:hover{background:#e8c96e}
+.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
+.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
+.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
+
+</style></head><body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-family:sans-serif;font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div>
+<div id="lc" style="display:none"><header class="hdr"><div class="brand">EDR Realty Group</div><a href="index.html" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:'Helvetica Neue',sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;">← Portal</a>
+<span class="agent-name-badge" id="nb-badge" style="display:none"></span>
+<div class="badge">Course 2 · Buyer Side</div></header>
+<section class="hero">
+<div class="ctag">Lesson 8 of 11</div>
+<h1>Close of Escrow Is Here —<br/>But the Buyer <span>Is Not Ready</span></h1>
+<p>The Demand to Close Escrow (DCE) Explained</p>
+<div class="hmeta">
+<span class="hmi"><span class="hmd"></span>~30 min</span>
+<span class="hmi"><span class="hmd"></span>RPA Paragraph 14G / C.A.R. Form DCE</span>
+<span class="hmi"><span class="hmd"></span>5 Questions</span>
+</div></section>
+<div class="main">
+<div class="story"><div class="stag">📖 THE STORY CONTINUES</div><p>It is Day 29. Close of escrow is scheduled for tomorrow — Day 30. All contingencies have been removed. Appraisal came in at value. Loan approved. Inspection resolved. Insurance confirmed. Title clear.</p><p>Then at 4:30 PM the lender calls. 'We are running 3 days behind on funding. Loan docs will not be ready until Day 33.'</p><p>You hang up. The seller is expecting to close tomorrow. You call the listing agent to explain — and they say: 'My seller is sending a Demand to Close Escrow.'</p><p><strong>This is the form most agents confuse with the NBP. The difference could cost your buyer their deposit.</strong></p></div>
+<h2 class="st">What Is the <span>Demand to Close Escrow?</span></h2>
+<p class="cp">The Demand to Close Escrow (C.A.R. Form DCE) is a formal written notice used when one party has failed to close escrow by the scheduled date. It gives the other party <strong>at least 3 days</strong> after delivery to close — and if they still do not close, the demanding party can cancel.</p>
+<div class="ca ca-g"><div class="cal">RPA Paragraph 14G — Demand to Close Escrow</div>
+<p>Before either party may cancel for failure to close escrow, they must first deliver a DCE. The DCE shall: (i) be signed by the applicable buyer or seller; and (ii) give the other party at least <strong>3 days after delivery</strong> to close escrow. A DCE may not be delivered any earlier than <strong>3 days prior to the scheduled close of escrow date.</strong></p></div>
+<h2 class="st">DCE vs. NBP — <span>Critical Differences</span></h2>
+<div class="ctw"><table class="ct">
+<thead><tr><th>Feature</th><th>NBP</th><th>DCE</th></tr></thead>
+<tbody>
+<tr><td>Used for</td><td>Missed contingency deadlines or contract obligations</td><td>Failure to close escrow by the scheduled date</td></tr>
+<tr><td>Time given</td><td>At least 2 days after delivery</td><td>At least 3 days after delivery</td></tr>
+<tr><td>Earliest delivery</td><td>2 days before the scheduled deadline</td><td>3 days before the scheduled close of escrow</td></tr>
+<tr><td>Contingencies open?</td><td>May still be active</td><td>All contingencies should be removed</td></tr>
+<tr><td>Deposit if cancelled</td><td>Seller MUST return buyer's deposit</td><td>Deposit NOT automatically returned — seller may have a claim</td></tr>
+</tbody></table></div>
+<h2 class="st">The <span>Deposit Difference</span> — Why This Matters</h2>
+<div class="ca ca-r"><div class="cal">RPA Paragraph 14G — Deposit After DCE Cancellation</div>
+<p>When a party cancels after a DCE, the RPA does NOT automatically require return of the deposit. The deposit is disputed — release requires either mutual signed instructions or a legal proceeding. The seller may be entitled to the deposit as liquidated damages (up to 3% of purchase price) if Paragraph 29 was properly initialed and the buyer failed to close without a valid reason.</p></div>
+<h2 class="st">The <span>3-Day Timing Rule</span></h2>
+<p class="cp">A common mistake: the seller waits until Day 30, realizes the buyer is not closing, and immediately sends a DCE. Now they must wait 3 more days — until Day 33 — before they can cancel. If the seller had sent the DCE on Day 27 (3 days before the scheduled COE), they could have cancelled as early as Day 30.</p>
+<h2 class="st">What to Do When Your Buyer <span>Receives a DCE</span></h2>
+<div class="si"><div class="sn">1</div><div class="sc"><strong>Confirm all contingencies are removed</strong><p>If any contingency is still active, a DCE may not be the correct form — the seller should have used an NBP.</p></div></div>
+<div class="si"><div class="sn">2</div><div class="sc"><strong>Contact the lender immediately</strong><p>Can the loan fund within 3 days? Push hard. Get a firm date in writing and communicate it to the seller's agent.</p></div></div>
+<div class="si"><div class="sn">3</div><div class="sc"><strong>Request a written extension from the seller</strong><p>If the delay is legitimate, many sellers will agree to a short extension rather than start over with a new buyer. Get it in writing.</p></div></div>
+<div class="si"><div class="sn">4</div><div class="sc"><strong>If closing cannot happen in 3 days — consult an attorney</strong><p>The deposit is at risk. This requires legal guidance, not just agent advice.</p></div></div>
+<div class="tip"><div class="tipl">Prevent the DCE — Act Before It Arrives</div>
+<p>If your buyer's lender signals a delay, request a written COE extension from the seller immediately — before the seller has grounds to send a DCE. A signed written extension is always better than a DCE situation. Proactive communication saves deposits.</p></div>
+<div class="scope"><div class="scopel">Stay Within Your License</div>
+<p>You can explain what a DCE is, help your buyer understand their options, push the lender, and negotiate a written extension. You cannot tell your buyer whether the seller will win a deposit dispute. If a DCE leads to cancellation and the deposit is contested, refer your buyer to a California real estate attorney immediately. Deposit disputes fall outside your license scope.</p></div>
+<hr class="divhr"/>
+<div class="qhdr"><h2>Knowledge Check</h2><p>5 questions · 4/5 (80%) to pass · Read every explanation</p></div>
+<div id="quiz"><div class="qc" id="q1"><div class="qn">Question 1 <span class="qb">Multiple Choice</span></div><div class="qt">Close of escrow at 5555 Winners Lane is scheduled for Day 30. The Okonkwos' lender cannot fund until Day 33. The seller wants to cancel. What must the seller do BEFORE canceling for failure to close escrow?</div><div class="opts"><button class="ob" onclick="ans(1,'A')"><span class="ol">A</span>Send a Notice to Buyer to Perform (NBP) giving the buyers 2 days to close</button>
+<button class="ob" onclick="ans(1,'B')"><span class="ol">B</span>Cancel immediately — no notice is required once the close of escrow date has passed</button>
+<button class="ob" onclick="ans(1,'C')"><span class="ol">C</span>Deliver a Demand to Close Escrow (DCE) giving the buyers at least 3 days after delivery to close</button>
+<button class="ob" onclick="ans(1,'D')"><span class="ol">D</span>File a complaint with the California DRE against the buyer's lender</button>
+</div><div class="fb" id="fb1"></div></div><div class="qc" id="q2"><div class="qn">Question 2 <span class="qb">Multiple Choice</span></div><div class="qt">If the seller sends a DCE on Day 30 (the scheduled close date) and the Okonkwos still cannot close, what is the earliest the seller can cancel the agreement?</div><div class="opts"><button class="ob" onclick="ans(2,'A')"><span class="ol">A</span>Day 30 — the same day the DCE is delivered</button>
+<button class="ob" onclick="ans(2,'B')"><span class="ol">B</span>Day 31 — one day after delivery</button>
+<button class="ob" onclick="ans(2,'C')"><span class="ol">C</span>Day 33 — at least 3 days after delivery of the DCE</button>
+<button class="ob" onclick="ans(2,'D')"><span class="ol">D</span>Day 37 — 7 days after the originally scheduled close</button>
+</div><div class="fb" id="fb2"></div></div><div class="qc" id="q3"><div class="qn">Question 3 <span class="qb">Multiple Choice</span></div><div class="qt">The seller cancels the Okonkwos' transaction after properly sending a DCE and waiting 3 days. All contingencies were removed. What happens to the earnest money deposit?</div><div class="opts"><button class="ob" onclick="ans(3,'A')"><span class="ol">A</span>The deposit is automatically returned to the buyers in full</button>
+<button class="ob" onclick="ans(3,'B')"><span class="ol">B</span>The deposit is automatically split 50/50 between buyer and seller</button>
+<button class="ob" onclick="ans(3,'C')"><span class="ol">C</span>The deposit is not automatically returned — the seller may have a claim, and release requires mutual signed instructions or a legal proceeding</button>
+<button class="ob" onclick="ans(3,'D')"><span class="ol">D</span>The deposit is held by escrow for 90 days and then returned to the buyer</button>
+</div><div class="fb" id="fb3"></div></div><div class="qc" id="q4"><div class="qn">Question 4 <span class="qb">Multiple Choice</span></div><div class="qt">The Okonkwos still have their inspection contingency open when the seller sends a DCE demanding they close within 3 days. Is the DCE the correct form in this situation?</div><div class="opts"><button class="ob" onclick="ans(4,'A')"><span class="ol">A</span>Yes — the DCE applies anytime the buyer has not closed by the scheduled date</button>
+<button class="ob" onclick="ans(4,'B')"><span class="ol">B</span>No — if contingencies are still open, the seller should be using an NBP to address the contingency first, not a DCE</button>
+<button class="ob" onclick="ans(4,'C')"><span class="ol">C</span>Yes — the DCE automatically removes all remaining contingencies once delivered</button>
+<button class="ob" onclick="ans(4,'D')"><span class="ol">D</span>No — the seller cannot send any notice while contingencies are open</button>
+</div><div class="fb" id="fb4"></div></div><div class="qc" id="q5"><div class="qn">Question 5 <span class="qb">Multiple Choice</span></div><div class="qt">The Okonkwos' lender tells you on Day 28 that funding will be delayed by 4 days. COE is Day 30. All contingencies are removed. What is the BEST course of action?</div><div class="opts"><button class="ob" onclick="ans(5,'A')"><span class="ol">A</span>Do nothing and hope the seller does not notice</button>
+<button class="ob" onclick="ans(5,'B')"><span class="ol">B</span>Immediately contact the seller's agent, explain the situation, and request a written extension of the COE date signed by both parties before Day 30</button>
+<button class="ob" onclick="ans(5,'C')"><span class="ol">C</span>Instruct escrow to extend the close of escrow date on their own authority</button>
+<button class="ob" onclick="ans(5,'D')"><span class="ol">D</span>Have the buyers cancel using C.A.R. Form CC to avoid a potential DCE</button>
+</div><div class="fb" id="fb5"></div></div></div>
+<div class="sc-card" id="sc-card">
+<div class="sc-circ" id="sc-circ"></div>
+<div class="sc-title" id="sc-title"></div>
+<p class="sc-msg" id="sc-msg"></p>
+<p id="sc-saved" style="font-size:.78rem;color:#22c55e;margin-bottom:16px"></p>
+<div><button class="rbtn" onclick="retry()" id="rb" style="display:none">Retake Quiz</button>
+<button class="nbtn" id="nb" style="display:none" onclick="window.location.href='course2_lesson9.html'">Next Lesson →</button></div>
+<div class="pbw"><div class="pbf" id="pb" style="width:0%"></div></div>
+</div></div>
+<footer class="ftr">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 8 of 11<br/>
+Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards. Questions? rashaad@edrrealtygroup.com</footer>
+</div>
+<script>
+const A={1:{c:"C",e:"Under RPA Paragraph 14G, before either party may cancel for failure to close escrow, they must first deliver a Demand to Close Escrow (C.A.R. Form DCE) — not an NBP. The DCE must give the other party at least 3 days after delivery to close. Without first delivering a DCE, the seller cannot legally cancel for failure to close. This is one of the most common form-selection errors in California real estate."},2:{c:"C",e:"The DCE gives the recipient at least 3 calendar days after delivery to close. If the DCE was delivered on Day 30, the seller cannot cancel until after Day 33 at the earliest. This is why proactive sellers send the DCE 3 days BEFORE the scheduled close — by sending it on Day 27, the seller can cancel as early as Day 30 if the buyer has not closed. (RPA Paragraph 14G)"},3:{c:"C",e:"This is the critical difference between NBP and DCE cancellations. After an NBP cancellation, the RPA requires the deposit to be returned to the buyer. After a DCE cancellation when all contingencies are removed, the RPA does NOT automatically require return of the deposit. The seller may have a claim — potentially the full liquidated damages amount if Paragraph 29 was initialed. Release requires mutual written instructions from both parties or a court or arbitration decision. (RPA Paragraph 14G and 14H)"},4:{c:"B",e:"The DCE is specifically for failure to close escrow when all contingencies have been removed. If a contingency is still open, the appropriate form is the NBP — to require the buyer to remove the contingency. Using a DCE when contingencies are still open is a misuse of the form and may affect the seller's ability to retain the deposit if they cancel. Using the wrong form can create significant legal complications for your client. (RPA Paragraph 14G)"},5:{c:"B",e:"When you know your buyer cannot close on time, proactively request a written extension from the seller before the close date arrives. Many sellers will agree to a short extension for a legitimate lending delay rather than start over with a new buyer. Getting the signed extension before Day 30 prevents the seller from having grounds to send a DCE. Waiting and hoping puts the buyers' deposit at risk. Proactive communication is always better than reactive damage control. (RPA Paragraph 14)"}};
+const ua={};let ac=0;
+function ans(q,s){
+  if(ua[q])return;ua[q]=s;ac++;
+  const card=document.getElementById('q'+q);
+  const btns=card.querySelectorAll('.ob');
+  const fb=document.getElementById('fb'+q);
+  const c=A[q].c;const ok=s===c;
+  btns.forEach(b=>{b.disabled=true;const l=b.querySelector('.ol').textContent.trim();
+    if(l===c)b.classList.add(ok&&l===s?'correct':'rev');
+    if(l===s&&!ok)b.classList.add('wrong');});
+  fb.innerHTML=A[q].e;fb.className='fb show '+(ok?'ok':'no');
+  if(ac===5)score();
+}
+async function score(){
+  const cor=Object.keys(ua).filter(q=>ua[q]===A[q].c).length;
+  const pct=Math.round(cor/5*100);const pass=cor>=4;
+  document.getElementById('sc-circ').textContent=cor+'/5';
+  document.getElementById('sc-circ').className='sc-circ '+(pass?'pass':'fail');
+  document.getElementById('sc-title').textContent=pass?'Lesson Complete!':'Keep Practicing';
+  document.getElementById('sc-msg').textContent=pass?'You scored '+pct+'% - Proceed to Lesson 9.':'You scored '+pct+'%. You need 80% to pass. Review and retake.';
+  document.getElementById('sc-card').classList.add('show');
+  document.getElementById('pb').style.width=pct+'%';
+  if(pass)document.getElementById('nb').style.display='inline-block';
+  else document.getElementById('rb').style.display='inline-block';
+
+  try{await window._saveLP(8,cor,pass,ua);}catch(e){}
+}
+function retry(){
+  Object.keys(ua).forEach(q=>delete ua[q]);ac=0;
+  for(let i=1;i<=5;i++){
+    document.getElementById('q'+i).querySelectorAll('.ob').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong','rev');});
+    const fb=document.getElementById('fb'+i);fb.className='fb';fb.innerHTML='';
+  }
+  document.getElementById('sc-card').classList.remove('show');
+  document.getElementById('rb').style.display='none';
+  document.getElementById('nb').style.display='none';
+  document.getElementById('pb').style.width='0%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+
+
+
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+  };
+  window._saveLP=async function(lid,sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2&select=id");
+    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2");}
+    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course2"});}
+    return true;}catch(e){return false;}
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course2&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course2");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course2"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+  });
+})();
+</script>
+</body></html>
