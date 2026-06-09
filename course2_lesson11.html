@@ -1,264 +1,271 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="UTF-8"/>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Course 2 Lesson 11 | EDR Realty Group</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 2 · Lesson 11 — Full Scenario | EDR Realty Group</title>
 <style>
-:root{--n:#0b0f1f;--n2:#111827;--c:#161d30;--b:#1e2a42;--g:#c9a84c;--gl:#e8c96e;--gd:rgba(201,168,76,.15);--gr:#22c55e;--r:#ef4444;--t:#e8eaf0;--m:#8b93a8;--w:#fff;--bl:#3b82f6}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--n);color:var(--t);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7}
-.hdr{background:var(--n2);border-bottom:1px solid var(--b);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99}
-.brand{font-family:'Playfair Display',serif;color:var(--g);font-size:1.05rem}
-.badge{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.hero{background:linear-gradient(135deg,#0d1a35,#0b0f1f);border-bottom:1px solid var(--b);padding:44px 20px 36px;text-align:center}
-.ctag{display:inline-block;background:var(--gd);color:var(--g);border:1px solid var(--g);padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--w);line-height:1.25;margin-bottom:10px}
-.hero h1 span{color:var(--g)}
-.hero p{color:var(--m);font-size:.92rem;max-width:460px;margin:0 auto 20px}
-.hmeta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
-.hmi{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--m)}
-.hmd{width:5px;height:5px;border-radius:50%;background:var(--g)}
-.main{max-width:700px;margin:0 auto;padding:28px 18px 56px}
-.story{background:linear-gradient(135deg,#1a2040,#111827);border:1px solid var(--g);border-radius:12px;padding:24px;margin-bottom:32px}
-.stag{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--g);margin-bottom:12px}
-.story p{color:var(--t);margin-bottom:10px}
-.story p:last-child{margin-bottom:0}
-.story strong{color:var(--gl)}
-h2.st{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--w);margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--b)}
-h2.st span{color:var(--g)}
-.cp{color:var(--t);margin-bottom:14px}
-.cp strong{color:var(--gl)}
-.ca{border-radius:10px;padding:18px 20px;margin:16px 0;font-size:.88rem}
-.ca-g{background:var(--gd);border-left:3px solid var(--g)}
-.ca-b{background:rgba(59,130,246,.08);border-left:3px solid var(--bl)}
-.ca-r{background:rgba(239,68,68,.07);border-left:3px solid var(--r)}
-.cal{font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-.ca-g .cal{color:var(--g)}.ca-b .cal{color:#60a5fa}.ca-r .cal{color:#f87171}
-.tip{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:16px 18px;margin:18px 0}
-.tipl{color:var(--gr);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-.tip p{font-size:.88rem;color:var(--t);margin-bottom:7px}
-.tip p:last-child{margin-bottom:0}
-.scope{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:10px;padding:16px 18px;margin:20px 0}
-.scopel{color:#f87171;font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-.scope p{font-size:.85rem;color:var(--m)}
-.ig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
-.ic{background:var(--c);border:1px solid var(--b);border-radius:8px;padding:12px}
-.icl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:5px}
-.icv{font-size:.85rem;color:var(--t)}
-.ctw{overflow-x:auto;margin:16px 0}
-.ct{width:100%;border-collapse:collapse;font-size:.83rem}
-.ct th{background:var(--gd);color:var(--g);font-weight:600;padding:9px 12px;text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--g)}
-.ct td{padding:9px 12px;border-bottom:1px solid var(--b);color:var(--t);vertical-align:top}
-.ct tr:last-child td{border-bottom:none}
-.si{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
-.sn{width:30px;height:30px;min-width:30px;border-radius:50%;background:var(--gd);border:1px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--g);font-size:.88rem}
-.sc{flex:1}
-.sc strong{color:var(--gl);display:block;margin-bottom:3px}
-.sc p{font-size:.88rem;color:var(--t);margin:0}
-.hb{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:18px;margin:14px 0}
-.hbt{font-family:'Playfair Display',serif;color:var(--g);font-size:.95rem;margin-bottom:8px}
-.hb p{font-size:.88rem;color:var(--t);margin-bottom:7px}
-.hb p:last-child{margin-bottom:0}
-.trow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--b)}
-.trow:last-child{border-bottom:none}
-.td{min-width:75px;font-weight:700;color:var(--g);font-size:.82rem}
-.tc{flex:1;font-size:.88rem;color:var(--t)}
-.tc strong{color:var(--gl)}
-.divhr{border:none;border-top:1px solid var(--b);margin:36px 0}
-.qhdr{text-align:center;margin-bottom:24px}
-.qhdr h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:5px}
-.qhdr p{color:var(--m);font-size:.85rem}
-.qc{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:22px;margin-bottom:18px}
-.qn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:9px}
-.qb{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:7px;background:var(--gd);color:var(--g)}
-.qt{font-size:.94rem;color:var(--w);font-weight:500;margin-bottom:16px;line-height:1.5}
-.opts{display:flex;flex-direction:column;gap:9px}
-.ob{background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:12px 14px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.87rem;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px}
-.ob:hover:not(:disabled){border-color:var(--g);color:var(--w);background:var(--gd)}
-.ob:disabled{cursor:default}
-.ob.correct{background:rgba(34,197,94,.12);border-color:var(--gr);color:var(--w)}
-.ob.wrong{background:rgba(239,68,68,.1);border-color:var(--r);color:var(--w)}
-.ob.rev{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3)}
-.ol{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--b);color:var(--m);font-weight:700;font-size:.72rem;flex-shrink:0;margin-top:1px}
-.ob.correct .ol{background:var(--gr);color:#fff}
-.ob.wrong .ol{background:var(--r);color:#fff}
-.ob.rev .ol{background:rgba(34,197,94,.35);color:#fff}
-.fb{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.5;display:none}
-.fb.show{display:block}
-.fb.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac}
-.fb.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5}
-.sc-card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:32px 24px;text-align:center;margin-top:28px;display:none}
-.sc-card.show{display:block}
-.sc-circ{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;margin:0 auto 18px}
-.sc-circ.pass{background:rgba(34,197,94,.15);border:3px solid var(--gr);color:var(--gr)}
-.sc-circ.fail{background:rgba(239,68,68,.1);border:3px solid var(--r);color:var(--r)}
-.sc-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--w);margin-bottom:7px}
-.sc-msg{color:var(--m);font-size:.88rem;margin-bottom:20px}
-.rbtn{background:var(--g);color:var(--n);border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer}
-.nbtn{background:var(--gr);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer;margin-left:10px}
-.pbw{width:100%;height:4px;background:var(--b);border-radius:2px;margin-top:18px}
-.pbf{height:4px;background:var(--g);border-radius:2px;transition:width .4s}
-.ftr{text-align:center;padding:22px;color:var(--m);font-size:.76rem;border-top:1px solid var(--b);margin-top:36px}
-@media(max-width:480px){.hero{padding:32px 14px 26px}.main{padding:20px 14px 44px}.qc{padding:16px 14px}.ig{grid-template-columns:1fr}}
-
-.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
-.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
-.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
-.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
-.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
-.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
-.auth-tab.active{background:#c9a84c;color:#0b0f1f}
-.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
-.ainp:focus{border-color:#c9a84c}
-.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
-.abtn:hover{background:#e8c96e}
-.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
-.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
-.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
-
-</style></head><body>
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.preview-banner{background:#c9a84c;color:#0a1628;text-align:center;padding:8px;font-size:12px;font-weight:700;font-family:sans-serif;position:sticky;top:0;z-index:200;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
 <div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
 <div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
 <div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
-<div style="font-family:sans-serif;font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
 <div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
 <div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
 <input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div>
-<div id="lc" style="display:none"><header class="hdr"><div class="brand">EDR Realty Group</div><a href="index.html" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:'Helvetica Neue',sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;">← Portal</a>
-<span class="agent-name-badge" id="nb-badge" style="display:none"></span>
-<div class="badge">Course 2 · Buyer Side</div></header>
-<section class="hero">
-<div class="ctag">Lesson 11 of 11</div>
-<h1>Full Scenario:<br/><span>5555 Winners Lane</span> Goes Sideways</h1>
-<p>Everything Goes Wrong — Practice Making the Right Calls</p>
-<div class="hmeta">
-<span class="hmi"><span class="hmd"></span>~30 min</span>
-<span class="hmi"><span class="hmd"></span>All RPA Paragraphs Covered in Course 2</span>
-<span class="hmi"><span class="hmd"></span>5 Questions</span>
-</div></section>
-<div class="main">
-<div class="story"><div class="stag">📖 THE STORY CONTINUES</div><p>Welcome to the final lesson of Course 2. This is where everything you have learned comes together — and where Marcus and Priya's deal at 5555 Winners Lane stops going smoothly.</p><p>In this lesson we run through a complete scenario where <strong>multiple things go wrong at once.</strong> Your job is to identify the right move at every turn.</p><p>This is not a simple deal. This is the kind of deal that separates trained agents from agents who wing it. <strong>Let us see what you have got.</strong></p></div>
-<h2 class="st">The <span>Full Story</span> — 5555 Winners Lane Goes Sideways</h2>
-<div class="hb"><div class="hbt">Day 0 — Acceptance</div>
-<p>Marcus and Priya Okonkwo go into escrow on 5555 Winners Lane at $1,250,000. EMD: $25,000. Close of escrow: Day 30. The property is in an HOA with a $450/month fee. All 5 core contingencies are active. Default timelines apply.</p></div>
-<div class="hb"><div class="hbt">Day 7 — Seller Misses Disclosure Deadline</div>
-<p>The seller was supposed to deliver the TDS, SPQ, and NHD by Day 7. Nothing arrives. You call the listing agent twice. No response.</p>
-<p><strong>What you do:</strong> You prepare a Notice to Seller to Perform (C.A.R. Form NSP), get it signed by Marcus and Priya, and deliver it to the seller's agent. This gives the seller 2 days to deliver the required disclosures. You document everything.</p></div>
-<div class="hb"><div class="hbt">Day 9 — HOA Documents Arrive, Disclosures Still Missing</div>
-<p>The HOA documents arrive. The seller's disclosures still have not come. The NSP 2-day window expires at end of Day 9.</p>
-<p><strong>What you do:</strong> Your buyers now have the right to cancel and recover their deposit. However, Marcus and Priya decide to give the seller one more day. You document this decision and note that the cancellation right still exists.</p></div>
-<div class="hb"><div class="hbt">Day 10 — Disclosures Arrive, HOA Red Flags Found</div>
-<p>The seller's disclosures arrive 3 days late. The HOA documents reveal: reserve fund at 18%, and board minutes showing a vote to assess all units $9,500 for roof repairs within 6 months.</p>
-<p><strong>What you know:</strong> The HOA contingency deadline is now Day 14 (5 days after Day 9 delivery). The seller disclosures deadline is Day 17 (5 days after Day 10 delivery equals Day 15, which is before Day 17, so Day 17 applies). You note both extended deadlines.</p></div>
-<div class="hb"><div class="hbt">Day 12 — Inspection Reveals Foundation Issues</div>
-<p>The home inspector finds significant foundation cracking and evidence of unpermitted work. Estimated repair cost: $22,000. Marcus is upset. Priya wants to cancel.</p>
-<p><strong>Three options while the inspection contingency is active:</strong> (1) Cancel using C.A.R. Form CC — recover the deposit. (2) Submit a Request for Repair (C.A.R. Form RR) asking the seller to credit $22,000 or make repairs. (3) Accept the property as-is and remove the inspection contingency. Your buyers choose Option 2.</p></div>
-<div class="hb"><div class="hbt">Day 14 — Seller Counters, HOA Deadline Arrives</div>
-<p>The seller counters with a $10,000 credit — not the full $22,000. The HOA contingency deadline is also today.</p>
-<p><strong>What you do:</strong> On the HOA: you get a written extension of the HOA contingency to Day 20, signed by both buyer and seller. On the repair request: Marcus and Priya accept the $10,000 credit. The inspection contingency is not yet removed.</p></div>
-<div class="hb"><div class="hbt">Day 17 — The Big Deadline Day</div>
-<p>Appraisal came in at value. Lender verbally says the loan looks good but no written approval yet. Insurance confirmed at $8,400/year. Seller documents reviewed. Title looks clean.</p>
-<p><strong>What you remove:</strong> Inspection (done, credit agreed), insurance (policy confirmed), seller documents (reviewed), title (clean). <strong>What you keep:</strong> Loan (no written approval yet), HOA (extended to Day 20). You deliver a partial CR-B removing four of six contingencies.</p></div>
-<div class="hb"><div class="hbt">Day 18 — Seller Sends an NBP for Loan Contingency</div>
-<p>The listing agent sends an NBP requiring removal of the loan contingency. The deadline was Day 17, so the NBP is valid. You have 2 days to respond.</p>
-<p><strong>What you do:</strong> Immediately call the lender. The lender says written approval will arrive on Day 19. You communicate this to the seller's agent and commit to delivering the CR-B on Day 19.</p></div>
-<div class="hb"><div class="hbt">Day 19 — Loan Approved, HOA Decision Time</div>
-<p>Written loan approval arrives. You remove the loan contingency with CR-B. The HOA extended deadline is tomorrow — Day 20. After reviewing everything, Marcus and Priya decide they can live with the HOA situation.</p>
-<p><strong>What you do:</strong> Remove the HOA contingency on Day 19 using CR-B. All contingencies are now removed. The deal is fully committed. Close of escrow confirmed for Day 30.</p></div>
-<div class="hb"><div class="hbt">Day 28 — Lender Funding Delay</div>
-<p>The lender calls. Loan docs will not be ready until Day 32. COE is Day 30. All contingencies are removed.</p>
-<p><strong>What you do:</strong> Immediately contact the seller's agent, explain the situation, and request a written extension of the COE to Day 33 — signed by both parties. If the seller agrees, the crisis is averted. If they refuse, they can send a DCE on Day 28 giving 3 days — until Day 31 — to close. The lender cannot fund until Day 32. You advise your buyers to consult a real estate attorney if the seller refuses the extension.</p></div>
-<div class="hb"><div class="hbt">Day 30 — The Seller Agrees</div>
-<p>The seller agrees to extend COE to Day 33 in exchange for a $500/day occupancy fee if the deal closes after Day 30. Both parties sign the amendment. The lender funds on Day 32. Marcus and Priya close on 5555 Winners Lane. The deal is done.</p></div>
-<div class="ca ca-g"><div class="cal">What This Scenario Taught You</div>
-<p>Track seller obligations just as carefully as buyer obligations — NSP is your tool when the seller drops the ball. HOA red flags require careful review before removing the HOA contingency. Remove contingencies selectively — one at a time as each is resolved. An NBP after a missed deadline is valid — respond within 2 days. All contingencies removed plus a late close equals DCE territory and deposit at risk. Written extensions prevent emergencies — always get them signed before deadlines hit.</p></div>
-<div class="tip"><div class="tipl">You Are Now Ahead of Most Agents</div>
-<p>Most agents learn contingency management the hard way — through a deal that went wrong. You just walked through every major failure point in a real transaction without losing a client's deposit. That is what this course was for.</p></div>
-<hr class="divhr"/>
-<div class="qhdr"><h2>Knowledge Check</h2><p>5 questions · 4/5 (80%) to pass · Read every explanation</p></div>
-<div id="quiz"><div class="qc" id="q1"><div class="qn">Question 1 <span class="qb">Multiple Choice</span></div><div class="qt">In the 5555 Winners Lane scenario, the seller missed the Day 7 disclosure deadline. Before the buyers could cancel for seller non-performance, what was the required first step?</div><div class="opts"><button class="ob" onclick="ans(1,'A')"><span class="ol">A</span>Immediately send C.A.R. Form CC to cancel the agreement</button>
-<button class="ob" onclick="ans(1,'B')"><span class="ol">B</span>Send a Notice to Seller to Perform (C.A.R. Form NSP) giving the seller 2 days to deliver the required disclosures</button>
-<button class="ob" onclick="ans(1,'C')"><span class="ol">C</span>Send a Demand to Close Escrow (DCE) requiring immediate delivery of disclosures</button>
-<button class="ob" onclick="ans(1,'D')"><span class="ol">D</span>Contact the California DRE to report the seller's violation</button>
-</div><div class="fb" id="fb1"></div></div><div class="qc" id="q2"><div class="qn">Question 2 <span class="qb">Multiple Choice</span></div><div class="qt">When the HOA documents arrived on Day 9 with significant red flags, the agent got a written extension of the HOA contingency to Day 20. Why was a written extension necessary?</div><div class="opts"><button class="ob" onclick="ans(2,'A')"><span class="ol">A</span>It was not necessary — the HOA contingency automatically extends when red flags are found</button>
-<button class="ob" onclick="ans(2,'B')"><span class="ol">B</span>Without a written extension, the seller could have sent an NBP on Day 12 requiring removal of the HOA contingency by Day 14, putting the buyers at risk</button>
-<button class="ob" onclick="ans(2,'C')"><span class="ol">C</span>Written extensions are only required for loan and appraisal contingencies</button>
-<button class="ob" onclick="ans(2,'D')"><span class="ol">D</span>The HOA contingency can never be extended under California law</button>
-</div><div class="fb" id="fb2"></div></div><div class="qc" id="q3"><div class="qn">Question 3 <span class="qb">Multiple Choice</span></div><div class="qt">On Day 17, the agent submitted a partial CR-B removing four contingencies but keeping the loan and HOA contingencies active. The seller's agent argues all contingencies must be removed at once. Is the seller's agent correct?</div><div class="opts"><button class="ob" onclick="ans(3,'A')"><span class="ol">A</span>Yes — the RPA requires all contingencies to be removed together on a single CR-B</button>
-<button class="ob" onclick="ans(3,'B')"><span class="ol">B</span>No — the RPA allows buyers to remove contingencies selectively using C.A.R. Form CR-B, checking only those being removed</button>
-<button class="ob" onclick="ans(3,'C')"><span class="ol">C</span>Yes — partial removal of contingencies is only allowed if both parties agree in writing</button>
-<button class="ob" onclick="ans(3,'D')"><span class="ol">D</span>No — but partial removal requires the seller's written consent for each contingency kept open</button>
-</div><div class="fb" id="fb3"></div></div><div class="qc" id="q4"><div class="qn">Question 4 <span class="qb">Multiple Choice</span></div><div class="qt">On Day 28, all contingencies were removed and COE was Day 30, but the lender could not fund until Day 32. The agent immediately requested a written COE extension from the seller. Why was this the right move instead of waiting?</div><div class="opts"><button class="ob" onclick="ans(4,'A')"><span class="ol">A</span>It was not the right move — the buyers should have cancelled immediately to avoid a DCE</button>
-<button class="ob" onclick="ans(4,'B')"><span class="ol">B</span>It was the right move because the seller could send a DCE as early as Day 27 — waiting until Day 30 to ask for an extension leaves the buyers exposed to a DCE they cannot beat</button>
-<button class="ob" onclick="ans(4,'C')"><span class="ol">C</span>It was the right move because California law requires buyers to request extensions 30 days in advance</button>
-<button class="ob" onclick="ans(4,'D')"><span class="ol">D</span>It was not necessary — the DCE automatically gives the buyer a 30-day extension</button>
-</div><div class="fb" id="fb4"></div></div><div class="qc" id="q5"><div class="qn">Question 5 <span class="qb">Multiple Choice</span></div><div class="qt">Looking back at the entire 5555 Winners Lane transaction, which single practice MOST protected the Okonkwos throughout every challenge they faced?</div><div class="opts"><button class="ob" onclick="ans(5,'A')"><span class="ol">A</span>Removing all contingencies as early as possible to show the seller they were serious buyers</button>
-<button class="ob" onclick="ans(5,'B')"><span class="ol">B</span>Tracking every deadline proactively, using the correct C.A.R. forms at the correct times, and getting written extensions before deadlines passed — never reacting after the fact</button>
-<button class="ob" onclick="ans(5,'C')"><span class="ol">C</span>Relying on the lender and escrow officer to manage all deadlines automatically</button>
-<button class="ob" onclick="ans(5,'D')"><span class="ol">D</span>Verbally communicating all decisions to the listing agent to maintain a good relationship</button>
-</div><div class="fb" id="fb5"></div></div></div>
-<div class="sc-card" id="sc-card">
-<div class="sc-circ" id="sc-circ"></div>
-<div class="sc-title" id="sc-title"></div>
-<p class="sc-msg" id="sc-msg"></p>
-<p id="sc-saved" style="font-size:.78rem;color:#22c55e;margin-bottom:16px"></p>
-<div><button class="rbtn" onclick="retry()" id="rb" style="display:none">Retake Quiz</button>
-<button class="nbtn" id="nb" style="display:none" onclick="window.location.href='course2_final_quiz.html'">Next Lesson →</button></div>
-<div class="pbw"><div class="pbf" id="pb" style="width:0%"></div></div>
 </div></div>
-<footer class="ftr">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 11 of 11<br/>
-Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards. Questions? rashaad@edrrealtygroup.com</footer>
+<div id="lc" style="display:none">
+<div id="preview-banner" style="display:none">🧪 INSTRUCTOR PREVIEW MODE — Progress will NOT be saved</div>
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 2 · BUYER SIDE</span>
+  </div>
+</header>
+<div class="hero">
+  <div class="lesson-num">LESSON 11 OF 11</div>
+  <h1>Full Scenario</h1>
+  <div class="hero-sub">5555 Winners Lane — The Complete Buyer-Side Story from Acceptance to Keys</div>
+  <div class="hero-meta"><span class="meta-dot">~45 min read</span><span class="meta-dot">Complete Walkthrough</span><span class="meta-dot">5 Quiz Questions</span></div>
+</div>
+<div class="main">
+  <div class="story-card">
+<div class="story-label">🏠 The Complete Picture</div>
+<p>This lesson walks the entire transaction from the morning Marcus and Priya Okonkwo accepted their offer on 5555 Winners Lane to the day they got the keys. Every tool from this course — contingencies, CR, NBP, NSP, DCE — appears in its real context.</p>
+</div>
+  <div class="section"><h2>Acceptance — Monday, June 2</h2>
+<p>Offer accepted: $1,250,000, 21-day COE (June 23), conventional loan, 3% down. EMD: $37,500 due within 3 business days. Day 1 = June 3. You immediately set calendar reminders for Day 7, 15, 17, and 21.</p>
+</div>
+<div class="section"><h2>Days 1-7 — Investigations Begin</h2>
+<p>Day 3: EMD deposited. Day 5: Seller delivers TDS, SPQ, NHD, AVID on time. Day 6: HOA documents arrive — clean, 68% reserves funded, no special assessments. Day 7: Home inspector visits 5555 Winners Lane.</p>
+</div>
+<div class="section"><h2>Day 8 — The NSP Moment</h2>
+<p>You check — the seller's agent promised the FHDS (Fire Hardening Disclosure) by Day 7. It didn't arrive. You send an NSP. Two hours later, the listing agent emails with the FHDS and an apology. Resolved same day.</p>
+</div>
+<div class="section"><h2>Days 8-17 — The Contingency Sprint</h2>
+<p>Day 9: Inspector reports minor electrical issue ($800 estimate) and disclosed HVAC. You submit an RR (Request for Repair). Day 12: Seller agrees to $800 credit via RRRR. Day 14: Appraisal comes in at $1,250,000. Day 14: Loan conditionally approved. Day 17: You get all contingencies signed off via CR. All five contingencies removed.</p>
+</div>
+<div class="section"><h2>Day 18 — The Better Offer Arrives</h2>
+<p>A listing agent calls — their client loves the property and wants to offer $1,300,000 to buy the Okonkwos out. You explain to Marcus and Priya: with all contingencies removed, they have no valid way out. They are committed. They pass.</p>
+</div>
+<div class="section"><h2>Day 21 — The DCE Moment</h2>
+<p>COE: June 23. At 2pm, the title company calls. Seller's lender has a wire hold. Can't record today. You send a DCE giving the seller 3 days to close — deadline June 26. The wire clears on June 24. Escrow records June 24. The Okonkwos get their keys one day late — within the DCE window.</p>
+<div class="tip-box"><div class="callout-title">✓ What Made This Work</div><p>Every tool used correctly and on time. EMD deposited on time. Disclosures reviewed promptly. NSP sent immediately when seller missed deadline. CR completed on Day 17. DCE deployed on COE date. All work was saved at every step.</p></div>
+</div>
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">In the scenario, the seller missed the FHDS deadline. The buyer sent an NSP. The seller delivered the FHDS 2 hours later. What happened to the transaction?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. It cancelled because the deadline was missed</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. It continued — the seller cured the default within the NSP window</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. The buyer had to negotiate a new deadline</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. The NSP triggered an automatic extension of all contingencies</button>
+            </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">On Day 17, the Okonkwos signed the CR removing all 5 contingencies. A better offer arrived on Day 18. What were their options?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. Cancel using the inspection contingency</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. Accept the new offer since Day 17 had already passed</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. They had no valid way out — all contingencies were removed and they were committed</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. Send a DCE to cancel the existing deal</button>
+            </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">A DCE was sent on June 23 (the COE date). Escrow closed on June 24. Was the DCE satisfied?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. No — the DCE required closing on the exact COE date</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. Yes — escrow closed within the 3-day DCE window</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. No — the DCE made closing impossible once sent</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. Yes, but only because it was within 24 hours</button>
+            </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">At what point in the Okonkwo transaction was the deposit most at risk?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. Before Day 17 when contingencies were still active</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. After Day 17 when all contingencies had been removed</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. After the EMD was deposited on Day 3</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. After the appraisal came in at value</button>
+            </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">Which form did the Okonkwos use to formally complete their contingency review and signal readiness to proceed?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. Notice to Buyer to Perform (NBP)</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. Demand to Close Escrow (DCE)</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. Contingency Removal (CR)</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. Request for Repair (RR)</button>
+            </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div><br>
+      <button class="btn-next" id="nb" onclick="window.location.href='course2_final_quiz.html'">Take Final Quiz →</button>
+      <button class="btn-retry" id="rb" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+<footer>EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 11 of 11<br>Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.</footer>
 </div>
 <script>
-const A={1:{c:"B",e:"Under RPA Paragraph 14D, before a buyer can cancel for seller non-performance of a contractual obligation, the buyer must first deliver a Notice to Seller to Perform (NSP). The NSP gives the seller at least 2 days to cure the failure. Only after the NSP window passes without performance can the buyer cancel and recover their deposit. Jumping straight to cancellation without the NSP first would be procedurally incorrect and could complicate the deposit recovery."},2:{c:"B",e:"The HOA contingency deadline was Day 14 (5 days after delivery on Day 9). Without a written extension, the seller could have sent an NBP on Day 12 (2 days before Day 14) demanding removal. If the buyers did not act within 2 days, the seller could cancel. A written extension signed by both parties — as required by RPA Paragraph 14 — moved the deadline to Day 20, giving the buyers proper time to evaluate the red flags. This is proactive deal management: always get extensions signed before the deadline."},3:{c:"B",e:"C.A.R. Form CR-B allows buyers to check specific contingencies being removed while leaving others active. Partial contingency removal is fully permitted under the RPA and is best practice — remove each contingency only when fully satisfied with that specific item. The seller's agent is incorrect. The loan contingency remained active because written loan approval had not arrived yet, and the HOA contingency was still under evaluation. Never remove contingencies because the other side is pressuring you. (RPA Paragraph 14B(3) and Form CR-B)"},4:{c:"B",e:"Once all contingencies are removed, a late close puts the deposit at risk via DCE. The seller can send a DCE as early as 3 days before the scheduled COE — Day 27. If a DCE is sent and 3 days pass without closing, the seller can cancel and the deposit is not automatically returned. By requesting a written extension before Day 27 — or as early as possible once the delay was known — the agent gave the seller a chance to cooperate and prevented the DCE clock from starting. Proactive communication saves deals and deposits. (RPA Paragraph 14G)"},5:{c:"B",e:"The entire Course 2 curriculum comes down to this: proactive deadline management with the correct written forms at the correct times. Every challenge the Okonkwos faced — seller's late disclosures (NSP), HOA red flags (written extension), partial contingency removal (selective CR-B), lender delay (written COE extension) — was navigated correctly because the agent acted before deadlines expired, used the right forms, and always got agreements in writing. Verbal communication, early contingency removal, or passive reliance on others are the patterns that cost buyers their deposits and cost agents their licenses."}};
-const ua={};let ac=0;
-function ans(q,s){
-  if(ua[q])return;ua[q]=s;ac++;
-  const card=document.getElementById('q'+q);
-  const btns=card.querySelectorAll('.ob');
-  const fb=document.getElementById('fb'+q);
-  const c=A[q].c;const ok=s===c;
-  btns.forEach(b=>{b.disabled=true;const l=b.querySelector('.ol').textContent.trim();
-    if(l===c)b.classList.add(ok&&l===s?'correct':'rev');
-    if(l===s&&!ok)b.classList.add('wrong');});
-  fb.innerHTML=A[q].e;fb.className='fb show '+(ok?'ok':'no');
-  if(ac===5)score();
-}
-async function score(){
-  const cor=Object.keys(ua).filter(q=>ua[q]===A[q].c).length;
-  const pct=Math.round(cor/5*100);const pass=cor>=4;
-  document.getElementById('sc-circ').textContent=cor+'/5';
-  document.getElementById('sc-circ').className='sc-circ '+(pass?'pass':'fail');
-  document.getElementById('sc-title').textContent=pass?'Lesson Complete!':'Keep Practicing';
-  document.getElementById('sc-msg').textContent=pass?'You scored '+pct+'% - Proceed to the Final Quiz.':'You scored '+pct+'%. You need 80% to pass. Review and retake.';
-  document.getElementById('sc-card').classList.add('show');
-  document.getElementById('pb').style.width=pct+'%';
-  if(pass)document.getElementById('nb').style.display='inline-block';
-  else document.getElementById('rb').style.display='inline-block';
-
-  try{await window._saveLP(11,cor,pass,ua);}catch(e){}
-}
-function retry(){
-  Object.keys(ua).forEach(q=>delete ua[q]);ac=0;
-  for(let i=1;i<=5;i++){
-    document.getElementById('q'+i).querySelectorAll('.ob').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong','rev');});
-    const fb=document.getElementById('fb'+i);fb.className='fb';fb.innerHTML='';
+  let userAnswers = {};
+  let answeredCount = 0;
+  const answers = {
+    1: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>The seller delivered the missing FHDS within the NSP window, curing the default. The transaction continued without interruption.` },
+    2: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C</span><br>With all contingencies removed, the Okonkwos had no valid cancellation right. They were committed to the transaction.` },
+    3: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>The DCE was delivered on June 23. Escrow closed on June 24 — within the 3-day window. The DCE was satisfied.` },
+    4: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>After all contingencies are removed, the buyer has no valid exit without risking their deposit. This is the highest-risk period for the buyer.` },
+    5: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — CR (Contingency Removal)</span><br>The Contingency Removal form (C.A.R. Form CR) is the written document used to formally remove contingencies and signal commitment to proceed.` },
+  };
+  function answer(q, selected) {
+    if (userAnswers[q]) return;
+    userAnswers[q] = selected;
+    answeredCount++;
+    const card = document.getElementById("q" + q);
+    card.querySelectorAll(".option-btn").forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) btn.classList.add(selected === answers[q].correct ? "correct" : "wrong");
+      if (btn.dataset.opt === answers[q].correct) btn.classList.add("correct");
+    });
+    const fb = document.getElementById("fb" + q);
+    fb.className = "feedback-box show";
+    fb.style.background = selected === answers[q].correct ? "rgba(45,122,79,.15)" : "rgba(163,45,45,.15)";
+    fb.style.border = selected === answers[q].correct ? "1px solid rgba(45,122,79,.3)" : "1px solid rgba(163,45,45,.3)";
+    fb.innerHTML = answers[q].explanation;
+    card.classList.add("revealed");
+    document.querySelector(".progress-fill").style.width = (answeredCount / Object.keys(answers).length * 100) + "%";
+    if (answeredCount === Object.keys(answers).length) setTimeout(showScore, 600);
   }
-  document.getElementById('sc-card').classList.remove('show');
-  document.getElementById('rb').style.display='none';
-  document.getElementById('nb').style.display='none';
-  document.getElementById('pb').style.width='0%';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  async function showScore() {
+    const total = Object.keys(answers).length;
+    const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
+    const pct = Math.round(correct / total * 100);
+    const passed = correct >= 4;
+    document.getElementById("sc-circ").textContent = correct + "/" + total;
+    document.getElementById("sc-circ").className = "sc-circ " + (passed ? "pass" : "fail");
+    document.getElementById("sc-title").textContent = passed ? "🎉 Lesson 11 Complete!" : "Keep Practicing";
+    document.getElementById("sc-msg").textContent = passed ? "Full scenario complete. You are ready for the Course 2 Final Quiz!" : "You scored " + pct + "%. You need 80% to pass. Review and try again.";
+    if (passed) document.getElementById("nb").style.display = "inline-block";
+    else document.getElementById("rb").style.display = "inline-block";
+    document.getElementById("score-card").classList.add("show");
+    try { await window._saveLP(11, correct, passed, userAnswers); } catch(e) {}
+  }
+  function retryQuiz() {
+    userAnswers = {}; answeredCount = 0;
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+      const card = document.getElementById("q" + i);
+      card.classList.remove("revealed");
+      card.querySelectorAll(".option-btn").forEach(b => { b.disabled=false; b.classList.remove("correct","wrong"); });
+      document.getElementById("fb" + i).className = "feedback-box";
+      document.getElementById("fb" + i).innerHTML = "";
+    }
+    document.getElementById("score-card").classList.remove("show");
+    document.getElementById("nb").style.display = "none";
+    document.getElementById("rb").style.display = "none";
+    document.querySelector(".progress-fill").style.width = "0%";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  // Show preview banner if in preview mode
+  window.addEventListener("DOMContentLoaded", function() {
+    var s = JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+    if (s && s.is_preview) {
+      var b = document.getElementById("preview-banner");
+      if (b) b.style.display = "block";
+    }
+  });
 </script>
-
-
-
-
 <script>
 (function(){
   var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
@@ -277,25 +284,31 @@ function retry(){
     if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
     if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
     var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
-    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+    localStorage.setItem("edr_agent",JSON.stringify(ag));
+    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+    _show(ag);
   };
   window._saveLP=async function(lid,sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2");}
     else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course2"});}
     return true;}catch(e){return false;}
   };
   window._saveFQ=async function(sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course2");}
     else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course2"});}
     return true;}catch(e){return false;}
   };
   window.addEventListener("DOMContentLoaded",function(){
-    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+    try{
+      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
+    }catch(e){}
   });
 })();
 </script>
-</body></html>
+</body>
+</html>

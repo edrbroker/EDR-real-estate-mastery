@@ -1,903 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course 2 · Lesson 1 — The Clock Starts Now | EDR Realty Group</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
-  :root {
-    --navy: #0b0f1f;
-    --navy2: #111827;
-    --card: #161d30;
-    --border: #1e2a42;
-    --gold: #c9a84c;
-    --gold-light: #e8c96e;
-    --gold-dim: rgba(201,168,76,0.15);
-    --green: #22c55e;
-    --red: #ef4444;
-    --text: #e8eaf0;
-    --muted: #8b93a8;
-    --white: #ffffff;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--navy);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  /* ── HEADER ── */
-  .header {
-    background: var(--navy2);
-    border-bottom: 1px solid var(--border);
-    padding: 18px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1rem; letter-spacing: 0.03em; }
-  .badge {
-    background: var(--gold-dim);
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, #0d1a35 0%, #0b0f1f 60%);
-    border-bottom: 1px solid var(--border);
-    padding: 48px 24px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 260px; height: 260px;
-    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .course-tag {
-    display: inline-block;
-    background: var(--gold-dim);
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    padding: 5px 16px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 5vw, 2.4rem);
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-  .hero h1 span { color: var(--gold); }
-  .hero-sub {
-    color: var(--muted);
-    font-size: 0.95rem;
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-  .hero-meta {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .meta-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-  .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-
-  /* ── MAIN ── */
-  .main { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
-
-  /* ── STORY BLOCK ── */
-  .story-block {
-    background: linear-gradient(135deg, #1a2040, #111827);
-    border: 1px solid var(--gold);
-    border-radius: 12px;
-    padding: 28px 24px;
-    margin-bottom: 36px;
-    position: relative;
-  }
-  .story-block::before {
-    content: '📖 MEET YOUR CLIENTS';
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    margin-bottom: 14px;
-  }
-  .story-block p { color: var(--text); margin-bottom: 12px; }
-  .story-block p:last-child { margin-bottom: 0; }
-  .story-block strong { color: var(--gold-light); }
-
-  /* ── SECTION TITLES ── */
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    color: var(--white);
-    margin: 36px 0 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-title span { color: var(--gold); }
-
-  /* ── CONTENT BLOCKS ── */
-  .content p { color: var(--text); margin-bottom: 16px; }
-  .content strong { color: var(--gold-light); }
-
-  /* ── CALLOUT BOXES ── */
-  .callout {
-    border-radius: 10px;
-    padding: 20px 22px;
-    margin: 20px 0;
-    font-size: 0.9rem;
-  }
-  .callout-gold {
-    background: var(--gold-dim);
-    border-left: 3px solid var(--gold);
-  }
-  .callout-gold .callout-label { color: var(--gold); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .callout-blue {
-    background: rgba(59,130,246,0.1);
-    border-left: 3px solid #3b82f6;
-  }
-  .callout-blue .callout-label { color: #60a5fa; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .callout-red {
-    background: rgba(239,68,68,0.08);
-    border-left: 3px solid var(--red);
-  }
-  .callout-red .callout-label { color: #f87171; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-
-  /* ── TIMELINE TABLE ── */
-  .timeline-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
-  .timeline-table th {
-    background: var(--gold-dim);
-    color: var(--gold);
-    font-weight: 600;
-    padding: 10px 14px;
-    text-align: left;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--gold);
-  }
-  .timeline-table td {
-    padding: 11px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-    vertical-align: top;
-  }
-  .timeline-table tr:last-child td { border-bottom: none; }
-  .timeline-table tr:hover td { background: rgba(255,255,255,0.03); }
-  .day-pill {
-    display: inline-block;
-    background: var(--navy2);
-    border: 1px solid var(--border);
-    color: var(--gold);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    white-space: nowrap;
-  }
-  .deadline-pill {
-    display: inline-block;
-    background: rgba(239,68,68,0.12);
-    border: 1px solid rgba(239,68,68,0.3);
-    color: #f87171;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 0.8rem;
-  }
-  .para-ref {
-    display: inline-block;
-    background: rgba(59,130,246,0.1);
-    color: #93c5fd;
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
-  /* ── AGENT TIP ── */
-  .agent-tip {
-    background: rgba(34,197,94,0.08);
-    border: 1px solid rgba(34,197,94,0.25);
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin: 20px 0;
-  }
-  .agent-tip .tip-label { color: var(--green); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .agent-tip p { font-size: 0.9rem; color: var(--text); }
-
-  /* ── SCOPE REMINDER ── */
-  .scope-box {
-    background: rgba(239,68,68,0.06);
-    border: 1px solid rgba(239,68,68,0.2);
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin: 24px 0;
-  }
-  .scope-box .scope-label { color: #f87171; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .scope-box p { font-size: 0.88rem; color: var(--muted); }
-
-  /* ── DIVIDER ── */
-  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
-
-  /* ── QUIZ SECTION ── */
-  .quiz-header {
-    text-align: center;
-    margin-bottom: 28px;
-  }
-  .quiz-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-  .quiz-header p { color: var(--muted); font-size: 0.88rem; }
-
-  .question-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 20px;
-    transition: border-color 0.2s;
-  }
-  .question-card.answered { border-color: var(--border); }
-
-  .q-number {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .q-type-badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 2px 7px;
-    border-radius: 3px;
-    margin-left: 8px;
-    background: var(--gold-dim);
-    color: var(--gold);
-  }
-
-
-  .question-text {
-    font-size: 0.97rem;
-    color: var(--white);
-    font-weight: 500;
-    margin-bottom: 18px;
-    line-height: 1.5;
-  }
-
-  .options { display: flex; flex-direction: column; gap: 10px; }
-  .option-btn {
-    background: var(--navy2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 13px 16px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.15s;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .option-btn:hover:not(:disabled) {
-    border-color: var(--gold);
-    color: var(--white);
-    background: var(--gold-dim);
-  }
-  .option-btn:disabled { cursor: default; }
-  .option-btn.correct { background: rgba(34,197,94,0.12); border-color: var(--green); color: var(--white); }
-  .option-btn.incorrect { background: rgba(239,68,68,0.1); border-color: var(--red); color: var(--white); }
-  .option-btn.revealed { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.3); }
-
-  .option-letter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    border-radius: 50%;
-    background: var(--border);
-    color: var(--muted);
-    font-weight: 700;
-    font-size: 0.75rem;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .option-btn.correct .option-letter { background: var(--green); color: #fff; }
-  .option-btn.incorrect .option-letter { background: var(--red); color: #fff; }
-  .option-btn.revealed .option-letter { background: rgba(34,197,94,0.3); color: #fff; }
-
-  .feedback-box {
-    margin-top: 14px;
-    padding: 14px 16px;
-    border-radius: 8px;
-    font-size: 0.88rem;
-    line-height: 1.5;
-    display: none;
-  }
-  .feedback-box.show { display: block; }
-  .feedback-box.correct-fb { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #86efac; }
-  .feedback-box.incorrect-fb { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
-  .feedback-box .fb-label { font-weight: 700; margin-bottom: 4px; }
-
-  /* ── SCORE CARD ── */
-  .score-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    margin-top: 32px;
-    display: none;
-  }
-  .score-card.show { display: block; }
-  .score-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    margin: 0 auto 20px;
-  }
-  .score-circle.pass { background: rgba(34,197,94,0.15); border: 3px solid var(--green); color: var(--green); }
-  .score-circle.fail { background: rgba(239,68,68,0.1); border: 3px solid var(--red); color: var(--red); }
-  .score-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 8px; }
-  .score-msg { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
-
-  .retry-btn {
-    background: var(--gold);
-    color: var(--navy);
-    border: none;
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    letter-spacing: 0.04em;
-    transition: background 0.2s;
-  }
-  .retry-btn:hover { background: var(--gold-light); }
-  .next-btn {
-    background: var(--green);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    letter-spacing: 0.04em;
-    margin-left: 12px;
-    transition: background 0.2s;
-  }
-  .next-btn:hover { background: #16a34a; }
-
-  .progress-bar-wrap {
-    width: 100%;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    margin-top: 20px;
-  }
-  .progress-bar-fill {
-    height: 4px;
-    background: var(--gold);
-    border-radius: 2px;
-    transition: width 0.4s;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    padding: 24px;
-    color: var(--muted);
-    font-size: 0.78rem;
-    border-top: 1px solid var(--border);
-    margin-top: 40px;
-  }
-
-  @media (max-width: 480px) {
-    .hero { padding: 36px 16px 28px; }
-    .main { padding: 24px 16px 48px; }
-    .question-card { padding: 18px 16px; }
-  }
-
-.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
-.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
-.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
-.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
-.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
-.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
-.auth-tab.active{background:#c9a84c;color:#0b0f1f}
-.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
-.ainp:focus{border-color:#c9a84c}
-.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
-.abtn:hover{background:#e8c96e}
-.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
-.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
-.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
-
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.preview-banner{background:#c9a84c;color:#0a1628;text-align:center;padding:8px;font-size:12px;font-weight:700;font-family:sans-serif;position:sticky;top:0;z-index:200;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
 </style>
 </head>
 <body>
 <div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
 <div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
 <div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
-<div style="font-family:sans-serif;font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
 <div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
 <div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
 <input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div>
-<div id="lc" style="display:none"><header class="header">
-  <div class="brand">EDR Realty Group</div>
-  <a href="index.html" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:'Helvetica Neue',sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;">← Portal</a>
-<span class="agent-name-badge" id="nb-badge" style="display:none"></span>
-<div class="badge">Course 2 · Buyer Side</div>
+</div></div>
+<div id="lc" style="display:none">
+<div id="preview-banner" style="display:none">🧪 INSTRUCTOR PREVIEW MODE — Progress will NOT be saved</div>
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 2 · BUYER SIDE</span>
+  </div>
 </header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="course-tag">Lesson 1 of 11</div>
-  <h1>The Clock Starts <span>Now</span></h1>
-  <p class="hero-sub">Understanding Acceptance & Why Day 1 Changes Everything for Your Buyer</p>
-  <div class="hero-meta">
-    <span class="meta-item"><span class="meta-dot"></span> ~30 min read</span>
-    <span class="meta-item"><span class="meta-dot"></span> RPA Paragraph 3 / Section L</span>
-    <span class="meta-item"><span class="meta-dot"></span> 5 Quiz Questions</span>
-  </div>
-</section>
-
-<!-- MAIN CONTENT -->
-<div class="main">
-
-  <!-- STORY -->
-  <div class="story-block">
-    <p>It's a Tuesday morning. Your buyers, <strong>Marcus and Priya Okonkwo</strong>, have been searching for their first home for six months. They've lost three offers in bidding wars. This morning you called them with the news they've been waiting for.</p>
-    <p>"We got it. The seller accepted your offer on <strong>5555 Winners Lane, Los Angeles, CA 90210</strong>. You're officially in escrow."</p>
-    <p>There's screaming on the other end of the phone. Priya is crying. Marcus is already texting his mom. It's one of the best moments in this job.</p>
-    <p>But while your clients are celebrating — <strong>you are already counting days.</strong></p>
-  </div>
-
-  <!-- SECTION 1 -->
-  <div class="content">
-    <h2 class="section-title">What Is <span>"Acceptance"</span> and When Does It Happen?</h2>
-    <p>In California, the clock on your deal does not start when your buyers sign the offer. It does not start when the seller signs. <strong>It starts the moment acceptance is delivered to you or your buyer.</strong></p>
-    <p>Acceptance happens when all of the following are true:</p>
-
-    <div class="callout callout-gold">
-      <div class="callout-label">RPA Definition — Paragraph 1 & 3C</div>
-      <p>✦ The seller has signed the offer (or counteroffer) without changes<br/>
-      ✦ A copy of the signed agreement has been <em>delivered</em> to the buyer or buyer's agent<br/>
-      ✦ The offer has not expired (offers expire 3 calendar days after all buyer signatures at 5:00 PM — Paragraph 3C)</p>
-    </div>
-
-    <p>Think of it like a race. The starting gun fires at acceptance. From that moment, every deadline in the RPA is counting down — whether you're watching or not.</p>
-
-    <div class="agent-tip">
-      <div class="tip-label">🏡 Real-World Tip</div>
-      <p>When you get word of acceptance, immediately mark Day 0 on your calendar and calculate every major deadline forward. Don't wait until Day 15 to realize Day 17 is in two days. Your clients are counting on you to be the one watching the clock.</p>
-    </div>
-  </div>
-
-  <!-- SECTION 2 -->
-  <div class="content">
-    <h2 class="section-title">The <span>Master Timeline</span> — Every Deadline Marcus & Priya Face</h2>
-    <p>The RPA sets default timelines for every milestone in the transaction. These are not suggestions. They are contractual deadlines. Missing them without a written extension puts your buyer at risk of losing their contingencies — or worse, their deposit.</p>
-    <p>Here is what the clock looks like from Day 0 for the Okonkwos' purchase of 5555 Winners Lane:</p>
-  </div>
-
-  <div style="overflow-x:auto;">
-    <table class="timeline-table">
-      <thead>
-        <tr>
-          <th>When</th>
-          <th>Milestone</th>
-          <th>Who</th>
-          <th>RPA Reference</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="day-pill">Day 0</span></td>
-          <td>Acceptance — the clock starts NOW</td>
-          <td>Both</td>
-          <td><span class="para-ref">¶1 / 3C</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">Day 0</span></td>
-          <td>Initial deposit (EMD) initiated</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶3D(1)</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">Day 3 (business)</span></td>
-          <td>EMD delivered to escrow</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶3D(1)</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">Day 3</span></td>
-          <td>Verification of down payment & loan app</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶H(2,3)</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">Day 7</span></td>
-          <td>Seller delivers all disclosures (TDS, SPQ, NHD etc.)</td>
-          <td>Seller</td>
-          <td><span class="para-ref">¶14A / N(1)</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">Day 7</span></td>
-          <td>HOA documents ordered (if applicable)</td>
-          <td>Seller</td>
-          <td><span class="para-ref">¶N(3)</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">Day 10</span></td>
-          <td>Home inspection scheduled</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶8C</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">Day 14</span></td>
-          <td>Appraisal ordered by lender</td>
-          <td>Lender</td>
-          <td><span class="para-ref">¶8B / L2</span></td>
-        </tr>
-        <tr>
-          <td><span class="deadline-pill">Day 17</span></td>
-          <td>LOAN contingency deadline</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶L(1) / 8A</span></td>
-        </tr>
-        <tr>
-          <td><span class="deadline-pill">Day 17</span></td>
-          <td>APPRAISAL contingency deadline</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶L(2) / 8B</span></td>
-        </tr>
-        <tr>
-          <td><span class="deadline-pill">Day 17</span></td>
-          <td>INSPECTION contingency deadline</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶L(3) / 8C</span></td>
-        </tr>
-        <tr>
-          <td><span class="deadline-pill">Day 17</span></td>
-          <td>INSURANCE contingency deadline</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶L(4) / 8D</span></td>
-        </tr>
-        <tr>
-          <td><span class="deadline-pill">Day 17</span></td>
-          <td>Review of Seller Documents deadline</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶L(5) / 8E</span></td>
-        </tr>
-        <tr>
-          <td><span class="deadline-pill">Day 17</span></td>
-          <td>Title / Prelim Report review deadline</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶L(6) / 8F</span></td>
-        </tr>
-        <tr>
-          <td><span class="day-pill">5 days before COE</span></td>
-          <td>Final walkthrough (verification of condition)</td>
-          <td>Buyer</td>
-          <td><span class="para-ref">¶J / 16</span></td>
-        </tr>
-        <tr>
-          <td><span class="deadline-pill">Day 30 (default)</span></td>
-          <td>Close of Escrow</td>
-          <td>Both</td>
-          <td><span class="para-ref">¶3B</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- SECTION 3 -->
-  <div class="content">
-    <h2 class="section-title">Why <span>"Calendar Days"</span> Matters</h2>
-    <p>Most deadlines in the RPA are counted in <strong>calendar days</strong> — not business days. That means weekends and holidays count. The only exception is the initial deposit (EMD), which uses business days per Paragraph 3D(1).</p>
-
-    <div class="callout callout-blue">
-      <div class="callout-label">📅 Quick Example — The Okonkwos' Deal</div>
-      <p>Acceptance is delivered on a <strong>Monday</strong>. Day 1 is Tuesday. Day 17 (the big contingency deadline) falls on a <strong>Wednesday</strong> — two and a half weeks later. That includes two full weekends. Plan accordingly. If Day 17 falls on a Saturday or Sunday, the deadline still applies — the RPA does not automatically extend it.</p>
-    </div>
-
-    <p>This is one of the most common mistakes new agents make. They think a deadline that falls on a weekend gets pushed to Monday. It does not — unless both parties agree in writing to extend it.</p>
-  </div>
-
-  <!-- SECTION 4 -->
-  <div class="content">
-    <h2 class="section-title">Your Job From <span>Day 1</span></h2>
-    <p>As the buyer's agent, your role is to be the navigator. You are not the inspector, the lender, or the escrow officer. But you are the one who makes sure everyone is doing their job on time. Here's what that looks like in practice:</p>
-
-    <div class="callout callout-gold">
-      <div class="callout-label">✅ Day 1 Agent Checklist</div>
-      <p>✦ Build your deal calendar — mark every deadline from Day 0<br/>
-      ✦ Confirm EMD wire is initiated immediately<br/>
-      ✦ Contact the lender — confirm loan application is moving<br/>
-      ✦ Schedule the home inspection before Day 10<br/>
-      ✦ Request all seller disclosures if not already received<br/>
-      ✦ Confirm escrow has opened and instructions are out<br/>
-      ✦ Check if property is an HOA — if yes, flag the extra timeline</p>
-    </div>
-
-    <div class="agent-tip">
-      <div class="tip-label">🏡 Pro Move</div>
-      <p>Text your buyers a simple "Deal Calendar" on Day 1. List every deadline with the date. When clients can see the timeline, they take it seriously — and they trust you more. It also protects you if anything goes sideways later.</p>
-    </div>
-  </div>
-
-  <!-- SCOPE REMINDER -->
-  <div class="scope-box">
-    <div class="scope-label">⚖️ Stay Within Your License — Important Reminder</div>
-    <p>Your job is to track deadlines, communicate them clearly, and advise your buyer on their options. You are NOT an attorney, lender, or escrow officer. If your buyer has questions about legal consequences of missing a deadline or tax implications of the purchase, refer them to the appropriate professional. Staying in your lane protects you and your client.</p>
-  </div>
-
-  <!-- LESSON SUMMARY -->
-  <div class="content">
-    <h2 class="section-title">Lesson <span>Summary</span></h2>
-    <p><strong>Acceptance is Day 0.</strong> The moment that signed offer is delivered, every deadline in the RPA starts counting. Your buyer has 17 days (default) to complete all major contingencies. Close of escrow defaults to 30 days. Calendar days — not business days — govern almost every deadline.</p>
-    <p>Your job as the buyer's agent is to build the deal calendar on Day 1, keep everyone on track, and never let a deadline slip past without a written extension in place. The clock doesn't care if your buyer forgot — but the contract does.</p>
-    <p>In Lesson 2, we'll go deep on each of those 5 core contingencies — what they protect, what happens when they expire, and how to advise Marcus and Priya on each one.</p>
-  </div>
-
-  <hr class="divider" />
-
-  <!-- QUIZ -->
-  <div class="quiz-header">
-    <h2>Knowledge Check</h2>
-    <p>5 questions · You need 4 out of 5 (80%) to pass · Read every explanation</p>
-  </div>
-
-  <div id="quiz-container">
-
-    <!-- Q1 -->
-    <div class="question-card" id="q1">
-      <div class="q-number">Question 1 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">Marcus and Priya's offer was signed by the seller on a Friday evening. A copy was emailed to their agent at 6:15 PM. According to the RPA, when does Day 1 of the timeline begin?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(1,'A')"><span class="option-letter">A</span>The following Monday morning, since Friday evening is after business hours</button>
-        <button class="option-btn" onclick="answer(1,'B')"><span class="option-letter">B</span>Saturday — the day after acceptance was delivered</button>
-        <button class="option-btn" onclick="answer(1,'C')"><span class="option-letter">C</span>Friday, since acceptance was delivered on Friday and Day 0 is Friday</button>
-        <button class="option-btn" onclick="answer(1,'D')"><span class="option-letter">D</span>The day the buyer's agent reads and confirms the email</button>
-      </div>
-      <div class="feedback-box" id="fb1"></div>
-    </div>
-
-    <!-- Q2 -->
-    <div class="question-card" id="q2">
-      <div class="q-number">Question 2 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">Under the default RPA timeline, what is the deadline for Marcus and Priya to remove their loan contingency?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(2,'A')"><span class="option-letter">A</span>7 days after acceptance</button>
-        <button class="option-btn" onclick="answer(2,'B')"><span class="option-letter">B</span>21 days after acceptance</button>
-        <button class="option-btn" onclick="answer(2,'C')"><span class="option-letter">C</span>17 days after acceptance</button>
-        <button class="option-btn" onclick="answer(2,'D')"><span class="option-letter">D</span>30 days after acceptance</button>
-      </div>
-      <div class="feedback-box" id="fb2"></div>
-    </div>
-
-    <!-- Q3 -->
-    <div class="question-card" id="q3">
-      <div class="q-number">Question 3 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">The Okonkwos' Day 17 contingency deadline falls on a Sunday. What happens to that deadline under the RPA?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(3,'A')"><span class="option-letter">A</span>It automatically moves to the following Monday</button>
-        <button class="option-btn" onclick="answer(3,'B')"><span class="option-letter">B</span>The deadline still applies on Sunday unless both parties agree in writing to extend it</button>
-        <button class="option-btn" onclick="answer(3,'C')"><span class="option-letter">C</span>It automatically moves to the Friday before</button>
-        <button class="option-btn" onclick="answer(3,'D')"><span class="option-letter">D</span>Deadlines never fall on weekends under California law</button>
-      </div>
-      <div class="feedback-box" id="fb3"></div>
-    </div>
-
-    <!-- Q4 -->
-    <div class="question-card" id="q4">
-      <div class="q-number">Question 4 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">The initial Earnest Money Deposit (EMD) is different from most other RPA deadlines because it is calculated in:</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(4,'A')"><span class="option-letter">A</span>Calendar days, just like all other deadlines</button>
-        <button class="option-btn" onclick="answer(4,'B')"><span class="option-letter">B</span>Business days, making it the exception to the calendar day rule</button>
-        <button class="option-btn" onclick="answer(4,'C')"><span class="option-letter">C</span>Hours, starting from the time of acceptance</button>
-        <button class="option-btn" onclick="answer(4,'D')"><span class="option-letter">D</span>Weeks, giving the buyer extra time to arrange funds</button>
-      </div>
-      <div class="feedback-box" id="fb4"></div>
-    </div>
-
-    <!-- Q5 MC -->
-    <div class="question-card" id="q5">
-      <div class="q-number">Question 5 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">The seller at 5555 Winners Lane delivered disclosures to the Okonkwos on Day 10 — three days late. Under the RPA, when is the Okonkwos' deadline to review those seller documents?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(5,'A')"><span class="option-letter">A</span>Day 17 — the original deadline still applies regardless of when documents were delivered</button>
-        <button class="option-btn" onclick="answer(5,'B')"><span class="option-letter">B</span>Day 15 — buyers always get 5 days from delivery no matter what</button>
-        <button class="option-btn" onclick="answer(5,'C')"><span class="option-letter">C</span>Day 17 or 5 days after delivery (Day 15), whichever is later — so Day 17 applies here</button>
-        <button class="option-btn" onclick="answer(5,'D')"><span class="option-letter">D</span>The deadline is automatically extended 30 days any time the seller is late on disclosures</button>
-      </div>
-      <div class="feedback-box" id="fb5"></div>
-    </div>
-
-  </div><!-- /quiz-container -->
-
-  <!-- SCORE CARD -->
-  <div class="score-card" id="score-card">
-    <div class="score-circle" id="score-circle"></div>
-    <div class="score-title" id="score-title"></div>
-    <p class="score-msg" id="score-msg"></p>
-    <div>
-      <button class="retry-btn" onclick="retryQuiz()" id="retry-btn" style="display:none;">Retake Quiz</button>
-      <button class="next-btn" id="next-btn" style="display:none;" onclick="window.location.href='course2_lesson2.html'">Next Lesson →</button>
-    </div>
-    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div>
-  </div>
-
-</div><!-- /main -->
-
-<!-- FOOTER -->
-<footer class="footer">
-  EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 1 of 11<br/>
-  Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.<br/>
-  Questions? Contact Rashaad Dixon · rashaad@edrrealtygroup.com
-</footer>
+<div class="hero">
+  <div class="lesson-num">LESSON 1 OF 11</div>
+  <h1>The Clock Starts Now</h1>
+  <div class="hero-sub">Understanding Acceptance and Why Day 1 Changes Everything for Your Buyer</div>
+  <div class="hero-meta"><span class="meta-dot">~30 min read</span><span class="meta-dot">RPA ¶3 / Section L</span><span class="meta-dot">5 Quiz Questions</span></div>
 </div>
-
+<div class="main">
+  <div class="story-card">
+<div class="story-label">📋 Meet Your Clients</div>
+<p>It's a Tuesday morning. Your buyers, <strong>Marcus and Priya Okonkwo</strong>, have been searching for their first home for six months. They've lost three offers in bidding wars. This morning you called them with the news they've been waiting for.</p>
+<p>"We got it. The seller accepted your offer on <strong>5555 Winners Lane, Los Angeles, CA 90210</strong>. You're officially in escrow."</p>
+<p>There is screaming on the other end of the phone. Priya is crying. Marcus is already texting his mom. It's one of the best moments in this job.</p>
+<p>Now your real work begins. The clock is running.</p>
+</div>
+  <div class="section"><h2>What Is Acceptance?</h2>
+<p>Acceptance occurs when the seller signs the buyer's offer — or a counteroffer — and that signed acceptance is communicated to the buyer or their agent. Under the RPA, this is the moment the contract becomes binding and all timelines begin.</p>
+<div class="callout"><div class="callout-title">📌 Day 1 Rule</div><p>Under the RPA, "Day 1" begins the calendar day AFTER acceptance. If the seller accepted on Monday, Tuesday is Day 1. All contingency deadlines count from Day 1.</p></div>
+</div>
+<div class="section"><h2>What Happens on Day 1</h2>
+<p>The moment your offer is accepted, multiple clocks start simultaneously:</p>
+<ul>
+<li><strong>Earnest Money Deposit (EMD)</strong> — typically due within 3 business days of acceptance</li>
+<li><strong>Seller Disclosures</strong> — seller has 7 calendar days to deliver TDS, SPQ, NHD</li>
+<li><strong>Buyer Contingency Period</strong> — 17 days for inspection, appraisal, title; 21 days for loan</li>
+<li><strong>HOA Documents</strong> — if applicable, 7 days for seller to deliver</li>
+</ul>
+<div class="rpa-ref"><strong>RPA Reference:</strong> Paragraph 3 (Section L) contains the full timeline table. Every agent should have this memorized. Your buyer's rights depend on you knowing these deadlines cold.</div>
+</div>
+<div class="section"><h2>Your Job Starting Day 1</h2>
+<p>As the buyer's agent, your job from Day 1 is to be a deadline manager. You need to track every contingency, every delivery, and every response window. Missing a deadline can cost your client their deposit or their right to cancel.</p>
+<div class="tip-box"><div class="callout-title">✓ Best Practice</div><p>Set calendar alerts for Day 7 (seller disclosure due), Day 15 (two days before contingency deadline — time to nudge), Day 17 (contingency removal deadline), and Day 21 (loan contingency deadline). Do this on Day 1, every time.</p></div>
+</div>
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">Under the RPA, when does 'Day 1' begin?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. The day the offer is submitted</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. The calendar day after acceptance</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. The day escrow opens</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. Three days after acceptance</button>
+            </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">Marcus and Priya's offer was accepted on a Wednesday. When is Day 1?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. Wednesday (same day)</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. Thursday</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. Friday</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. The following Monday</button>
+            </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">Within how many calendar days must the seller deliver the Transfer Disclosure Statement (TDS) after acceptance?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. 3 calendar days</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. 5 calendar days</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. 7 calendar days</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. 10 calendar days</button>
+            </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">What is the DEFAULT deadline for the buyer's inspection contingency under the RPA?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. 7 calendar days</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. 10 calendar days</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. 17 calendar days</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. 21 calendar days</button>
+            </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">Why is it critical for a buyer's agent to set deadline reminders on Day 1?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. To impress the seller's agent</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. Because missing contingency deadlines can cost the buyer their deposit or right to cancel</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. The RPA legally requires agents to set reminders</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. To prepare for the final walkthrough</button>
+            </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div><br>
+      <button class="btn-next" id="nb" onclick="window.location.href='course2_lesson2.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+<footer>EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 1 of 11<br>Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.</footer>
+</div>
 <script>
-  const answers = {
-    1: { correct: 'B', explanation: '<span class="fb-label">✓ Correct Answer: B — Saturday</span><br/>Day 0 is Friday (the day acceptance was delivered). Day 1 begins the following day — Saturday. The RPA does not pause timelines for evenings, weekends, or holidays. This is why building your deal calendar immediately on Day 0 is essential. (RPA Paragraph 3C / Paragraph 1)' },
-    2: { correct: 'C', explanation: '<span class="fb-label">✓ Correct Answer: C — 17 Days</span><br/>The default timeline for all major buyer contingencies — loan, appraisal, inspection, insurance, seller documents, and title review — is 17 days after acceptance. This is set in Paragraph 3L of the RPA (Revised 12/25). The parties can negotiate a different timeline, but 17 days is the default if nothing else is specified.' },
-    3: { correct: 'B', explanation: '<span class="fb-label">✓ Correct Answer: B — The deadline still applies on Sunday</span><br/>The RPA uses calendar days, and deadlines do not automatically shift because they fall on a weekend. If both parties want to extend the deadline, they must do so in writing before the deadline passes. Agents should always flag weekend deadlines early and get written extensions in advance if needed.' },
-    4: { correct: 'B', explanation: '<span class="fb-label">✓ Correct Answer: B — Business Days</span><br/>Under RPA Paragraph 3D(1), the initial EMD must be delivered to escrow within 3 BUSINESS days of acceptance — the only major deadline that uses business days instead of calendar days. All other standard timelines (17-day contingencies, 30-day COE, etc.) use calendar days.' },
-    5: { correct: 'C', explanation: '<span class="fb-label">✓ Correct Answer: C</span><br/>Under RPA Paragraph L(5) / 8E, the deadline to review seller documents is 17 days after acceptance OR 5 days after delivery — whichever is LATER. The seller delivered on Day 10, so 5 days after delivery = Day 15. The original deadline is Day 17. Since Day 17 is later than Day 15, the deadline remains Day 17. This "whichever is later" rule protects buyers when sellers deliver documents late — but only up to a point. If documents arrived on Day 15, then 5 days after delivery would be Day 20, and THAT would become the new deadline since it\'s later than Day 17.' }
-  };
-
-  const userAnswers = {};
+  let userAnswers = {};
   let answeredCount = 0;
-
+  const answers = {
+    1: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>Under the RPA, Day 1 begins the calendar day AFTER acceptance. The day of acceptance is Day 0.` },
+    2: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Thursday</span><br>Acceptance was Wednesday (Day 0). Day 1 is Thursday. All contingency deadlines count from Thursday.` },
+    3: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — 7 Calendar Days</span><br>Per RPA ¶3N(1), the seller has 7 calendar days after acceptance to deliver the TDS, SPQ, and NHD.` },
+    4: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — 17 Calendar Days</span><br>Per RPA ¶3L, the default deadline for the inspection, appraisal, title, and seller documents contingencies is 17 calendar days.` },
+    5: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>Missing contingency deadlines is one of the most common ways agents expose their clients to serious risk. Set the reminders on Day 1, every time.` },
+  };
   function answer(q, selected) {
     if (userAnswers[q]) return;
     userAnswers[q] = selected;
     answeredCount++;
-
-    const card = document.getElementById('q' + q);
-    const btns = card.querySelectorAll('.option-btn');
-    const fb = document.getElementById('fb' + q);
-    const correct = answers[q].correct;
-    const isCorrect = selected === correct;
-
-    btns.forEach(btn => {
+    const card = document.getElementById("q" + q);
+    card.querySelectorAll(".option-btn").forEach(btn => {
       btn.disabled = true;
-      const letter = btn.querySelector('.option-letter').textContent.trim();
-      if (letter === correct) btn.classList.add(isCorrect && letter === selected ? 'correct' : 'revealed');
-      if (letter === selected && !isCorrect) btn.classList.add('incorrect');
+      if (btn.dataset.opt === selected) btn.classList.add(selected === answers[q].correct ? "correct" : "wrong");
+      if (btn.dataset.opt === answers[q].correct) btn.classList.add("correct");
     });
-
+    const fb = document.getElementById("fb" + q);
+    fb.className = "feedback-box show";
+    fb.style.background = selected === answers[q].correct ? "rgba(45,122,79,.15)" : "rgba(163,45,45,.15)";
+    fb.style.border = selected === answers[q].correct ? "1px solid rgba(45,122,79,.3)" : "1px solid rgba(163,45,45,.3)";
     fb.innerHTML = answers[q].explanation;
-    fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'incorrect-fb');
-    card.classList.add('answered');
-
-    if (answeredCount === 5) showScore();
+    card.classList.add("revealed");
+    document.querySelector(".progress-fill").style.width = (answeredCount / Object.keys(answers).length * 100) + "%";
+    if (answeredCount === Object.keys(answers).length) setTimeout(showScore, 600);
   }
-
   async function showScore() {
+    const total = Object.keys(answers).length;
     const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
-    const pct = Math.round((correct / 5) * 100);
+    const pct = Math.round(correct / total * 100);
     const passed = correct >= 4;
-
-    const card = document.getElementById('score-card');
-    const circle = document.getElementById('score-circle');
-    const title = document.getElementById('score-title');
-    const msg = document.getElementById('score-msg');
-    const bar = document.getElementById('progress-bar');
-
-    circle.textContent = correct + '/5';
-    circle.className = 'score-circle ' + (passed ? 'pass' : 'fail');
-    title.textContent = passed ? '🎉 Lesson 1 Complete!' : 'Keep Practicing';
-    msg.textContent = passed
-      ? 'You scored ' + pct + '% — you\'re ready for Lesson 2. The clock is ticking on your next deal. Go get it.'
-      : 'You scored ' + pct + '%. You need 80% (4/5) to pass. Review the explanations above and retake the quiz.';
-
-    card.classList.add('show');
-    bar.style.width = pct + '%';  if (passed) {
-      document.getElementById('next-btn').style.display = 'inline-block';
-    } else {
-      document.getElementById('retry-btn').style.display = 'inline-block';
-    }
-  
-    try{await window._saveLP(1,correct,passed,userAnswers);}catch(e){}
+    document.getElementById("sc-circ").textContent = correct + "/" + total;
+    document.getElementById("sc-circ").className = "sc-circ " + (passed ? "pass" : "fail");
+    document.getElementById("sc-title").textContent = passed ? "🎉 Lesson 1 Complete!" : "Keep Practicing";
+    document.getElementById("sc-msg").textContent = passed ? "You understand Day 1 and the timeline foundation. On to Lesson 2." : "You scored " + pct + "%. You need 80% to pass. Review and try again.";
+    if (passed) document.getElementById("nb").style.display = "inline-block";
+    else document.getElementById("rb").style.display = "inline-block";
+    document.getElementById("score-card").classList.add("show");
+    try { await window._saveLP(1, correct, passed, userAnswers); } catch(e) {}
   }
-
   function retryQuiz() {
-    Object.keys(userAnswers).forEach(q => delete userAnswers[q]);
-    answeredCount = 0;
-    for (let i = 1; i <= 5; i++) {
-      const card = document.getElementById('q' + i);
-      card.classList.remove('answered');
-      const btns = card.querySelectorAll('.option-btn');
-      btns.forEach(btn => {
-        btn.disabled = false;
-        btn.classList.remove('correct', 'incorrect', 'revealed');
-      });
-      const fb = document.getElementById('fb' + i);
-      fb.className = 'feedback-box';
-      fb.innerHTML = '';
+    userAnswers = {}; answeredCount = 0;
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+      const card = document.getElementById("q" + i);
+      card.classList.remove("revealed");
+      card.querySelectorAll(".option-btn").forEach(b => { b.disabled=false; b.classList.remove("correct","wrong"); });
+      document.getElementById("fb" + i).className = "feedback-box";
+      document.getElementById("fb" + i).innerHTML = "";
     }
-    const card = document.getElementById('score-card');
-    card.classList.remove('show');
-    document.getElementById('retry-btn').style.display = 'none';
-    document.getElementById('next-btn').style.display = 'none';
-    document.getElementById('progress-bar').style.width = '0%';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById("score-card").classList.remove("show");
+    document.getElementById("nb").style.display = "none";
+    document.getElementById("rb").style.display = "none";
+    document.querySelector(".progress-fill").style.width = "0%";
+    window.scrollTo({top:0, behavior:"smooth"});
   }
-
-
+  // Show preview banner if in preview mode
+  window.addEventListener("DOMContentLoaded", function() {
+    var s = JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+    if (s && s.is_preview) {
+      var b = document.getElementById("preview-banner");
+      if (b) b.style.display = "block";
+    }
+  });
 </script>
-
-
-
-
-
 <script>
 (function(){
   var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
@@ -916,24 +286,29 @@
     if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
     if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
     var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
-    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+    localStorage.setItem("edr_agent",JSON.stringify(ag));
+    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+    _show(ag);
   };
   window._saveLP=async function(lid,sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2");}
     else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course2"});}
     return true;}catch(e){return false;}
   };
   window._saveFQ=async function(sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course2");}
     else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course2"});}
     return true;}catch(e){return false;}
   };
   window.addEventListener("DOMContentLoaded",function(){
-    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+    try{
+      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
+    }catch(e){}
   });
 })();
 </script>

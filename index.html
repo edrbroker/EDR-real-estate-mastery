@@ -564,7 +564,7 @@ const ADMIN_PASSWORD = "RashaadEDR2025!";
 const ALL_COURSES = [
   {id:1, title:"RPA Mastery", sub:"Residential Purchase Agreement — the foundation of every transaction", lessons:17, active:true},
   {id:2, title:"Contingencies & Timelines: Buyer Side", sub:"The 17-day window, all 5 buyer contingencies, NBP, NSP, DCE and how to protect your buyer", lessons:11, active:true, courseUrl:'course2_lesson1.html', courseKey:'course2'},
-  {id:3, title:"Contingencies & Timelines: Seller Side", sub:"TDS, SPQ, NBP, NSP, DCE, and how to protect your seller at every step", lessons:11, active:false, courseUrl:'course3_lesson1.html', courseKey:'course3'},
+  {id:3, title:"Contingencies & Timelines: Seller Side", sub:"TDS, SPQ, NBP, NSP, DCE and how to protect your seller at every step", lessons:11, active:false, courseUrl:'course3_lesson1.html', courseKey:'course3'},
   {id:4, title:"Escrow & Title", sub:"How escrow works, title insurance, and closing costs", lessons:10, active:false},
   {id:5, title:"Disclosures & Compliance", sub:"TDS, SPQ, NHD, AVID, and California DRE requirements", lessons:10, active:false},
   {id:6, title:"Negotiation Strategies", sub:"Counter offers, multiple offer situations, and win rates", lessons:10, active:false},
@@ -650,6 +650,7 @@ async function doLogin() {
   const agent = agents[0];
   if (agent.password_hash !== hashPw(pw) && pw !== COURSE_CODE) { err.textContent='Incorrect password.'; err.style.display='block'; return; }
   currentAgent = agent;
+  agent.full_name = agent.full_name || agent.name || 'Agent';
   sessionStorage.setItem('edr_agent', JSON.stringify(agent));
   localStorage.setItem('edr_agent', JSON.stringify(agent));
   loadLocalState();
@@ -736,7 +737,7 @@ function showPortal() {
     if (a) { try { currentAgent = JSON.parse(a); } catch(e) {} }
   }
   if (!currentAgent) { doLogout(); return; }
-  const firstName = currentAgent.full_name.split(' ')[0];
+  const firstName = (currentAgent.full_name||currentAgent.name||'Agent').split(' ')[0];
   document.getElementById('portal-user-name').textContent = firstName;
   document.getElementById('portal-greeting-text').textContent = 'Welcome back, ' + firstName;
   loadCourseSettings().then(function(){ renderPortal(); });
@@ -758,7 +759,7 @@ function backToPortal() {
 
 function renderPortal() {
   const done = Object.values(localScores).filter(s=>s>=4).length;
-  const total = 17 * ALL_COURSES.filter(c=>c.active||courseSettings[c.id]).length || 17;
+  const total = ALL_COURSES.filter(c=>c.active||courseSettings[c.id]).reduce((sum,c)=>sum+(c.id===1?17:0),17);
   const pct = Math.round(done/total*100);
   document.getElementById('overall-progress-bar').style.width = pct+'%';
   document.getElementById('overall-progress-num').textContent = pct+'%';
@@ -812,32 +813,26 @@ function renderPortal() {
           <div class="course-card-sub">${c.sub}</div>
           <div class="course-card-meta">
             <div class="course-card-lessons">${c.lessons} lessons · ~30 min each</div>
-            <div style="font-size:11px;color:var(--gray-text);">${cxD}/${c.lessons}</div>
+            <div style="font-size:11px;color:var(--gray-text);">${cxD}/${c.lessons} lessons</div>
           </div>
           <div class="course-card-progress-bar"><div class="course-card-progress-fill" style="width:${cxPct}%"></div></div>
           <button class="btn-course ${cxD>0?'btn-course-continue':'btn-course-start'}" onclick="window.location.href='${c.courseUrl}'">
-            ${cxFQ?'📖 Review Course':cxD>0?'▶ Continue Course':'▶ Start Course'}
+            ${cxFQ?'📖 Review':cxD>0?'▶ Continue':'▶ Start Course'}
           </button>
         </div>
       </div>`;
     } else {
       return `<div class="course-card locked">
         <div class="course-card-header">
-          <div>
-            <div class="course-card-num">Course ${c.id} of ${ALL_COURSES.length}</div>
-          </div>
-          <span class="course-card-badge badge-locked">🔒 ${isActive?'Available Soon':'Coming Soon'}</span>
+          <div><div class="course-card-num">Course ${c.id} of ${ALL_COURSES.length}</div></div>
+          <span class="course-card-badge badge-locked">🔒 Coming Soon</span>
         </div>
         <div class="course-card-body">
           <div class="course-card-title">${c.title}</div>
           <div class="course-card-sub">${c.sub}</div>
-          <div class="course-card-meta">
-            <div class="course-card-lessons">${c.lessons} lessons · ~30 min each</div>
-          </div>
+          <div class="course-card-meta"><div class="course-card-lessons">${c.lessons} lessons · ~30 min each</div></div>
           <div class="course-card-progress-bar"><div class="course-card-progress-fill" style="width:0%"></div></div>
-          <button class="btn-course btn-course-locked" disabled>
-            <span class="lock-icon">🔒</span> ${isActive?'Available Soon':'Coming Soon'}
-          </button>
+          <button class="btn-course btn-course-locked" disabled><span class="lock-icon">🔒</span> Coming Soon</button>
         </div>
       </div>`;
     }
@@ -909,13 +904,12 @@ async function syncProgressFromDB() {
       localFQScore = fqRows[0].score;
       localFQPassed = fqRows[0].passed;
     }
-    // Course 2 progress
+    // Course 2+3 progress
     const c2r = await sb('progress','GET',null,`?agent_id=eq.${currentAgent.id}&course=eq.course2&select=*`);
     window._course2Progress = {};
     if(c2r&&c2r.length) c2r.forEach(r=>{window._course2Progress[r.lesson_id]=r.score;});
     const c2fq = await sb('final_quiz','GET',null,`?agent_id=eq.${currentAgent.id}&course=eq.course2&select=*`);
     window._course2FQPassed = c2fq&&c2fq.length>0?c2fq[0].passed:false;
-    // Course 3 progress
     const c3r = await sb('progress','GET',null,`?agent_id=eq.${currentAgent.id}&course=eq.course3&select=*`);
     window._course3Progress = {};
     if(c3r&&c3r.length) c3r.forEach(r=>{window._course3Progress[r.lesson_id]=r.score;});
@@ -1558,14 +1552,14 @@ async function clearDueDate() {
 }
 
 async function loadCourseSettings() {
-  const settings = await sb('settings','GET',null,'?key=eq.course_settings');
-  if (settings && settings.length>0) {
-    try {
+  try {
+    const settings = await sb('settings','GET',null,'?key=eq.course_settings');
+    if (settings && settings.length>0) {
       const raw = JSON.parse(settings[0].value)||{};
       courseSettings = {};
       Object.keys(raw).forEach(k => { courseSettings[k]=raw[k]; courseSettings[parseInt(k)]=raw[k]; });
-    } catch(e){}
-  }
+    }
+  } catch(e) {}
 }
 
 // ============================================================
@@ -1611,22 +1605,27 @@ async function renderCourseToggles() {
         <input type="checkbox" ${isActive?'checked':''} onchange="toggleCourse(${c.id},this.checked)" ${c.id===1?'disabled':''}>
         <span class="toggle-slider"></span>
       </label>
+      ${c.courseUrl ? `<button onclick="instructorPreviewCourse('${c.courseUrl}','${c.title}')" style="margin-left:10px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-size:11px;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Helvetica Neue',sans-serif;font-weight:700;">👁 Preview</button>` : ''}
     </div>`;
   }).join('');
 }
 
 async function toggleCourse(courseId, active) {
-  courseSettings[String(courseId)] = active;
+  courseSettings[courseId] = active;
+  const existing = await sb('settings','GET',null,'?key=eq.course_settings');
   const val = JSON.stringify(courseSettings);
-  try {
-    const existing = await sb('settings','GET',null,'?key=eq.course_settings');
-    if (existing && existing.length>0) {
-      await sb('settings','PATCH',{value:val},'?key=eq.course_settings');
-    } else {
-      await sb('settings','POST',{key:'course_settings',value:val});
-    }
-    await renderCourseToggles();
-  } catch(e) { console.warn('Toggle save failed:', e); }
+  if (existing && existing.length>0) {
+    await sb('settings','PATCH',{value:val},'?key=eq.course_settings');
+  } else {
+    await sb('settings','POST',{key:'course_settings',value:val});
+  }
+}
+// Instructor Preview Mode
+function instructorPreviewCourse(courseUrl, courseName) {
+  const previewAgent = {id:'preview-instructor', full_name:'Instructor Preview', name:'Instructor Preview', email:'instructor@edrrealtygroup.com', is_preview:true};
+  localStorage.setItem('edr_agent', JSON.stringify(previewAgent));
+  sessionStorage.setItem('edr_agent', JSON.stringify(previewAgent));
+  window.open(courseUrl, '_blank');
 }
 
 async function loadAdminData() {
@@ -1658,7 +1657,7 @@ async function loadAdminData() {
     } else {
       agentsTable.innerHTML = `<table class="admin-table">
         <thead><tr>
-          <th>Agent</th><th>Course 1</th><th>C1 Final</th><th>Course 2</th><th>C2 Final</th><th>Scenario</th><th>Actions</th>
+          <th>Agent</th><th>Course 1</th><th>C1 Exam</th><th>Course 2</th><th>C2 Exam</th><th>Scenario</th><th>Actions</th>
         </tr></thead>
         <tbody>${agents.map(a => {
           const ap = progress ? progress.filter(p=>p.agent_id===a.id&&(!p.course||p.course==='course1')) : [];
@@ -1935,10 +1934,10 @@ window.onload = async function() {
   const adminSess = sessionStorage.getItem('edr_admin');
   if (adminSess) { try { showAdmin(); } catch(e) { doLogout(); } return; }
   // Agent
-  const agentSess = sessionStorage.getItem('edr_agent') || localStorage.getItem('edr_agent');
-  if (agentSess) {
+  const agentSessRaw = sessionStorage.getItem('edr_agent') || localStorage.getItem('edr_agent');
+  if (agentSessRaw) {
     try {
-      const parsedAgent = JSON.parse(agentSess);
+      const parsedAgent = JSON.parse(agentSessRaw);
       if (!parsedAgent || !parsedAgent.id) { doLogout(); return; }
       parsedAgent.full_name = parsedAgent.full_name || parsedAgent.name || 'Agent';
       currentAgent = parsedAgent;

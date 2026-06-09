@@ -1,260 +1,273 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="UTF-8"/>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Course 2 Lesson 9 | EDR Realty Group</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 2 · Lesson 9 — NBP vs. DCE | EDR Realty Group</title>
 <style>
-:root{--n:#0b0f1f;--n2:#111827;--c:#161d30;--b:#1e2a42;--g:#c9a84c;--gl:#e8c96e;--gd:rgba(201,168,76,.15);--gr:#22c55e;--r:#ef4444;--t:#e8eaf0;--m:#8b93a8;--w:#fff;--bl:#3b82f6}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--n);color:var(--t);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7}
-.hdr{background:var(--n2);border-bottom:1px solid var(--b);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99}
-.brand{font-family:'Playfair Display',serif;color:var(--g);font-size:1.05rem}
-.badge{background:var(--gd);border:1px solid var(--g);color:var(--g);padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.hero{background:linear-gradient(135deg,#0d1a35,#0b0f1f);border-bottom:1px solid var(--b);padding:44px 20px 36px;text-align:center}
-.ctag{display:inline-block;background:var(--gd);color:var(--g);border:1px solid var(--g);padding:4px 14px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--w);line-height:1.25;margin-bottom:10px}
-.hero h1 span{color:var(--g)}
-.hero p{color:var(--m);font-size:.92rem;max-width:460px;margin:0 auto 20px}
-.hmeta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
-.hmi{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--m)}
-.hmd{width:5px;height:5px;border-radius:50%;background:var(--g)}
-.main{max-width:700px;margin:0 auto;padding:28px 18px 56px}
-.story{background:linear-gradient(135deg,#1a2040,#111827);border:1px solid var(--g);border-radius:12px;padding:24px;margin-bottom:32px}
-.stag{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--g);margin-bottom:12px}
-.story p{color:var(--t);margin-bottom:10px}
-.story p:last-child{margin-bottom:0}
-.story strong{color:var(--gl)}
-h2.st{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--w);margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--b)}
-h2.st span{color:var(--g)}
-.cp{color:var(--t);margin-bottom:14px}
-.cp strong{color:var(--gl)}
-.ca{border-radius:10px;padding:18px 20px;margin:16px 0;font-size:.88rem}
-.ca-g{background:var(--gd);border-left:3px solid var(--g)}
-.ca-b{background:rgba(59,130,246,.08);border-left:3px solid var(--bl)}
-.ca-r{background:rgba(239,68,68,.07);border-left:3px solid var(--r)}
-.cal{font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-.ca-g .cal{color:var(--g)}.ca-b .cal{color:#60a5fa}.ca-r .cal{color:#f87171}
-.tip{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:10px;padding:16px 18px;margin:18px 0}
-.tipl{color:var(--gr);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-.tip p{font-size:.88rem;color:var(--t);margin-bottom:7px}
-.tip p:last-child{margin-bottom:0}
-.scope{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:10px;padding:16px 18px;margin:20px 0}
-.scopel{color:#f87171;font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-.scope p{font-size:.85rem;color:var(--m)}
-.ig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
-.ic{background:var(--c);border:1px solid var(--b);border-radius:8px;padding:12px}
-.icl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);margin-bottom:5px}
-.icv{font-size:.85rem;color:var(--t)}
-.ctw{overflow-x:auto;margin:16px 0}
-.ct{width:100%;border-collapse:collapse;font-size:.83rem}
-.ct th{background:var(--gd);color:var(--g);font-weight:600;padding:9px 12px;text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--g)}
-.ct td{padding:9px 12px;border-bottom:1px solid var(--b);color:var(--t);vertical-align:top}
-.ct tr:last-child td{border-bottom:none}
-.si{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
-.sn{width:30px;height:30px;min-width:30px;border-radius:50%;background:var(--gd);border:1px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--g);font-size:.88rem}
-.sc{flex:1}
-.sc strong{color:var(--gl);display:block;margin-bottom:3px}
-.sc p{font-size:.88rem;color:var(--t);margin:0}
-.hb{background:var(--c);border:1px solid var(--b);border-radius:10px;padding:18px;margin:14px 0}
-.hbt{font-family:'Playfair Display',serif;color:var(--g);font-size:.95rem;margin-bottom:8px}
-.hb p{font-size:.88rem;color:var(--t);margin-bottom:7px}
-.hb p:last-child{margin-bottom:0}
-.trow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--b)}
-.trow:last-child{border-bottom:none}
-.td{min-width:75px;font-weight:700;color:var(--g);font-size:.82rem}
-.tc{flex:1;font-size:.88rem;color:var(--t)}
-.tc strong{color:var(--gl)}
-.divhr{border:none;border-top:1px solid var(--b);margin:36px 0}
-.qhdr{text-align:center;margin-bottom:24px}
-.qhdr h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--w);margin-bottom:5px}
-.qhdr p{color:var(--m);font-size:.85rem}
-.qc{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:22px;margin-bottom:18px}
-.qn{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:9px}
-.qb{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:7px;background:var(--gd);color:var(--g)}
-.qt{font-size:.94rem;color:var(--w);font-weight:500;margin-bottom:16px;line-height:1.5}
-.opts{display:flex;flex-direction:column;gap:9px}
-.ob{background:var(--n2);border:1px solid var(--b);border-radius:8px;padding:12px 14px;color:var(--t);font-family:'DM Sans',sans-serif;font-size:.87rem;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px}
-.ob:hover:not(:disabled){border-color:var(--g);color:var(--w);background:var(--gd)}
-.ob:disabled{cursor:default}
-.ob.correct{background:rgba(34,197,94,.12);border-color:var(--gr);color:var(--w)}
-.ob.wrong{background:rgba(239,68,68,.1);border-color:var(--r);color:var(--w)}
-.ob.rev{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.3)}
-.ol{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--b);color:var(--m);font-weight:700;font-size:.72rem;flex-shrink:0;margin-top:1px}
-.ob.correct .ol{background:var(--gr);color:#fff}
-.ob.wrong .ol{background:var(--r);color:#fff}
-.ob.rev .ol{background:rgba(34,197,94,.35);color:#fff}
-.fb{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.85rem;line-height:1.5;display:none}
-.fb.show{display:block}
-.fb.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac}
-.fb.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5}
-.sc-card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:32px 24px;text-align:center;margin-top:28px;display:none}
-.sc-card.show{display:block}
-.sc-circ{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;margin:0 auto 18px}
-.sc-circ.pass{background:rgba(34,197,94,.15);border:3px solid var(--gr);color:var(--gr)}
-.sc-circ.fail{background:rgba(239,68,68,.1);border:3px solid var(--r);color:var(--r)}
-.sc-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--w);margin-bottom:7px}
-.sc-msg{color:var(--m);font-size:.88rem;margin-bottom:20px}
-.rbtn{background:var(--g);color:var(--n);border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer}
-.nbtn{background:var(--gr);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.87rem;cursor:pointer;margin-left:10px}
-.pbw{width:100%;height:4px;background:var(--b);border-radius:2px;margin-top:18px}
-.pbf{height:4px;background:var(--g);border-radius:2px;transition:width .4s}
-.ftr{text-align:center;padding:22px;color:var(--m);font-size:.76rem;border-top:1px solid var(--b);margin-top:36px}
-@media(max-width:480px){.hero{padding:32px 14px 26px}.main{padding:20px 14px 44px}.qc{padding:16px 14px}.ig{grid-template-columns:1fr}}
-
-.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
-.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
-.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
-.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
-.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
-.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
-.auth-tab.active{background:#c9a84c;color:#0b0f1f}
-.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
-.ainp:focus{border-color:#c9a84c}
-.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
-.abtn:hover{background:#e8c96e}
-.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
-.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
-.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
-
-</style></head><body>
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.preview-banner{background:#c9a84c;color:#0a1628;text-align:center;padding:8px;font-size:12px;font-weight:700;font-family:sans-serif;position:sticky;top:0;z-index:200;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
 <div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
 <div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
 <div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
-<div style="font-family:sans-serif;font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
 <div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
 <div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
 <input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div>
-<div id="lc" style="display:none"><header class="hdr"><div class="brand">EDR Realty Group</div><a href="index.html" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:'Helvetica Neue',sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;">← Portal</a>
-<span class="agent-name-badge" id="nb-badge" style="display:none"></span>
-<div class="badge">Course 2 · Buyer Side</div></header>
-<section class="hero">
-<div class="ctag">Lesson 9 of 11</div>
-<h1>NBP vs. DCE:<br/>The Form That Can Cost Your Buyer <span>Their Deposit</span></h1>
-<p>Side-by-Side Comparison — Know the Difference Cold</p>
-<div class="hmeta">
-<span class="hmi"><span class="hmd"></span>~30 min</span>
-<span class="hmi"><span class="hmd"></span>RPA Paragraph 14C / 14E / 14G</span>
-<span class="hmi"><span class="hmd"></span>5 Questions</span>
-</div></section>
-<div class="main">
-<div class="story"><div class="stag">📖 THE STORY CONTINUES</div><p>You are mentoring a newer agent on your team. She just got her first listing and a buyer deal in the same week. She calls you in a panic.</p><p>'I have two situations and I do not know which form to use. On my listing, the buyer has not removed contingencies and the deadline was yesterday. On my buyer deal, my buyer cannot close on time — the lender is 5 days behind.'</p><p>You take a breath. <strong>This is exactly where agents make the most costly mistakes.</strong> Wrong form. Wrong timing. Wrong deposit outcome.</p></div>
-<h2 class="st">The <span>Most Common Agent Mistake</span> in California</h2>
-<p class="cp">Every year, California agents use the wrong cancellation form in the wrong situation. The most frequent error: using an NBP when a DCE is required, or vice versa. The consequences can include an invalid cancellation attempt — and in DCE situations, a buyer keeping their deposit when the seller thought they had a claim to it.</p>
-<h2 class="st">Side-by-Side <span>Comparison</span></h2>
-<div class="ctw"><table class="ct">
-<thead><tr><th>Question</th><th>NBP</th><th>DCE</th></tr></thead>
-<tbody>
-<tr><td>Full name</td><td>Notice to Buyer to Perform</td><td>Demand to Close Escrow</td></tr>
-<tr><td>C.A.R. Form</td><td>Form NBP</td><td>Form DCE</td></tr>
-<tr><td>Who sends it?</td><td>Seller (to buyer) — buyer uses NSP for seller</td><td>Either party to the other</td></tr>
-<tr><td>When used?</td><td>Buyer missed a contingency or contractual obligation</td><td>Party failed to close escrow by scheduled date</td></tr>
-<tr><td>Contingencies open?</td><td>Yes — may still be active</td><td>No — all should be removed</td></tr>
-<tr><td>Days to respond</td><td>At least 2 calendar days after delivery</td><td>At least 3 calendar days after delivery</td></tr>
-<tr><td>Earliest delivery</td><td>2 days before the deadline</td><td>3 days before scheduled close of escrow</td></tr>
-<tr><td>Deposit if cancelled?</td><td>Seller MUST return buyer's deposit</td><td>Deposit NOT automatically returned</td></tr>
-</tbody></table></div>
-<h2 class="st">The <span>Decision Tree</span> — Which Form?</h2>
-<div class="ca ca-g"><div class="cal">Ask These Questions in Order</div>
-<p><strong>Step 1:</strong> Are there still open contingencies?<br/>Yes → Use NBP (or NSP if buyer is acting against seller)<br/>No → Go to Step 2<br/><br/>
-<strong>Step 2:</strong> Has the scheduled close of escrow date passed (or is it within 3 days) and the party has not closed?<br/>Yes → Use DCE<br/>No → Likely still an NBP situation</p></div>
-<h2 class="st">Real Scenarios — <span>Which Form?</span></h2>
-<div class="hb"><div class="hbt">Scenario A — Day 18. Buyer has not removed loan contingency. Deadline was Day 17.</div><p>Answer: NBP. The contingency is open. Use NBP, not DCE.</p></div>
-<div class="hb"><div class="hbt">Scenario B — Day 31. All contingencies removed Day 18. Scheduled close Day 30. Buyer's lender did not fund.</div><p>Answer: DCE. All contingencies are gone. The only issue is failure to close. Use DCE, give 3 days.</p></div>
-<div class="hb"><div class="hbt">Scenario C — Day 27. All contingencies removed. Scheduled close Day 30. Seller suspects buyer will not fund in time.</div><p>Answer: DCE. Day 27 is exactly 3 days before COE — the earliest allowed. If the buyer closes Day 30, the DCE is moot. If not, the seller can cancel after Day 30.</p></div>
-<h2 class="st">The <span>Deposit Outcome</span> — Memorize This</h2>
-<div class="ig">
-<div class="ic"><div class="icl">After NBP Cancellation</div><div class="icv">Seller MUST return buyer's deposit (less fees). Seller cannot keep it.</div></div>
-<div class="ic"><div class="icl">After DCE Cancellation</div><div class="icv">Deposit NOT automatically returned. Seller may have a claim. Requires mutual instructions or legal action to release.</div></div>
-</div>
-<div class="tip"><div class="tipl">The One Sentence That Saves Deals</div>
-<p>"Are all contingencies removed?" If yes and closing has not happened — DCE. If no — NBP. Burn that into your brain. It will save your clients' deposits and save you from E&amp;O claims.</p></div>
-<div class="scope"><div class="scopel">Stay Within Your License</div>
-<p>You can identify the correct form to use and explain its implications to your client. You cannot determine who is legally entitled to the deposit in a contested dispute — that is a legal question. If a cancellation results in a deposit dispute, refer your client to a California real estate attorney immediately. Never advise your client they will definitely win or lose a deposit battle.</p></div>
-<hr class="divhr"/>
-<div class="qhdr"><h2>Knowledge Check</h2><p>5 questions · 4/5 (80%) to pass · Read every explanation</p></div>
-<div id="quiz"><div class="qc" id="q1"><div class="qn">Question 1 <span class="qb">Multiple Choice</span></div><div class="qt">Day 19. The Okonkwos still have not removed their appraisal contingency (deadline was Day 17). All other contingencies were removed on Day 17. The seller wants to cancel. Which form should the seller use?</div><div class="opts"><button class="ob" onclick="ans(1,'A')"><span class="ol">A</span>DCE — because the close date is approaching</button>
-<button class="ob" onclick="ans(1,'B')"><span class="ol">B</span>NBP — because a contingency deadline was missed</button>
-<button class="ob" onclick="ans(1,'C')"><span class="ol">C</span>NSP — because the seller is initiating action</button>
-<button class="ob" onclick="ans(1,'D')"><span class="ol">D</span>CR-B — to force the buyer to remove the contingency</button>
-</div><div class="fb" id="fb1"></div></div><div class="qc" id="q2"><div class="qn">Question 2 <span class="qb">Multiple Choice</span></div><div class="qt">Day 31. All contingencies at 5555 Winners Lane were removed on Day 18. Scheduled close was Day 30. The Okonkwos' lender did not fund. The seller wants to cancel. Which form must the seller use first?</div><div class="opts"><button class="ob" onclick="ans(2,'A')"><span class="ol">A</span>NBP — because the buyer missed an obligation</button>
-<button class="ob" onclick="ans(2,'B')"><span class="ol">B</span>DCE — because the issue is failure to close escrow after all contingencies are removed</button>
-<button class="ob" onclick="ans(2,'C')"><span class="ol">C</span>NSP — because the seller needs to notify the buyer of the delay</button>
-<button class="ob" onclick="ans(2,'D')"><span class="ol">D</span>CC — the seller can go straight to cancellation without any notice</button>
-</div><div class="fb" id="fb2"></div></div><div class="qc" id="q3"><div class="qn">Question 3 <span class="qb">Multiple Choice</span></div><div class="qt">A seller used a DCE when they should have used an NBP — the buyer had an open contingency. The buyer is now claiming their deposit back. What is likely true?</div><div class="opts"><button class="ob" onclick="ans(3,'A')"><span class="ol">A</span>The seller wins automatically because they sent a notice and waited the required time</button>
-<button class="ob" onclick="ans(3,'B')"><span class="ol">B</span>The cancellation may be defective because the wrong form was used — since the correct form (NBP) requires return of the deposit, the buyer likely has a strong claim to their deposit</button>
-<button class="ob" onclick="ans(3,'C')"><span class="ol">C</span>The buyer's deposit is automatically forfeited in any cancellation scenario</button>
-<button class="ob" onclick="ans(3,'D')"><span class="ol">D</span>It does not matter which form was used as long as proper notice was given</button>
-</div><div class="fb" id="fb3"></div></div><div class="qc" id="q4"><div class="qn">Question 4 <span class="qb">Multiple Choice</span></div><div class="qt">A seller wants to send a DCE on Day 27 because they suspect the buyer will not close by the scheduled Day 30 date. Is this timing allowed under the RPA?</div><div class="opts"><button class="ob" onclick="ans(4,'A')"><span class="ol">A</span>No — DCE can only be sent after the close of escrow date has already passed</button>
-<button class="ob" onclick="ans(4,'B')"><span class="ol">B</span>Yes — the DCE can be sent up to 3 days before the scheduled close of escrow date, making Day 27 exactly the earliest allowed</button>
-<button class="ob" onclick="ans(4,'C')"><span class="ol">C</span>No — DCE must be sent at least 7 days before the scheduled close</button>
-<button class="ob" onclick="ans(4,'D')"><span class="ol">D</span>Yes — DCE can be sent at any time after all contingencies are removed</button>
-</div><div class="fb" id="fb4"></div></div><div class="qc" id="q5"><div class="qn">Question 5 <span class="qb">Multiple Choice</span></div><div class="qt">After a properly sent DCE and 3-day waiting period, the seller cancels because the Okonkwos failed to close. The Okonkwos immediately demand their deposit back from escrow. Escrow says they cannot release without signed mutual instructions. Who is right?</div><div class="opts"><button class="ob" onclick="ans(5,'A')"><span class="ol">A</span>The buyers — escrow must return the deposit within 3 business days of cancellation</button>
-<button class="ob" onclick="ans(5,'B')"><span class="ol">B</span>The seller — the deposit is automatically forfeited to the seller after a DCE cancellation</button>
-<button class="ob" onclick="ans(5,'C')"><span class="ol">C</span>Escrow is correct — after a DCE cancellation, the deposit is not automatically released to either party and requires mutual signed release instructions or a court or arbitration order</button>
-<button class="ob" onclick="ans(5,'D')"><span class="ol">D</span>The buyers — the DCE cancellation automatically triggers a 50/50 split of the deposit</button>
-</div><div class="fb" id="fb5"></div></div></div>
-<div class="sc-card" id="sc-card">
-<div class="sc-circ" id="sc-circ"></div>
-<div class="sc-title" id="sc-title"></div>
-<p class="sc-msg" id="sc-msg"></p>
-<p id="sc-saved" style="font-size:.78rem;color:#22c55e;margin-bottom:16px"></p>
-<div><button class="rbtn" onclick="retry()" id="rb" style="display:none">Retake Quiz</button>
-<button class="nbtn" id="nb" style="display:none" onclick="window.location.href='course2_lesson10.html'">Next Lesson →</button></div>
-<div class="pbw"><div class="pbf" id="pb" style="width:0%"></div></div>
 </div></div>
-<footer class="ftr">EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 9 of 11<br/>
-Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards. Questions? rashaad@edrrealtygroup.com</footer>
+<div id="lc" style="display:none">
+<div id="preview-banner" style="display:none">🧪 INSTRUCTOR PREVIEW MODE — Progress will NOT be saved</div>
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 2 · BUYER SIDE</span>
+  </div>
+</header>
+<div class="hero">
+  <div class="lesson-num">LESSON 9 OF 11</div>
+  <h1>NBP vs. DCE</h1>
+  <div class="hero-sub">Know the Difference — Which Tool to Use and When</div>
+  <div class="hero-meta"><span class="meta-dot">~30 min read</span><span class="meta-dot">RPA ¶14C, ¶14G</span><span class="meta-dot">5 Quiz Questions</span></div>
+</div>
+<div class="main">
+  <div class="story-card">
+<div class="story-label">📋 The Confusion Zone</div>
+<p>A fellow agent calls you in a panic. "The seller missed the repair deadline. Do I send an NBP or a DCE?" This is one of the most common mix-ups in California real estate. Let's sort it out once and for all.</p>
+</div>
+  <div class="section"><h2>NBP vs. DCE — The Core Difference</h2>
+<div class="table-wrap"><table class="info">
+<tr><th>Feature</th><th>NBP</th><th>DCE</th></tr>
+<tr><td>Full Name</td><td>Notice to Buyer to Perform</td><td>Demand to Close Escrow</td></tr>
+<tr><td>Sent By</td><td>Seller (to buyer)</td><td>Either party</td></tr>
+<tr><td>Used When</td><td>Buyer missed contingency or contractual deadline</td><td>Other party failed to close escrow by COE date</td></tr>
+<tr><td>Minimum Notice</td><td>2 days</td><td>3 days</td></tr>
+<tr><td>Earliest Delivery</td><td>2 days before scheduled performance day</td><td>3 days before scheduled COE date</td></tr>
+<tr><td>After Non-Performance</td><td>Buyer deposit returned to buyer</td><td>May be entitled to liquidated damages (seller path)</td></tr>
+</table></div>
+</div>
+<div class="section"><h2>Quick Decision Guide</h2>
+<p>Ask yourself: <strong>What specifically did the other party fail to do?</strong></p>
+<ul>
+<li><strong>Failed to remove contingencies</strong> → NBP (if you are seller) or NSP (if you are buyer for seller failures)</li>
+<li><strong>Failed to deposit EMD</strong> → NBP</li>
+<li><strong>Failed to close escrow by the COE date</strong> → DCE</li>
+<li><strong>Seller failed to deliver disclosures</strong> → NSP (buyer sends to seller)</li>
+</ul>
+<div class="callout"><div class="callout-title">📌 The Cardinal Rule</div><p>NBP/NSP = contractual obligation failures. DCE = failure to close on time. Never use a DCE for a contingency issue, and never use an NBP for a closing date issue.</p></div>
+</div>
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">The seller failed to deliver HOA documents by Day 7. Which notice should the buyer send?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. NBP</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. DCE</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. NSP</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. CR</button>
+            </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">The close of escrow date passed and the buyer's lender hasn't funded. Which notice should the seller send?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. NSP</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. NBP</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. DCE</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. CR</button>
+            </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">What is the minimum notice period for a DCE vs. an NBP?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. DCE: 2 days; NBP: 3 days</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. DCE: 3 days; NBP: 2 days</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. Both require 3 days</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. Both require 2 days</button>
+            </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">The buyer received an NBP because they missed the Day 17 contingency deadline. If they remove contingencies within 2 days, what happens?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. The seller can still cancel because the deadline passed</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. The transaction continues — the buyer performed within the NBP window</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. The buyer must pay a penalty</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. The loan contingency is also automatically removed</button>
+            </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">An agent sends a DCE for a situation where the seller missed the repair deadline (not a COE issue). Is this the right form?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. Yes — DCE covers all seller failures</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. No — seller repair failures require an NSP, not a DCE</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. Yes — the DCE is more powerful than the NSP</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. No — the agent should use a CR form instead</button>
+            </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div><br>
+      <button class="btn-next" id="nb" onclick="window.location.href='course2_lesson10.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+<footer>EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 9 of 11<br>Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.</footer>
 </div>
 <script>
-const A={1:{c:"B",e:"When a buyer has missed a contingency deadline, the correct form is the NBP (Notice to Buyer to Perform). There is still an open contingency — which means the DCE is not appropriate here. The DCE is only used when all contingencies have been removed and the issue is failure to close escrow. If the seller used a DCE in this situation, they would be using the wrong form — and if they cancelled and tried to keep the deposit, they would be on shaky legal ground. NBP gives 2 days, seller can cancel, and must return deposit. (RPA Paragraph 14C and 14E)"},2:{c:"B",e:"When all contingencies have been removed and the only issue is that escrow has not closed by the scheduled date, the DCE is the required form. The seller cannot skip this step and go straight to cancellation. After sending the DCE and giving 3 days, if the buyer still has not closed, the seller can cancel — and importantly, the deposit is NOT automatically returned to the buyer in a DCE cancellation, unlike an NBP cancellation. (RPA Paragraph 14G)"},3:{c:"B",e:"Using the wrong form matters enormously in California real estate. When a contingency is open, the correct form is the NBP — and an NBP cancellation requires the seller to return the buyer's deposit. By using a DCE (which does not automatically require deposit return), the seller attempted to change the deposit outcome through incorrect form use. The buyer has a strong argument that the proper form was NBP, meaning their deposit should be returned. This scenario illustrates why form selection is not a technicality — it determines financial outcomes. (RPA Paragraph 14C and 14G)"},4:{c:"B",e:"Under RPA Paragraph 14G, a DCE may not be delivered any earlier than 3 days prior to the scheduled close of escrow. If close is Day 30, the earliest the DCE can be sent is Day 27 — exactly 3 days before. This allows a proactive seller to get the clock running before the close date arrives. If the buyer closes by Day 30, the DCE is moot. If the buyer does not close, the seller can cancel as early as Day 30. This is smart transaction management — but only appropriate when all contingencies have been removed."},5:{c:"C",e:"Escrow is correct. Under RPA Paragraph 14H, when a party cancels pursuant to rights in the agreement, both parties must sign and deliver mutual instructions to cancel the sale and release the deposit. After a DCE cancellation, the seller may have a claim to the deposit, but escrow cannot simply release it to either party unilaterally. Release requires either mutual signed instructions from both buyer and seller, or a court judgment or arbitration award. This is why deposit disputes after a DCE cancellation can drag on. (RPA Paragraph 14H)"}};
-const ua={};let ac=0;
-function ans(q,s){
-  if(ua[q])return;ua[q]=s;ac++;
-  const card=document.getElementById('q'+q);
-  const btns=card.querySelectorAll('.ob');
-  const fb=document.getElementById('fb'+q);
-  const c=A[q].c;const ok=s===c;
-  btns.forEach(b=>{b.disabled=true;const l=b.querySelector('.ol').textContent.trim();
-    if(l===c)b.classList.add(ok&&l===s?'correct':'rev');
-    if(l===s&&!ok)b.classList.add('wrong');});
-  fb.innerHTML=A[q].e;fb.className='fb show '+(ok?'ok':'no');
-  if(ac===5)score();
-}
-async function score(){
-  const cor=Object.keys(ua).filter(q=>ua[q]===A[q].c).length;
-  const pct=Math.round(cor/5*100);const pass=cor>=4;
-  document.getElementById('sc-circ').textContent=cor+'/5';
-  document.getElementById('sc-circ').className='sc-circ '+(pass?'pass':'fail');
-  document.getElementById('sc-title').textContent=pass?'Lesson Complete!':'Keep Practicing';
-  document.getElementById('sc-msg').textContent=pass?'You scored '+pct+'% - Proceed to Lesson 10.':'You scored '+pct+'%. You need 80% to pass. Review and retake.';
-  document.getElementById('sc-card').classList.add('show');
-  document.getElementById('pb').style.width=pct+'%';
-  if(pass)document.getElementById('nb').style.display='inline-block';
-  else document.getElementById('rb').style.display='inline-block';
-
-  try{await window._saveLP(9,cor,pass,ua);}catch(e){}
-}
-function retry(){
-  Object.keys(ua).forEach(q=>delete ua[q]);ac=0;
-  for(let i=1;i<=5;i++){
-    document.getElementById('q'+i).querySelectorAll('.ob').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong','rev');});
-    const fb=document.getElementById('fb'+i);fb.className='fb';fb.innerHTML='';
+  let userAnswers = {};
+  let answeredCount = 0;
+  const answers = {
+    1: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — NSP</span><br>The seller failed to deliver HOA documents — a seller contractual obligation. The BUYER sends an NSP (Notice to Seller to Perform) per ¶14D.` },
+    2: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — DCE</span><br>The COE date passed and the buyer hasn't closed. This is a failure to close escrow, which requires a DCE per ¶14G.` },
+    3: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>DCE requires at least 3 days; NBP requires at least 2 days. This is a key difference — don't mix them up.` },
+    4: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>The NBP gives the buyer time to cure the default. Removing contingencies within the window resolves the default and the transaction continues.` },
+    5: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — NSP is correct</span><br>The DCE is only for failure to close escrow. A seller repair failure is a contractual obligation failure, which the buyer addresses with an NSP per ¶14D.` },
+  };
+  function answer(q, selected) {
+    if (userAnswers[q]) return;
+    userAnswers[q] = selected;
+    answeredCount++;
+    const card = document.getElementById("q" + q);
+    card.querySelectorAll(".option-btn").forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) btn.classList.add(selected === answers[q].correct ? "correct" : "wrong");
+      if (btn.dataset.opt === answers[q].correct) btn.classList.add("correct");
+    });
+    const fb = document.getElementById("fb" + q);
+    fb.className = "feedback-box show";
+    fb.style.background = selected === answers[q].correct ? "rgba(45,122,79,.15)" : "rgba(163,45,45,.15)";
+    fb.style.border = selected === answers[q].correct ? "1px solid rgba(45,122,79,.3)" : "1px solid rgba(163,45,45,.3)";
+    fb.innerHTML = answers[q].explanation;
+    card.classList.add("revealed");
+    document.querySelector(".progress-fill").style.width = (answeredCount / Object.keys(answers).length * 100) + "%";
+    if (answeredCount === Object.keys(answers).length) setTimeout(showScore, 600);
   }
-  document.getElementById('sc-card').classList.remove('show');
-  document.getElementById('rb').style.display='none';
-  document.getElementById('nb').style.display='none';
-  document.getElementById('pb').style.width='0%';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  async function showScore() {
+    const total = Object.keys(answers).length;
+    const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
+    const pct = Math.round(correct / total * 100);
+    const passed = correct >= 4;
+    document.getElementById("sc-circ").textContent = correct + "/" + total;
+    document.getElementById("sc-circ").className = "sc-circ " + (passed ? "pass" : "fail");
+    document.getElementById("sc-title").textContent = passed ? "🎉 Lesson 9 Complete!" : "Keep Practicing";
+    document.getElementById("sc-msg").textContent = passed ? "NBP vs. DCE — you\'ve got it. On to Lesson 10." : "You scored " + pct + "%. You need 80% to pass. Review and try again.";
+    if (passed) document.getElementById("nb").style.display = "inline-block";
+    else document.getElementById("rb").style.display = "inline-block";
+    document.getElementById("score-card").classList.add("show");
+    try { await window._saveLP(9, correct, passed, userAnswers); } catch(e) {}
+  }
+  function retryQuiz() {
+    userAnswers = {}; answeredCount = 0;
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+      const card = document.getElementById("q" + i);
+      card.classList.remove("revealed");
+      card.querySelectorAll(".option-btn").forEach(b => { b.disabled=false; b.classList.remove("correct","wrong"); });
+      document.getElementById("fb" + i).className = "feedback-box";
+      document.getElementById("fb" + i).innerHTML = "";
+    }
+    document.getElementById("score-card").classList.remove("show");
+    document.getElementById("nb").style.display = "none";
+    document.getElementById("rb").style.display = "none";
+    document.querySelector(".progress-fill").style.width = "0%";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  // Show preview banner if in preview mode
+  window.addEventListener("DOMContentLoaded", function() {
+    var s = JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+    if (s && s.is_preview) {
+      var b = document.getElementById("preview-banner");
+      if (b) b.style.display = "block";
+    }
+  });
 </script>
-
-
-
-
 <script>
 (function(){
   var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
@@ -273,25 +286,31 @@ function retry(){
     if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
     if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
     var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
-    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+    localStorage.setItem("edr_agent",JSON.stringify(ag));
+    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+    _show(ag);
   };
   window._saveLP=async function(lid,sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2");}
     else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course2"});}
     return true;}catch(e){return false;}
   };
   window._saveFQ=async function(sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course2");}
     else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course2"});}
     return true;}catch(e){return false;}
   };
   window.addEventListener("DOMContentLoaded",function(){
-    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+    try{
+      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
+    }catch(e){}
   });
 })();
 </script>
-</body></html>
+</body>
+</html>

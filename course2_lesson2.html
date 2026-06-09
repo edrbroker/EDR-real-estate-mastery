@@ -1,572 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course 2 · Lesson 2 — The 5 Core Buyer Contingencies | EDR Realty Group</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
-  :root {
-    --navy: #0b0f1f;
-    --navy2: #111827;
-    --card: #161d30;
-    --border: #1e2a42;
-    --gold: #c9a84c;
-    --gold-light: #e8c96e;
-    --gold-dim: rgba(201,168,76,0.15);
-    --green: #22c55e;
-    --red: #ef4444;
-    --text: #e8eaf0;
-    --muted: #8b93a8;
-    --white: #ffffff;
-    --blue: #3b82f6;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--navy); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; min-height: 100vh; }
-
-  .header { background: var(--navy2); border-bottom: 1px solid var(--border); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-  .brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1rem; letter-spacing: 0.03em; }
-  .badge { background: var(--gold-dim); border: 1px solid var(--gold); color: var(--gold); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-
-  .hero { background: linear-gradient(135deg, #0d1a35 0%, #0b0f1f 60%); border-bottom: 1px solid var(--border); padding: 48px 24px 40px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%); border-radius: 50%; }
-  .course-tag { display: inline-block; background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold); padding: 5px 16px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--white); line-height: 1.2; margin-bottom: 12px; }
-  .hero h1 span { color: var(--gold); }
-  .hero-sub { color: var(--muted); font-size: 0.95rem; max-width: 480px; margin: 0 auto 24px; }
-  .hero-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-  .meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--muted); }
-  .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-
-  .main { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
-
-  .story-block { background: linear-gradient(135deg, #1a2040, #111827); border: 1px solid var(--gold); border-radius: 12px; padding: 28px 24px; margin-bottom: 36px; position: relative; }
-  .story-block::before { content: '📖 THE STORY CONTINUES'; display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 14px; }
-  .story-block p { color: var(--text); margin-bottom: 12px; }
-  .story-block p:last-child { margin-bottom: 0; }
-  .story-block strong { color: var(--gold-light); }
-
-  .section-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--white); margin: 36px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-  .section-title span { color: var(--gold); }
-
-  .content p { color: var(--text); margin-bottom: 16px; }
-  .content strong { color: var(--gold-light); }
-
-  /* CONTINGENCY CARDS */
-  .contingency-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
-  .contingency-header { display: flex; align-items: center; gap: 14px; padding: 18px 22px; border-bottom: 1px solid var(--border); }
-  .contingency-number { width: 36px; height: 36px; min-width: 36px; border-radius: 50%; background: var(--gold-dim); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; color: var(--gold); font-size: 1rem; }
-  .contingency-title-wrap {}
-  .contingency-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); }
-  .contingency-ref { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-  .para-ref { display: inline-block; background: rgba(59,130,246,0.1); color: #93c5fd; padding: 1px 6px; border-radius: 3px; font-size: 0.72rem; font-weight: 600; }
-  .contingency-body { padding: 18px 22px; }
-  .contingency-body p { font-size: 0.93rem; color: var(--text); margin-bottom: 12px; }
-  .contingency-body p:last-child { margin-bottom: 0; }
-  .contingency-body strong { color: var(--gold-light); }
-
-  .what-it-protects { background: var(--gold-dim); border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; }
-  .what-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-  .what-it-protects p { font-size: 0.88rem; color: var(--text); margin-bottom: 0; }
-
-  .scenario-wrap { background: rgba(59,130,246,0.08); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 12px; }
-  .scenario-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 6px; }
-  .scenario-wrap p { font-size: 0.88rem; color: var(--text); margin-bottom: 0; }
-
-  .warning-wrap { background: rgba(239,68,68,0.07); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 0; }
-  .warning-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #f87171; margin-bottom: 6px; }
-  .warning-wrap p { font-size: 0.88rem; color: var(--text); margin-bottom: 0; }
-
-  .callout { border-radius: 10px; padding: 20px 22px; margin: 20px 0; font-size: 0.9rem; }
-  .callout-gold { background: var(--gold-dim); border-left: 3px solid var(--gold); }
-  .callout-gold .callout-label { color: var(--gold); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-
-  .agent-tip { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); border-radius: 10px; padding: 18px 20px; margin: 20px 0; }
-  .agent-tip .tip-label { color: var(--green); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .agent-tip p { font-size: 0.9rem; color: var(--text); }
-
-  .scope-box { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 18px 20px; margin: 24px 0; }
-  .scope-box .scope-label { color: #f87171; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .scope-box p { font-size: 0.88rem; color: var(--muted); }
-
-  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
-  .summary-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
-  .summary-item .s-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
-  .summary-item .s-val { font-size: 0.88rem; color: var(--text); }
-
-  .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
-
-  /* QUIZ */
-  .quiz-header { text-align: center; margin-bottom: 28px; }
-  .quiz-header h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 6px; }
-  .quiz-header p { color: var(--muted); font-size: 0.88rem; }
-
-  .question-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
-  .q-number { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
-  .q-type-badge { display: inline-block; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-left: 8px; background: var(--gold-dim); color: var(--gold); }
-  .question-text { font-size: 0.97rem; color: var(--white); font-weight: 500; margin-bottom: 18px; line-height: 1.5; }
-  .options { display: flex; flex-direction: column; gap: 10px; }
-  .option-btn { background: var(--navy2); border: 1px solid var(--border); border-radius: 8px; padding: 13px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; cursor: pointer; text-align: left; transition: all 0.15s; display: flex; align-items: flex-start; gap: 12px; }
-  .option-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--white); background: var(--gold-dim); }
-  .option-btn:disabled { cursor: default; }
-  .option-btn.correct { background: rgba(34,197,94,0.12); border-color: var(--green); color: var(--white); }
-  .option-btn.incorrect { background: rgba(239,68,68,0.1); border-color: var(--red); color: var(--white); }
-  .option-btn.revealed { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.3); }
-  .option-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; min-width: 24px; border-radius: 50%; background: var(--border); color: var(--muted); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; margin-top: 1px; }
-  .option-btn.correct .option-letter { background: var(--green); color: #fff; }
-  .option-btn.incorrect .option-letter { background: var(--red); color: #fff; }
-  .option-btn.revealed .option-letter { background: rgba(34,197,94,0.3); color: #fff; }
-  .feedback-box { margin-top: 14px; padding: 14px 16px; border-radius: 8px; font-size: 0.88rem; line-height: 1.5; display: none; }
-  .feedback-box.show { display: block; }
-  .feedback-box.correct-fb { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #86efac; }
-  .feedback-box.incorrect-fb { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
-  .feedback-box .fb-label { font-weight: 700; margin-bottom: 4px; }
-
-  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 28px; text-align: center; margin-top: 32px; display: none; }
-  .score-card.show { display: block; }
-  .score-circle { width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; margin: 0 auto 20px; }
-  .score-circle.pass { background: rgba(34,197,94,0.15); border: 3px solid var(--green); color: var(--green); }
-  .score-circle.fail { background: rgba(239,68,68,0.1); border: 3px solid var(--red); color: var(--red); }
-  .score-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 8px; }
-  .score-msg { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
-  .retry-btn { background: var(--gold); color: var(--navy); border: none; border-radius: 8px; padding: 12px 28px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; letter-spacing: 0.04em; transition: background 0.2s; }
-  .retry-btn:hover { background: var(--gold-light); }
-  .next-btn { background: var(--green); color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; letter-spacing: 0.04em; margin-left: 12px; transition: background 0.2s; }
-  .next-btn:hover { background: #16a34a; }
-  .progress-bar-wrap { width: 100%; height: 4px; background: var(--border); border-radius: 2px; margin-top: 20px; }
-  .progress-bar-fill { height: 4px; background: var(--gold); border-radius: 2px; transition: width 0.4s; }
-
-  .footer { text-align: center; padding: 24px; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); margin-top: 40px; }
-
-  @media (max-width: 480px) {
-    .hero { padding: 36px 16px 28px; }
-    .main { padding: 24px 16px 48px; }
-    .question-card { padding: 18px 16px; }
-    .summary-grid { grid-template-columns: 1fr; }
-  }
-
-.auth-overlay{position:fixed;inset:0;background:rgba(11,15,31,.97);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
-.auth-card{background:var(--card,#161d30);border:1px solid var(--border,#1e2a42);border-radius:16px;padding:36px 28px;width:100%;max-width:400px}
-.auth-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;text-align:center}
-.auth-card .sub{color:#8b93a8;font-size:.85rem;text-align:center;margin-bottom:24px}
-.auth-tabs{display:flex;gap:4px;background:#111827;border-radius:8px;padding:4px;margin-bottom:20px}
-.auth-tab{flex:1;padding:8px;border:none;background:transparent;color:#8b93a8;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border-radius:6px;transition:all .15s}
-.auth-tab.active{background:#c9a84c;color:#0b0f1f}
-.ainp{width:100%;background:#111827;border:1px solid #1e2a42;border-radius:8px;padding:11px 14px;color:#e8eaf0;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:12px;outline:none}
-.ainp:focus{border-color:#c9a84c}
-.abtn{width:100%;background:#c9a84c;color:#0b0f1f;border:none;border-radius:8px;padding:13px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-top:4px}
-.abtn:hover{background:#e8c96e}
-.aerr{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:7px;padding:10px 12px;font-size:.82rem;margin-bottom:12px;display:none}
-.aspin{display:none;text-align:center;color:#8b93a8;font-size:.85rem;margin:8px 0}
-.agent-name-badge{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:600}
-
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.preview-banner{background:#c9a84c;color:#0a1628;text-align:center;padding:8px;font-size:12px;font-weight:700;font-family:sans-serif;position:sticky;top:0;z-index:200;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
 </style>
 </head>
 <body>
 <div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
 <div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
 <div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
-<div style="font-family:sans-serif;font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
 <div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
 <div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
 <input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
 <button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
 <div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
-</div>
-<div id="lc" style="display:none"><header class="header">
-  <div class="brand">EDR Realty Group</div>
-  <a href="index.html" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:'Helvetica Neue',sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;">← Portal</a>
-<span class="agent-name-badge" id="nb-badge" style="display:none"></span>
-<div class="badge">Course 2 · Buyer Side</div>
+</div></div>
+<div id="lc" style="display:none">
+<div id="preview-banner" style="display:none">🧪 INSTRUCTOR PREVIEW MODE — Progress will NOT be saved</div>
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 2 · BUYER SIDE</span>
+  </div>
 </header>
-
-<section class="hero">
-  <div class="course-tag">Lesson 2 of 11</div>
-  <h1>The <span>5 Core</span> Buyer Contingencies</h1>
-  <p class="hero-sub">What Each One Protects — And What Happens When They Expire</p>
-  <div class="hero-meta">
-    <span class="meta-item"><span class="meta-dot"></span> ~30 min read</span>
-    <span class="meta-item"><span class="meta-dot"></span> RPA Paragraph 8 / Section L</span>
-    <span class="meta-item"><span class="meta-dot"></span> 5 Quiz Questions</span>
-  </div>
-</section>
-
+<div class="hero">
+  <div class="lesson-num">LESSON 2 OF 11</div>
+  <h1>The 5 Core Buyer Contingencies</h1>
+  <div class="hero-sub">What They Are, What They Protect, and How Long They Last</div>
+  <div class="hero-meta"><span class="meta-dot">~30 min read</span><span class="meta-dot">RPA ¶8, ¶3L</span><span class="meta-dot">5 Quiz Questions</span></div>
+</div>
 <div class="main">
-
-  <!-- STORY -->
-  <div class="story-block">
-    <p>It's Day 3. Marcus just confirmed the EMD wire hit escrow. Priya texted you a photo of paint swatches she's already picked out for the living room at <strong>5555 Winners Lane</strong>.</p>
-    <p>You smile — but you also know that right now, <strong>your buyers have 5 powerful legal protections built into their contract.</strong> These are their contingencies. Each one gives them the right to cancel and get their deposit back if something specific goes wrong.</p>
-    <p>Your job is to understand every single one — what it covers, when it expires, and what it means to remove it. Because the moment those protections disappear, <strong>your buyer's deposit is on the line.</strong></p>
-  </div>
-
-  <div class="content">
-    <h2 class="section-title">What Is a <span>Contingency?</span></h2>
-    <p>A contingency is a condition that must be met for the sale to move forward. If the condition isn't met, the buyer has the right to cancel the contract and get their deposit back — as long as the contingency is still active.</p>
-    <p>Think of each contingency like a safety net under your buyer. As long as it's in place, they can walk away. The moment it's removed in writing — that net disappears for that specific issue.</p>
-
-    <div class="callout callout-gold">
-      <div class="callout-label">⚠️ Critical Rule — RPA Paragraph 8I</div>
-      <p>A buyer has <strong>no obligation to remove a contingency</strong> until the seller has delivered all required documents, reports, and information related to that contingency. Removing a contingency before receiving all required information means relinquishing those contractual rights. The RPA states this is done <strong>against agent advice.</strong></p>
-    </div>
-  </div>
-
-  <!-- THE 5 CONTINGENCIES -->
-  <h2 class="section-title">The <span>5 Contingencies</span> Protecting Marcus & Priya</h2>
-
-  <!-- 1. LOAN -->
-  <div class="contingency-card">
-    <div class="contingency-header">
-      <div class="contingency-number">1</div>
-      <div class="contingency-title-wrap">
-        <div class="contingency-title">Loan Contingency</div>
-        <div class="contingency-ref"><span class="para-ref">¶8A / L(1)</span> &nbsp;·&nbsp; Default: 17 days after acceptance</div>
-      </div>
-    </div>
-    <div class="contingency-body">
-      <div class="what-it-protects">
-        <div class="what-label">🛡️ What It Protects</div>
-        <p>If Marcus and Priya cannot obtain the loan they applied for — even after acting diligently and in good faith — they can cancel and get their deposit back.</p>
-      </div>
-      <div class="scenario-wrap">
-        <div class="scenario-label">📍 5555 Winners Lane — Real Scenario</div>
-        <p>The Okonkwos applied for a $1,000,000 loan. On Day 14, their lender calls and says the loan was denied due to a recent job change Marcus hadn't disclosed. The loan contingency is still active. They can cancel and recover their deposit.</p>
-      </div>
-      <div class="warning-wrap">
-        <div class="warning-label">⚠️ Agent Must Know</div>
-        <p>If the deal falls apart solely because the property didn't appraise AND there is no appraisal contingency, the buyer <strong>cannot</strong> use the loan contingency as an escape. The loan and appraisal contingencies are separate. Removing one does not remove the other. (RPA ¶8A(4))</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. APPRAISAL -->
-  <div class="contingency-card">
-    <div class="contingency-header">
-      <div class="contingency-number">2</div>
-      <div class="contingency-title-wrap">
-        <div class="contingency-title">Appraisal Contingency</div>
-        <div class="contingency-ref"><span class="para-ref">¶8B / L(2)</span> &nbsp;·&nbsp; Default: 17 days after acceptance</div>
-      </div>
-    </div>
-    <div class="contingency-body">
-      <div class="what-it-protects">
-        <div class="what-label">🛡️ What It Protects</div>
-        <p>If the property is appraised by a licensed appraiser at <strong>less than the purchase price</strong> (or the amount specified in the RPA), the buyer can cancel and get their deposit back.</p>
-      </div>
-      <div class="scenario-wrap">
-        <div class="scenario-label">📍 5555 Winners Lane — Real Scenario</div>
-        <p>Marcus and Priya offered $1,250,000. The appraisal comes in at $1,190,000 — $60,000 short. With the appraisal contingency in place, they can cancel, renegotiate the price, or make up the difference. Without it, they'd need to cover that $60,000 gap out of pocket or lose their deposit.</p>
-      </div>
-      <div class="warning-wrap">
-        <div class="warning-label">⚠️ Agent Must Know</div>
-        <p>If a buyer removes the appraisal contingency during a competitive offer situation, they are agreeing to buy the property regardless of what it appraises for. This is a significant financial risk your buyer must fully understand before signing. Always advise in writing.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. INSPECTION -->
-  <div class="contingency-card">
-    <div class="contingency-header">
-      <div class="contingency-number">3</div>
-      <div class="contingency-title-wrap">
-        <div class="contingency-title">Investigation of Property (Inspection) Contingency</div>
-        <div class="contingency-ref"><span class="para-ref">¶8C / L(3)</span> &nbsp;·&nbsp; Default: 17 days after acceptance</div>
-      </div>
-    </div>
-    <div class="contingency-body">
-      <div class="what-it-protects">
-        <div class="what-label">🛡️ What It Protects</div>
-        <p>This is the broadest contingency. It protects the buyer's right to physically investigate the property — including hiring inspectors for the roof, foundation, pest, plumbing, electrical, and any other physical condition — and to cancel if they are not satisfied.</p>
-      </div>
-      <div class="scenario-wrap">
-        <div class="scenario-label">📍 5555 Winners Lane — Real Scenario</div>
-        <p>The home inspector finds significant foundation cracking and evidence of unpermitted work on the back bedroom. Priya is upset — this is a deal breaker. Because they're on Day 12 and the contingency is still active, they can cancel and get their full deposit back. Or they can use the Request for Repair form (C.A.R. Form RR) to ask the seller to fix it.</p>
-      </div>
-      <div class="warning-wrap">
-        <div class="warning-label">⚠️ Agent Must Know</div>
-        <p>Informational access to the property is NOT a contingency by itself (RPA ¶L(3)). Your buyer always has the right to access the property for information even after contingencies are removed — but they lose the right to <em>cancel</em> based on what they find once the investigation contingency is removed.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. INSURANCE -->
-  <div class="contingency-card">
-    <div class="contingency-header">
-      <div class="contingency-number">4</div>
-      <div class="contingency-title-wrap">
-        <div class="contingency-title">Insurance Contingency</div>
-        <div class="contingency-ref"><span class="para-ref">¶8D / L(4)</span> &nbsp;·&nbsp; Default: 17 days after acceptance</div>
-      </div>
-    </div>
-    <div class="contingency-body">
-      <div class="what-it-protects">
-        <div class="what-label">🛡️ What It Protects</div>
-        <p>If the buyer cannot obtain homeowners insurance at an acceptable cost — or cannot get insured at all — they can cancel and get their deposit back. This includes fire insurance, flood insurance, and any policy the buyer needs or desires.</p>
-      </div>
-      <div class="scenario-wrap">
-        <div class="scenario-label">📍 5555 Winners Lane — Real Scenario</div>
-        <p>5555 Winners Lane is in a high fire hazard severity zone. Every insurance carrier Priya contacts either declines to cover the property or quotes $18,000/year — far more than the Okonkwos budgeted. The insurance contingency protects them. They can cancel and recover their deposit before Day 17.</p>
-      </div>
-      <div class="warning-wrap">
-        <div class="warning-label">⚠️ Agent Must Know — This Is a Big One in California</div>
-        <p>With California's insurance crisis, this contingency is more important than ever. The California Department of Insurance (DOI) strongly advises buyers to start exploring insurance options as early as Day 1. Refer your buyers to a licensed insurance broker immediately — do not wait. If they can't get insured, a failed loan contingency cannot be used as the reason to cancel if the real issue was insurance. (RPA ¶8A(2))</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. TITLE -->
-  <div class="contingency-card">
-    <div class="contingency-header">
-      <div class="contingency-number">5</div>
-      <div class="contingency-title-wrap">
-        <div class="contingency-title">Title / Preliminary Report Contingency</div>
-        <div class="contingency-ref"><span class="para-ref">¶8F / L(6)</span> &nbsp;·&nbsp; Default: 17 days after acceptance or 5 days after delivery, whichever is later</div>
-      </div>
-    </div>
-    <div class="contingency-body">
-      <div class="what-it-protects">
-        <div class="what-label">🛡️ What It Protects</div>
-        <p>The buyer's right to review the Preliminary Title Report ("Prelim") and cancel if they find title defects, unexpected liens, encumbrances, or easements they are not willing to accept.</p>
-      </div>
-      <div class="scenario-wrap">
-        <div class="scenario-label">📍 5555 Winners Lane — Real Scenario</div>
-        <p>The Prelim comes back showing an unpaid IRS tax lien of $85,000 against the seller — attached to the property. The Okonkwos review it with their escrow officer and determine the seller cannot resolve it before close. With the title contingency active, they can cancel. Or they negotiate with the seller to pay it off through escrow as a condition of closing.</p>
-      </div>
-      <div class="warning-wrap">
-        <div class="warning-label">⚠️ Agent Must Know</div>
-        <p>Buyers should never remove the title contingency before reviewing the Prelim carefully. If a revised Prelim is issued after an original one was delivered, buyers have 5 additional days to review and cancel if the revision shows material deviations. (RPA ¶8F(2))</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- BONUS: REVIEW OF SELLER DOCUMENTS -->
-  <div class="content">
-    <h2 class="section-title">Bonus: <span>Review of Seller Documents</span></h2>
-    <p>Technically this is contingency L(5) under Paragraph 8E — and it's one many new agents overlook. It gives Marcus and Priya the right to review <strong>all documents the seller is required to deliver</strong> — TDS, SPQ, NHD, and more — and cancel if they don't approve what they see.</p>
-    <p>The deadline is 17 days after acceptance, <strong>OR 5 days after delivery of those documents — whichever is later.</strong> So if the seller delivers documents late, your buyer automatically gets more time. (Covered in Lesson 1.)</p>
-  </div>
-
-  <!-- QUICK REFERENCE -->
-  <div class="content">
-    <h2 class="section-title">Quick <span>Reference</span> — All 5 at a Glance</h2>
-  </div>
-
-  <div class="summary-grid">
-    <div class="summary-item">
-      <div class="s-label">Loan · ¶8A / L(1)</div>
-      <div class="s-val">Can't get the loan → cancel & recover deposit</div>
-    </div>
-    <div class="summary-item">
-      <div class="s-label">Appraisal · ¶8B / L(2)</div>
-      <div class="s-val">Home appraises low → cancel or renegotiate</div>
-    </div>
-    <div class="summary-item">
-      <div class="s-label">Inspection · ¶8C / L(3)</div>
-      <div class="s-val">Physical condition unacceptable → cancel or request repairs</div>
-    </div>
-    <div class="summary-item">
-      <div class="s-label">Insurance · ¶8D / L(4)</div>
-      <div class="s-val">Can't get insured at reasonable cost → cancel</div>
-    </div>
-    <div class="summary-item">
-      <div class="s-label">Title · ¶8F / L(6)</div>
-      <div class="s-val">Title defects, liens, or encumbrances → cancel or negotiate</div>
-    </div>
-    <div class="summary-item">
-      <div class="s-label">Seller Docs · ¶8E / L(5)</div>
-      <div class="s-val">Don't approve disclosures → cancel</div>
-    </div>
-  </div>
-
-  <div class="agent-tip">
-    <div class="tip-label">🏡 Pro Move</div>
-    <p>On Day 1, walk your buyers through all 5 contingencies in plain language. Tell them exactly what each one protects and what it means to remove it. An educated buyer makes better decisions under pressure — and they'll trust you more when things get stressful around Day 15.</p>
-  </div>
-
-  <div class="scope-box">
-    <div class="scope-label">⚖️ Stay Within Your License</div>
-    <p>You can explain what contingencies are and how they work. You can advise your buyer on their options. You cannot give legal advice on what to do if there's a title dispute, tax lien interpretation, or contract breach. For those situations, refer your buyer to a qualified California real estate attorney. Your job is to protect them within the contract — their attorney handles what's beyond it.</p>
-  </div>
-
-  <hr class="divider" />
-
-  <!-- QUIZ -->
-  <div class="quiz-header">
+  <div class="story-card">
+<div class="story-label">📋 Day 3 — The Questions Start Coming</div>
+<p>Marcus calls you on Day 3. "So what can we cancel for at this point? What are we protected against?" Great question — and one every buyer's agent needs to answer confidently.</p>
+<p>You pull up the RPA and walk him through the five core contingencies. "Think of these as five different exit doors," you explain. "Each one closes at a specific time."</p>
+</div>
+  <div class="section"><h2>The 5 Core Contingencies</h2>
+<p>A contingency is a condition that must be satisfied for the sale to proceed. During the contingency period, the buyer can cancel for the stated reason and receive their full deposit back. Once removed, that exit door is closed.</p>
+<div class="table-wrap"><table class="info">
+<tr><th>Contingency</th><th>RPA Paragraph</th><th>Default Deadline</th><th>What It Protects</th></tr>
+<tr><td>Loan</td><td>¶8A / ¶3L(1)</td><td>21 days</td><td>Inability to secure financing</td></tr>
+<tr><td>Appraisal</td><td>¶8B / ¶3L(2)</td><td>17 days</td><td>Property appraising below price</td></tr>
+<tr><td>Inspection</td><td>¶8C / ¶3L(3)</td><td>17 days</td><td>Unsatisfactory physical condition</td></tr>
+<tr><td>Title</td><td>¶8F / ¶3L(6)</td><td>17 days</td><td>Title issues in preliminary report</td></tr>
+<tr><td>Seller Documents</td><td>¶8E / ¶3L(5)</td><td>17 days</td><td>Unsatisfactory TDS/SPQ/disclosures</td></tr>
+</table></div>
+</div>
+<div class="section"><h2>Loan Contingency — The Last Safety Net</h2>
+<p>The loan contingency has the longest default deadline (21 days) because lenders need time. Even with a pre-approval, something can go wrong — the appraisal, employment verification, debt ratios shifting. The loan contingency protects your buyer until the lender formally approves and funds.</p>
+<div class="warning-box"><div class="callout-title">🚨 Never Remove the Loan Contingency Early</div><p>Some listing agents will pressure buyers to remove the loan contingency before Day 21 to "show good faith." Advise your clients firmly against this unless they are truly prepared to buy cash if the loan falls through. Removing early without a backup plan puts their deposit at risk.</p></div>
+</div>
+<div class="section"><h2>Appraisal Contingency — Protecting Against Overpaying</h2>
+<p>In a hot market, buyers often offer above asking price. The appraisal contingency protects them if the property appraises below the purchase price. Without it, a low appraisal means the buyer must make up the difference in cash or lose their deposit.</p>
+<div class="callout"><div class="callout-title">📌 Appraisal Gap Addendum</div><p>In competitive markets, buyers sometimes agree to cover appraisal gaps up to a certain dollar amount. If your buyer signs an appraisal gap addendum, make sure they understand the financial commitment.</p></div>
+</div>
+  <div class="quiz-section">
     <h2>Knowledge Check</h2>
-    <p>5 questions · You need 4 out of 5 (80%) to pass · Read every explanation</p>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">What is the DEFAULT deadline for the loan contingency under the RPA?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. 7 calendar days</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. 14 calendar days</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. 17 calendar days</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. 21 calendar days</button>
+            </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">Which contingency protects a buyer if the home inspector finds serious undisclosed problems?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. Loan contingency</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. Appraisal contingency</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. Inspection contingency</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. Title contingency</button>
+            </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">Marcus and Priya's offer is $1,250,000 but the home only appraises at $1,200,000. Which contingency protects them?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. Loan contingency</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. Appraisal contingency</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. Seller documents contingency</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. Title contingency</button>
+            </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">The Seller Documents contingency (¶8E) protects the buyer against which situation?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. The seller refusing to do repairs</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. Unsatisfactory content in the seller's TDS, SPQ, or other required disclosures</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. A low appraisal</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. HOA fee increases after closing</button>
+            </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">If a buyer removes ALL contingencies before the deadlines, what happens?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. They get a 5-day grace period to reconsider</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. They can still cancel using the loan contingency</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. They give up their right to cancel for those reasons and their deposit is at risk if they back out</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. The seller must also remove their contingencies</button>
+            </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div><br>
+      <button class="btn-next" id="nb" onclick="window.location.href='course2_lesson3.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" onclick="retryQuiz()">Try Again</button>
+    </div>
   </div>
-
-  <div id="quiz-container">
-
-    <!-- Q1 -->
-    <div class="question-card" id="q1">
-      <div class="q-number">Question 1 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">Marcus and Priya's lender orders an appraisal on Day 12 and it comes back $55,000 below the purchase price. The Okonkwos still want the house and are willing to make up the difference in cash. What should you as their agent do first?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(1,'A')"><span class="option-letter">A</span>Immediately remove the appraisal contingency in writing so the seller feels confident</button>
-        <button class="option-btn" onclick="answer(1,'B')"><span class="option-letter">B</span>Wait — do nothing until the seller contacts you about the low appraisal</button>
-        <button class="option-btn" onclick="answer(1,'C')"><span class="option-letter">C</span>Explain the appraisal contingency options to your buyers: cancel, renegotiate the price with the seller, or agree to cover the gap — then follow their informed decision in writing before the deadline</button>
-        <button class="option-btn" onclick="answer(1,'D')"><span class="option-letter">D</span>Advise your buyers to waive all remaining contingencies to show the seller they are serious</button>
-      </div>
-      <div class="feedback-box" id="fb1"></div>
-    </div>
-
-    <!-- Q2 -->
-    <div class="question-card" id="q2">
-      <div class="q-number">Question 2 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">Priya discovers on Day 10 that she cannot get homeowners insurance for 5555 Winners Lane because it sits in a high fire hazard zone and every carrier has declined or quoted an unaffordable rate. She wants to cancel. Under the RPA, which contingency protects her right to cancel and recover her deposit?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(2,'A')"><span class="option-letter">A</span>The loan contingency — because without insurance, the lender won't fund the loan</button>
-        <button class="option-btn" onclick="answer(2,'B')"><span class="option-letter">B</span>The inspection contingency — because fire hazard is a physical condition of the property</button>
-        <button class="option-btn" onclick="answer(2,'C')"><span class="option-letter">C</span>The insurance contingency — this is its exact purpose and must be exercised before Day 17</button>
-        <button class="option-btn" onclick="answer(2,'D')"><span class="option-letter">D</span>No contingency applies — insurance issues are not covered by the RPA</button>
-      </div>
-      <div class="feedback-box" id="fb2"></div>
-    </div>
-
-    <!-- Q3 -->
-    <div class="question-card" id="q3">
-      <div class="q-number">Question 3 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">The home inspector at 5555 Winners Lane flags a cracked slab foundation and unpermitted addition. Marcus is upset and wants to walk. Their inspection contingency has NOT been removed. Which statement is correct?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(3,'A')"><span class="option-letter">A</span>Since the contingency is still active, Marcus can cancel the agreement and the seller must authorize return of the full deposit</button>
-        <button class="option-btn" onclick="answer(3,'B')"><span class="option-letter">B</span>Marcus can only cancel if the inspection issues cost more than 1% of the purchase price</button>
-        <button class="option-btn" onclick="answer(3,'C')"><span class="option-letter">C</span>Marcus must first submit a repair request — he cannot cancel without giving the seller a chance to fix the issues</button>
-        <button class="option-btn" onclick="answer(3,'D')"><span class="option-letter">D</span>The seller gets to decide whether to return the deposit based on the severity of the inspection issues</button>
-      </div>
-      <div class="feedback-box" id="fb3"></div>
-    </div>
-
-    <!-- Q4 -->
-    <div class="question-card" id="q4">
-      <div class="q-number">Question 4 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">The Preliminary Title Report for 5555 Winners Lane shows an IRS tax lien of $85,000 against the seller attached to the property. The Okonkwos' title contingency is still active. As their agent, what is the MOST important thing you should do immediately?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(4,'A')"><span class="option-letter">A</span>Remove the title contingency immediately so escrow can move forward while the lien is resolved</button>
-        <button class="option-btn" onclick="answer(4,'B')"><span class="option-letter">B</span>Advise your buyers of the lien, refer them to their escrow officer and potentially an attorney, and do NOT remove the title contingency until the lien issue is resolved or clearly addressed in writing</button>
-        <button class="option-btn" onclick="answer(4,'C')"><span class="option-letter">C</span>Contact the IRS directly on behalf of your buyers to negotiate the lien</button>
-        <button class="option-btn" onclick="answer(4,'D')"><span class="option-letter">D</span>Advise your buyers the lien will automatically be cleared at close of escrow so they have nothing to worry about</button>
-      </div>
-      <div class="feedback-box" id="fb4"></div>
-    </div>
-
-    <!-- Q5 -->
-    <div class="question-card" id="q5">
-      <div class="q-number">Question 5 <span class="q-type-badge">Multiple Choice</span></div>
-      <div class="question-text">Under RPA Paragraph 8A(4), if Marcus and Priya remove their appraisal contingency but keep their loan contingency active — and then the property appraises low and the lender declines the loan solely because of the low appraisal — can the Okonkwos use the loan contingency to cancel?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(5,'A')"><span class="option-letter">A</span>Yes — the loan contingency always protects the buyer if they cannot get the loan for any reason</button>
-        <button class="option-btn" onclick="answer(5,'B')"><span class="option-letter">B</span>No — if the buyer is otherwise qualified and the sole reason the loan was denied is the low appraisal, and the appraisal contingency was removed, the buyer cannot use the loan contingency to cancel</button>
-        <button class="option-btn" onclick="answer(5,'C')"><span class="option-letter">C</span>Yes — but only if the buyer submits a written protest to the lender within 5 business days</button>
-        <button class="option-btn" onclick="answer(5,'D')"><span class="option-letter">D</span>No — once the appraisal contingency is removed, the loan contingency is automatically removed as well</button>
-      </div>
-      <div class="feedback-box" id="fb5"></div>
-    </div>
-
-  </div>
-
-  <!-- SCORE CARD -->
-  <div class="score-card" id="score-card">
-    <div class="score-circle" id="score-circle"></div>
-    <div class="score-title" id="score-title"></div>
-    <p class="score-msg" id="score-msg"></p>
-    <div>
-      <button class="retry-btn" onclick="retryQuiz()" id="retry-btn" style="display:none;">Retake Quiz</button>
-      <button class="next-btn" id="next-btn" style="display:none;" onclick="window.location.href='course2_lesson3.html'">Next Lesson →</button>
-    </div>
-    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div>
-  </div>
-
 </div>
-
-<footer class="footer">
-  EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 2 of 11<br/>
-  Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.<br/>
-  Questions? Contact Rashaad Dixon · rashaad@edrrealtygroup.com
-</footer>
+<footer>EDR Realty Group · Course 2: Contingencies &amp; Timelines — Buyer Side · Lesson 2 of 11<br>Content aligned with C.A.R. Form RPA (Revised 12/25) and California DRE standards.</footer>
 </div>
-
 <script>
-  const answers = {
-    1: { correct: 'C', explanation: '<span class="fb-label">✓ Correct Answer: C</span><br/>Your job is to clearly explain the options and let your buyers make an informed decision. They can: (1) cancel using the appraisal contingency and recover their deposit, (2) renegotiate the purchase price with the seller using the low appraisal as leverage, or (3) agree to cover the gap in cash if they choose to proceed. Whatever they decide must be documented in writing before the contingency deadline. Never remove a contingency without your buyer fully understanding what they are giving up. (RPA ¶8B)' },
-    2: { correct: 'C', explanation: '<span class="fb-label">✓ Correct Answer: C — Insurance Contingency</span><br/>The insurance contingency under RPA ¶8D / L(4) is specifically designed for this situation. It protects the buyer\'s right to cancel if they cannot obtain an insurance policy at an acceptable cost. Critically, the RPA states the loan contingency cannot be used to cancel if the actual reason is an insurance failure — these are separate contingencies that serve separate purposes. (RPA ¶8A(2)). California\'s insurance crisis makes this contingency more important than ever — always advise buyers to start their insurance search on Day 1.' },
-    3: { correct: 'A', explanation: '<span class="fb-label">✓ Correct Answer: A</span><br/>As long as the investigation contingency is active, a buyer can cancel for any reason related to the property\'s physical condition and the seller must authorize the return of the deposit. There is no dollar threshold or severity requirement — the buyer\'s acceptance of the property condition is entirely subjective while the contingency is active. Note: while a buyer may also choose to submit a repair request (C.A.R. Form RR), that is optional — the seller has no obligation to agree to repairs, and the buyer\'s right to cancel for inspection reasons exists independently. (RPA ¶8C / 14B)' },
-    4: { correct: 'B', explanation: '<span class="fb-label">✓ Correct Answer: B</span><br/>A tax lien on the property is exactly what the title contingency is designed to protect against. Your buyers should NOT remove the title contingency until this issue is clearly resolved — either the seller pays off the lien from proceeds before close, or a written agreement is in place. Do not contact the IRS on behalf of your buyers (that is outside your license scope), and do not falsely reassure them that liens automatically clear. Refer them to their escrow officer and a real estate attorney if needed. Keeping the contingency active preserves their right to cancel if the lien cannot be cleared. (RPA ¶8F)' },
-    5: { correct: 'B', explanation: '<span class="fb-label">✓ Correct Answer: B</span><br/>This is one of the most important and misunderstood rules in the RPA. Under ¶8A(1): if the buyer has removed the appraisal contingency, and the property fails to appraise, and the loan is denied SOLELY because of that low appraisal, and the buyer is otherwise qualified — the buyer CANNOT use the loan contingency to escape the contract. The seller may be entitled to the buyer\'s deposit. However, note that Option D is also wrong: removing the appraisal contingency does NOT automatically remove the loan contingency — they are always separate. (RPA ¶8A(4))' }
-  };
-
-  const userAnswers = {};
+  let userAnswers = {};
   let answeredCount = 0;
-
+  const answers = {
+    1: { correct: 'D', explanation: `<span class="fb-label">✓ Correct: D — 21 Calendar Days</span><br>The loan contingency defaults to 21 days under ¶3L(1). All other major contingencies default to 17 days.` },
+    2: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C — Inspection</span><br>The inspection contingency (¶8C/¶3L(3)) allows the buyer to cancel based on unsatisfactory physical condition of the property.` },
+    3: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B — Appraisal</span><br>The appraisal contingency (¶8B/¶3L(2)) protects buyers when the property appraises below the purchase price.` },
+    4: { correct: 'B', explanation: `<span class="fb-label">✓ Correct: B</span><br>The Seller Documents contingency covers the buyer's right to review and approve the TDS, SPQ, NHD, and other required disclosures.` },
+    5: { correct: 'C', explanation: `<span class="fb-label">✓ Correct: C</span><br>Removing contingencies is permanent and binding. Once removed, the buyer loses their right to cancel for those reasons. Their deposit is at risk if they back out without a valid remaining contingency.` },
+  };
   function answer(q, selected) {
     if (userAnswers[q]) return;
     userAnswers[q] = selected;
     answeredCount++;
-    const card = document.getElementById('q' + q);
-    const btns = card.querySelectorAll('.option-btn');
-    const fb = document.getElementById('fb' + q);
-    const correct = answers[q].correct;
-    const isCorrect = selected === correct;
-    btns.forEach(btn => {
+    const card = document.getElementById("q" + q);
+    card.querySelectorAll(".option-btn").forEach(btn => {
       btn.disabled = true;
-      const letter = btn.querySelector('.option-letter').textContent.trim();
-      if (letter === correct) btn.classList.add(isCorrect && letter === selected ? 'correct' : 'revealed');
-      if (letter === selected && !isCorrect) btn.classList.add('incorrect');
+      if (btn.dataset.opt === selected) btn.classList.add(selected === answers[q].correct ? "correct" : "wrong");
+      if (btn.dataset.opt === answers[q].correct) btn.classList.add("correct");
     });
+    const fb = document.getElementById("fb" + q);
+    fb.className = "feedback-box show";
+    fb.style.background = selected === answers[q].correct ? "rgba(45,122,79,.15)" : "rgba(163,45,45,.15)";
+    fb.style.border = selected === answers[q].correct ? "1px solid rgba(45,122,79,.3)" : "1px solid rgba(163,45,45,.3)";
     fb.innerHTML = answers[q].explanation;
-    fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'incorrect-fb');
-    if (answeredCount === 5) showScore();
+    card.classList.add("revealed");
+    document.querySelector(".progress-fill").style.width = (answeredCount / Object.keys(answers).length * 100) + "%";
+    if (answeredCount === Object.keys(answers).length) setTimeout(showScore, 600);
   }
-
   async function showScore() {
+    const total = Object.keys(answers).length;
     const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
-    const pct = Math.round((correct / 5) * 100);
+    const pct = Math.round(correct / total * 100);
     const passed = correct >= 4;
-    const card = document.getElementById('score-card');
-    const circle = document.getElementById('score-circle');
-    document.getElementById('score-circle').textContent = correct + '/5';
-    document.getElementById('score-circle').className = 'score-circle ' + (passed ? 'pass' : 'fail');
-    document.getElementById('score-title').textContent = passed ? '🎉 Lesson 2 Complete!' : 'Keep Practicing';
-    document.getElementById('score-msg').textContent = passed
-      ? 'You scored ' + pct + '% — you know what protects your buyer. On to Lesson 3.'
-      : 'You scored ' + pct + '%. You need 80% (4/5) to pass. Review the explanations and retake.';
-    card.classList.add('show');
-    document.getElementById('progress-bar').style.width = pct + '%';  if (passed) document.getElementById('next-btn').style.display = 'inline-block';
-    else document.getElementById('retry-btn').style.display = 'inline-block';
-  
-    try{await window._saveLP(2,correct,passed,userAnswers);}catch(e){}
+    document.getElementById("sc-circ").textContent = correct + "/" + total;
+    document.getElementById("sc-circ").className = "sc-circ " + (passed ? "pass" : "fail");
+    document.getElementById("sc-title").textContent = passed ? "🎉 Lesson 2 Complete!" : "Keep Practicing";
+    document.getElementById("sc-msg").textContent = passed ? "Solid understanding of the 5 contingencies. On to Lesson 3." : "You scored " + pct + "%. You need 80% to pass. Review and try again.";
+    if (passed) document.getElementById("nb").style.display = "inline-block";
+    else document.getElementById("rb").style.display = "inline-block";
+    document.getElementById("score-card").classList.add("show");
+    try { await window._saveLP(2, correct, passed, userAnswers); } catch(e) {}
   }
-
   function retryQuiz() {
-    Object.keys(userAnswers).forEach(q => delete userAnswers[q]);
-    answeredCount = 0;
-    for (let i = 1; i <= 5; i++) {
-      const card = document.getElementById('q' + i);
-      card.querySelectorAll('.option-btn').forEach(btn => {
-        btn.disabled = false;
-        btn.classList.remove('correct', 'incorrect', 'revealed');
-      });
-      const fb = document.getElementById('fb' + i);
-      fb.className = 'feedback-box';
-      fb.innerHTML = '';
+    userAnswers = {}; answeredCount = 0;
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+      const card = document.getElementById("q" + i);
+      card.classList.remove("revealed");
+      card.querySelectorAll(".option-btn").forEach(b => { b.disabled=false; b.classList.remove("correct","wrong"); });
+      document.getElementById("fb" + i).className = "feedback-box";
+      document.getElementById("fb" + i).innerHTML = "";
     }
-    document.getElementById('score-card').classList.remove('show');
-    document.getElementById('retry-btn').style.display = 'none';
-    document.getElementById('next-btn').style.display = 'none';
-    document.getElementById('progress-bar').style.width = '0%';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById("score-card").classList.remove("show");
+    document.getElementById("nb").style.display = "none";
+    document.getElementById("rb").style.display = "none";
+    document.querySelector(".progress-fill").style.width = "0%";
+    window.scrollTo({top:0, behavior:"smooth"});
   }
-
-
+  // Show preview banner if in preview mode
+  window.addEventListener("DOMContentLoaded", function() {
+    var s = JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+    if (s && s.is_preview) {
+      var b = document.getElementById("preview-banner");
+      if (b) b.style.display = "block";
+    }
+  });
 </script>
-
-
-
-
-
 <script>
 (function(){
   var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
@@ -585,24 +285,29 @@
     if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
     if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
     var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
-    localStorage.setItem("edr_agent",JSON.stringify(ag));_show(ag);
+    localStorage.setItem("edr_agent",JSON.stringify(ag));
+    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+    _show(ag);
   };
   window._saveLP=async function(lid,sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course2");}
     else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course2"});}
     return true;}catch(e){return false;}
   };
   window._saveFQ=async function(sc,ps,ua){
-    if(!_ag)return false;
+    if(!_ag||_ag.is_preview)return false;
     try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course2&select=id");
     if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course2");}
     else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course2"});}
     return true;}catch(e){return false;}
   };
   window.addEventListener("DOMContentLoaded",function(){
-    try{var s=JSON.parse(localStorage.getItem("edr_agent"));if(s&&s.id){s.full_name=s.full_name||s.name||"";_show(s);}}catch(e){}
+    try{
+      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
+    }catch(e){}
   });
 })();
 </script>
