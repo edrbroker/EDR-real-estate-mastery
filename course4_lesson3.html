@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 4 · Lesson 3 — How Escrow Closes | EDR Realty Group</title>
+<style>
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.preview-banner{background:#c9a84c;color:#0a1628;text-align:center;padding:8px;font-size:12px;font-weight:700;font-family:sans-serif;position:sticky;top:0;z-index:200;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<div id="preview-banner" style="display:none">🧪 INSTRUCTOR PREVIEW MODE — Progress will NOT be saved</div>
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 4 · ESCROW & TITLE</span>
+  </div>
+</header>
+<div class="hero">
+  <div class="lesson-num">LESSON 3 OF 10</div>
+  <h1>How Escrow Closes</h1>
+  <div class="hero-sub">The step-by-step sequence from signing loan docs to recording the deed — what your client needs to know</div>
+  <div class="hero-meta"><span class="meta-dot">~10 min read</span><span class="meta-dot">RPA ¶3B / ¶14G / ¶16</span><span class="meta-dot">5 Quiz Questions</span></div>
+</div>
+<div class="main">
+  <div class="story-card">
+<div class="story-label">📋 The Home Stretch</div>
+<p>It's Day 28. Marcus and Priya have removed all contingencies on 5555 Winners Lane. Their loan is approved, the appraisal came in at value, and the inspection issues were resolved. Now the escrow officer calls: "Loan docs are in. We're scheduling the signing." This is the moment your clients have been waiting for. You need to walk them through exactly what happens next.</p>
+</div>
+  <div class="section"><h2>The Closing Sequence</h2>
+<p>Closing escrow is a multi-step process that happens in a specific order. One step can't happen until the one before it is complete.</p>
+<div class="table-wrap"><table class="info"><tr><th>Step</th><th>What Happens</th><th>Who Does It</th></tr>
+<tr><td>1. Loan Docs Sent</td><td>Lender sends final loan documents to escrow</td><td>Buyer's lender</td></tr>
+<tr><td>2. Loan Doc Signing</td><td>Buyer signs all loan documents (usually at escrow office or with a notary)</td><td>Buyer</td></tr>
+<tr><td>3. Loan Funding</td><td>Lender wires the loan proceeds to escrow (1-2 days after signing)</td><td>Lender</td></tr>
+<tr><td>4. Buyer's Closing Funds</td><td>Buyer wires their down payment and closing costs to escrow</td><td>Buyer</td></tr>
+<tr><td>5. Final Walkthrough</td><td>Buyer does final verification of property condition (RPA ¶16)</td><td>Buyer + Agent</td></tr>
+<tr><td>6. Recording</td><td>Escrow authorizes county recorder to record the grant deed</td><td>Escrow / Title</td></tr>
+<tr><td>7. Disbursement</td><td>Escrow releases seller proceeds, pays commissions, pays off liens</td><td>Escrow</td></tr>
+<tr><td>8. Keys</td><td>Seller vacates, buyer gets keys (per possession terms in RPA)</td><td>Both agents</td></tr>
+</table></div>
+</div>
+<div class="section"><h2>The Final Walkthrough</h2>
+<p>Under RPA ¶16, the buyer has the right to do a final verification of condition within 5 days before close of escrow. This is <strong>not a contingency</strong> — it's a verification that the property is in the same condition as when the offer was made, repairs have been completed, and the seller has complied with their obligations.</p>
+<div class="warning-box"><div class="callout-title">⚠️ Common Mistake</div><p>New agents sometimes skip the final walkthrough because the deal is almost done and they don't want to rock the boat. Don't skip it. If the seller took the built-in refrigerator that was supposed to stay, or left a pile of junk in the garage, you want to catch it before keys are handed over — not after.</p></div>
+</div>
+<div class="section"><h2>Recording = Ownership</h2>
+<p>The most important moment in the entire transaction is recording. When the county recorder stamps the grant deed with the recording time, the buyer legally owns the property. Until that happens, nothing is final — no matter what anyone tells you.</p>
+<div class="callout"><div class="callout-title">📌 Key Rule</div><p>In California, possession typically transfers at close of escrow (recording), unless otherwise negotiated. The seller should be fully moved out by the time recording happens unless the RPA specifies a different possession date.</p></div>
+</div>
+<div class="section"><h2>What Can Delay Closing?</h2>
+<ul>
+<li>Lender hasn't funded yet (loan docs signed but wire not sent)</li>
+<li>Buyer's wire hasn't arrived at escrow in time for same-day recording</li>
+<li>Last-minute title issues (new lien discovered)</li>
+<li>Seller hasn't signed their documents</li>
+<li>County recorder's office closes early or is backed up</li>
+</ul>
+<div class="tip-box"><div class="callout-title">✓ Best Practice</div><p>Tell your buyers to wire their closing funds at least 24–48 hours before the scheduled close date. Banks have daily wire cutoff times (usually 2–3 PM), and wires sent after cutoff won't arrive until the next business day — which can push closing by a full day.</p></div>
+</div>
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">At what point does a buyer legally become the owner of the property?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. When the buyer signs the purchase agreement</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. When all contingencies are removed</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. When the grant deed is recorded at the county recorder's office</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. When the buyer wires their down payment to escrow</button>
+            </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">Under RPA ¶16, the final walkthrough is best described as:</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. A new contingency that can cancel the deal</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. A buyer's right to verify the property condition, repairs, and seller obligations — not a contingency</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. An optional inspection the buyer can skip</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. A lender requirement before funding</button>
+            </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">Marcus and Priya sign their loan documents on Monday. When will the lender typically wire the loan funds to escrow?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. The same day they sign</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. 1–2 business days after signing</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. The same day as recording</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. 7 days after signing</button>
+            </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">Priya asks why she should wire her down payment 48 hours early. What's the best answer?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. Escrow charges a fee if funds arrive late</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. Banks have daily wire cutoff times, and a wire sent after cutoff won't arrive until the next business day — which can delay closing</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. The lender requires funds before they will fund the loan</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. The county recorder requires buyer funds before recording</button>
+            </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">Which of the following can delay a scheduled close of escrow?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. Buyer completes the final walkthrough</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. Escrow receives the grant deed from the seller</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. The buyer's wire arrives after the bank's cutoff time on the closing day</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. The title company issues the preliminary report</button>
+            </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div><br>
+      <button class="btn-next" id="nb" onclick="window.location.href='course4_lesson4.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+<footer>EDR Realty Group · Course 4: Escrow & Title · Lesson 3 of 10<br>Content aligned with California DRE standards and California Real Estate Law.</footer>
+</div>
+<script>
+  let userAnswers = {};
+  let answeredCount = 0;
+  const answers = {
+    1: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>Legal ownership transfers the moment the county recorder records the grant deed. Until that happens, the transaction is not final regardless of any other steps completed.` },
+    2: { correct: 'B', explanation: `<span class='fb-label'>✓ Correct: B</span><br>The final walkthrough under ¶16 is a verification, not a contingency. The buyer is confirming the property is in the agreed condition, repairs are done, and the seller has fulfilled their obligations.` },
+    3: { correct: 'B', explanation: `<span class='fb-label'>✓ Correct: B</span><br>After loan documents are signed, the lender typically reviews them and wires funds to escrow within 1–2 business days — not the same day. Planning around this delay is critical.` },
+    4: { correct: 'B', explanation: `<span class='fb-label'>✓ Correct: B</span><br>Banks have daily wire cutoff times (often 2–3 PM). A wire sent after that time won't arrive until the next business day. A late wire can push the entire close of escrow by a day or more.` },
+    5: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>If the buyer's wire arrives after the bank's cutoff time on the closing day, escrow may not have the funds needed to record — pushing the close to the next business day.` },
+  };
+  function answer(q, selected) {
+    if (userAnswers[q]) return;
+    userAnswers[q] = selected;
+    answeredCount++;
+    const card = document.getElementById("q" + q);
+    card.querySelectorAll(".option-btn").forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) btn.classList.add(selected === answers[q].correct ? "correct" : "wrong");
+      if (btn.dataset.opt === answers[q].correct) btn.classList.add("correct");
+    });
+    const fb = document.getElementById("fb" + q);
+    fb.className = "feedback-box show";
+    fb.style.background = selected === answers[q].correct ? "rgba(45,122,79,.15)" : "rgba(163,45,45,.15)";
+    fb.style.border = selected === answers[q].correct ? "1px solid rgba(45,122,79,.3)" : "1px solid rgba(163,45,45,.3)";
+    fb.innerHTML = answers[q].explanation;
+    card.classList.add("revealed");
+    document.querySelector(".progress-fill").style.width = (answeredCount / Object.keys(answers).length * 100) + "%";
+    if (answeredCount === Object.keys(answers).length) setTimeout(showScore, 600);
+  }
+  async function showScore() {
+    const total = Object.keys(answers).length;
+    const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
+    const pct = Math.round(correct / total * 100);
+    const passed = correct >= 4;
+    document.getElementById("sc-circ").textContent = correct + "/5";
+    document.getElementById("sc-circ").className = "sc-circ " + (passed ? "pass" : "fail");
+    document.getElementById("sc-title").textContent = passed ? "🎉 Lesson 3 Complete!" : "Keep Practicing";
+    document.getElementById("sc-msg").textContent = passed ? "Great work. Move on to the next lesson." : "You scored " + pct + "%. You need 80% to pass. Review the lesson and try again.";
+    if (passed) document.getElementById("nb").style.display = "inline-block";
+    else document.getElementById("rb").style.display = "inline-block";
+    document.getElementById("score-card").classList.add("show");
+    try { await window._saveLP(3, correct, passed, userAnswers); } catch(e) {}
+  }
+  function retryQuiz() {
+    userAnswers = {}; answeredCount = 0;
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+      const card = document.getElementById("q" + i);
+      card.classList.remove("revealed");
+      card.querySelectorAll(".option-btn").forEach(b => { b.disabled=false; b.classList.remove("correct","wrong"); });
+      document.getElementById("fb" + i).className = "feedback-box";
+      document.getElementById("fb" + i).innerHTML = "";
+    }
+    document.getElementById("score-card").classList.remove("show");
+    document.getElementById("nb").style.display = "none";
+    document.getElementById("rb").style.display = "none";
+    document.querySelector(".progress-fill").style.width = "0%";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  window.addEventListener("DOMContentLoaded", function() {
+    var s = JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+    if (s && s.is_preview) {
+      var b = document.getElementById("preview-banner");
+      if (b) b.style.display = "block";
+    }
+  });
+</script>
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));
+    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+    _show(ag);
+  };
+  window._saveLP=async function(lid,sc,ps,ua){
+    if(!_ag||_ag.is_preview)return false;
+    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4&select=id");
+    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4");}
+    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course4"});}
+    return true;}catch(e){return false;}
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag||_ag.is_preview)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course4&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course4");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course4"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{
+      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
+    }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 7 · Lesson 6 — The Loan Estimate and Closing Disclosure | EDR Realty Group</title>
+<style>:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 7 · FINANCING FUNDAMENTALS</span>
+  </div>
+</header>
+<div class="hero">
+  <div class="lesson-num">LESSON 6 OF 10</div>
+  <h1>The Loan Estimate and Closing Disclosure</h1>
+  <div class="hero-sub">Two federal documents every buyer receives — and what agents need to know about both</div>
+  <div class="hero-meta"><span class="meta-dot">~10 min read</span><span class="meta-dot">TRID / RESPA / Reg Z (TILA) / HUD</span><span class="meta-dot">5 Quiz Questions</span></div>
+</div>
+<div class="main">
+  <div class="story-card"><div class="story-label">📋 Setting the Scene</div><p>Three days after Marcus and Priya submit their loan application, their lender sends them a 3-page document called the Loan Estimate. Marcus emails it to you: "Is this normal? What does it all mean?"</p>
+<p>It's completely normal — it's federally required. And understanding it is how you help your clients catch errors before they become problems.</p></div>
+  <div class="section"><h2>What Is TRID?</h2>
+<p>TRID stands for <strong>TILA-RESPA Integrated Disclosure</strong> — a federal rule that combined the Truth-in-Lending Act (TILA) disclosures and the Real Estate Settlement Procedures Act (RESPA) disclosures into two unified documents:</p>
+<ol>
+<li><strong>Loan Estimate (LE)</strong> — given within 3 business days of loan application</li>
+<li><strong>Closing Disclosure (CD)</strong> — given at least 3 business days before closing</li>
+</ol>
+<p>These rules exist to protect borrowers from surprise costs and to allow comparison shopping between lenders.</p>
+</div>
+<div class="section"><h2>The Loan Estimate — Within 3 Business Days of Application</h2>
+<p>The Loan Estimate gives your buyers an estimate of what their loan will cost. Key sections:</p>
+<div class="table-wrap"><table class="info"><tr><th>LE Section</th><th>What It Shows</th></tr>
+<tr><td>Page 1 — Loan Terms</td><td>Loan amount, interest rate, monthly payment, whether rate/payment can increase</td></tr>
+<tr><td>Page 2 — Projected Payments</td><td>Estimated monthly payment breakdown: principal + interest + PMI + escrow</td></tr>
+<tr><td>Page 2 — Closing Costs</td><td>Itemized list of origination charges, third-party fees, prepaid items</td></tr>
+<tr><td>Page 3 — Comparisons</td><td>APR, total interest paid over life of loan, total loan costs comparison</td></tr></table></div>
+<div class="callout"><div class="callout-title">📌 APR vs. Interest Rate</div><p>The Annual Percentage Rate (APR) is always higher than the interest rate because it includes fees. APR is the true "cost" of the loan expressed as a percentage. When comparing two loan options, compare APRs — not just interest rates — for an apples-to-apples comparison.</p></div>
+</div>
+<div class="section"><h2>The Closing Disclosure — At Least 3 Business Days Before Closing</h2>
+<p>The Closing Disclosure is the final version of all loan costs — it must be delivered at least 3 business days before the loan consummation date. If material changes occur after delivery (change in loan product, rate, or new prepayment penalty added), the 3-day clock resets.</p>
+<p>Key items to review on the CD:</p>
+<ul>
+<li>Final loan amount — does it match what was approved?</li>
+<li>Interest rate — does it match what was locked?</li>
+<li>Cash to Close — how much does the buyer need to wire?</li>
+<li>Seller credits — is the agreed credit correctly applied?</li>
+<li>Commission amounts — are they correct?</li>
+<li>Prepaid property taxes and insurance — are they correctly calculated?</li>
+</ul>
+<div class="warning-box"><div class="callout-title">⚠️ A Wrong CD Can Delay Closing</div><p>Errors on the Closing Disclosure can push close of escrow by days. As the buyer's agent, request the CD as soon as it's available (typically 48–72 hours before the scheduled close) and review it BEFORE your clients see it. Catching an error early means you have time to fix it without blowing the close date.</p></div>
+<div class="tip-box"><div class="callout-title">✅ The Tolerance Rules</div><p>Under TRID, certain closing cost categories have "tolerance" limits — meaning the final CD cannot exceed the Loan Estimate by more than a set amount. If lender fees increase beyond the zero-tolerance limit, the lender must cure the difference. Know that these rules exist, and refer your clients to their lender or a HUD-approved housing counselor if they have concerns.</p></div>
+</div>
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <p class="quiz-sub">5 questions · 4 out of 5 to pass · Retake anytime</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+    <div id="quiz-wrap"></div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ"></div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div>
+      <button class="btn-next" id="btn-next" onclick="window.location.href='course7_lesson7.html'">Next Lesson →</button>
+      <button class="btn-retry" id="btn-retry" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+</div>
+<footer>EDR Realty Group · Course 7 Lesson 6 · FINANCING FUNDAMENTALS · California DRE Standards · DRE RE-12 / RE-22</footer>
+<script>
+const QUESTIONS=[{"q": "TRID requires lenders to provide the Loan Estimate within how many business days of receiving a loan application?", "opts": ["1 business day", "3 business days", "7 calendar days", "The day of closing"], "ans": 1, "fb": "Under TRID, lenders must provide the Loan Estimate within 3 business days of receiving a complete loan application. This gives buyers time to review loan terms and compare offers from multiple lenders."}, {"q": "The Annual Percentage Rate (APR) on the Loan Estimate is always higher than the interest rate because:", "opts": ["APR includes the lender's profit margin on top of the rate", "APR reflects the true cost of the loan including fees, while the interest rate does not include fees", "APR is the rate used only for the first year of the loan", "Lenders are required by law to add 0.5% to the stated rate"], "ans": 1, "fb": "APR includes all loan costs (origination fees, points, mortgage insurance, etc.) expressed as an annualized percentage. This is why it's always higher than the stated interest rate \u2014 and why APR is the right number to compare when evaluating loan offers."}, {"q": "The Closing Disclosure must be delivered to the buyer at least how many business days before closing?", "opts": ["24 hours", "3 business days", "7 calendar days", "1 business day"], "ans": 1, "fb": "TRID requires the Closing Disclosure to be delivered at least 3 business days before the loan consummation date (closing). A material change in the CD \u2014 like a change in loan type or addition of a prepayment penalty \u2014 resets this 3-day clock."}, {"q": "As the buyer's agent, when should you review the Closing Disclosure?", "opts": ["At the signing table, when the buyer signs it", "After closing, to confirm the transaction was accurate", "Before your clients see it \u2014 request it 48-72 hours before the scheduled close and review for errors", "You do not need to review the CD \u2014 that is the lender's job"], "ans": 2, "fb": "Getting the CD early and reviewing it before your clients see it lets you catch errors \u2014 wrong commission amounts, missing seller credits, incorrect loan terms \u2014 while there's still time to fix them. Finding an error at the signing table creates a crisis that can delay closing."}, {"q": "What happens if a lender's fees on the Closing Disclosure exceed the amounts on the Loan Estimate beyond the allowed tolerance?", "opts": ["The buyer must pay the higher amount or cancel the loan", "The lender must 'cure' the overcharge \u2014 reduce or reimburse the excess amount", "The escrow company splits the difference between buyer and lender", "The DRE requires the lender to issue a new loan approval"], "ans": 1, "fb": "TRID tolerance rules limit how much certain closing costs can increase from the Loan Estimate to the Closing Disclosure. If lender-controlled fees (zero-tolerance category) increase beyond zero, the lender must cure the overcharge \u2014 typically by issuing a credit at closing."}];
+function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
+function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
+let ag=null,answers=[],revealed=0;
+async function edrLogin(){
+  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
+  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+  err.style.display="none";spin.style.display="block";
+  try{
+    const r=await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V"}});
+    const data=await r.json();
+    if(!data.length){err.textContent="No account found.";err.style.display="block";spin.style.display="none";return;}
+    const a=data[0];
+    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
+    ag=a;edrSave(ag);
+    document.getElementById("edr-auth-wrap").style.display="none";
+    document.getElementById("lc").style.display="block";
+    document.getElementById("nb-badge").textContent=ag.name;
+    document.getElementById("nb-badge").style.display="inline-block";
+    buildQuiz();
+  }catch(e){err.textContent="Connection error.";err.style.display="block";spin.style.display="none";}
+}
+window.onload=function(){
+  const saved=edrLoad();
+  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
+};
+function buildQuiz(){
+  const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  QUESTIONS.forEach((q,i)=>{
+    const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    wrap.appendChild(card);
+  });
+}
+function pick(qi,oi){
+  if(answers[qi]!==undefined)return;answers[qi]=oi;revealed++;
+  const q=QUESTIONS[qi];
+  const opts=document.querySelectorAll("#opts"+qi+" .option-btn");
+  opts.forEach((b,j)=>{b.disabled=true;if(j===q.ans)b.classList.add("correct");else if(j===oi)b.classList.add("wrong");});
+  const fb=document.getElementById("fb"+qi);const correct=oi===q.ans;
+  fb.style.background=correct?"rgba(45,122,79,.15)":"rgba(163,45,45,.15)";
+  fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
+  fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
+  fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
+}
+async function showScore(){
+  const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
+  const passed=score>=4;
+  const circ=document.getElementById("sc-circ");
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"Review the lesson and try again.";
+  document.getElementById("btn-next").style.display=passed?"inline-block":"none";
+  document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
+  document.getElementById("score-card").classList.add("show");
+  if(ag&&ag.id&&passed){
+    try{
+      await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/progress",{method:"POST",headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:"course7",lesson:6,completed:true})});
+    }catch(e){}
+  }
+}
+function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+</script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 4 · Lesson 6 — Closing Costs — Who Pays What | EDR Realty Group</title>
+<style>
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.preview-banner{background:#c9a84c;color:#0a1628;text-align:center;padding:8px;font-size:12px;font-weight:700;font-family:sans-serif;position:sticky;top:0;z-index:200;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<div id="preview-banner" style="display:none">🧪 INSTRUCTOR PREVIEW MODE — Progress will NOT be saved</div>
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 4 · ESCROW & TITLE</span>
+  </div>
+</header>
+<div class="hero">
+  <div class="lesson-num">LESSON 6 OF 10</div>
+  <h1>Closing Costs — Who Pays What</h1>
+  <div class="hero-sub">Breaking down buyer and seller closing costs so you can set accurate expectations from day one</div>
+  <div class="hero-meta"><span class="meta-dot">~10 min read</span><span class="meta-dot">RPA ¶3 / ¶17 / Local Custom</span><span class="meta-dot">5 Quiz Questions</span></div>
+</div>
+<div class="main">
+  <div class="story-card"><div class="story-label">📋 The Sticker Shock</div>
+<p>Marcus calls you. He just saw the estimated closing statement from escrow. "Wait — I thought the down payment was the only thing we were paying? What are all these other fees?" This is a conversation every agent has, and you need to be ready for it.</p></div>
+  <div class="section"><h2>Understanding Closing Costs</h2>
+<p>Closing costs are fees paid at the close of escrow that are separate from the down payment. They typically range from <strong>2% to 5% of the purchase price</strong> for buyers and 6% to 8% for sellers (largely due to agent commissions).</p>
+</div>
+<div class="section"><h2>Typical Buyer Closing Costs</h2>
+<ul>
+<li><strong>Loan origination fee</strong> — lender's fee for processing the loan (typically 0.5%–1% of loan)</li>
+<li><strong>Appraisal fee</strong> — $500–$900, ordered by the lender</li>
+<li><strong>Credit report fee</strong> — typically $30–$75</li>
+<li><strong>Title insurance — lender's policy (ALTA)</strong> — buyer typically pays</li>
+<li><strong>Escrow fee</strong> — buyer's share (split 50/50 with seller in most CA counties)</li>
+<li><strong>Recording fees</strong> — county charges to record the deed and deed of trust</li>
+<li><strong>Prepaid interest</strong> — interest from close of escrow to first mortgage payment</li>
+<li><strong>Property tax impound</strong> — lender collects several months upfront into an impound account</li>
+<li><strong>Homeowner's insurance</strong> — first year's premium paid at close</li>
+</ul>
+</div>
+<div class="section"><h2>Typical Seller Closing Costs</h2>
+<ul>
+<li><strong>Real estate commissions</strong> — the largest seller cost</li>
+<li><strong>Owner's title insurance policy (CLTA)</strong> — seller customarily pays in SoCal</li>
+<li><strong>Escrow fee</strong> — seller's share (split with buyer)</li>
+<li><strong>County transfer tax</strong> — $1.10 per $1,000 of sales price in most CA counties</li>
+<li><strong>Payoff of existing mortgage</strong> — plus any prepayment penalty</li>
+<li><strong>HOA transfer fees and document fees</strong> — if applicable</li>
+<li><strong>Natural Hazard Disclosure (NHD) report</strong> — typically seller pays</li>
+<li><strong>Home warranty</strong> — if offered (RPA ¶18 — seller max contribution is $625)</li>
+</ul>
+<div class="rpa-ref"><strong>RPA ¶17:</strong> Prorations (property taxes, HOA, etc.) are calculated on a 30-day month basis as of the close of escrow date. The escrow officer handles these calculations on the closing/settlement statement.</div>
+<div class="tip-box"><div class="callout-title">✓ Set Expectations Early</div><p>On a $1,250,000 purchase like 5555 Winners Lane, buyer closing costs could easily be $25,000–$50,000 on top of the down payment. Buyers who don't know this upfront often panic when they see the closing statement. Walk them through estimated costs during your very first buyer consultation.</p></div>
+</div>
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">On Marcus and Priya's $1,250,000 purchase, roughly how much should they budget for buyer closing costs in addition to their down payment?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. $1,000–$2,000</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. $5,000–$10,000</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. $25,000–$50,000 (approximately 2%–5% of purchase price)</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. Closing costs are always paid by the seller in California</button>
+            </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">In most Southern California counties, how is the escrow fee split between buyer and seller?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. 100% buyer</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. 100% seller</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. 50/50 split between buyer and seller</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. The lender pays the escrow fee</button>
+            </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">Which of the following is a typical SELLER closing cost in California?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. Prepaid homeowner's insurance premium</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. County transfer tax ($1.10 per $1,000 of sales price)</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. Loan origination fee</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. Property tax impound account</button>
+            </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">What is prepaid interest on a buyer's closing statement?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. Interest the buyer pays on a previous loan</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. Interest that accrues from the date escrow closes to the date of the buyer's first mortgage payment</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. A penalty for closing escrow late</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. The lender's origination fee</button>
+            </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">When is the best time to discuss estimated closing costs with a buyer?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. After offer acceptance, when escrow sends the closing statement</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. During the final walkthrough</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. At the very first buyer consultation — before they start making offers</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. Only if they ask about it</button>
+            </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div><br>
+      <button class="btn-next" id="nb" onclick="window.location.href='course4_lesson7.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+<footer>EDR Realty Group · Course 4: Escrow & Title · Lesson 6 of 10<br>Content aligned with California DRE standards and California Real Estate Law.</footer>
+</div>
+<script>
+  let userAnswers = {};
+  let answeredCount = 0;
+  const answers = {
+    1: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>Buyer closing costs typically range from 2% to 5% of the purchase price. On a $1,250,000 purchase, that's $25,000–$62,500 on top of the down payment. Setting this expectation early prevents sticker shock at the closing statement.` },
+    2: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>In most Southern California counties, it is customary for the escrow fee to be split 50/50 between buyer and seller. This can be negotiated in the purchase contract.` },
+    3: { correct: 'B', explanation: `<span class='fb-label'>✓ Correct: B</span><br>The county transfer tax is a seller cost, typically $1.10 per $1,000 of the sales price in California. On a $1,250,000 sale, that's $1,375. Some cities (like Los Angeles) have additional local transfer taxes on top of this.` },
+    4: { correct: 'B', explanation: `<span class='fb-label'>✓ Correct: B</span><br>Prepaid interest covers the days between close of escrow and the start of the first full mortgage payment period. For example, if escrow closes on June 15, the lender collects interest for June 15–30 at closing.` },
+    5: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>Closing costs should be discussed at the first buyer consultation. Buyers who don't know about closing costs upfront are often shocked and may not have the funds ready. Early education prevents last-minute surprises that can kill deals.` },
+  };
+  function answer(q, selected) {
+    if (userAnswers[q]) return;
+    userAnswers[q] = selected;
+    answeredCount++;
+    const card = document.getElementById("q" + q);
+    card.querySelectorAll(".option-btn").forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) btn.classList.add(selected === answers[q].correct ? "correct" : "wrong");
+      if (btn.dataset.opt === answers[q].correct) btn.classList.add("correct");
+    });
+    const fb = document.getElementById("fb" + q);
+    fb.className = "feedback-box show";
+    fb.style.background = selected === answers[q].correct ? "rgba(45,122,79,.15)" : "rgba(163,45,45,.15)";
+    fb.style.border = selected === answers[q].correct ? "1px solid rgba(45,122,79,.3)" : "1px solid rgba(163,45,45,.3)";
+    fb.innerHTML = answers[q].explanation;
+    card.classList.add("revealed");
+    document.querySelector(".progress-fill").style.width = (answeredCount / Object.keys(answers).length * 100) + "%";
+    if (answeredCount === Object.keys(answers).length) setTimeout(showScore, 600);
+  }
+  async function showScore() {
+    const total = Object.keys(answers).length;
+    const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
+    const pct = Math.round(correct / total * 100);
+    const passed = correct >= 4;
+    document.getElementById("sc-circ").textContent = correct + "/5";
+    document.getElementById("sc-circ").className = "sc-circ " + (passed ? "pass" : "fail");
+    document.getElementById("sc-title").textContent = passed ? "🎉 Lesson 6 Complete!" : "Keep Practicing";
+    document.getElementById("sc-msg").textContent = passed ? "Great work. Move on to the next lesson." : "You scored " + pct + "%. You need 80% to pass. Review the lesson and try again.";
+    if (passed) document.getElementById("nb").style.display = "inline-block";
+    else document.getElementById("rb").style.display = "inline-block";
+    document.getElementById("score-card").classList.add("show");
+    try { await window._saveLP(6, correct, passed, userAnswers); } catch(e) {}
+  }
+  function retryQuiz() {
+    userAnswers = {}; answeredCount = 0;
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+      const card = document.getElementById("q" + i);
+      card.classList.remove("revealed");
+      card.querySelectorAll(".option-btn").forEach(b => { b.disabled=false; b.classList.remove("correct","wrong"); });
+      document.getElementById("fb" + i).className = "feedback-box";
+      document.getElementById("fb" + i).innerHTML = "";
+    }
+    document.getElementById("score-card").classList.remove("show");
+    document.getElementById("nb").style.display = "none";
+    document.getElementById("rb").style.display = "none";
+    document.querySelector(".progress-fill").style.width = "0%";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  window.addEventListener("DOMContentLoaded", function() {
+    var s = JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+    if (s && s.is_preview) {
+      var b = document.getElementById("preview-banner");
+      if (b) b.style.display = "block";
+    }
+  });
+</script>
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));
+    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+    _show(ag);
+  };
+  window._saveLP=async function(lid,sc,ps,ua){
+    if(!_ag||_ag.is_preview)return false;
+    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4&select=id");
+    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4");}
+    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course4"});}
+    return true;}catch(e){return false;}
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag||_ag.is_preview)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course4&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course4");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course4"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{
+      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
+    }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

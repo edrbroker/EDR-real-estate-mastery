@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 4 · Lesson 1 — What Is Escrow? | EDR Realty Group</title>
+<style>
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+a{color:inherit;text-decoration:none;}button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.preview-banner{background:#c9a84c;color:#0a1628;text-align:center;padding:8px;font-size:12px;font-weight:700;font-family:sans-serif;position:sticky;top:0;z-index:200;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.lesson-num{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em;}
+.hero h1{font-size:2.4rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.story-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.story-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+.story-card p{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:10px;}
+.story-card p:last-child{margin-bottom:0;}
+.story-card strong{color:var(--gold);}
+.section{margin-bottom:36px;}
+.section h2{font-size:1.4rem;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2);}
+.section h3{font-size:1.1rem;color:var(--white);margin-bottom:10px;margin-top:20px;}
+.section p{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:14px;}
+.section ul,.section ol{padding-left:20px;margin-bottom:14px;}
+.section li{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:6px;}
+.callout{background:rgba(201,168,76,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+.callout-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.callout p,.rpa-ref{font-size:.9rem;color:rgba(255,255,255,.85);margin:0;line-height:1.6;}
+.rpa-ref{background:rgba(26,143,160,.08);border:1px solid rgba(26,143,160,.25);border-radius:8px;padding:12px 16px;margin:16px 0;}
+.rpa-ref strong{color:#4ec9d8;}
+.warning-box{background:rgba(163,45,45,.1);border:1px solid rgba(163,45,45,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.warning-box .callout-title{color:#e88;}
+.warning-box p{color:rgba(255,255,255,.82);}
+.tip-box{background:rgba(45,122,79,.08);border:1px solid rgba(45,122,79,.3);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.tip-box .callout-title{color:#7ed4a0;}
+.tip-box p{color:rgba(255,255,255,.82);}
+.table-wrap{overflow-x:auto;margin:20px 0;}
+table.info{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.info th{background:rgba(201,168,76,.15);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;}
+table.info td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.82);vertical-align:top;}
+.quiz-section{margin-top:48px;padding-top:32px;border-top:1px solid rgba(201,168,76,.2);}
+.quiz-section h2{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+.quiz-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.fb-label{font-weight:700;}
+.progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:28px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-next{background:var(--green);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<div id="preview-banner" style="display:none">🧪 INSTRUCTOR PREVIEW MODE — Progress will NOT be saved</div>
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 4 · ESCROW & TITLE</span>
+  </div>
+</header>
+<div class="hero">
+  <div class="lesson-num">LESSON 1 OF 10</div>
+  <h1>What Is Escrow?</h1>
+  <div class="hero-sub">Understanding the neutral third party that holds everything together in a California real estate transaction</div>
+  <div class="hero-meta"><span class="meta-dot">~10 min read</span><span class="meta-dot">RPA ¶3B / Escrow Instructions</span><span class="meta-dot">5 Quiz Questions</span></div>
+</div>
+<div class="main">
+  <div class="story-card">
+<div class="story-label">📋 Setting the Scene</div>
+<p>Marcus and Priya Okonkwo just got their offer accepted on <strong>5555 Winners Lane, Los Angeles, CA 90210</strong>. They're excited — but then Priya asks you, "So… what exactly happens next? Who's actually holding our money?"</p>
+<p>Great question. The answer is: <strong>escrow</strong>. And as their agent, it's your job to explain it clearly.</p>
+</div>
+  <div class="section"><h2>Escrow: The Neutral Referee</h2>
+<p>Escrow is a process where a neutral third party — called the <strong>escrow holder</strong> — holds money, documents, and instructions from both the buyer and seller until all conditions of the sale are met. Think of escrow like a referee at a championship game. They don't play for either team, but nothing counts unless they say so.</p>
+<div class="callout"><div class="callout-title">📌 Key Definition</div><p>The escrow holder cannot release the buyer's money to the seller until every condition in the purchase contract has been satisfied. That's what makes it safe for both sides.</p></div>
+</div>
+<div class="section"><h2>Who Can Hold Escrow in California?</h2>
+<p>In California, escrow can be handled by several types of licensed entities:</p>
+<ul>
+<li><strong>Independent escrow companies</strong> — licensed by the Department of Financial Protection and Innovation (DFPI) under the California Escrow Law (Financial Code §17000)</li>
+<li><strong>Title companies</strong> — often handle both title insurance and escrow</li>
+<li><strong>Attorney escrows</strong> — less common in California residential transactions</li>
+<li><strong>DRE-licensed brokers</strong> — can perform escrow as part of a transaction they are already involved in (Financial Code §17006 exemption)</li>
+</ul>
+<div class="rpa-ref"><strong>DRE Note:</strong> Under Financial Code §17403.4, all written escrow instructions must include the escrow company's license name and supervising agency. Always verify your escrow company is properly licensed.</div>
+</div>
+<div class="section"><h2>What Does Escrow Actually Do?</h2>
+<p>The escrow officer is the central hub of your transaction. They:</p>
+<ul>
+<li>Receive and hold the buyer's Earnest Money Deposit (EMD)</li>
+<li>Collect and organize all required documents (grant deed, loan docs, title reports)</li>
+<li>Coordinate with the buyer's lender to satisfy loan conditions</li>
+<li>Order the preliminary title report and title insurance</li>
+<li>Calculate and prorate property taxes, HOA dues, and other fees</li>
+<li>Prepare the final settlement statement (closing disclosure)</li>
+<li>Authorize recording of the deed with the county once all conditions are met</li>
+<li>Disburse funds to the seller, pay off liens, and pay commissions</li>
+</ul>
+<div class="tip-box"><div class="callout-title">✓ Real Life Example</div><p>When Marcus and Priya's EMD of $37,500 is wired to escrow, it sits in the escrow trust account. It doesn't go to the seller. It doesn't go to you. It stays there — protected — until escrow closes or the deal cancels.</p></div>
+</div>
+<div class="section"><h2>Opening Escrow</h2>
+<p>Escrow is typically opened within 1–3 business days of acceptance. Your office or the listing agent will send the fully executed purchase agreement to the escrow company. The escrow officer then sends both parties their escrow instructions to review and sign. Per RPA ¶3N(2), the buyer must sign and return escrow instructions within 5 days of delivery.</p>
+<div class="warning-box"><div class="callout-title">⚠️ Watch Out</div><p>Escrow instructions are a separate document from the RPA. They're prepared by the escrow company and must be signed by both buyer and seller. If your client doesn't sign them promptly, it can delay the entire transaction.</p></div>
+</div>
+  <div class="quiz-section">
+    <h2>Knowledge Check</h2>
+    <div class="quiz-sub">Answer all 5 questions. You need 4 out of 5 (80%) to pass.</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+    
+        <div class="question-card" id="q1">
+          <div class="q-label">Question 1 of 5</div>
+          <div class="q-text">What is the primary role of the escrow holder in a California real estate transaction?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(1,'A')">A. To represent the buyer's interests</button>
+            <button class="option-btn" data-opt="B" onclick="answer(1,'B')">B. To hold money and documents as a neutral third party until all conditions are met</button>
+            <button class="option-btn" data-opt="C" onclick="answer(1,'C')">C. To negotiate the purchase price</button>
+            <button class="option-btn" data-opt="D" onclick="answer(1,'D')">D. To issue the title insurance policy</button>
+            </div>
+          <div class="feedback-box" id="fb1"></div>
+        </div>
+        <div class="question-card" id="q2">
+          <div class="q-label">Question 2 of 5</div>
+          <div class="q-text">Marcus and Priya wire their $37,500 EMD to escrow. Who does that money belong to right now?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(2,'A')">A. The seller</button>
+            <button class="option-btn" data-opt="B" onclick="answer(2,'B')">B. The listing agent</button>
+            <button class="option-btn" data-opt="C" onclick="answer(2,'C')">C. It remains in the escrow trust account, belonging to neither party until conditions are met</button>
+            <button class="option-btn" data-opt="D" onclick="answer(2,'D')">D. The buyer's lender</button>
+            </div>
+          <div class="feedback-box" id="fb2"></div>
+        </div>
+        <div class="question-card" id="q3">
+          <div class="q-label">Question 3 of 5</div>
+          <div class="q-text">Which California law governs independent escrow companies (not broker-controlled)?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(3,'A')">A. Business & Professions Code §10000</button>
+            <button class="option-btn" data-opt="B" onclick="answer(3,'B')">B. Civil Code §1102</button>
+            <button class="option-btn" data-opt="C" onclick="answer(3,'C')">C. Financial Code §17000 (California Escrow Law)</button>
+            <button class="option-btn" data-opt="D" onclick="answer(3,'D')">D. Health & Safety Code §25400</button>
+            </div>
+          <div class="feedback-box" id="fb3"></div>
+        </div>
+        <div class="question-card" id="q4">
+          <div class="q-label">Question 4 of 5</div>
+          <div class="q-text">Under RPA ¶3N(2), within how many days must the buyer sign and return escrow instructions after delivery?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(4,'A')">A. 2 days</button>
+            <button class="option-btn" data-opt="B" onclick="answer(4,'B')">B. 3 days</button>
+            <button class="option-btn" data-opt="C" onclick="answer(4,'C')">C. 5 days</button>
+            <button class="option-btn" data-opt="D" onclick="answer(4,'D')">D. 7 days</button>
+            </div>
+          <div class="feedback-box" id="fb4"></div>
+        </div>
+        <div class="question-card" id="q5">
+          <div class="q-label">Question 5 of 5</div>
+          <div class="q-text">Which of the following is NOT a typical duty of the escrow officer?</div>
+          <div class="options"><button class="option-btn" data-opt="A" onclick="answer(5,'A')">A. Ordering the preliminary title report</button>
+            <button class="option-btn" data-opt="B" onclick="answer(5,'B')">B. Negotiating repairs between buyer and seller</button>
+            <button class="option-btn" data-opt="C" onclick="answer(5,'C')">C. Calculating property tax prorations</button>
+            <button class="option-btn" data-opt="D" onclick="answer(5,'D')">D. Authorizing the recording of the grant deed</button>
+            </div>
+          <div class="feedback-box" id="fb5"></div>
+        </div>
+    <div class="score-card" id="score-card">
+      <div class="sc-circ" id="sc-circ">0/5</div>
+      <div class="sc-title" id="sc-title"></div>
+      <div class="sc-msg" id="sc-msg"></div><br>
+      <button class="btn-next" id="nb" onclick="window.location.href='course4_lesson2.html'">Next Lesson →</button>
+      <button class="btn-retry" id="rb" onclick="retryQuiz()">Try Again</button>
+    </div>
+  </div>
+</div>
+<footer>EDR Realty Group · Course 4: Escrow & Title · Lesson 1 of 10<br>Content aligned with California DRE standards and California Real Estate Law.</footer>
+</div>
+<script>
+  let userAnswers = {};
+  let answeredCount = 0;
+  const answers = {
+    1: { correct: 'B', explanation: `<span class='fb-label'>✓ Correct: B</span><br>The escrow holder is a neutral third party who holds all money and documents until every condition of the sale is satisfied — protecting both buyer and seller.` },
+    2: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>The EMD sits protected in the escrow trust account. It cannot be released to the seller — or returned to the buyer — until escrow closes or a cancellation is properly executed.` },
+    3: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>Independent escrow companies are licensed and regulated by the DFPI under the California Escrow Law, Financial Code §17000 et seq.` },
+    4: { correct: 'C', explanation: `<span class='fb-label'>✓ Correct: C</span><br>Per RPA ¶3N(2), the buyer must sign and return escrow instructions within 5 days of delivery from the escrow company.` },
+    5: { correct: 'B', explanation: `<span class='fb-label'>✓ Correct: B</span><br>Negotiating repairs is the job of the real estate agents — not escrow. The escrow officer is a neutral party and does not advocate for either side or negotiate transaction terms.` },
+  };
+  function answer(q, selected) {
+    if (userAnswers[q]) return;
+    userAnswers[q] = selected;
+    answeredCount++;
+    const card = document.getElementById("q" + q);
+    card.querySelectorAll(".option-btn").forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.opt === selected) btn.classList.add(selected === answers[q].correct ? "correct" : "wrong");
+      if (btn.dataset.opt === answers[q].correct) btn.classList.add("correct");
+    });
+    const fb = document.getElementById("fb" + q);
+    fb.className = "feedback-box show";
+    fb.style.background = selected === answers[q].correct ? "rgba(45,122,79,.15)" : "rgba(163,45,45,.15)";
+    fb.style.border = selected === answers[q].correct ? "1px solid rgba(45,122,79,.3)" : "1px solid rgba(163,45,45,.3)";
+    fb.innerHTML = answers[q].explanation;
+    card.classList.add("revealed");
+    document.querySelector(".progress-fill").style.width = (answeredCount / Object.keys(answers).length * 100) + "%";
+    if (answeredCount === Object.keys(answers).length) setTimeout(showScore, 600);
+  }
+  async function showScore() {
+    const total = Object.keys(answers).length;
+    const correct = Object.keys(userAnswers).filter(q => userAnswers[q] === answers[q].correct).length;
+    const pct = Math.round(correct / total * 100);
+    const passed = correct >= 4;
+    document.getElementById("sc-circ").textContent = correct + "/5";
+    document.getElementById("sc-circ").className = "sc-circ " + (passed ? "pass" : "fail");
+    document.getElementById("sc-title").textContent = passed ? "🎉 Lesson 1 Complete!" : "Keep Practicing";
+    document.getElementById("sc-msg").textContent = passed ? "Great work. Move on to the next lesson." : "You scored " + pct + "%. You need 80% to pass. Review the lesson and try again.";
+    if (passed) document.getElementById("nb").style.display = "inline-block";
+    else document.getElementById("rb").style.display = "inline-block";
+    document.getElementById("score-card").classList.add("show");
+    try { await window._saveLP(1, correct, passed, userAnswers); } catch(e) {}
+  }
+  function retryQuiz() {
+    userAnswers = {}; answeredCount = 0;
+    for (let i = 1; i <= Object.keys(answers).length; i++) {
+      const card = document.getElementById("q" + i);
+      card.classList.remove("revealed");
+      card.querySelectorAll(".option-btn").forEach(b => { b.disabled=false; b.classList.remove("correct","wrong"); });
+      document.getElementById("fb" + i).className = "feedback-box";
+      document.getElementById("fb" + i).innerHTML = "";
+    }
+    document.getElementById("score-card").classList.remove("show");
+    document.getElementById("nb").style.display = "none";
+    document.getElementById("rb").style.display = "none";
+    document.querySelector(".progress-fill").style.width = "0%";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  window.addEventListener("DOMContentLoaded", function() {
+    var s = JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+    if (s && s.is_preview) {
+      var b = document.getElementById("preview-banner");
+      if (b) b.style.display = "block";
+    }
+  });
+</script>
+<script>
+(function(){
+  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
+  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
+  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
+  window.edrLogin=async function(){
+    var em=document.getElementById("edr-email").value.trim().toLowerCase();
+    var pw=document.getElementById("edr-pass").value;
+    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
+    spin.style.display="block";err.style.display="none";
+    var hash=await _hash(pw);
+    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
+    spin.style.display="none";
+    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
+    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
+    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
+    localStorage.setItem("edr_agent",JSON.stringify(ag));
+    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+    _show(ag);
+  };
+  window._saveLP=async function(lid,sc,ps,ua){
+    if(!_ag||_ag.is_preview)return false;
+    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4&select=id");
+    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4");}
+    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course4"});}
+    return true;}catch(e){return false;}
+  };
+  window._saveFQ=async function(sc,ps,ua){
+    if(!_ag||_ag.is_preview)return false;
+    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course4&select=id");
+    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course4");}
+    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course4"});}
+    return true;}catch(e){return false;}
+  };
+  window.addEventListener("DOMContentLoaded",function(){
+    try{
+      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
+    }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

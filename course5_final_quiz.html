@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course 5 Final Exam — DISCLOSURES & COMPLIANCE | EDR Realty Group</title>
+<style>
+:root{--navy:#0a1628;--gold:#c9a84c;--white:#fff;--gray-text:#6b6560;--gray-mid:#d4cfc4;--green:#2d7a4f;--red:#a32d2d;--teal:#1a8fa0;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--navy);color:var(--white);min-height:100vh;}
+button{cursor:pointer;}
+.header{background:rgba(10,22,40,.95);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.header-brand{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.back-btn{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.agent-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:20px;display:none;}
+.course-tag{background:rgba(26,143,160,.2);border:1px solid rgba(26,143,160,.4);color:#4ec9d8;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1e3a 100%);padding:48px 24px 36px;text-align:center;border-bottom:1px solid rgba(201,168,76,.15);}
+.hero h1{font-size:2.2rem;font-weight:700;margin-bottom:10px;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:20px;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.meta-dot{font-size:.82rem;color:rgba(255,255,255,.55);}
+.meta-dot::before{content:"•";margin-right:6px;color:var(--gold);}
+.main{max-width:760px;margin:0 auto;padding:40px 24px 80px;}
+.progress-bar{height:6px;background:rgba(255,255,255,.08);border-radius:4px;margin-bottom:32px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease;}
+.question-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .2s;}
+.question-card.revealed{border-color:rgba(201,168,76,.3);}
+.q-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.q-text{font-size:1rem;color:var(--white);margin-bottom:18px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:rgba(255,255,255,.85);font-size:.9rem;text-align:left;transition:all .2s;font-family:Georgia,serif;}
+.option-btn:hover:not(:disabled){background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4);}
+.option-btn.correct{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.option-btn.wrong{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.option-btn:disabled{cursor:default;}
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6;display:none;}
+.feedback-box.show{display:block;}
+.score-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius);padding:36px 24px;text-align:center;margin-top:32px;display:none;}
+.score-card.show{display:block;}
+.sc-circ{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;margin:0 auto 16px;border:3px solid;}
+.sc-circ.pass{background:rgba(45,122,79,.2);border-color:var(--green);color:#7ed4a0;}
+.sc-circ.fail{background:rgba(163,45,45,.2);border-color:var(--red);color:#e88;}
+.sc-title{font-size:1.5rem;margin-bottom:8px;}
+.sc-msg{font-size:.9rem;color:rgba(255,255,255,.65);margin-bottom:24px;}
+.btn-portal{background:var(--gold);color:var(--navy);border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+.btn-retry{background:rgba(163,45,45,.2);color:#e88;border:1px solid rgba(163,45,45,.4);padding:13px 32px;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:8px;display:none;}
+footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.3);}
+</style>
+</head>
+<body>
+<div id="edr-auth-wrap" style="position:fixed;inset:0;background:rgba(10,22,40,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
+<div style="background:#fff;border-radius:16px;padding:36px 28px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div style="font-family:Georgia,serif;font-size:1.4rem;color:#0a1628;margin-bottom:4px;font-weight:700">EDR Realty Group</div>
+<div style="font-size:.82rem;color:#6b6560;margin-bottom:24px">Sign in to access your training</div>
+<div id="edr-err" style="background:#fdf0f0;border:1px solid #a32d2d;color:#a32d2d;border-radius:7px;padding:9px 12px;font-size:.8rem;margin-bottom:12px;display:none;text-align:left"></div>
+<div id="edr-spin" style="display:none;color:#6b6560;font-size:.82rem;margin-bottom:10px">Signing in...</div>
+<input id="edr-email" type="email" placeholder="Email address" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:11px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<input id="edr-pass" type="password" placeholder="Password" style="width:100%;padding:11px 14px;border:1.5px solid #d4cfc4;border-radius:8px;font-size:.9rem;color:#0a1628;margin-bottom:14px;outline:none;box-sizing:border-box" onkeydown="if(event.key==='Enter')edrLogin()"/>
+<button onclick="edrLogin()" style="width:100%;background:#0a1628;color:#fff;border:none;border-radius:8px;padding:13px;font-weight:700;font-size:.9rem;cursor:pointer">Sign In</button>
+<div style="font-size:.75rem;color:#6b6560;margin-top:14px">New agent? Register at the <a href="index.html" style="color:#c9a84c;font-weight:600">EDR Training Portal</a></div>
+</div></div>
+<div id="lc" style="display:none">
+<header class="header">
+  <div class="header-brand">EDR Realty Group</div>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">← Portal</a>
+    <span class="agent-badge" id="nb-badge"></span>
+    <span class="course-tag">COURSE 5 · DISCLOSURES & COMPLIANCE</span>
+  </div>
+</header>
+<div class="hero">
+  <div style="display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em">FINAL EXAM</div>
+  <h1>Course 5 <span>Final Exam</span></h1>
+  <div class="hero-sub">DISCLOSURES & COMPLIANCE — 10 questions covering all 10 lessons. Score 8/10 or higher (80%) to pass.</div>
+  <div class="hero-meta"><span class="meta-dot">10 Questions</span><span class="meta-dot">80% to Pass</span><span class="meta-dot">Retake Anytime</span></div>
+</div>
+<div class="main">
+  <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+  <div id="quiz-wrap"></div>
+  <div class="score-card" id="score-card">
+    <div class="sc-circ" id="sc-circ"></div>
+    <div class="sc-title" id="sc-title"></div>
+    <div class="sc-msg" id="sc-msg"></div>
+    <button class="btn-portal" id="btn-portal" onclick="backToPortal()">← Back to Portal</button>
+    <button class="btn-retry" id="btn-retry" onclick="retryExam()">Retake Exam</button>
+  </div>
+</div>
+</div>
+<footer>EDR Realty Group · Course 5 Final Exam · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
+<script>
+const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",PASS_SCORE=8,TOTAL=10;
+const QUESTIONS=[{"q": "California Civil Code §1102 requires the Transfer Disclosure Statement for the sale of:", "opts": ["All real property, including commercial", "1–4 unit residential property", "Only properties built before 1978", "Properties with an HOA only"], "ans": 1, "fb": "Civil Code §1102 mandates the TDS for the sale of 1–4 unit residential properties. Commercial, industrial, and agricultural sales are generally exempt."}, {"q": "5555 Winners Lane was built in 1968. Which additional disclosure does this trigger under federal law?", "opts": ["Mello-Roos Special Tax Disclosure", "Lead-Based Paint Disclosure under CFR Title 40, Part 745", "Radon Gas Disclosure under EPA guidelines", "Military Ordnance Disclosure"], "ans": 1, "fb": "Federal law (CFR Title 40, Part 745) requires a Lead-Based Paint Disclosure for all residential properties built before January 1, 1978. This is federal — not state — law."}, {"q": "Under California Civil Code §2079, the Agent Visual Inspection Disclosure (AVID) must be completed by:", "opts": ["The escrow holder", "The seller"s attorney", "Both the listing agent and the buyer"s agent independently", "Only the listing agent"], "ans": 2, "fb": "Both agents have independent AVID obligations under Civil Code §2079. Each must conduct their own visual inspection and document their findings on the form."}, {"q": "A buyer directly asks you if anyone died in the home 5 years ago. You know someone did. You must:", "opts": ["Say no — the 3-year rule means you don"t have to disclose it", "Answer honestly — the 3-year rule eliminates proactive disclosure, not the duty to answer truthfully", "Refer the buyer to public records and say nothing", "Only answer if the death was a homicide"], "ans": 1, "fb": "Civil Code §1710.2"s 3-year rule only eliminates the obligation to proactively volunteer information about deaths. It does not authorize a false answer to a direct question. Answering "no" when you know a death occurred is fraud."}, {"q": "The NHD report reveals that a property is in a Very High Fire Hazard Severity Zone (VHFHSZ). The most immediate practical concern for buyers is:", "opts": ["Required foundation upgrades before closing", "Availability and affordability of homeowner"s insurance", "Mandatory installation of a fire suppression system", "Automatic disqualification from FHA financing"], "ans": 1, "fb": "Properties in VHFHSZ zones face serious homeowner"s insurance challenges in California. Many carriers have stopped writing policies in these areas. Buyers must confirm coverage availability before removing the insurance contingency."}, {"q": "Under Civil Code §1368, which document must be included in the HOA disclosure package?", "opts": ["The escrow company"s fee schedule", "The HOA reserve fund study and current budget", "A list of all homeowners and their dues payment history", "The appraisal report for the common areas"], "ans": 1, "fb": "Civil Code §1368 requires the full HOA disclosure package, including CC&Rs, bylaws, budget, reserve study, and meeting minutes. The reserve fund study is particularly important — an underfunded reserve signals potential special assessments."}, {"q": "A seller built a room addition without permits 6 years ago. On the SPQ, the seller should:", "opts": ["Leave it blank since permits are not required for additions under 500 square feet", "Disclose it — unpermitted work is a material fact regardless of how long ago it was done", "Mark "unknown" to avoid liability", "Only disclose it if the buyer"s inspector discovers it"], "ans": 1, "fb": "Unpermitted additions are material facts that must be disclosed on the SPQ. There is no time limit after which disclosure becomes unnecessary. Failing to disclose known unpermitted work creates post-closing liability for the seller."}, {"q": "California Civil Code §2079 gives buyers how long to bring a civil claim against an agent for failure to disclose visual inspection findings?", "opts": ["1 year from the date of purchase", "2 years from the date of recordation", "5 years from the date of closing", "The duration of any applicable warranty period"], "ans": 1, "fb": "Civil Code §2079 establishes a 2-year statute of limitations running from the date of recordation (close of escrow). This is why complete AVID documentation at the time of transaction is critical."}, {"q": "Under the California agency disclosure framework, dual agency requires:", "opts": ["Approval from the California Department of Real Estate", "Written informed consent from both buyer and seller", "Only verbal acknowledgment from both parties", "No additional disclosure beyond the standard C.A.R. Form AD"], "ans": 1, "fb": "Dual agency is legal in California with written informed consent from both parties. Without this written consent, dual agency is an undisclosed conflict of interest that can void the agency relationship and create significant liability."}, {"q": "Under Business & Professions Code §10176, advising a seller not to disclose a known roof leak on the TDS is:", "opts": ["Acceptable if the repair was completed more than 2 years ago", "A potential violation that could result in license suspension or revocation", "Standard practice when the defect has been repaired", "Permissible if the seller signs a waiver of liability"], "ans": 1, "fb": "Advising a client to conceal known material facts violates B&P §10176 — specifically the prohibition on substantial misrepresentation and pursuing misrepresentation through agents. This can result in DRE license suspension or revocation and civil fraud liability."}];
+
+function edrSave(ag){
+  localStorage.setItem("edr_agent",JSON.stringify(ag));
+  sessionStorage.setItem("edr_agent",JSON.stringify(ag));
+}
+function edrLoad(){
+  return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
+}
+
+let ag=null,answers=[],revealed=0;
+async function edrLogin(){
+  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
+  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
+  err.style.display="none";spin.style.display="block";
+  try{
+    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
+    const data=await r.json();
+    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
+    const a=data[0];
+    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
+    ag=a;edrSave(ag);
+    document.getElementById("edr-auth-wrap").style.display="none";
+    document.getElementById("lc").style.display="block";
+    document.getElementById("nb-badge").textContent=ag.name;
+    document.getElementById("nb-badge").style.display="inline-block";
+    buildQuiz();
+  }catch(e){err.textContent="Connection error. Please try again.";err.style.display="block";spin.style.display="none";}
+}
+window.onload=function(){
+  const saved=edrLoad();
+  if(saved&&saved.id){
+    ag=saved;
+    document.getElementById("edr-auth-wrap").style.display="none";
+    document.getElementById("lc").style.display="block";
+    document.getElementById("nb-badge").textContent=ag.name;
+    document.getElementById("nb-badge").style.display="inline-block";
+    buildQuiz();
+  }
+};
+function buildQuiz(){
+  const wrap=document.getElementById("quiz-wrap");
+  wrap.innerHTML="";
+  answers=[];revealed=0;
+  QUESTIONS.forEach((q,i)=>{
+    const card=document.createElement("div");
+    card.className="question-card";card.id="qc"+i;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${TOTAL}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    wrap.appendChild(card);
+  });
+}
+function pick(qi,oi){
+  if(answers[qi]!==undefined)return;
+  answers[qi]=oi;revealed++;
+  const q=QUESTIONS[qi];
+  const opts=document.querySelectorAll("#opts"+qi+" .option-btn");
+  opts.forEach((b,j)=>{b.disabled=true;if(j===q.ans)b.classList.add("correct");else if(j===oi)b.classList.add("wrong");});
+  const fb=document.getElementById("fb"+qi);
+  const correct=oi===q.ans;
+  fb.style.background=correct?"rgba(45,122,79,.15)":"rgba(163,45,45,.15)";
+  fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
+  fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
+  fb.classList.add("show");
+  document.getElementById("qc"+qi).classList.add("revealed");
+  document.getElementById("prog").style.width=(revealed/TOTAL*100)+"%";
+  if(revealed===TOTAL)showScore();
+}
+async function showScore(){
+  const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
+  const passed=score>=PASS_SCORE;
+  const circ=document.getElementById("sc-circ");
+  circ.className="sc-circ "+(passed?"pass":"fail");
+  circ.textContent=score+"/"+TOTAL;
+  document.getElementById("sc-title").textContent=passed?"Exam Passed! 🎉":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Excellent work! You've demonstrated mastery of Escrow & Title. Head back to the portal to continue your training.":"You need "+PASS_SCORE+" correct to pass. Review the lessons and try again — you've got this.";
+  document.getElementById("btn-portal").style.display=passed?"inline-block":"none";
+  document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
+  document.getElementById("score-card").classList.add("show");
+  if(ag&&ag.id){
+    try{
+      await fetch(SB_URL+"/rest/v1/final_quiz",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,score:score,total:TOTAL,passed:passed,taken_at:new Date().toISOString()})});
+      if(passed){
+        await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:999,completed:true})});
+      }
+    }catch(e){console.log("Save error",e);}
+  }
+}
+function backToPortal(){window.location.href="index.html";}
+function retryExam(){document.getElementById("score-card").classList.remove("show");buildQuiz();window.scrollTo(0,0);}
+</script>
+</body>
+</html>
