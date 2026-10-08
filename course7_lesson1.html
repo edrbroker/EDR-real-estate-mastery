@@ -163,34 +163,11 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 7 Lesson 1 · FINANCING FUNDAMENTALS · California DRE Standards · DRE RE-12 / RE-22</footer>
 <script>
-const QUESTIONS=[{"q": "In a California home purchase, the document that secures the lender's interest in the property is called:", "opts": ["A mortgage insurance policy", "A deed of trust", "A grant deed", "A promissory note"], "ans": 1, "fb": "California primarily uses deeds of trust rather than traditional mortgages as security instruments. The deed of trust involves three parties: borrower (trustor), lender (beneficiary), and a trustee who holds legal title."}, {"q": "Marcus and Priya want to start looking at homes. Before you show them anything, what should you require?", "opts": ["A deposit into escrow", "A signed buyer representation agreement and a mortgage pre-approval letter", "A personal reference from their employer", "Proof that they've saved at least 20% down"], "ans": 1, "fb": "Getting a signed buyer representation agreement (required under AB 2992) and a pre-approval letter before touring homes protects your time, confirms their budget is realistic, and strengthens their offer when they find the right property."}, {"q": "A buyer asks you: 'Should we go with a 30-year fixed or a 5/1 ARM?' The correct response is:", "opts": ["Recommend the 30-year fixed \u2014 it's always safer", "Explain both options and give your recommendation based on their budget", "Tell them that is a decision for their licensed loan officer \u2014 and refer them", "Tell them to Google it and decide themselves"], "ans": 2, "fb": "Recommending specific loan products crosses into mortgage loan originator activity under B&P Code \u00a710131 and the SAFE Act. Your role is to inform generally and refer financing decisions to the licensed lender."}, {"q": "In the mortgage transaction, who is responsible for reviewing the full loan file and issuing conditions before approving the loan?", "opts": ["The real estate agent", "The escrow officer", "The underwriter", "The title company"], "ans": 2, "fb": "The underwriter works for the lender behind the scenes and reviews the complete loan file \u2014 income documentation, credit, appraisal, title \u2014 before issuing approval and any conditions the borrower must satisfy."}, {"q": "Which event officially triggers legal ownership of the property passing to the buyer?", "opts": ["When the buyer signs the loan documents", "When the lender sends the wire to escrow", "When the grant deed is recorded at the county recorder's office", "When the buyer gets the keys"], "ans": 2, "fb": "Legal ownership transfers at recording. The grant deed is recorded at the county recorder's office, and that timestamp marks the moment the buyer becomes the legal owner \u2014 not when loan docs are signed or keys are handed over."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V"}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "In a California home purchase, the document that secures the lender's interest in the property is called:", "opts": ["A mortgage insurance policy", "A deed of trust", "A grant deed", "A promissory note"], "ans": 1, "fb": "California primarily uses deeds of trust rather than traditional mortgages as security instruments. The deed of trust involves three parties: borrower (trustor), lender (beneficiary), and a trustee who holds legal title."}, {"q": "Marcus and Priya want to start looking at homes. Before you show them anything, what should you require?", "opts": ["A deposit into escrow", "A signed buyer representation agreement and a mortgage pre-approval letter", "A personal reference from their employer", "Proof that they've saved at least 20% down"], "ans": 1, "fb": "Getting a signed buyer representation agreement (required under AB 2992) and a pre-approval letter before touring homes protects your time, confirms their budget is realistic, and strengthens their offer when they find the right property."}, {"q": "A buyer asks you: 'Should we go with a 30-year fixed or a 5/1 ARM?' The correct response is:", "opts": ["Recommend the 30-year fixed — it's always safer", "Explain both options and give your recommendation based on their budget", "Tell them that is a decision for their licensed loan officer — and refer them", "Tell them to Google it and decide themselves"], "ans": 2, "fb": "Recommending specific loan products crosses into mortgage loan originator activity under B&P Code §10131 and the SAFE Act. Your role is to inform generally and refer financing decisions to the licensed lender."}, {"q": "In the mortgage transaction, who is responsible for reviewing the full loan file and issuing conditions before approving the loan?", "opts": ["The real estate agent", "The escrow officer", "The underwriter", "The title company"], "ans": 2, "fb": "The underwriter works for the lender behind the scenes and reviews the complete loan file — income documentation, credit, appraisal, title — before issuing approval and any conditions the borrower must satisfy."}, {"q": "Which event officially triggers legal ownership of the property passing to the buyer?", "opts": ["When the buyer signs the loan documents", "When the lender sends the wire to escrow", "When the grant deed is recorded at the county recorder's office", "When the buyer gets the keys"], "ans": 2, "fb": "Legal ownership transfers at recording. The grant deed is recorded at the county recorder's office, and that timestamp marks the moment the buyer becomes the legal owner — not when loan docs are signed or keys are handed over."}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
     card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
@@ -215,18 +192,17 @@ async function showScore(){
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
   circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"Review the lesson and try again.";
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/progress",{method:"POST",headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:"course7",lesson:1,completed:true})});
-    }catch(e){}
-  }
+  try{await EDR.saveLesson(1,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course7",num:7,lesson:1,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

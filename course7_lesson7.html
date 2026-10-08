@@ -156,34 +156,11 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 7 Lesson 7 · FINANCING FUNDAMENTALS · California DRE Standards · DRE RE-12 / RE-22</footer>
 <script>
-const QUESTIONS=[{"q": "A lender will base the buyer's loan on:", "opts": ["The purchase price regardless of the appraisal", "The appraised value regardless of the purchase price", "The LOWER of the purchase price or the appraised value", "The HIGHER of the purchase price or the appraised value"], "ans": 2, "fb": "Lenders base loans on the lower of the purchase price or the appraised value. If the property appraises below the purchase price, the buyer must cover the gap in cash or renegotiate the purchase price."}, {"q": "In California, real estate appraisers are regulated by:", "opts": ["The Department of Real Estate (DRE)", "The Office of Real Estate Appraisers (OREA)", "The Department of Financial Protection and Innovation (DFPI)", "Fannie Mae and Freddie Mac directly"], "ans": 1, "fb": "California real estate appraisers are licensed and regulated by the Office of Real Estate Appraisers (OREA), a separate agency from the DRE. Appraisers must be state-certified and follow USPAP (Uniform Standards of Professional Appraisal Practice)."}, {"q": "The Okonkwos' property appraised at $1,200,000 against a $1,250,000 purchase price. Their appraisal contingency is still active. They want to proceed with the purchase but don't have extra cash. What's their best option?", "opts": ["Remove the appraisal contingency immediately so the seller knows they're serious", "Request that the seller reduce the price to the appraised value of $1,200,000", "Ask the escrow officer to waive the appraisal requirement", "Pay the $50,000 gap with credit card advances"], "ans": 1, "fb": "With an active appraisal contingency and no available cash to cover the gap, requesting a price reduction to the appraised value is the most logical approach. The seller may not agree, but it's the appropriate first negotiating step while keeping the contingency active."}, {"q": "A 'reconsideration of value' in the appraisal process means:", "opts": ["The buyer waives their right to challenge the appraisal", "Submitting additional comparable sales to the lender/appraiser for review, requesting they reconsider their value conclusion", "The seller hires their own appraiser to challenge the result", "The DRE conducts an independent review of the appraisal"], "ans": 1, "fb": "A reconsideration of value (ROV) is a formal request to the lender asking the appraiser to review additional comparable sales they may have missed. It sometimes results in a higher appraised value but is not guaranteed. The appraiser is independent and cannot be pressured by any party."}, {"q": "If a buyer removes the appraisal contingency in writing and the property later appraises below the purchase price, the buyer:", "opts": ["Can still cancel under the appraisal contingency for 5 more days", "Has given up the right to cancel based on appraisal \u2014 they must close or risk losing their deposit", "Can request a second appraisal automatically", "Can cancel without any penalty up until close of escrow"], "ans": 1, "fb": "Once the appraisal contingency is removed in writing, the buyer loses the right to cancel based on appraisal. They must either close (covering the gap in cash) or cancel and risk the seller claiming the EMD as liquidated damages. Never advise a client to remove this contingency prematurely."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V"}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "A lender will base the buyer's loan on:", "opts": ["The purchase price regardless of the appraisal", "The appraised value regardless of the purchase price", "The LOWER of the purchase price or the appraised value", "The HIGHER of the purchase price or the appraised value"], "ans": 2, "fb": "Lenders base loans on the lower of the purchase price or the appraised value. If the property appraises below the purchase price, the buyer must cover the gap in cash or renegotiate the purchase price."}, {"q": "In California, real estate appraisers are regulated by:", "opts": ["The Department of Real Estate (DRE)", "The Office of Real Estate Appraisers (OREA)", "The Department of Financial Protection and Innovation (DFPI)", "Fannie Mae and Freddie Mac directly"], "ans": 1, "fb": "California real estate appraisers are licensed and regulated by the Office of Real Estate Appraisers (OREA), a separate agency from the DRE. Appraisers must be state-certified and follow USPAP (Uniform Standards of Professional Appraisal Practice)."}, {"q": "The Okonkwos' property appraised at $1,200,000 against a $1,250,000 purchase price. Their appraisal contingency is still active. They want to proceed with the purchase but don't have extra cash. What's their best option?", "opts": ["Remove the appraisal contingency immediately so the seller knows they're serious", "Request that the seller reduce the price to the appraised value of $1,200,000", "Ask the escrow officer to waive the appraisal requirement", "Pay the $50,000 gap with credit card advances"], "ans": 1, "fb": "With an active appraisal contingency and no available cash to cover the gap, requesting a price reduction to the appraised value is the most logical approach. The seller may not agree, but it's the appropriate first negotiating step while keeping the contingency active."}, {"q": "A 'reconsideration of value' in the appraisal process means:", "opts": ["The buyer waives their right to challenge the appraisal", "Submitting additional comparable sales to the lender/appraiser for review, requesting they reconsider their value conclusion", "The seller hires their own appraiser to challenge the result", "The DRE conducts an independent review of the appraisal"], "ans": 1, "fb": "A reconsideration of value (ROV) is a formal request to the lender asking the appraiser to review additional comparable sales they may have missed. It sometimes results in a higher appraised value but is not guaranteed. The appraiser is independent and cannot be pressured by any party."}, {"q": "If a buyer removes the appraisal contingency in writing and the property later appraises below the purchase price, the buyer:", "opts": ["Can still cancel under the appraisal contingency for 5 more days", "Has given up the right to cancel based on appraisal — they must close or risk losing their deposit", "Can request a second appraisal automatically", "Can cancel without any penalty up until close of escrow"], "ans": 1, "fb": "Once the appraisal contingency is removed in writing, the buyer loses the right to cancel based on appraisal. They must either close (covering the gap in cash) or cancel and risk the seller claiming the EMD as liquidated damages. Never advise a client to remove this contingency prematurely."}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
     card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
@@ -208,18 +185,17 @@ async function showScore(){
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
   circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"Review the lesson and try again.";
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/progress",{method:"POST",headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:"course7",lesson:7,completed:true})});
-    }catch(e){}
-  }
+  try{await EDR.saveLesson(7,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course7",num:7,lesson:7,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

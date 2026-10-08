@@ -258,49 +258,7 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
     }
   });
 </script>
-<script>
-(function(){
-  var SBU="https://zthiyivbiemgvojcrlyg.supabase.co",SBK="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",_ag=null;
-  function _sb(t,m,b,f){return fetch(SBU+"/rest/v1/"+t+(f||""),{method:m,headers:{"apikey":SBK,"Authorization":"Bearer "+SBK,"Content-Type":"application/json","Prefer":m==="POST"?"return=representation":"return=minimal"},body:b?JSON.stringify(b):undefined}).then(function(r){return m==="GET"?r.json():r.ok;}).catch(function(){return m==="GET"?[]:false;});}
-  async function _hash(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
-  function _show(ag){_ag=ag;var w=document.getElementById("edr-auth-wrap");if(w)w.style.display="none";var lc=document.getElementById("lc");if(lc)lc.style.display="block";var b=document.getElementById("nb-badge");if(b){b.textContent=ag.full_name||ag.name||"";b.style.display="inline-block";}}
-  window.edrLogin=async function(){
-    var em=document.getElementById("edr-email").value.trim().toLowerCase();
-    var pw=document.getElementById("edr-pass").value;
-    var err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-    if(!em||!pw){err.textContent="Please enter your email and password.";err.style.display="block";return;}
-    spin.style.display="block";err.style.display="none";
-    var hash=await _hash(pw);
-    var data=await _sb("agents","GET",null,"?email=eq."+encodeURIComponent(em)+"&select=id,full_name,email,password_hash");
-    spin.style.display="none";
-    if(!data||!data.length){err.textContent="No account found. Register at the EDR Training Portal.";err.style.display="block";return;}
-    if(data[0].password_hash!==hash){err.textContent="Incorrect password.";err.style.display="block";return;}
-    var ag={id:data[0].id,name:data[0].full_name,full_name:data[0].full_name,email:data[0].email};
-    localStorage.setItem("edr_agent",JSON.stringify(ag));
-    sessionStorage.setItem("edr_agent",JSON.stringify(ag));
-    _show(ag);
-  };
-  window._saveLP=async function(lid,sc,ps,ua){
-    if(!_ag||_ag.is_preview)return false;
-    try{var r=await _sb("progress","GET",null,"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4&select=id");
-    if(r&&r.length){await _sb("progress","PATCH",{score:sc,answers:ua,completed_at:new Date().toISOString()},"?agent_id=eq."+_ag.id+"&lesson_id=eq."+lid+"&course=eq.course4");}
-    else{await _sb("progress","POST",{agent_id:_ag.id,lesson_id:lid,score:sc,answers:ua,completed_at:new Date().toISOString(),course:"course4"});}
-    return true;}catch(e){return false;}
-  };
-  window._saveFQ=async function(sc,ps,ua){
-    if(!_ag||_ag.is_preview)return false;
-    try{var r=await _sb("final_quiz","GET",null,"?agent_id=eq."+_ag.id+"&course=eq.course4&select=id");
-    if(r&&r.length){await _sb("final_quiz","PATCH",{score:sc,passed:ps,answers:ua},"?agent_id=eq."+_ag.id+"&course=eq.course4");}
-    else{await _sb("final_quiz","POST",{agent_id:_ag.id,score:sc,passed:ps,answers:ua,course:"course4"});}
-    return true;}catch(e){return false;}
-  };
-  window.addEventListener("DOMContentLoaded",function(){
-    try{
-      var s=JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
-      if(s&&s.id){s.full_name=s.full_name||s.name||"Agent";_show(s);}
-    }catch(e){}
-  });
-})();
-</script>
+<script>window.EDR_PAGE={course:"course4",num:4,lesson:4,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

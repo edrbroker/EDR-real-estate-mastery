@@ -149,38 +149,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 6 Lesson 2 · NEGOTIATION STRATEGIES · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course6",LESSON_NUM=2;
-const QUESTIONS=[{"q": "Which of the following is the most important factor in selecting comparable sales (comps) for a CMA?", "opts": ["Properties that sold for close to the listing price", "Properties that are geographically close, similar in size, and sold within 90 days", "Properties currently listed for sale in the same neighborhood", "Properties that have been on the market for more than 30 days"], "ans": 1, "fb": "Good comps are similar in location, size, condition, and sold recently — ideally within 90 days. Active listings are not comps because they haven"t sold yet. Sold price, not list price, is the data point that matters."}, {"q": "5555 Winners Lane has been on the market for 72 days with two price reductions. This is a signal that:", "opts": ["The property has a title defect and cannot close", "The seller is highly motivated — there may be room to negotiate below list price", "The market is in a buyer"s cycle and all properties are selling slowly", "The listing agent has done a poor job pricing — ignore it"], "ans": 1, "fb": "72 days on market with price reductions is a strong signal of seller motivation. This shifts negotiating leverage toward the buyer. It"s worth calling the listing agent to understand the seller"s situation and timeline — this information informs your offer strategy."}, {"q": "Three recent comps for 5555 Winners Lane show a price per square foot of $680, $710, and $695. The home is 1,850 sq ft. What is the approximate baseline value?", "opts": ["$1,190,000", "$1,272,000", "$1,300,000", "$1,350,000"], "ans": 1, "fb": "Average of the three price per sq ft figures: ($680 + $710 + $695) / 3 = $695. Multiplied by 1,850 sq ft = $1,285,750 — approximately $1,272,000 after rounding to the nearest standard increment. From this baseline, adjust up or down based on condition, upgrades, and lot."}, {"q": "In a seller"s market with multiple offers expected, which offer strategy is most likely to be competitive?", "opts": ["Offer $50,000 below list with a 45-day close and all contingencies", "Offer at or above list price, with a strong EMD, short contingency periods, and a quick close date", "Submit the offer with an escalation clause starting at $200,000 below list", "Offer list price but ask for 3% in seller credits"], "ans": 1, "fb": "In a seller"s market with multiple offers, buyers need to be competitive on price AND terms. A strong EMD, short timelines, and a quick close signal seriousness. Lowball offers and aggressive seller credit requests are typically rejected in competitive situations."}, {"q": "A buyer is emotionally attached to 5555 Winners Lane and insists on offering $200,000 over the likely appraised value. As their agent, you should:", "opts": ["Submit the offer as requested without comment — your job is to follow instructions", "Present your CMA showing the likely appraised value, explain the appraisal gap risk clearly, document your advice, and then submit the offer per their instructions", "Refuse to write the offer until they reduce it", "Call the listing agent and warn them that the appraisal will likely be low"], "ans": 1, "fb": "Your fiduciary duty requires you to advise your client of the risk (appraisal gap, needing to cover the difference in cash) and document that conversation. After that, you follow their lawful instruction and write the offer. Informed clients have the right to make their own decisions."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "Which of the following is the most important factor in selecting comparable sales (comps) for a CMA?", "fb": "Good comps are similar in location, size, condition, and sold recently — ideally within 90 days. Active listings are not comps because they haven't sold yet. Sold price, not list price, is the data point that matters.", "opts": ["Properties that sold for close to the listing price", "Properties that are geographically close, similar in size, and sold within 90 days", "Properties currently listed for sale in the same neighborhood", "Properties that have been on the market for more than 30 days"], "ans": 1}, {"q": "5555 Winners Lane has been on the market for 72 days with two price reductions. This is a signal that:", "fb": "72 days on market with price reductions is a strong signal of seller motivation. This shifts negotiating leverage toward the buyer. It's worth calling the listing agent to understand the seller's situation and timeline — this information informs your offer strategy.", "opts": ["The property has a title defect and cannot close", "The seller is highly motivated — there may be room to negotiate below list price", "The market is in a buyer's cycle and all properties are selling slowly", "The listing agent has done a poor job pricing — ignore it"], "ans": 1}, {"q": "Three recent comps for 5555 Winners Lane show a price per square foot of $680, $710, and $695. The home is 1,850 sq ft. What is the approximate baseline value?", "fb": "Average of the three price per sq ft figures: ($680 + $710 + $695) / 3 = $695. Multiplied by 1,850 sq ft = $1,285,750 — approximately $1,272,000 after rounding to the nearest standard increment. From this baseline, adjust up or down based on condition, upgrades, and lot.", "opts": ["$1,190,000", "$1,272,000", "$1,300,000", "$1,350,000"], "ans": 1}, {"q": "In a seller's market with multiple offers expected, which offer strategy is most likely to be competitive?", "fb": "In a seller's market with multiple offers, buyers need to be competitive on price AND terms. A strong EMD, short timelines, and a quick close signal seriousness. Lowball offers and aggressive seller credit requests are typically rejected in competitive situations.", "opts": ["Offer $50,000 below list with a 45-day close and all contingencies", "Offer at or above list price, with a strong EMD, short contingency periods, and a quick close date", "Submit the offer with an escalation clause starting at $200,000 below list", "Offer list price but ask for 3% in seller credits"], "ans": 1}, {"q": "A buyer is emotionally attached to 5555 Winners Lane and insists on offering $200,000 over the likely appraised value. As their agent, you should:", "fb": "Your fiduciary duty requires you to advise your client of the risk (appraisal gap, needing to cover the difference in cash) and document that conversation. After that, you follow their lawful instruction and write the offer. Informed clients have the right to make their own decisions.", "opts": ["Submit the offer as requested without comment — your job is to follow instructions", "Present your CMA showing the likely appraised value, explain the appraisal gap risk clearly, document your advice, and then submit the offer per their instructions", "Refuse to write the offer until they reduce it", "Call the listing agent and warn them that the appraisal will likely be low"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -194,26 +170,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(2,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course6",num:6,lesson:2,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

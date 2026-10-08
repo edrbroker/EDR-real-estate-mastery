@@ -171,34 +171,11 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 7 Lesson 8 · FINANCING FUNDAMENTALS · California DRE Standards · DRE RE-12 / RE-22</footer>
 <script>
-const QUESTIONS=[{"q": "The term 'Clear to Close' (CTC) in a mortgage transaction means:", "opts": ["The property has cleared the title search", "The appraisal has been ordered", "All underwriting conditions have been satisfied and the lender is ready to fund the loan", "The buyer's earnest money has been released from escrow"], "ans": 2, "fb": "CTC (Clear to Close) is the lender's confirmation that all underwriting conditions have been satisfied. It triggers the preparation of final loan documents, which are sent to escrow for the buyer to sign before funding."}, {"q": "An underwriter reviews the 'Three C's' of a loan application. What are they?", "opts": ["Commission, Conditions, Closing", "Credit, Capacity, Collateral", "Contingencies, Costs, Compliance", "Contract, Credit, Comps"], "ans": 1, "fb": "The Three C's are: Credit (credit score and history), Capacity (income, employment, and DTI ratio), and Collateral (appraisal value and property type). These are the three foundational pillars underwriters evaluate when deciding whether to approve a loan."}, {"q": "A lender approves the Okonkwos' loan 'with conditions.' This most commonly means:", "opts": ["The loan is denied \u2014 they need to reapply", "The loan is approved but requires additional documentation before loan documents can be issued", "The loan rate will change before closing", "The appraisal must be redone"], "ans": 1, "fb": "'Approved with Conditions' (Prior to Document, or PTD) is the most common underwriting outcome. It means the loan is fundamentally approved but specific conditions \u2014 like bank statements, employment verification, or gift letters \u2014 must be satisfied before loan docs are prepared."}, {"q": "Priya has a $15,000 deposit in her bank statement from selling her car three months ago. The underwriter flags it. What should she provide?", "opts": ["A certified check for the same amount to explain the deposit", "Documentation of the car sale \u2014 like a bill of sale or DMV release \u2014 to verify the source", "A letter from her agent stating the deposit was not a loan", "Nothing \u2014 deposits over 90 days old are exempt from underwriting review"], "ans": 1, "fb": "Underwriters require documentation for large deposits to ensure they are not undisclosed loans. A bill of sale, check copy from the buyer, or DMV release of liability document establishes that the deposit came from a legitimate sale rather than a borrowed fund."}, {"q": "To avoid underwriting delays, what should you advise your clients to do BEFORE entering escrow?", "opts": ["Open new credit cards to demonstrate credit availability", "Pay off all debt using a large personal loan", "Avoid moving money between accounts unnecessarily, document any gifts, and don't make large cash purchases", "Withdraw retirement savings to increase cash on hand"], "ans": 2, "fb": "Financial stability is critical during the loan process. Moving money between accounts without documentation, receiving undocumented gifts, or making large purchases can all trigger underwriting conditions that delay closing. Coach clients to avoid unnecessary financial changes from the time of application through funding."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V"}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "The term 'Clear to Close' (CTC) in a mortgage transaction means:", "opts": ["The property has cleared the title search", "The appraisal has been ordered", "All underwriting conditions have been satisfied and the lender is ready to fund the loan", "The buyer's earnest money has been released from escrow"], "ans": 2, "fb": "CTC (Clear to Close) is the lender's confirmation that all underwriting conditions have been satisfied. It triggers the preparation of final loan documents, which are sent to escrow for the buyer to sign before funding."}, {"q": "An underwriter reviews the 'Three C's' of a loan application. What are they?", "opts": ["Commission, Conditions, Closing", "Credit, Capacity, Collateral", "Contingencies, Costs, Compliance", "Contract, Credit, Comps"], "ans": 1, "fb": "The Three C's are: Credit (credit score and history), Capacity (income, employment, and DTI ratio), and Collateral (appraisal value and property type). These are the three foundational pillars underwriters evaluate when deciding whether to approve a loan."}, {"q": "A lender approves the Okonkwos' loan 'with conditions.' This most commonly means:", "opts": ["The loan is denied — they need to reapply", "The loan is approved but requires additional documentation before loan documents can be issued", "The loan rate will change before closing", "The appraisal must be redone"], "ans": 1, "fb": "'Approved with Conditions' (Prior to Document, or PTD) is the most common underwriting outcome. It means the loan is fundamentally approved but specific conditions — like bank statements, employment verification, or gift letters — must be satisfied before loan docs are prepared."}, {"q": "Priya has a $15,000 deposit in her bank statement from selling her car three months ago. The underwriter flags it. What should she provide?", "opts": ["A certified check for the same amount to explain the deposit", "Documentation of the car sale — like a bill of sale or DMV release — to verify the source", "A letter from her agent stating the deposit was not a loan", "Nothing — deposits over 90 days old are exempt from underwriting review"], "ans": 1, "fb": "Underwriters require documentation for large deposits to ensure they are not undisclosed loans. A bill of sale, check copy from the buyer, or DMV release of liability document establishes that the deposit came from a legitimate sale rather than a borrowed fund."}, {"q": "To avoid underwriting delays, what should you advise your clients to do BEFORE entering escrow?", "opts": ["Open new credit cards to demonstrate credit availability", "Pay off all debt using a large personal loan", "Avoid moving money between accounts unnecessarily, document any gifts, and don't make large cash purchases", "Withdraw retirement savings to increase cash on hand"], "ans": 2, "fb": "Financial stability is critical during the loan process. Moving money between accounts without documentation, receiving undocumented gifts, or making large purchases can all trigger underwriting conditions that delay closing. Coach clients to avoid unnecessary financial changes from the time of application through funding."}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
     card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
@@ -223,18 +200,17 @@ async function showScore(){
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
   circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"Review the lesson and try again.";
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/progress",{method:"POST",headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:"course7",lesson:8,completed:true})});
-    }catch(e){}
-  }
+  try{await EDR.saveLesson(8,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course7",num:7,lesson:8,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

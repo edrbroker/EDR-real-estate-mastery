@@ -152,38 +152,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 7 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=7;
-const QUESTIONS=[{"q": "Mello-Roos special taxes are authorized under which California law?", "opts": ["Civil Code §1368", "Government Code §53340.2", "Business & Professions Code §10176", "Health & Safety Code §17958"], "ans": 1, "fb": "Mello-Roos taxes are levied under the Mello-Roos Community Facilities Act of 1982, codified at Government Code §53340.2. Sellers are required to disclose these taxes to buyers."}, {"q": "Under RPA ¶N(3), the seller must order HOA documents within how many days of acceptance?", "opts": ["7 calendar days", "5 business days", "3 calendar days", "10 business days"], "ans": 2, "fb": "RPA ¶N(3) requires the seller to order HOA documents within 3 calendar days of acceptance. This is a short window — remind seller clients immediately upon acceptance if the property has an HOA."}, {"q": "The HOA reserve fund study for 5555 Winners Lane shows the reserve fund is at 18% of required funding. This is a signal that:", "opts": ["The HOA is financially healthy and well-managed", "A special assessment may be levied on homeowners, including your clients", "The seller must contribute to the reserve fund before closing", "The property is ineligible for FHA financing"], "ans": 1, "fb": "An underfunded reserve (below 30–40% is a common red flag threshold) signals potential future special assessments. Buyers should factor this risk into their purchase decision. The seller is not required to fund the reserve — but buyers need to understand the financial exposure."}, {"q": "A buyer purchases a home in a Mello-Roos district and pays off the mortgage 10 years later. The Mello-Roos tax:", "opts": ["Is automatically eliminated when the mortgage is paid off", "Continues until the bond term expires, regardless of mortgage payoff status", "Is refunded by the city upon full mortgage payoff", "Transfers to the seller upon resale"], "ans": 1, "fb": "Mello-Roos is a tax on the property, not the mortgage. Paying off the loan has no effect on the special tax obligation — it continues until the bond is fully paid off, which can be 20–40 years from the bond issuance."}, {"q": "Which of the following HOA documents is a buyer entitled to receive under Civil Code §1368?", "opts": ["The HOA president"s personal contact information", "The CC&Rs, current budget, reserve study, and recent meeting minutes", "A list of all current HOA violations by other homeowners", "The insurance policy covering the agent"s E&O coverage"], "ans": 1, "fb": "Civil Code §1368 entitles buyers to the full HOA disclosure package — CC&Rs, bylaws, budget, reserve study, meeting minutes, pending assessments, and litigation. This package must be reviewed carefully before removing contingencies."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "Mello-Roos special taxes are authorized under which California law?", "fb": "Mello-Roos taxes are levied under the Mello-Roos Community Facilities Act of 1982, codified at Government Code §53340.2. Sellers are required to disclose these taxes to buyers.", "opts": ["Civil Code §1368", "Government Code §53340.2", "Business & Professions Code §10176", "Health & Safety Code §17958"], "ans": 1}, {"q": "Under RPA ¶N(3), the seller must order HOA documents within how many days of acceptance?", "fb": "RPA ¶N(3) requires the seller to order HOA documents within 3 calendar days of acceptance. This is a short window — remind seller clients immediately upon acceptance if the property has an HOA.", "opts": ["7 calendar days", "5 business days", "3 calendar days", "10 business days"], "ans": 2}, {"q": "The HOA reserve fund study for 5555 Winners Lane shows the reserve fund is at 18% of required funding. This is a signal that:", "fb": "An underfunded reserve (below 30–40% is a common red flag threshold) signals potential future special assessments. Buyers should factor this risk into their purchase decision. The seller is not required to fund the reserve — but buyers need to understand the financial exposure.", "opts": ["The HOA is financially healthy and well-managed", "A special assessment may be levied on homeowners, including your clients", "The seller must contribute to the reserve fund before closing", "The property is ineligible for FHA financing"], "ans": 1}, {"q": "A buyer purchases a home in a Mello-Roos district and pays off the mortgage 10 years later. The Mello-Roos tax:", "fb": "Mello-Roos is a tax on the property, not the mortgage. Paying off the loan has no effect on the special tax obligation — it continues until the bond is fully paid off, which can be 20–40 years from the bond issuance.", "opts": ["Is automatically eliminated when the mortgage is paid off", "Continues until the bond term expires, regardless of mortgage payoff status", "Is refunded by the city upon full mortgage payoff", "Transfers to the seller upon resale"], "ans": 1}, {"q": "Which of the following HOA documents is a buyer entitled to receive under Civil Code §1368?", "fb": "Civil Code §1368 entitles buyers to the full HOA disclosure package — CC&Rs, bylaws, budget, reserve study, meeting minutes, pending assessments, and litigation. This package must be reviewed carefully before removing contingencies.", "opts": ["The HOA president's personal contact information", "The CC&Rs, current budget, reserve study, and recent meeting minutes", "A list of all current HOA violations by other homeowners", "The insurance policy covering the agent's E&O coverage"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -197,26 +173,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(7,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:7,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

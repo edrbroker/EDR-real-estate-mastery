@@ -157,38 +157,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 9 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=9;
-const QUESTIONS=[{"q": "Which California law lists the grounds for DRE license suspension or revocation, including disclosure-related violations?", "opts": ["Civil Code §1102", "Business & Professions Code §10176", "Government Code §53340", "Financial Code §17000"], "ans": 1, "fb": "B&P Code §10176 enumerates the acts for which the DRE can discipline a licensee — including misrepresentation, false promises, undisclosed dual capacity, and commingling. Disclosure failures are among the most common grounds for license action."}, {"q": "An agent tells their seller client, "Don\"t mention the roof repair on the TDS — it will scare off buyers." This agent has:", "opts": ["Acted in the seller"s best interest", "Potentially committed a violation of B&P §10176 that could result in license revocation", "Followed standard industry practice", "Made a judgment call that is protected by broker discretion"], "ans": 1, "fb": "Advising a client to conceal known material facts is a textbook B&P §10176 violation — specifically, making a false promise or pursuing misrepresentation through clients. This can result in license suspension or revocation and expose the agent to civil fraud liability."}, {"q": "When is the safest and most legally compliant time to deliver the TDS, SPQ, and NHD to the buyer?", "opts": ["At the signing table, just before closing", "As soon as possible after acceptance — within the first 7 days per RPA ¶14A", "After the inspection contingency is removed", "Only if the buyer requests the documents in writing"], "ans": 1, "fb": "Delivering disclosures early — within the first 7 days per RPA ¶14A — protects both parties. Late delivery extends the buyer"s right to cancel and creates liability for the agent. Early delivery is both legally safer and professionally better."}, {"q": "What is the primary reason for maintaining a written transaction checklist for disclosures?", "opts": ["To satisfy the escrow company"s internal audit requirements", "To document that every required disclosure was delivered, explained, and signed — protecting the agent in any future dispute", "To prove to the DRE that you are working harder than other agents", "To justify charging a higher commission rate"], "ans": 1, "fb": "A disclosure checklist creates a documented paper trail showing what was delivered, when, and whether the client acknowledged receipt. In a DRE complaint or civil lawsuit, this documentation is often the difference between liability and protection."}, {"q": "A new agent asks: "If I\"m ever unsure about whether something needs to be disclosed, what should I do?" The best answer is:", "opts": ["Research it yourself online and make your own determination", "Consult with your broker immediately — that is what they are there for", "Ask the other agent what they would do in this situation", "Skip it for now and revisit if the buyer brings it up later"], "ans": 1, "fb": "When in doubt about disclosure obligations, always consult your broker immediately. Your employing broker has supervisory responsibility under B&P §10177 and can guide you correctly. "Research it yourself and wing it" is how agents end up in disciplinary proceedings."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "Which California law lists the grounds for DRE license suspension or revocation, including disclosure-related violations?", "fb": "B&P Code §10176 enumerates the acts for which the DRE can discipline a licensee — including misrepresentation, false promises, undisclosed dual capacity, and commingling. Disclosure failures are among the most common grounds for license action.", "opts": ["Civil Code §1102", "Business & Professions Code §10176", "Government Code §53340", "Financial Code §17000"], "ans": 1}, {"q": "An agent tells their seller client, 'Don't mention the roof repair on the TDS — it will scare off buyers.' This agent has:", "fb": "Advising a client to conceal known material facts is a textbook B&P §10176 violation — specifically, making a false promise or pursuing misrepresentation through clients. This can result in license suspension or revocation and expose the agent to civil fraud liability.", "opts": ["Acted in the seller's best interest", "Potentially committed a violation of B&P §10176 that could result in license revocation", "Followed standard industry practice", "Made a judgment call that is protected by broker discretion"], "ans": 1}, {"q": "When is the safest and most legally compliant time to deliver the TDS, SPQ, and NHD to the buyer?", "fb": "Delivering disclosures early — within the first 7 days per RPA ¶14A — protects both parties. Late delivery extends the buyer's right to cancel and creates liability for the agent. Early delivery is both legally safer and professionally better.", "opts": ["At the signing table, just before closing", "As soon as possible after acceptance — within the first 7 days per RPA ¶14A", "After the inspection contingency is removed", "Only if the buyer requests the documents in writing"], "ans": 1}, {"q": "What is the primary reason for maintaining a written transaction checklist for disclosures?", "fb": "A disclosure checklist creates a documented paper trail showing what was delivered, when, and whether the client acknowledged receipt. In a DRE complaint or civil lawsuit, this documentation is often the difference between liability and protection.", "opts": ["To satisfy the escrow company's internal audit requirements", "To document that every required disclosure was delivered, explained, and signed — protecting the agent in any future dispute", "To prove to the DRE that you are working harder than other agents", "To justify charging a higher commission rate"], "ans": 1}, {"q": "A new agent asks: 'If I'm ever unsure about whether something needs to be disclosed, what should I do?' The best answer is:", "fb": "When in doubt about disclosure obligations, always consult your broker immediately. Your employing broker has supervisory responsibility under B&P §10177 and can guide you correctly. 'Research it yourself and wing it' is how agents end up in disciplinary proceedings.", "opts": ["Research it yourself online and make your own determination", "Consult with your broker immediately — that is what they are there for", "Ask the other agent what they would do in this situation", "Skip it for now and revisit if the buyer brings it up later"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -202,26 +178,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(9,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:9,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

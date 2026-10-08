@@ -90,96 +90,46 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 4 Final Exam · ESCROW & TITLE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course4",PASS_SCORE=8,TOTAL=10;
-const QUESTIONS=[{"q": "Under California Financial Code §17000, an escrow holder must be:", "opts": ["A licensed real estate agent appointed by the seller", "A neutral third party licensed by the DBO to hold funds and documents", "Any attorney admitted to the California State Bar", "A title company officer approved by the buyer"s lender"], "ans": 1, "fb": "Escrow holders in California must be licensed under the Financial Code §17000 and act as a neutral third party. They are not agents for either side."}, {"q": "Which paragraph of the RPA governs the Close of Escrow date?", "opts": ["¶5A — Earnest Money Deposit", "¶3B — Close of Escrow", "¶14G — Final Verification", "¶19B — Escrow Fee Allocation"], "ans": 1, "fb": "RPA ¶3B sets the Close of Escrow date — either a specific date or a number of days after acceptance."}, {"q": "The Okonkwos are purchasing 5555 Winners Lane. Their lender"s title insurance policy (ALTA) protects:", "opts": ["The seller against any future claims", "The buyer"s equity in the property", "The lender"s interest up to the loan amount", "Both buyer and seller equally"], "ans": 2, "fb": "The lender"s ALTA policy protects the lender"s interest only — up to the loan balance. The buyer needs a separate owner"s policy (CLTA/ALTA) to protect their equity."}, {"q": "Under the TRID rules (Closing Disclosure), the buyer must receive their CD at least:", "opts": ["24 hours before closing", "3 business days before closing", "5 calendar days before closing", "7 business days before closing"], "ans": 1, "fb": "TRID requires the Closing Disclosure be delivered at least 3 business days before the loan consummation date. This is federal law under RESPA/TILA."}, {"q": "In most Southern California counties, including Los Angeles, who customarily pays the owner"s title insurance premium?", "opts": ["The buyer", "The lender", "The seller", "Split equally between buyer and seller"], "ans": 2, "fb": "In Southern California, it is customary for the seller to pay the owner"s title insurance policy (CLTA). In Northern California counties, the buyer typically pays. This is a local custom, not a law — it can be negotiated."}, {"q": "A preliminary title report reveals a mechanics lien on 5555 Winners Lane from a prior contractor. This lien must be:", "opts": ["Ignored if it is more than 90 days old", "Disclosed to the buyer but does not affect closing", "Cleared before or at the close of escrow", "Assumed by the buyer as part of the purchase"], "ans": 2, "fb": "All liens — including mechanics liens — must be cleared (paid off or released) before or at closing. Title insurance cannot be issued with an unresolved lien."}, {"q": "Under Business & Professions Code §10145, a broker"s trust account:", "opts": ["May be used to pay brokerage operating expenses", "Must be kept separate from the broker"s personal and business funds", "Is optional if the broker uses an escrow company", "Only applies to transactions over $500,000"], "ans": 1, "fb": "B&P §10145 requires that all client funds be held in a separate trust account. Commingling client funds with personal or operating funds is a DRE violation subject to license suspension or revocation."}, {"q": "If a buyer cancels a transaction and the seller refuses to release the deposit, Civil Code §1057.3 requires the escrow holder to:", "opts": ["Release funds to the buyer after 30 days", "Release funds to whoever made the original demand", "Hold the funds and notify both parties; release only upon mutual written instruction or court order", "Return funds to escrow and charge a cancellation fee"], "ans": 2, "fb": "Civil Code §1057.3 requires the escrow holder to hold disputed funds and notify both parties within 30 days. Funds can only be released with mutual written consent or a court order."}, {"q": "In an HOA transaction, when must the seller order HOA documents under RPA ¶N(3)?", "opts": ["7 days before closing", "3 calendar days after acceptance", "When the buyer removes contingencies", "At the same time as the TDS"], "ans": 1, "fb": "RPA ¶N(3) requires the seller to order HOA documents within 3 calendar days of acceptance. The documents (CC&Rs, financials, meeting minutes, etc.) are part of the buyer"s due diligence."}, {"q": "On the Closing Disclosure (CD), prorations for property taxes are calculated using:", "opts": ["A 365-day calendar year", "A 30-day month / 360-day year basis per RPA ¶17", "The actual number of days the seller occupied the property", "The county assessor"s formula, which varies by property"], "ans": 1, "fb": "RPA ¶17 specifies that prorations — including property taxes, rent, HOA dues, and interest — are calculated on a 30-day month / 360-day year basis unless otherwise agreed."}];
-
-function edrSave(ag){
-  localStorage.setItem("edr_agent",JSON.stringify(ag));
-  sessionStorage.setItem("edr_agent",JSON.stringify(ag));
-}
-function edrLoad(){
-  return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
-}
-
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Please try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){
-    ag=saved;
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }
-};
+const QUESTIONS=[{"q": "Under California Financial Code §17000, an escrow holder must be:", "fb": "Escrow holders in California must be licensed under the Financial Code §17000 and act as a neutral third party. They are not agents for either side.", "opts": ["A licensed real estate agent appointed by the seller", "A neutral third party licensed by the DFPI to hold funds and documents", "Any attorney admitted to the California State Bar", "A title company officer approved by the buyer's lender"], "ans": 1}, {"q": "Which paragraph of the RPA governs the Close of Escrow date?", "fb": "RPA ¶3B sets the Close of Escrow date — either a specific date or a number of days after acceptance.", "opts": ["¶5A — Earnest Money Deposit", "¶3B — Close of Escrow", "¶14G — Final Verification", "¶19B — Escrow Fee Allocation"], "ans": 1}, {"q": "The Okonkwos are purchasing 5555 Winners Lane. Their lender's title insurance policy (ALTA) protects:", "fb": "The lender's ALTA policy protects the lender's interest only — up to the loan balance. The buyer needs a separate owner's policy (CLTA/ALTA) to protect their equity.", "opts": ["The seller against any future claims", "The buyer's equity in the property", "The lender's interest up to the loan amount", "Both buyer and seller equally"], "ans": 2}, {"q": "Under the TRID rules (Closing Disclosure), the buyer must receive their CD at least:", "fb": "TRID requires the Closing Disclosure be delivered at least 3 business days before the loan consummation date. This is federal law under RESPA/TILA.", "opts": ["24 hours before closing", "3 business days before closing", "5 calendar days before closing", "7 business days before closing"], "ans": 1}, {"q": "In most Southern California counties, including Los Angeles, who customarily pays the owner's title insurance premium?", "fb": "In Southern California, it is customary for the seller to pay the owner's title insurance policy (CLTA). In Northern California counties, the buyer typically pays. This is a local custom, not a law — it can be negotiated.", "opts": ["The buyer", "The lender", "The seller", "Split equally between buyer and seller"], "ans": 2}, {"q": "A preliminary title report reveals a mechanics lien on 5555 Winners Lane from a prior contractor. This lien must be:", "fb": "All liens — including mechanics liens — must be cleared (paid off or released) before or at closing. Title insurance cannot be issued with an unresolved lien.", "opts": ["Ignored if it is more than 90 days old", "Disclosed to the buyer but does not affect closing", "Cleared before or at the close of escrow", "Assumed by the buyer as part of the purchase"], "ans": 2}, {"q": "Under Business & Professions Code §10145, a broker's trust account:", "fb": "B&P §10145 requires that all client funds be held in a separate trust account. Commingling client funds with personal or operating funds is a DRE violation subject to license suspension or revocation.", "opts": ["May be used to pay brokerage operating expenses", "Must be kept separate from the broker's personal and business funds", "Is optional if the broker uses an escrow company", "Only applies to transactions over $500,000"], "ans": 1}, {"q": "If a buyer cancels a transaction and the seller refuses to release the deposit, Civil Code §1057.3 requires the escrow holder to:", "fb": "Civil Code §1057.3 requires the escrow holder to hold disputed funds and notify both parties within 30 days. Funds can only be released with mutual written consent or a court order.", "opts": ["Release funds to the buyer after 30 days", "Release funds to whoever made the original demand", "Hold the funds and notify both parties; release only upon mutual written instruction or court order", "Return funds to escrow and charge a cancellation fee"], "ans": 2}, {"q": "In an HOA transaction, when must the seller order HOA documents under RPA ¶N(3)?", "fb": "RPA ¶N(3) requires the seller to order HOA documents within 3 calendar days of acceptance. The documents (CC&Rs, financials, meeting minutes, etc.) are part of the buyer's due diligence.", "opts": ["7 days before closing", "3 calendar days after acceptance", "When the buyer removes contingencies", "At the same time as the TDS"], "ans": 1}, {"q": "On the Closing Disclosure (CD), prorations for property taxes are calculated using:", "fb": "RPA ¶17 specifies that prorations — including property taxes, rent, HOA dues, and interest — are calculated on a 30-day month / 360-day year basis unless otherwise agreed.", "opts": ["A 365-day calendar year", "A 30-day month / 360-day year basis per RPA ¶17", "The actual number of days the seller occupied the property", "The county assessor's formula, which varies by property"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
-  const wrap=document.getElementById("quiz-wrap");
-  wrap.innerHTML="";
-  answers=[];revealed=0;
+  const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
-    const card=document.createElement("div");
-    card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of ${TOTAL}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
 function pick(qi,oi){
-  if(answers[qi]!==undefined)return;
-  answers[qi]=oi;revealed++;
+  if(answers[qi]!==undefined)return;answers[qi]=oi;revealed++;
   const q=QUESTIONS[qi];
   const opts=document.querySelectorAll("#opts"+qi+" .option-btn");
   opts.forEach((b,j)=>{b.disabled=true;if(j===q.ans)b.classList.add("correct");else if(j===oi)b.classList.add("wrong");});
-  const fb=document.getElementById("fb"+qi);
-  const correct=oi===q.ans;
+  const fb=document.getElementById("fb"+qi);const correct=oi===q.ans;
   fb.style.background=correct?"rgba(45,122,79,.15)":"rgba(163,45,45,.15)";
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
-  fb.classList.add("show");
-  document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/TOTAL*100)+"%";
-  if(revealed===TOTAL)showScore();
+  fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
-  const passed=score>=PASS_SCORE;
+  const passed=score>=8;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");
-  circ.textContent=score+"/"+TOTAL;
-  document.getElementById("sc-title").textContent=passed?"Exam Passed! 🎉":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Excellent work! You've demonstrated mastery of Escrow & Title. Head back to the portal to continue your training.":"You need "+PASS_SCORE+" correct to pass. Review the lessons and try again — you've got this.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Course 4 Complete! \ud83c\udf89":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Excellent work. You passed the Escrow & Title final exam. Head back to the portal to continue your training.":"You need 8 of 10 to pass. Review the lessons and try again.";
   document.getElementById("btn-portal").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id){
-    try{
-      await fetch(SB_URL+"/rest/v1/final_quiz",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,score:score,total:TOTAL,passed:passed,taken_at:new Date().toISOString()})});
-      if(passed){
-        await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:999,completed:true})});
-      }
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveFinal(score,passed,answers);}catch(e){}
 }
+function retryExam(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
 function backToPortal(){window.location.href="index.html";}
-function retryExam(){document.getElementById("score-card").classList.remove("show");buildQuiz();window.scrollTo(0,0);}
 </script>
+<script>window.EDR_PAGE={course:"course4",num:4,lesson:"final",lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

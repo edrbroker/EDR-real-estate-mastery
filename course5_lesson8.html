@@ -152,38 +152,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 8 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=8;
-const QUESTIONS=[{"q": "Under California Civil Code §2079.13, which form must agents provide to disclose their agency relationship?", "opts": ["C.A.R. Form TDS", "C.A.R. Form AD (Disclosure Regarding Real Estate Agency Relationship)", "C.A.R. Form RPA", "C.A.R. Form SPQ"], "ans": 1, "fb": "C.A.R. Form AD is the standard California agency disclosure form required under Civil Code §2079.13–§2079.24. It must be provided to buyers and sellers at or before the time of the offer."}, {"q": "As the buyer"s agent for the Okonkwos, your fiduciary duty runs to:", "opts": ["EDR Realty Group as the employing broker", "The seller, because they are paying the commission", "The Okonkwos as your clients", "Both parties equally, because you want the deal to close"], "ans": 2, "fb": "Your fiduciary duty as the buyer"s agent runs exclusively to the Okonkwos. This means your loyalty, confidentiality, and advocacy are for them — not the seller, not the other agent, and not the brokerage"s bottom line."}, {"q": "Dual agency in California is:", "opts": ["Illegal under all circumstances", "Legal with the informed written consent of both buyer and seller", "Automatically created whenever two agents from the same brokerage are on a deal", "Only permitted in commercial transactions"], "ans": 1, "fb": "California permits dual agency with full informed written consent from both parties. The agent must disclose the conflict and both parties must agree in writing. Without this consent, dual agency is an undisclosed conflict of interest."}, {"q": "In a dual agency situation, a dual agent CANNOT disclose without client consent:", "opts": ["The listing price of the property", "That the seller is motivated to close quickly and will accept less than asking price", "The buyer"s pre-approval letter amount", "The square footage of the home"], "ans": 1, "fb": "Under Civil Code §2079.21, a dual agent cannot disclose the seller"s willingness to accept less than listing price (or the buyer"s willingness to pay more) without consent. Confidential negotiating information is protected — this is the core conflict in dual agency."}, {"q": "When must a buyer"s agent deliver the agency disclosure form (C.A.R. Form AD)?", "opts": ["At the close of escrow", "Before or when the purchase offer is prepared — as early as possible", "Only if the buyer requests it", "After the offer is accepted and escrow opens"], "ans": 1, "fb": "California law requires the agency disclosure to be delivered before or when the offer is prepared — ideally at the first substantive meeting. Waiting until offer signing or later is too late and creates liability exposure for the agent."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "Under California Civil Code §2079.13, which form must agents provide to disclose their agency relationship?", "fb": "C.A.R. Form AD is the standard California agency disclosure form required under Civil Code §2079.13–§2079.24. It must be provided to buyers and sellers at or before the time of the offer.", "opts": ["C.A.R. Form TDS", "C.A.R. Form AD (Disclosure Regarding Real Estate Agency Relationship)", "C.A.R. Form RPA", "C.A.R. Form SPQ"], "ans": 1}, {"q": "As the buyer's agent for the Okonkwos, your fiduciary duty runs to:", "fb": "Your fiduciary duty as the buyer's agent runs exclusively to the Okonkwos. This means your loyalty, confidentiality, and advocacy are for them — not the seller, not the other agent, and not the brokerage's bottom line.", "opts": ["EDR Realty Group as the employing broker", "The seller, because they are paying the commission", "The Okonkwos as your clients", "Both parties equally, because you want the deal to close"], "ans": 2}, {"q": "Dual agency in California is:", "fb": "California permits dual agency with full informed written consent from both parties. The agent must disclose the conflict and both parties must agree in writing. Without this consent, dual agency is an undisclosed conflict of interest.", "opts": ["Illegal under all circumstances", "Legal with the informed written consent of both buyer and seller", "Automatically created whenever two agents from the same brokerage are on a deal", "Only permitted in commercial transactions"], "ans": 1}, {"q": "In a dual agency situation, a dual agent CANNOT disclose without client consent:", "fb": "Under Civil Code §2079.21, a dual agent cannot disclose the seller's willingness to accept less than listing price (or the buyer's willingness to pay more) without consent. Confidential negotiating information is protected — this is the core conflict in dual agency.", "opts": ["The listing price of the property", "That the seller is motivated to close quickly and will accept less than asking price", "The buyer's pre-approval letter amount", "The square footage of the home"], "ans": 1}, {"q": "When must a buyer's agent deliver the agency disclosure form (C.A.R. Form AD)?", "fb": "California law requires the agency disclosure to be delivered before or when the offer is prepared — ideally at the first substantive meeting. Waiting until offer signing or later is too late and creates liability exposure for the agent.", "opts": ["At the close of escrow", "Before or when the purchase offer is prepared — as early as possible", "Only if the buyer requests it", "After the offer is accepted and escrow opens"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -197,26 +173,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(8,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:8,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

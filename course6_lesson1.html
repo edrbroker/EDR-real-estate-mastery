@@ -158,38 +158,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 6 Lesson 1 · NEGOTIATION STRATEGIES · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course6",LESSON_NUM=1;
-const QUESTIONS=[{"q": "As the buyer"s agent for the Okonkwos, which of the following is an example of fulfilling your duty of disclosure?", "opts": ["Telling the listing agent that your clients will go up to $1,300,000", "Informing the Okonkwos that the sellers need to close in 30 days", "Keeping seller motivation information to yourself to avoid raising expectations", "Disclosing your clients" financial situation to the escrow company"], "ans": 1, "fb": "Your duty of disclosure requires you to share information that could affect your clients" decision or negotiating position. Seller motivation (needing to close in 30 days) is exactly this kind of information — tell your clients. Do not share it with the other side."}, {"q": "Under your fiduciary duty of confidentiality, you must NOT share with the listing agent:", "opts": ["Your clients" pre-approval letter amount", "Your clients" maximum price or motivation to purchase", "The property address you are writing an offer on", "Your brokerage"s name and license number"], "ans": 1, "fb": "The duty of confidentiality prohibits sharing your clients" maximum price, financial situation, or motivation with the other side without consent. This is core fiduciary protection — the other agent works for the seller, not your client."}, {"q": "A buyer"s agent recommends their client offer $50,000 above the listing price to maximize commission. This is:", "opts": ["Standard practice in a competitive market", "A potential violation of B&P Code §10176 — agents must prioritize client interests over commission", "Acceptable if the agent discloses the potential conflict in writing", "Only a violation if the client later finds out and complains"], "ans": 1, "fb": "Recommending an unnecessarily high offer to boost your commission is a violation of the fiduciary duty of loyalty and B&P §10176. Your job is to advise your clients on what"s in their best interest — not what maximizes your paycheck."}, {"q": "Which of the following negotiation tactics is consistent with your fiduciary duty?", "opts": ["Sharing your clients" ceiling price to build goodwill with the listing agent", "Calling the listing agent to ask how the property has been received and whether the seller is flexible on timeline", "Advising your client to waive all contingencies to win a multiple offer situation when they are not financially prepared", "Disclosing that your client must buy a home by the end of the month to create urgency"], "ans": 1, "fb": "Calling the listing agent to gather professional intelligence is a legitimate negotiation tactic that serves your clients. You are gathering information — not sharing confidential client details. This is how smart agents build leverage before writing an offer."}, {"q": "A client instructs their agent to write an offer at $1,100,000 on a $1,250,000 listing. The agent personally thinks this is too low. What should the agent do?", "opts": ["Refuse to write the offer and advise the client to work with another agent", "Write the offer as instructed after advising the client of the risks — fiduciary duty of obedience requires following lawful client instructions", "Unilaterally raise the offer to $1,200,000 to protect the client"s interests", "Tell the listing agent in advance so the seller is not offended by the low offer"], "ans": 1, "fb": "The fiduciary duty of obedience requires agents to follow lawful client instructions, even when they personally disagree. The agent should clearly advise the client of the risks (offer may be rejected or ignored), document that advice, and then write the offer as directed. The client has the right to make their own decisions."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "As the buyer's agent for the Okonkwos, which of the following is an example of fulfilling your duty of disclosure?", "fb": "Your duty of disclosure requires you to share information that could affect your clients' decision or negotiating position. Seller motivation (needing to close in 30 days) is exactly this kind of information — tell your clients. Do not share it with the other side.", "opts": ["Telling the listing agent that your clients will go up to $1,300,000", "Informing the Okonkwos that the sellers need to close in 30 days", "Keeping seller motivation information to yourself to avoid raising expectations", "Disclosing your clients' financial situation to the escrow company"], "ans": 1}, {"q": "Under your fiduciary duty of confidentiality, you must NOT share with the listing agent:", "fb": "The duty of confidentiality prohibits sharing your clients' maximum price, financial situation, or motivation with the other side without consent. This is core fiduciary protection — the other agent works for the seller, not your client.", "opts": ["Your clients' pre-approval letter amount", "Your clients' maximum price or motivation to purchase", "The property address you are writing an offer on", "Your brokerage's name and license number"], "ans": 1}, {"q": "A buyer's agent recommends their client offer $50,000 above the listing price to maximize commission. This is:", "fb": "Recommending an unnecessarily high offer to boost your commission is a violation of the fiduciary duty of loyalty and B&P §10176. Your job is to advise your clients on what's in their best interest — not what maximizes your paycheck.", "opts": ["Standard practice in a competitive market", "A potential violation of B&P Code §10176 — agents must prioritize client interests over commission", "Acceptable if the agent discloses the potential conflict in writing", "Only a violation if the client later finds out and complains"], "ans": 1}, {"q": "Which of the following negotiation tactics is consistent with your fiduciary duty?", "fb": "Calling the listing agent to gather professional intelligence is a legitimate negotiation tactic that serves your clients. You are gathering information — not sharing confidential client details. This is how smart agents build leverage before writing an offer.", "opts": ["Sharing your clients' ceiling price to build goodwill with the listing agent", "Calling the listing agent to ask how the property has been received and whether the seller is flexible on timeline", "Advising your client to waive all contingencies to win a multiple offer situation when they are not financially prepared", "Disclosing that your client must buy a home by the end of the month to create urgency"], "ans": 1}, {"q": "A client instructs their agent to write an offer at $1,100,000 on a $1,250,000 listing. The agent personally thinks this is too low. What should the agent do?", "fb": "The fiduciary duty of obedience requires agents to follow lawful client instructions, even when they personally disagree. The agent should clearly advise the client of the risks (offer may be rejected or ignored), document that advice, and then write the offer as directed. The client has the right to make their own decisions.", "opts": ["Refuse to write the offer and advise the client to work with another agent", "Write the offer as instructed after advising the client of the risks — fiduciary duty of obedience requires following lawful client instructions", "Unilaterally raise the offer to $1,200,000 to protect the client's interests", "Tell the listing agent in advance so the seller is not offended by the low offer"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -203,26 +179,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(1,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course6",num:6,lesson:1,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

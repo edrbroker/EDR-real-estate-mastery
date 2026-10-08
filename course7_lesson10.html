@@ -155,34 +155,11 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 7 Lesson 10 · FINANCING FUNDAMENTALS · California DRE Standards · DRE RE-12 / RE-22</footer>
 <script>
-const QUESTIONS=[{"q": "The Equal Credit Opportunity Act (ECOA) protects mortgage applicants from discrimination based on all of the following EXCEPT:", "opts": ["Race and national origin", "Marital status", "Age", "The number of prior mortgage applications submitted"], "ans": 3, "fb": "ECOA prohibits discrimination in credit decisions based on race, color, religion, national origin, sex, marital status, age, or receipt of public assistance. The number of prior applications is not a protected characteristic under ECOA."}, {"q": "Under RESPA Section 8, it is illegal for a real estate agent to:", "opts": ["Recommend a lender they have worked with before", "Receive a cash payment from a title company in exchange for referring clients to them", "Disclose to clients that they have an affiliated business relationship with an escrow company", "Work with multiple lenders on behalf of different clients"], "ans": 1, "fb": "RESPA Section 8 prohibits giving or receiving anything of value in exchange for referrals to settlement service providers \u2014 including lenders, title companies, and escrow companies. This includes kickbacks, gifts, co-marketing arrangements, and any other form of compensation tied to referrals."}, {"q": "Redlining is a violation of which federal law?", "opts": ["RESPA Section 8", "The Equal Credit Opportunity Act", "The Fair Housing Act", "TRID"], "ans": 2, "fb": "Redlining \u2014 refusing to make loans in certain geographic areas based on the racial composition of the neighborhood \u2014 is a violation of the Fair Housing Act. The FHA prohibits discrimination in the financing of housing based on race, national origin, and other protected characteristics."}, {"q": "Your client's lender calls on closing day and tells them the interest rate has changed from what was on the Loan Estimate. Your client should:", "opts": ["Sign immediately \u2014 changing lenders at this point would delay closing", "Ask for an explanation and compare the Closing Disclosure carefully against the Loan Estimate before signing anything", "Accept it \u2014 rate changes at closing are normal and expected", "Ask escrow to cover the difference from their fee"], "ans": 1, "fb": "A bait-and-switch on the interest rate at closing is a red flag. The CD must be reviewed carefully against the LE. If the rate changed materially, the 3-business-day CD review period may need to reset. Buyers should never sign loan documents under pressure without understanding what changed and why."}, {"q": "A lender offers to give a real estate agent free marketing materials in exchange for referrals. This arrangement:", "opts": ["Is fully legal and common practice in the industry", "May violate RESPA Section 8 if the marketing is provided in exchange for referrals rather than at fair market value", "Is only legal if disclosed to the buyer in writing", "Is permitted because marketing is not cash compensation"], "ans": 1, "fb": "RESPA Section 8 prohibits any 'thing of value' exchanged for referrals \u2014 including marketing services, free advertising, office space, and similar non-cash benefits. Co-marketing arrangements must be structured at fair market value with no referral-based component. If you're unsure, ask your broker before agreeing to any arrangement with a settlement service provider."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V"}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "The Equal Credit Opportunity Act (ECOA) protects mortgage applicants from discrimination based on all of the following EXCEPT:", "opts": ["Race and national origin", "Marital status", "Age", "The number of prior mortgage applications submitted"], "ans": 3, "fb": "ECOA prohibits discrimination in credit decisions based on race, color, religion, national origin, sex, marital status, age, or receipt of public assistance. The number of prior applications is not a protected characteristic under ECOA."}, {"q": "Under RESPA Section 8, it is illegal for a real estate agent to:", "opts": ["Recommend a lender they have worked with before", "Receive a cash payment from a title company in exchange for referring clients to them", "Disclose to clients that they have an affiliated business relationship with an escrow company", "Work with multiple lenders on behalf of different clients"], "ans": 1, "fb": "RESPA Section 8 prohibits giving or receiving anything of value in exchange for referrals to settlement service providers — including lenders, title companies, and escrow companies. This includes kickbacks, gifts, co-marketing arrangements, and any other form of compensation tied to referrals."}, {"q": "Redlining is a violation of which federal law?", "opts": ["RESPA Section 8", "The Equal Credit Opportunity Act", "The Fair Housing Act", "TRID"], "ans": 2, "fb": "Redlining — refusing to make loans in certain geographic areas based on the racial composition of the neighborhood — is a violation of the Fair Housing Act. The FHA prohibits discrimination in the financing of housing based on race, national origin, and other protected characteristics."}, {"q": "Your client's lender calls on closing day and tells them the interest rate has changed from what was on the Loan Estimate. Your client should:", "opts": ["Sign immediately — changing lenders at this point would delay closing", "Ask for an explanation and compare the Closing Disclosure carefully against the Loan Estimate before signing anything", "Accept it — rate changes at closing are normal and expected", "Ask escrow to cover the difference from their fee"], "ans": 1, "fb": "A bait-and-switch on the interest rate at closing is a red flag. The CD must be reviewed carefully against the LE. If the rate changed materially, the 3-business-day CD review period may need to reset. Buyers should never sign loan documents under pressure without understanding what changed and why."}, {"q": "A lender offers to give a real estate agent free marketing materials in exchange for referrals. This arrangement:", "opts": ["Is fully legal and common practice in the industry", "May violate RESPA Section 8 if the marketing is provided in exchange for referrals rather than at fair market value", "Is only legal if disclosed to the buyer in writing", "Is permitted because marketing is not cash compensation"], "ans": 1, "fb": "RESPA Section 8 prohibits any 'thing of value' exchanged for referrals — including marketing services, free advertising, office space, and similar non-cash benefits. Co-marketing arrangements must be structured at fair market value with no referral-based component. If you're unsure, ask your broker before agreeing to any arrangement with a settlement service provider."}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
     card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
@@ -207,18 +184,17 @@ async function showScore(){
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
   circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"Review the lesson and try again.";
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/progress",{method:"POST",headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:"course7",lesson:10,completed:true})});
-    }catch(e){}
-  }
+  try{await EDR.saveLesson(10,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course7",num:7,lesson:10,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

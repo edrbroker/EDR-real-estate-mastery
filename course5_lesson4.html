@@ -150,38 +150,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 4 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=4;
-const QUESTIONS=[{"q": "California Civil Code §2079 requires real estate agents to:", "opts": ["Hire a licensed home inspector to inspect every property they represent", "Conduct a competent and diligent visual inspection and disclose material facts", "Review the home inspection report and initial every page", "Accompany the appraiser during the appraisal visit"], "ans": 1, "fb": "Civil Code §2079 requires agents — both listing and buyer"s — to conduct their own visual inspection and disclose any material facts that the inspection reveals. This is an independent duty, separate from the seller"s disclosure obligations."}, {"q": "The AVID (Agent Visual Inspection Disclosure) form is completed by:", "opts": ["The escrow holder", "Only the listing agent", "Both the listing agent and the buyer"s agent separately", "The buyer"s lender as part of the appraisal process"], "ans": 2, "fb": "Both the listing agent and the buyer"s agent have separate AVID obligations. Each must independently inspect the property and document their findings on the form."}, {"q": "During your walkthrough of 5555 Winners Lane, you notice water stains on the ceiling of the master bedroom. What is the correct action?", "opts": ["Say nothing — it"s the seller"s duty to disclose, not yours", "Note it on your AVID, flag it to your clients, and request information from the seller on the cause", "Only disclose it if the buyers ask", "Mention it verbally to the buyers but don"t write it down"], "ans": 1, "fb": "Water stains are a visible material fact that you have an independent duty to disclose. Document it on your AVID in writing, communicate it to your clients, and follow up with the listing agent about the cause. Verbal-only disclosures do not satisfy your legal duty."}, {"q": "Under Civil Code §2079, how long does a buyer have to bring a civil action against an agent for failing to disclose a visual inspection finding?", "opts": ["6 months from closing", "1 year from discovery", "2 years from the date of recordation", "5 years from the date of purchase"], "ans": 2, "fb": "Civil Code §2079 provides a 2-year statute of limitations from the date of recordation (close of escrow) for buyer claims against an agent for failure to conduct or disclose their visual inspection. This is why documentation at the time of the transaction is so critical."}, {"q": "An agent lets their unlicensed assistant fill out the AVID on a property the agent has never visited. This is:", "opts": ["Acceptable if the assistant is supervised by the agent", "A potential violation of Civil Code §2079 and a DRE compliance issue", "Standard practice and cost-effective", "Only a problem if the buyer discovers a defect later"], "ans": 1, "fb": "Delegating your personal inspection duty to an unlicensed assistant who has never visited the property is a violation of Civil Code §2079 and potentially B&P Code §10130. The agent"s inspection must be their own. An assistant can help document — but the agent must personally inspect and sign off."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "California Civil Code §2079 requires real estate agents to:", "fb": "Civil Code §2079 requires agents — both listing and buyer's — to conduct their own visual inspection and disclose any material facts that the inspection reveals. This is an independent duty, separate from the seller's disclosure obligations.", "opts": ["Hire a licensed home inspector to inspect every property they represent", "Conduct a competent and diligent visual inspection and disclose material facts", "Review the home inspection report and initial every page", "Accompany the appraiser during the appraisal visit"], "ans": 1}, {"q": "The AVID (Agent Visual Inspection Disclosure) form is completed by:", "fb": "Both the listing agent and the buyer's agent have separate AVID obligations. Each must independently inspect the property and document their findings on the form.", "opts": ["The escrow holder", "Only the listing agent", "Both the listing agent and the buyer's agent separately", "The buyer's lender as part of the appraisal process"], "ans": 2}, {"q": "During your walkthrough of 5555 Winners Lane, you notice water stains on the ceiling of the master bedroom. What is the correct action?", "fb": "Water stains are a visible material fact that you have an independent duty to disclose. Document it on your AVID in writing, communicate it to your clients, and follow up with the listing agent about the cause. Verbal-only disclosures do not satisfy your legal duty.", "opts": ["Say nothing — it's the seller's duty to disclose, not yours", "Note it on your AVID, flag it to your clients, and request information from the seller on the cause", "Only disclose it if the buyers ask", "Mention it verbally to the buyers but don't write it down"], "ans": 1}, {"q": "Under Civil Code §2079, how long does a buyer have to bring a civil action against an agent for failing to disclose a visual inspection finding?", "fb": "Civil Code §2079 provides a 2-year statute of limitations from the date of recordation (close of escrow) for buyer claims against an agent for failure to conduct or disclose their visual inspection. This is why documentation at the time of the transaction is so critical.", "opts": ["6 months from closing", "1 year from discovery", "2 years from the date of recordation", "5 years from the date of purchase"], "ans": 2}, {"q": "An agent lets their unlicensed assistant fill out the AVID on a property the agent has never visited. This is:", "fb": "Delegating your personal inspection duty to an unlicensed assistant who has never visited the property is a violation of Civil Code §2079 and potentially B&P Code §10130. The agent's inspection must be their own. An assistant can help document — but the agent must personally inspect and sign off.", "opts": ["Acceptable if the assistant is supervised by the agent", "A potential violation of Civil Code §2079 and a DRE compliance issue", "Standard practice and cost-effective", "Only a problem if the buyer discovers a defect later"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -195,26 +171,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(4,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:4,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

@@ -152,34 +152,11 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 7 Lesson 5 · FINANCING FUNDAMENTALS · California DRE Standards · DRE RE-12 / RE-22</footer>
 <script>
-const QUESTIONS=[{"q": "A 30-year fixed-rate mortgage is best described as:", "opts": ["A loan where the interest rate changes annually based on market conditions", "A loan with the same interest rate and principal/interest payment for the entire 30-year term", "A loan that requires a balloon payment at year 30", "A loan only available through Fannie Mae"], "ans": 1, "fb": "A 30-year fixed-rate mortgage has the same interest rate and monthly principal/interest payment for the full 30 years. This predictability is why it's the most popular home loan in California and the U.S."}, {"q": "In a 5/1 ARM, what does the '5' and the '1' stand for?", "opts": ["5% maximum initial rate; 1% maximum annual increase", "Fixed rate for the first 5 years; adjusts annually after that", "5 mandatory payments before the rate adjusts; adjustments happen once per decade", "5-year fixed period; 1 adjustment total over the life of the loan"], "ans": 1, "fb": "In a 5/1 ARM: '5' means the rate is fixed for the first 5 years; '1' means it adjusts annually after the fixed period ends. The new rate is determined by adding a lender margin to a market index like SOFR."}, {"q": "The California DRE's Chapter 12 identifies 'payment shock' as a major risk with ARM products. Payment shock refers to:", "opts": ["A large upfront fee charged at loan origination", "The sudden significant increase in monthly payment when an ARM's rate adjusts or an interest-only period ends", "A penalty for paying off the loan early", "A fee charged when the buyer switches lenders during escrow"], "ans": 1, "fb": "Payment shock is the sudden large increase in monthly mortgage payment that occurs when an ARM adjusts to a higher rate or when an interest-only period ends and principal payments begin. The DRE specifically warns against borrowers not fully understanding this risk."}, {"q": "An ARM's 'lifetime cap' refers to:", "opts": ["The maximum number of times the rate can adjust", "The maximum total increase in interest rate over the life of the loan", "The maximum loan amount for adjustable-rate mortgages", "The maximum length of the fixed-rate period"], "ans": 1, "fb": "The lifetime cap limits how much the interest rate can increase in total over the entire life of the ARM. For example, a 5% lifetime cap on a loan starting at 5.875% means the rate can never exceed 10.875%, no matter how much market rates rise."}, {"q": "A buyer asks you: 'Should I get the 5/1 ARM \u2014 I'd save $600 a month!' How do you respond?", "opts": ["'Yes, the savings are significant \u2014 get the ARM.'", "'No, ARMs are always too risky in California.'", "'Great question \u2014 let me explain how ARMs work, and then I'll connect you with your lender who can show you the risk scenarios based on your specific situation.'", "'It depends on your credit score \u2014 ask your lender.'"], "ans": 2, "fb": "Recommending a specific loan type crosses into unlicensed mortgage loan originator activity. Your role is to explain how ARMs work in plain English, make sure your client understands the payment shock risk, and then refer the decision to their licensed loan officer who can model the scenarios."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V"}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "A 30-year fixed-rate mortgage is best described as:", "opts": ["A loan where the interest rate changes annually based on market conditions", "A loan with the same interest rate and principal/interest payment for the entire 30-year term", "A loan that requires a balloon payment at year 30", "A loan only available through Fannie Mae"], "ans": 1, "fb": "A 30-year fixed-rate mortgage has the same interest rate and monthly principal/interest payment for the full 30 years. This predictability is why it's the most popular home loan in California and the U.S."}, {"q": "In a 5/1 ARM, what does the '5' and the '1' stand for?", "opts": ["5% maximum initial rate; 1% maximum annual increase", "Fixed rate for the first 5 years; adjusts annually after that", "5 mandatory payments before the rate adjusts; adjustments happen once per decade", "5-year fixed period; 1 adjustment total over the life of the loan"], "ans": 1, "fb": "In a 5/1 ARM: '5' means the rate is fixed for the first 5 years; '1' means it adjusts annually after the fixed period ends. The new rate is determined by adding a lender margin to a market index like SOFR."}, {"q": "The California DRE's Chapter 12 identifies 'payment shock' as a major risk with ARM products. Payment shock refers to:", "opts": ["A large upfront fee charged at loan origination", "The sudden significant increase in monthly payment when an ARM's rate adjusts or an interest-only period ends", "A penalty for paying off the loan early", "A fee charged when the buyer switches lenders during escrow"], "ans": 1, "fb": "Payment shock is the sudden large increase in monthly mortgage payment that occurs when an ARM adjusts to a higher rate or when an interest-only period ends and principal payments begin. The DRE specifically warns against borrowers not fully understanding this risk."}, {"q": "An ARM's 'lifetime cap' refers to:", "opts": ["The maximum number of times the rate can adjust", "The maximum total increase in interest rate over the life of the loan", "The maximum loan amount for adjustable-rate mortgages", "The maximum length of the fixed-rate period"], "ans": 1, "fb": "The lifetime cap limits how much the interest rate can increase in total over the entire life of the ARM. For example, a 5% lifetime cap on a loan starting at 5.875% means the rate can never exceed 10.875%, no matter how much market rates rise."}, {"q": "A buyer asks you: 'Should I get the 5/1 ARM — I'd save $600 a month!' How do you respond?", "opts": ["'Yes, the savings are significant — get the ARM.'", "'No, ARMs are always too risky in California.'", "'Great question — let me explain how ARMs work, and then I'll connect you with your lender who can show you the risk scenarios based on your specific situation.'", "'It depends on your credit score — ask your lender.'"], "ans": 2, "fb": "Recommending a specific loan type crosses into unlicensed mortgage loan originator activity. Your role is to explain how ARMs work in plain English, make sure your client understands the payment shock risk, and then refer the decision to their licensed loan officer who can model the scenarios."}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
     card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
@@ -204,18 +181,17 @@ async function showScore(){
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
   circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"Review the lesson and try again.";
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/progress",{method:"POST",headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:"course7",lesson:5,completed:true})});
-    }catch(e){}
-  }
+  try{await EDR.saveLesson(5,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course7",num:7,lesson:5,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

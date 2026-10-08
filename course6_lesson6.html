@@ -154,38 +154,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 6 Lesson 6 · NEGOTIATION STRATEGIES · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course6",LESSON_NUM=6;
-const QUESTIONS=[{"q": "The Okonkwos are using a conventional loan with 10% down on a $1,250,000 purchase. The maximum seller credit their lender will allow is:", "opts": ["$37,500 (3%)", "$75,000 (6%)", "$112,500 (9%)", "Unlimited — seller credits have no cap"], "ans": 1, "fb": "For conventional loans with 10–24% down, lenders allow seller credits up to 6% of the purchase price. On a $1,250,000 purchase, that"s $75,000 maximum. With 25%+ down, the limit rises to 9%."}, {"q": "A buyer submits an "as-is" offer on a property. Under California law, the seller:", "opts": ["Is relieved of all TDS and SPQ disclosure obligations", "Still must provide all required disclosures — as-is does not waive disclosure law", "Can conceal known defects since the buyer accepted the as-is condition", "May skip the inspection period requirement for as-is transactions"], "ans": 1, "fb": "California"s disclosure requirements under Civil Code §1102 and §1103 apply regardless of as-is language. The TDS, SPQ, NHD, and AVID must still be provided. As-is means the buyer is not requesting repairs upfront — it does not eliminate the seller"s disclosure obligations."}, {"q": "The Okonkwos receive a $12,000 seller credit. Where does this credit appear?", "opts": ["As a check mailed to the buyers after closing", "On the Closing Disclosure as a credit applied toward the buyer"s allowable closing costs", "As a reduction to the purchase price on the RPA", "Deposited directly into the buyers" bank account by escrow"], "ans": 1, "fb": "Seller credits appear on the Closing Disclosure (CD) as a credit applied toward the buyer"s closing costs. The money is applied at settlement — it doesn"t come as a separate check or bank deposit. It reduces the amount the buyer needs to bring to closing."}, {"q": "Why is a seller credit sometimes more beneficial to a buyer than a purchase price reduction?", "opts": ["Credits lower the property tax basis, saving money long-term", "Credits provide immediate cash at closing that buyers can use for repairs or other costs, whereas price reductions only reduce the loan amount", "Price reductions require a new appraisal to be processed", "Credits do not affect the buyer"s monthly mortgage payment, while price reductions do"], "ans": 1, "fb": "A seller credit gives buyers immediate, usable cash at closing — which they can apply toward any allowable closing cost or retain for post-closing repairs. A price reduction reduces the loan amount, but the benefit is spread over the life of the mortgage. For buyers who need liquidity now, a credit is often more valuable."}, {"q": "A buyer makes an as-is offer and gets into contract. During the inspection period, they discover significant undisclosed foundation issues. They can:", "opts": ["Do nothing — they accepted as-is terms", "Cancel within the inspection contingency period and receive their EMD back", "Only cancel if the repair cost exceeds 10% of the purchase price", "Accept the property and sue the seller for 50% of repair costs"], "ans": 1, "fb": "An as-is offer does not waive the buyer"s right to cancel within the inspection contingency period. If material undisclosed issues are found during due diligence, buyers can cancel under RPA ¶14C and recover their EMD. As-is means no repairs are requested upfront — not that buyers have no exit rights."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "The Okonkwos are using a conventional loan with 10% down on a $1,250,000 purchase. The maximum seller credit their lender will allow is:", "fb": "For conventional loans with 10–24% down, lenders allow seller credits up to 6% of the purchase price. On a $1,250,000 purchase, that's $75,000 maximum. With 25%+ down, the limit rises to 9%.", "opts": ["$37,500 (3%)", "$75,000 (6%)", "$112,500 (9%)", "Unlimited — seller credits have no cap"], "ans": 1}, {"q": "A buyer submits an 'as-is' offer on a property. Under California law, the seller:", "fb": "California's disclosure requirements under Civil Code §1102 and §1103 apply regardless of as-is language. The TDS, SPQ, NHD, and AVID must still be provided. As-is means the buyer is not requesting repairs upfront — it does not eliminate the seller's disclosure obligations.", "opts": ["Is relieved of all TDS and SPQ disclosure obligations", "Still must provide all required disclosures — as-is does not waive disclosure law", "Can conceal known defects since the buyer accepted the as-is condition", "May skip the inspection period requirement for as-is transactions"], "ans": 1}, {"q": "The Okonkwos receive a $12,000 seller credit. Where does this credit appear?", "fb": "Seller credits appear on the Closing Disclosure (CD) as a credit applied toward the buyer's closing costs. The money is applied at settlement — it doesn't come as a separate check or bank deposit. It reduces the amount the buyer needs to bring to closing.", "opts": ["As a check mailed to the buyers after closing", "On the Closing Disclosure as a credit applied toward the buyer's allowable closing costs", "As a reduction to the purchase price on the RPA", "Deposited directly into the buyers' bank account by escrow"], "ans": 1}, {"q": "Why is a seller credit sometimes more beneficial to a buyer than a purchase price reduction?", "fb": "A seller credit gives buyers immediate, usable cash at closing — which they can apply toward any allowable closing cost or retain for post-closing repairs. A price reduction reduces the loan amount, but the benefit is spread over the life of the mortgage. For buyers who need liquidity now, a credit is often more valuable.", "opts": ["Credits lower the property tax basis, saving money long-term", "Credits provide immediate cash at closing that buyers can use for repairs or other costs, whereas price reductions only reduce the loan amount", "Price reductions require a new appraisal to be processed", "Credits do not affect the buyer's monthly mortgage payment, while price reductions do"], "ans": 1}, {"q": "A buyer makes an as-is offer and gets into contract. During the inspection period, they discover significant undisclosed foundation issues. They can:", "fb": "An as-is offer does not waive the buyer's right to cancel within the inspection contingency period. If material undisclosed issues are found during due diligence, buyers can cancel under RPA ¶14C and recover their EMD. As-is means no repairs are requested upfront — not that buyers have no exit rights.", "opts": ["Do nothing — they accepted as-is terms", "Cancel within the inspection contingency period and receive their EMD back", "Only cancel if the repair cost exceeds 10% of the purchase price", "Accept the property and sue the seller for 50% of repair costs"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -199,26 +175,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(6,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course6",num:6,lesson:6,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

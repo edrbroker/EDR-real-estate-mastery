@@ -151,38 +151,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 6 Lesson 3 · NEGOTIATION STRATEGIES · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course6",LESSON_NUM=3;
-const QUESTIONS=[{"q": "The Okonkwos are writing an offer on 5555 Winners Lane ($1,250,000) in a competitive market. Which EMD amount sends the strongest signal of commitment?", "opts": ["$5,000 flat", "$12,500 (1%)", "$25,000 (2%)", "$37,500 (3%)"], "ans": 3, "fb": "In a competitive market, 3% EMD ($37,500) is the strongest signal — and it equals the maximum liquidated damages cap under RPA ¶29. This demonstrates commitment and serious intent. Note: liquidated damages cap at 3% for 1–4 unit owner-occupied properties."}, {"q": "Under RPA ¶3D(1), the initial deposit (EMD) must be delivered to escrow:", "opts": ["On the day the offer is submitted", "Within 3 business days of acceptance", "Within 7 calendar days of acceptance", "On the close of escrow date"], "ans": 1, "fb": "RPA ¶3D(1) requires the EMD to be delivered within 3 business days of acceptance by wire transfer (unless otherwise agreed). Agents should set a reminder for clients on the day acceptance is received — this deadline is firm."}, {"q": "A seller is reviewing two offers at $1,250,000. Offer A is conventional with 20% down and a 21-day close. Offer B is FHA with 3.5% down and a 30-day close. All else equal, which is more attractive to the seller and why?", "opts": ["Offer B — FHA offers have government backing which protects the seller", "Offer A — conventional loans with higher down payments carry less seller risk and close faster", "Both offers are equivalent — loan type doesn"t affect the seller", "Offer B — FHA appraisals are more accurate than conventional appraisals"], "ans": 1, "fb": "Conventional loans with higher down payments are generally more attractive to sellers in competitive situations because they carry less perceived risk (no FHA-specific repair requirements, less appraisal scrutiny) and often close faster. All-cash is strongest, followed by high-down conventional."}, {"q": "The listing agent tells you the sellers want to close in 25 days. The standard RPA default close of escrow is 30 days. You should:", "opts": ["Ignore it — the standard 30 days is the RPA default and cannot be changed", "Offer a 25-day close in your clients" offer to match the seller"s preference — this costs nothing and improves competitiveness", "Demand 45 days to protect your clients from the tight timeline", "Offer 20 days to appear more competitive than the seller"s stated preference"], "ans": 1, "fb": "Matching the seller"s preferred close timeline is a zero-cost way to make your offer more attractive. Under RPA ¶3B, the close of escrow is fully negotiable. Aligning with what the seller wants on terms costs your client nothing extra and can be a tiebreaker in a competitive situation."}, {"q": "An offer summary (also called a cover letter or term sheet) submitted with the RPA serves to:", "opts": ["Replace the pre-approval letter requirement", "Make it easier for the listing agent to present the offer"s key terms to the seller", "Increase the legal enforceability of the offer", "Satisfy the agency disclosure requirement under Civil Code §2079.14"], "ans": 1, "fb": "An offer summary is a professional tool — not legally required — that makes it easy for the listing agent to quickly present your offer"s key terms to the seller. In a multiple offer situation, a clean, organized presentation can be a meaningful advantage."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "The Okonkwos are writing an offer on 5555 Winners Lane ($1,250,000) in a competitive market. Which EMD amount sends the strongest signal of commitment?", "fb": "In a competitive market, 3% EMD ($37,500) is the strongest signal — and it equals the maximum liquidated damages cap under RPA ¶29. This demonstrates commitment and serious intent. Note: liquidated damages cap at 3% for 1–4 unit owner-occupied properties.", "opts": ["$5,000 flat", "$12,500 (1%)", "$25,000 (2%)", "$37,500 (3%)"], "ans": 3}, {"q": "Under RPA ¶3D(1), the initial deposit (EMD) must be delivered to escrow:", "fb": "RPA ¶3D(1) requires the EMD to be delivered within 3 business days of acceptance by wire transfer (unless otherwise agreed). Agents should set a reminder for clients on the day acceptance is received — this deadline is firm.", "opts": ["On the day the offer is submitted", "Within 3 business days of acceptance", "Within 7 calendar days of acceptance", "On the close of escrow date"], "ans": 1}, {"q": "A seller is reviewing two offers at $1,250,000. Offer A is conventional with 20% down and a 21-day close. Offer B is FHA with 3.5% down and a 30-day close. All else equal, which is more attractive to the seller and why?", "fb": "Conventional loans with higher down payments are generally more attractive to sellers in competitive situations because they carry less perceived risk (no FHA-specific repair requirements, less appraisal scrutiny) and often close faster. All-cash is strongest, followed by high-down conventional.", "opts": ["Offer B — FHA offers have government backing which protects the seller", "Offer A — conventional loans with higher down payments carry less seller risk and close faster", "Both offers are equivalent — loan type doesn't affect the seller", "Offer B — FHA appraisals are more accurate than conventional appraisals"], "ans": 1}, {"q": "The listing agent tells you the sellers want to close in 25 days. The standard RPA default close of escrow is 30 days. You should:", "fb": "Matching the seller's preferred close timeline is a zero-cost way to make your offer more attractive. Under RPA ¶3B, the close of escrow is fully negotiable. Aligning with what the seller wants on terms costs your client nothing extra and can be a tiebreaker in a competitive situation.", "opts": ["Ignore it — the standard 30 days is the RPA default and cannot be changed", "Offer a 25-day close in your clients' offer to match the seller's preference — this costs nothing and improves competitiveness", "Demand 45 days to protect your clients from the tight timeline", "Offer 20 days to appear more competitive than the seller's stated preference"], "ans": 1}, {"q": "An offer summary (also called a cover letter or term sheet) submitted with the RPA serves to:", "fb": "An offer summary is a professional tool — not legally required — that makes it easy for the listing agent to quickly present your offer's key terms to the seller. In a multiple offer situation, a clean, organized presentation can be a meaningful advantage.", "opts": ["Replace the pre-approval letter requirement", "Make it easier for the listing agent to present the offer's key terms to the seller", "Increase the legal enforceability of the offer", "Satisfy the agency disclosure requirement under Civil Code §2079.14"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -196,26 +172,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(3,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course6",num:6,lesson:3,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

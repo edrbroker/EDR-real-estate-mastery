@@ -154,38 +154,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 6 Lesson 8 · NEGOTIATION STRATEGIES · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course6",LESSON_NUM=8;
-const QUESTIONS=[{"q": "Under AB 2992 (effective January 1, 2025), when must a buyer"s agent execute a written Buyer Representation and Broker Compensation Agreement (BRBC)?", "opts": ["Within 3 days after first showing a property", "Before showing any property to the buyer", "At the time the buyer submits their first offer", "Only if the seller declines to pay buyer broker compensation"], "ans": 1, "fb": "AB 2992 requires the written BRBC to be executed BEFORE the agent shows any property to the buyer. Showing homes without a signed BRBC is a violation of the new California law effective January 1, 2025."}, {"q": "Under the post-2024 compensation framework, buyer broker compensation is:", "opts": ["Automatically set at 2.5% and paid by the seller through the MLS", "No longer advertised in the MLS — it is negotiated and disclosed in writing between buyer and agent", "Fixed by California DRE regulation at a maximum of 3%", "Paid exclusively from the listing agent"s commission split"], "ans": 1, "fb": "The NAR settlement and AB 2992 eliminated the practice of advertising buyer broker compensation in the MLS. Compensation is now negotiated directly between buyer and agent and disclosed in the written BRBC. Sellers can be asked to pay it — but it is no longer automatic."}, {"q": "A buyer asks their agent to include a request for seller payment of buyer broker compensation in their offer. This:", "opts": ["Is now prohibited under the new MLS rules", "Is standard practice and does not weaken the offer — sellers can accept or decline", "Automatically reduces the purchase price by the compensation amount", "Violates the disclosure requirements of B&P §10147.5"], "ans": 1, "fb": "Including a seller-pay buyer broker compensation request in the offer is standard practice under the new framework. Sellers are not required to pay, but can be asked. Including this request does not weaken the offer and is fully transparent."}, {"q": "Marcus asks you: "Does your commission affect how hard you negotiate for us?" The honest and correct answer is:", "opts": ["No — because commission is the same percentage regardless of price", "Yes — higher price means higher commission, but your fiduciary duty legally requires you to prioritize their interests above your own compensation", "No — agents are paid a flat fee under the new AB 2992 rules", "Yes — you only negotiate hard when commission is above 2.5%"], "ans": 1, "fb": "The honest answer acknowledges the potential conflict (higher price = higher commission) and makes clear that fiduciary duty legally obligates the agent to put the client"s interests first. Transparency on this question builds trust and demonstrates professionalism."}, {"q": "If a seller declines to pay buyer broker compensation, the buyer"s options include:", "opts": ["Canceling the contract — the seller"s refusal is grounds for cancellation", "Paying their agent directly from their own funds, or renegotiating the compensation rate with their agent", "Filing a complaint with the California DRE against the seller", "Requesting that the listing agent split their commission with the buyer"s agent without seller knowledge"], "ans": 1, "fb": "If the seller declines to pay buyer broker compensation, the buyer can pay their agent directly from their own funds (subject to lender rules on how it"s structured) or renegotiate the rate with their agent. Neither seller refusal nor lender complications are automatic grounds for contract cancellation."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "Under AB 2992 (effective January 1, 2025), when must a buyer's agent execute a written Buyer Representation and Broker Compensation Agreement (BRBC)?", "fb": "AB 2992 requires the written BRBC to be executed BEFORE the agent shows any property to the buyer. Showing homes without a signed BRBC is a violation of the new California law effective January 1, 2025.", "opts": ["Within 3 days after first showing a property", "Before showing any property to the buyer", "At the time the buyer submits their first offer", "Only if the seller declines to pay buyer broker compensation"], "ans": 1}, {"q": "Under the post-2024 compensation framework, buyer broker compensation is:", "fb": "The NAR settlement and AB 2992 eliminated the practice of advertising buyer broker compensation in the MLS. Compensation is now negotiated directly between buyer and agent and disclosed in the written BRBC. Sellers can be asked to pay it — but it is no longer automatic.", "opts": ["Automatically set at 2.5% and paid by the seller through the MLS", "No longer advertised in the MLS — it is negotiated and disclosed in writing between buyer and agent", "Fixed by California DRE regulation at a maximum of 3%", "Paid exclusively from the listing agent's commission split"], "ans": 1}, {"q": "A buyer asks their agent to include a request for seller payment of buyer broker compensation in their offer. This:", "fb": "Including a seller-pay buyer broker compensation request in the offer is standard practice under the new framework. Sellers are not required to pay, but can be asked. Including this request does not weaken the offer and is fully transparent.", "opts": ["Is now prohibited under the new MLS rules", "Is standard practice and does not weaken the offer — sellers can accept or decline", "Automatically reduces the purchase price by the compensation amount", "Violates the disclosure requirements of B&P §10147.5"], "ans": 1}, {"q": "Marcus asks you: 'Does your commission affect how hard you negotiate for us?' The honest and correct answer is:", "fb": "The honest answer acknowledges the potential conflict (higher price = higher commission) and makes clear that fiduciary duty legally obligates the agent to put the client's interests first. Transparency on this question builds trust and demonstrates professionalism.", "opts": ["No — because commission is the same percentage regardless of price", "Yes — higher price means higher commission, but your fiduciary duty legally requires you to prioritize their interests above your own compensation", "No — agents are paid a flat fee under the new AB 2992 rules", "Yes — you only negotiate hard when commission is above 2.5%"], "ans": 1}, {"q": "If a seller declines to pay buyer broker compensation, the buyer's options include:", "fb": "If the seller declines to pay buyer broker compensation, the buyer can pay their agent directly from their own funds (subject to lender rules on how it's structured) or renegotiate the rate with their agent. Neither seller refusal nor lender complications are automatic grounds for contract cancellation.", "opts": ["Canceling the contract — the seller's refusal is grounds for cancellation", "Paying their agent directly from their own funds, or renegotiating the compensation rate with their agent", "Filing a complaint with the California DRE against the seller", "Requesting that the listing agent split their commission with the buyer's agent without seller knowledge"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -199,26 +175,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(8,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course6",num:6,lesson:8,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

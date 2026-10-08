@@ -153,38 +153,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 3 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=3;
-const QUESTIONS=[{"q": "Which of the following best describes the difference between the TDS and the SPQ?", "opts": ["The TDS is optional; the SPQ is legally required", "The TDS covers physical systems; the SPQ covers history, litigation, permits, and nuisance issues", "The SPQ replaces the TDS for commercial properties", "The TDS is completed by agents; the SPQ is completed by the escrow holder"], "ans": 1, "fb": "The TDS (Civil Code §1102) covers the physical condition and systems of the property. The SPQ (C.A.R. Form SPQ) supplements it with deeper history — permits, insurance claims, disputes, and more. Both are typically required in a standard California sale."}, {"q": "The seller of 5555 Winners Lane added a bedroom without pulling a permit 5 years ago. On the SPQ, the seller should:", "opts": ["Leave it blank since it was so long ago", "Disclose it as an unpermitted addition", "Mark "unknown" because they didn\"t know permits were required", "Only disclose it if the buyer"s inspector finds it"], "ans": 1, "fb": "Unpermitted work is a material fact and must be disclosed on the SPQ. Sellers cannot hide known work simply because it was done years ago. Nondisclosure exposes them to post-closing liability."}, {"q": "An SPQ reveals the seller filed a homeowner"s insurance claim for water damage 3 years ago. As the buyer"s agent, your next step is to:", "opts": ["Ignore it — old claims don"t affect new buyers", "Request documentation on what was damaged, what was repaired, and whether the repair was fully completed", "Cancel the transaction immediately", "Ask escrow to verify the claim with the insurance company directly"], "ans": 1, "fb": "A prior insurance claim is a flag, not a deal-killer. Your job is to get the full story: what happened, what was fixed, and by whom. This helps your clients make an informed decision and gives them documentation if issues resurface."}, {"q": "Which of the following topics is covered in the SPQ but NOT typically in the TDS?", "opts": ["Condition of the roof", "Whether the HVAC system is functional", "Any threatened or pending litigation involving the property", "Whether smoke detectors are installed"], "ans": 2, "fb": "Litigation is specifically addressed in the SPQ. The TDS focuses on the physical condition of systems and known defects. Legal disputes, neighbor conflicts, and threatened lawsuits are SPQ territory."}, {"q": "A seller answers "I don\"t know" to a question about prior mold on the SPQ. This is:", "opts": ["A violation of Civil Code §1102", "Acceptable if it is their honest answer", "Grounds for the buyer to automatically cancel", "Only acceptable if the property was built before 1978"], "ans": 1, "fb": ""I don\"t know" is a legally acceptable answer on the SPQ if it is genuinely the seller\"s state of knowledge. Sellers are not required to know everything — but they cannot lie or deliberately omit known facts. "Don\"t know" is different from "no" when the seller has reason to suspect an issue."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "Which of the following best describes the difference between the TDS and the SPQ?", "fb": "The TDS (Civil Code §1102) covers the physical condition and systems of the property. The SPQ (C.A.R. Form SPQ) supplements it with deeper history — permits, insurance claims, disputes, and more. Both are typically required in a standard California sale.", "opts": ["The TDS is optional; the SPQ is legally required", "The TDS covers physical systems; the SPQ covers history, litigation, permits, and nuisance issues", "The SPQ replaces the TDS for commercial properties", "The TDS is completed by agents; the SPQ is completed by the escrow holder"], "ans": 1}, {"q": "The seller of 5555 Winners Lane added a bedroom without pulling a permit 5 years ago. On the SPQ, the seller should:", "fb": "Unpermitted work is a material fact and must be disclosed on the SPQ. Sellers cannot hide known work simply because it was done years ago. Nondisclosure exposes them to post-closing liability.", "opts": ["Leave it blank since it was so long ago", "Disclose it as an unpermitted addition", "Mark 'unknown' because they didn't know permits were required", "Only disclose it if the buyer's inspector finds it"], "ans": 1}, {"q": "An SPQ reveals the seller filed a homeowner's insurance claim for water damage 3 years ago. As the buyer's agent, your next step is to:", "fb": "A prior insurance claim is a flag, not a deal-killer. Your job is to get the full story: what happened, what was fixed, and by whom. This helps your clients make an informed decision and gives them documentation if issues resurface.", "opts": ["Ignore it — old claims don't affect new buyers", "Request documentation on what was damaged, what was repaired, and whether the repair was fully completed", "Cancel the transaction immediately", "Ask escrow to verify the claim with the insurance company directly"], "ans": 1}, {"q": "Which of the following topics is covered in the SPQ but NOT typically in the TDS?", "fb": "Litigation is specifically addressed in the SPQ. The TDS focuses on the physical condition of systems and known defects. Legal disputes, neighbor conflicts, and threatened lawsuits are SPQ territory.", "opts": ["Condition of the roof", "Whether the HVAC system is functional", "Any threatened or pending litigation involving the property", "Whether smoke detectors are installed"], "ans": 2}, {"q": "A seller answers 'I don't know' to a question about prior mold on the SPQ. This is:", "fb": "'I don't know' is a legally acceptable answer on the SPQ if it is genuinely the seller's state of knowledge. Sellers are not required to know everything — but they cannot lie or deliberately omit known facts. 'Don't know' is different from 'no' when the seller has reason to suspect an issue.", "opts": ["A violation of Civil Code §1102", "Acceptable if it is their honest answer", "Grounds for the buyer to automatically cancel", "Only acceptable if the property was built before 1978"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -198,26 +174,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(3,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:3,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

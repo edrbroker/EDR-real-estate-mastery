@@ -155,38 +155,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 6 Lesson 4 · NEGOTIATION STRATEGIES · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course6",LESSON_NUM=4;
-const QUESTIONS=[{"q": "In a multiple offer situation, a seller asks all buyers for "best and final" by 5 PM. What does this mean for the Okonkwos?", "opts": ["They can submit a counter-counter offer after the deadline if they miss it", "They should submit their absolute strongest offer — price, EMD, terms — by the deadline, as there will be no further negotiation", "They should wait to see if the property goes back on market before submitting", "They should call the listing agent and ask what the other offers are"], "ans": 1, "fb": ""Best and final" means exactly that — one shot, no back-and-forth. Your clients need to put their best number and terms on paper by the deadline. There\"s no second chance. Advise them clearly: if they lose at this price, they should be comfortable with that. If not, they need to go higher."}, {"q": "A listing agent shares the specific terms of Buyer A"s offer with Buyer B"s agent to get a higher counter. This is:", "opts": ["Standard practice in multiple offer situations", "A potential violation of the DRE"s ethical guidelines and C.A.R. Code of Ethics", "Acceptable if the seller gives written permission", "Required by California law to ensure fair competition"], "ans": 1, "fb": "Sharing one buyer"s confidential offer terms with another buyer"s agent to extract a higher offer is an ethical violation under the C.A.R. Code of Ethics and can constitute misrepresentation under B&P §10176. The listing agent owes their fiduciary duty to the seller — not to using buyers against each other."}, {"q": "Under the Fair Housing Act, a seller in a multiple offer situation cannot:", "opts": ["Accept a lower-priced offer over a higher-priced offer", "Request best and final offers from all buyers", "Select the offer with the shortest contingency period", "Choose a buyer based on their race, religion, or national origin"], "ans": 3, "fb": "The Fair Housing Act prohibits discrimination in the sale of housing based on race, color, national origin, religion, sex, familial status, or disability. Sellers can choose any offer for any non-discriminatory reason — price, terms, timing. But discriminatory selection is illegal and a DRE violation."}, {"q": "The main risk of using an escalation clause is:", "opts": ["It automatically locks the buyer into paying the maximum price", "It reveals the buyer"s ceiling price to the seller and their agent", "It violates RPA ¶3A which prohibits non-standard price terms", "It prevents the buyer from negotiating repairs during the inspection period"], "ans": 1, "fb": "An escalation clause reveals your client"s maximum willingness to pay — which is confidential negotiating information. Sellers and their agents who see this ceiling can structure negotiations around it. In many cases, a clean offer at your client"s maximum is a stronger and more strategic approach."}, {"q": "Your clients lose a multiple offer situation by $5,000. They ask you to call the listing agent and offer to beat the accepted offer. You should:", "opts": ["Make the call — buyers can always make a backup offer", "Advise your clients that once a seller accepts an offer, they are in contract and cannot accept competing offers without breaching the existing agreement", "Report the listing agent to the DRE for not selecting your clients" offer", "Ask escrow to hold the funds in case the accepted buyer cancels"], "ans": 1, "fb": "Once a seller accepts an offer and communicates acceptance to the buyer, a binding contract is formed under the RPA. The seller cannot accept a competing offer without potential breach of contract. However, your clients can submit a written backup offer (C.A.R. Form BEO) to be considered if the accepted buyer cancels."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "In a multiple offer situation, a seller asks all buyers for 'best and final' by 5 PM. What does this mean for the Okonkwos?", "fb": "'Best and final' means exactly that — one shot, no back-and-forth. Your clients need to put their best number and terms on paper by the deadline. There's no second chance. Advise them clearly: if they lose at this price, they should be comfortable with that. If not, they need to go higher.", "opts": ["They can submit a counter-counter offer after the deadline if they miss it", "They should submit their absolute strongest offer — price, EMD, terms — by the deadline, as there will be no further negotiation", "They should wait to see if the property goes back on market before submitting", "They should call the listing agent and ask what the other offers are"], "ans": 1}, {"q": "A listing agent shares the specific terms of Buyer A's offer with Buyer B's agent to get a higher counter. This is:", "fb": "Sharing one buyer's confidential offer terms with another buyer's agent to extract a higher offer is an ethical violation under the C.A.R. Code of Ethics and can constitute misrepresentation under B&P §10176. The listing agent owes their fiduciary duty to the seller — not to using buyers against each other.", "opts": ["Standard practice in multiple offer situations", "A potential violation of the DRE's ethical guidelines and C.A.R. Code of Ethics", "Acceptable if the seller gives written permission", "Required by California law to ensure fair competition"], "ans": 1}, {"q": "Under the Fair Housing Act, a seller in a multiple offer situation cannot:", "fb": "The Fair Housing Act prohibits discrimination in the sale of housing based on race, color, national origin, religion, sex, familial status, or disability. Sellers can choose any offer for any non-discriminatory reason — price, terms, timing. But discriminatory selection is illegal and a DRE violation.", "opts": ["Accept a lower-priced offer over a higher-priced offer", "Request best and final offers from all buyers", "Select the offer with the shortest contingency period", "Choose a buyer based on their race, religion, or national origin"], "ans": 3}, {"q": "The main risk of using an escalation clause is:", "fb": "An escalation clause reveals your client's maximum willingness to pay — which is confidential negotiating information. Sellers and their agents who see this ceiling can structure negotiations around it. In many cases, a clean offer at your client's maximum is a stronger and more strategic approach.", "opts": ["It automatically locks the buyer into paying the maximum price", "It reveals the buyer's ceiling price to the seller and their agent", "It violates RPA ¶3A which prohibits non-standard price terms", "It prevents the buyer from negotiating repairs during the inspection period"], "ans": 1}, {"q": "Your clients lose a multiple offer situation by $5,000. They ask you to call the listing agent and offer to beat the accepted offer. You should:", "fb": "Once a seller accepts an offer and communicates acceptance to the buyer, a binding contract is formed under the RPA. The seller cannot accept a competing offer without potential breach of contract. However, your clients can submit a written backup offer (C.A.R. Form BEO) to be considered if the accepted buyer cancels.", "opts": ["Make the call — buyers can always make a backup offer", "Advise your clients that once a seller accepts an offer, they are in contract and cannot accept competing offers without breaching the existing agreement", "Report the listing agent to the DRE for not selecting your clients' offer", "Ask escrow to hold the funds in case the accepted buyer cancels"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -200,26 +176,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(4,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course6",num:6,lesson:4,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

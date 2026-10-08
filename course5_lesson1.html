@@ -153,38 +153,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 1 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=1;
-const QUESTIONS=[{"q": "The Transfer Disclosure Statement is required by which California law?", "opts": ["Business & Professions Code §10176", "Civil Code §1102", "Government Code §53340", "Health & Safety Code §17958"], "ans": 1, "fb": "Civil Code §1102 mandates the TDS for the sale of 1–4 unit residential properties in California. It is not optional — even for as-is sales."}, {"q": "Under the RPA, when must the seller deliver the TDS to the buyer?", "opts": ["At least 30 days before closing", "Within 7 days of acceptance per RPA ¶14A", "Before the offer is submitted", "Within 24 hours of listing the property"], "ans": 1, "fb": "RPA ¶14A requires the seller to deliver the TDS within 7 days of acceptance (or as otherwise agreed). Late delivery can trigger the buyer"s right to cancel."}, {"q": "Marcus and Priya receive the TDS by email. How many days do they have to cancel based on this disclosure?", "opts": ["24 hours", "3 calendar days from receipt", "5 calendar days from receipt", "7 business days from acceptance"], "ans": 1, "fb": "Under Civil Code §1102.3, buyers have 3 days after personal delivery (or 5 days if mailed) to cancel after receiving the TDS. Since they received it electronically (treated like personal delivery), they have 3 days."}, {"q": "Which section of the TDS is completed by the buyer"s agent?", "opts": ["Section I — Coordination", "Section II — Seller"s Information", "Section III — Agent"s Visual Inspection", "The TDS has no buyer"s agent section"], "ans": 2, "fb": "Section III of the TDS requires both the listing agent and the buyer"s agent to complete a visual inspection of the property and disclose what they observed. Both agents have separate disclosure duties."}, {"q": "A seller fails to disclose a known foundation crack on the TDS. The buyer discovers it after closing. What is the likely outcome?", "opts": ["Buyer has no recourse because they signed the TDS", "The seller and their agent may face a lawsuit for fraudulent concealment", "The escrow company is liable for not catching it", "The buyer"s lender must cover the repair cost"], "ans": 1, "fb": "Failing to disclose a known material defect — such as a foundation crack — exposes the seller and potentially their agent to civil liability for fraudulent concealment. This is one of the most common post-closing legal disputes in California."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "The Transfer Disclosure Statement is required by which California law?", "fb": "Civil Code §1102 mandates the TDS for the sale of 1–4 unit residential properties in California. It is not optional — even for as-is sales.", "opts": ["Business & Professions Code §10176", "Civil Code §1102", "Government Code §53340", "Health & Safety Code §17958"], "ans": 1}, {"q": "Under the RPA, when must the seller deliver the TDS to the buyer?", "fb": "RPA ¶14A requires the seller to deliver the TDS within 7 days of acceptance (or as otherwise agreed). Late delivery can trigger the buyer's right to cancel.", "opts": ["At least 30 days before closing", "Within 7 days of acceptance per RPA ¶14A", "Before the offer is submitted", "Within 24 hours of listing the property"], "ans": 1}, {"q": "Marcus and Priya receive the TDS by email. How many days do they have to cancel based on this disclosure?", "fb": "Under Civil Code §1102.3, buyers have 3 days after personal delivery (or 5 days if mailed) to cancel after receiving the TDS. Since they received it electronically (treated like personal delivery), they have 3 days.", "opts": ["24 hours", "3 calendar days from receipt", "5 calendar days from receipt", "7 business days from acceptance"], "ans": 1}, {"q": "Which section of the TDS is completed by the buyer's agent?", "fb": "Section III of the TDS requires both the listing agent and the buyer's agent to complete a visual inspection of the property and disclose what they observed. Both agents have separate disclosure duties.", "opts": ["Section I — Coordination", "Section II — Seller's Information", "Section III — Agent's Visual Inspection", "The TDS has no buyer's agent section"], "ans": 2}, {"q": "A seller fails to disclose a known foundation crack on the TDS. The buyer discovers it after closing. What is the likely outcome?", "fb": "Failing to disclose a known material defect — such as a foundation crack — exposes the seller and potentially their agent to civil liability for fraudulent concealment. This is one of the most common post-closing legal disputes in California.", "opts": ["Buyer has no recourse because they signed the TDS", "The seller and their agent may face a lawsuit for fraudulent concealment", "The escrow company is liable for not catching it", "The buyer's lender must cover the repair cost"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -198,26 +174,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(1,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:1,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

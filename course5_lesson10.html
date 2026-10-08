@@ -151,38 +151,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 10 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=10;
-const QUESTIONS=[{"q": "In a California residential transaction on a pre-1978 property, which disclosure is mandated by federal law rather than California state law?", "opts": ["Natural Hazard Disclosure (NHD)", "Transfer Disclosure Statement (TDS)", "Lead-Based Paint Disclosure", "Agent Visual Inspection Disclosure (AVID)"], "ans": 2, "fb": "The Lead-Based Paint Disclosure is a federal requirement under CFR Title 40, Part 745 — not a California state law. The TDS, NHD, and AVID are all California state requirements."}, {"q": "5555 Winners Lane is in a Very High Fire Hazard Severity Zone. What should the buyer"s agent do BEFORE the insurance contingency removal deadline?", "opts": ["Accept the risk — fire zones are common in California", "Advise the buyers to confirm that homeowner"s insurance is available and affordable", "Remove the insurance contingency anyway to strengthen the offer", "Ask the seller to purchase supplemental fire insurance as a condition of sale"], "ans": 1, "fb": "Properties in VHFHSZ zones face serious insurance challenges in California. Before removing the insurance contingency, the buyer"s agent must confirm that the buyers can actually obtain insurance at an affordable price. Removing the contingency without confirming coverage leaves the buyers exposed."}, {"q": "Under RPA ¶N(3), who orders the HOA document package and when?", "opts": ["The buyer"s agent, within 7 days of acceptance", "The escrow company, at the close of escrow", "The seller, within 3 calendar days of acceptance", "The HOA management company, upon request from either party"], "ans": 2, "fb": "RPA ¶N(3) requires the seller to order HOA documents within 3 calendar days of acceptance. The seller pays the document fee. The buyer then has a right to cancel during the review period after receiving the complete package."}, {"q": "The SPQ for 5555 Winners Lane shows a prior water intrusion claim in the rear bedroom. What is the most appropriate buyer"s agent response?", "opts": ["Tell the buyers not to worry — it was probably minor", "Request complete documentation of the claim, the repair, and confirmation that the repair was permitted and completed", "Ask the escrow officer to handle the follow-up", "Wait to see if the home inspector finds anything before acting"], "ans": 1, "fb": "A prior water intrusion claim requires follow-up — not minimization. Request the insurance claim documentation, the repair invoice, and any permits. This confirms the repair was completed properly and protects the buyers from inheriting an ongoing moisture problem."}, {"q": "A buyer"s agent reviews all disclosures with clients before each contingency deadline and documents every conversation. This practice primarily protects against:", "opts": ["Rising interest rates affecting the buyer"s loan approval", "Post-closing claims that the agent failed to explain material disclosures", "The seller backing out of the deal after acceptance", "Title defects discovered during escrow"], "ans": 1, "fb": "Documented client communication throughout the disclosure review process is the agent\"s primary protection against post-closing claims that buyers "weren\"t told" about material issues. If you reviewed it with them, explained it, and documented the conversation — you are protected."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "In a California residential transaction on a pre-1978 property, which disclosure is mandated by federal law rather than California state law?", "fb": "The Lead-Based Paint Disclosure is a federal requirement under CFR Title 40, Part 745 — not a California state law. The TDS, NHD, and AVID are all California state requirements.", "opts": ["Natural Hazard Disclosure (NHD)", "Transfer Disclosure Statement (TDS)", "Lead-Based Paint Disclosure", "Agent Visual Inspection Disclosure (AVID)"], "ans": 2}, {"q": "5555 Winners Lane is in a Very High Fire Hazard Severity Zone. What should the buyer's agent do BEFORE the insurance contingency removal deadline?", "fb": "Properties in VHFHSZ zones face serious insurance challenges in California. Before removing the insurance contingency, the buyer's agent must confirm that the buyers can actually obtain insurance at an affordable price. Removing the contingency without confirming coverage leaves the buyers exposed.", "opts": ["Accept the risk — fire zones are common in California", "Advise the buyers to confirm that homeowner's insurance is available and affordable", "Remove the insurance contingency anyway to strengthen the offer", "Ask the seller to purchase supplemental fire insurance as a condition of sale"], "ans": 1}, {"q": "Under RPA ¶N(3), who orders the HOA document package and when?", "fb": "RPA ¶N(3) requires the seller to order HOA documents within 3 calendar days of acceptance. The seller pays the document fee. The buyer then has a right to cancel during the review period after receiving the complete package.", "opts": ["The buyer's agent, within 7 days of acceptance", "The escrow company, at the close of escrow", "The seller, within 3 calendar days of acceptance", "The HOA management company, upon request from either party"], "ans": 2}, {"q": "The SPQ for 5555 Winners Lane shows a prior water intrusion claim in the rear bedroom. What is the most appropriate buyer's agent response?", "fb": "A prior water intrusion claim requires follow-up — not minimization. Request the insurance claim documentation, the repair invoice, and any permits. This confirms the repair was completed properly and protects the buyers from inheriting an ongoing moisture problem.", "opts": ["Tell the buyers not to worry — it was probably minor", "Request complete documentation of the claim, the repair, and confirmation that the repair was permitted and completed", "Ask the escrow officer to handle the follow-up", "Wait to see if the home inspector finds anything before acting"], "ans": 1}, {"q": "A buyer's agent reviews all disclosures with clients before each contingency deadline and documents every conversation. This practice primarily protects against:", "fb": "Documented client communication throughout the disclosure review process is the agent's primary protection against post-closing claims that buyers 'weren't told' about material issues. If you reviewed it with them, explained it, and documented the conversation — you are protected.", "opts": ["Rising interest rates affecting the buyer's loan approval", "Post-closing claims that the agent failed to explain material disclosures", "The seller backing out of the deal after acceptance", "Title defects discovered during escrow"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -196,26 +172,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(10,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:10,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

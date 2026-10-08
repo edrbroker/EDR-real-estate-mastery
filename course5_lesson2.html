@@ -152,38 +152,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 2 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=2;
-const QUESTIONS=[{"q": "The NHD report is mandated by which California law?", "opts": ["Civil Code §1102", "Civil Code §1103", "Government Code §53340", "Business & Professions Code §10176"], "ans": 1, "fb": "Civil Code §1103 mandates the Natural Hazard Disclosure for residential property sales. It is separate from the TDS (§1102) though often delivered at the same time."}, {"q": "5555 Winners Lane is located in a Very High Fire Hazard Severity Zone. What is the most immediate practical concern for the Okonkwos?", "opts": ["They must install a pool to satisfy defensible space requirements", "They may face difficulty obtaining or affording homeowner"s insurance", "The city will require them to repaint the house within 60 days of closing", "Their HOA dues will automatically increase"], "ans": 1, "fb": "Properties in VHFHSZ zones face significant insurance challenges in California — many carriers have stopped writing policies in high-risk areas. This is the most immediate and financially impactful concern buyers should investigate before removing contingencies."}, {"q": "Under RPA ¶Q(1), who pays for the NHD report?", "opts": ["Always the seller", "Always the buyer", "The buyer"s lender", "It is negotiable — buyer, seller, or split"], "ans": 3, "fb": "RPA ¶Q(1) makes the NHD cost negotiable between buyer and seller. In practice, sellers typically pay since they are required to ensure delivery, but the parties can agree otherwise."}, {"q": "An Alquist-Priolo Earthquake Fault Zone designation means:", "opts": ["The property requires earthquake retrofitting before closing", "The area has active fault lines where new construction for human occupancy is restricted", "The buyer must purchase earthquake insurance", "The property cannot be financed with a conventional loan"], "ans": 1, "fb": "Alquist-Priolo zones identify areas along active fault lines. California prohibits new structures intended for human occupancy from being built within these zones. Existing structures can still be sold; buyers should be aware of the risk and consult a geologist if concerned."}, {"q": "After receiving the NHD, how many days does a buyer have to cancel if it was delivered by email?", "opts": ["24 hours", "3 calendar days", "5 calendar days", "7 business days"], "ans": 1, "fb": "Like the TDS, the buyer has 3 calendar days after personal delivery (which includes email) to cancel based on the NHD. If mailed, the period extends to 5 days."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "The NHD report is mandated by which California law?", "fb": "Civil Code §1103 mandates the Natural Hazard Disclosure for residential property sales. It is separate from the TDS (§1102) though often delivered at the same time.", "opts": ["Civil Code §1102", "Civil Code §1103", "Government Code §53340", "Business & Professions Code §10176"], "ans": 1}, {"q": "5555 Winners Lane is located in a Very High Fire Hazard Severity Zone. What is the most immediate practical concern for the Okonkwos?", "fb": "Properties in VHFHSZ zones face significant insurance challenges in California — many carriers have stopped writing policies in high-risk areas. This is the most immediate and financially impactful concern buyers should investigate before removing contingencies.", "opts": ["They must install a pool to satisfy defensible space requirements", "They may face difficulty obtaining or affording homeowner's insurance", "The city will require them to repaint the house within 60 days of closing", "Their HOA dues will automatically increase"], "ans": 1}, {"q": "Under RPA ¶Q(1), who pays for the NHD report?", "fb": "RPA ¶Q(1) makes the NHD cost negotiable between buyer and seller. In practice, sellers typically pay since they are required to ensure delivery, but the parties can agree otherwise.", "opts": ["Always the seller", "Always the buyer", "The buyer's lender", "It is negotiable — buyer, seller, or split"], "ans": 3}, {"q": "An Alquist-Priolo Earthquake Fault Zone designation means:", "fb": "Alquist-Priolo zones identify areas along active fault lines. California prohibits new structures intended for human occupancy from being built within these zones. Existing structures can still be sold; buyers should be aware of the risk and consult a geologist if concerned.", "opts": ["The property requires earthquake retrofitting before closing", "The area has active fault lines where new construction for human occupancy is restricted", "The buyer must purchase earthquake insurance", "The property cannot be financed with a conventional loan"], "ans": 1}, {"q": "After receiving the NHD, how many days does a buyer have to cancel if it was delivered by email?", "fb": "Like the TDS, the buyer has 3 calendar days after personal delivery (which includes email) to cancel based on the NHD. If mailed, the period extends to 5 days.", "opts": ["24 hours", "3 calendar days", "5 calendar days", "7 business days"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -197,26 +173,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(2,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:2,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

@@ -154,34 +154,11 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 7 Lesson 4 · FINANCING FUNDAMENTALS · California DRE Standards · DRE RE-12 / RE-22</footer>
 <script>
-const QUESTIONS=[{"q": "Jonathan has a 620 credit score and wants to put 3.5% down. Which loan program is he most likely to use?", "opts": ["Conventional loan through Fannie Mae", "VA loan", "FHA loan", "Jumbo loan"], "ans": 2, "fb": "FHA loans allow as little as 3.5% down with a minimum credit score of 580. A 620 credit score with 3.5% down is a typical FHA borrower profile. Conventional loans generally require higher credit scores for the best terms."}, {"q": "Which of the following is a key advantage of a VA loan for an eligible veteran?", "opts": ["No property appraisal required", "No down payment required and no Private Mortgage Insurance", "FHA insurance backing that reduces the lender's risk", "Income limits that make it accessible to all first-time buyers"], "ans": 1, "fb": "VA loans offer two powerful benefits: no down payment required and no PMI (even at 0% down). Eligible veterans can finance 100% of the purchase price without paying monthly mortgage insurance. These are among the most competitive loan terms available."}, {"q": "FHA appraisers are known for applying property condition standards in addition to market value. For a California seller, this means:", "opts": ["FHA appraisals always come in higher than conventional appraisals", "The property may need repairs \u2014 like fixing peeling paint or broken handrails \u2014 before an FHA loan can close", "FHA loans close faster than conventional loans", "The seller receives a higher net profit with an FHA buyer"], "ans": 1, "fb": "FHA appraisers check that the property meets HUD minimum property standards (habitability requirements) in addition to determining market value. Required repairs must be completed before closing, which can create complications in transactions involving older or deferred-maintenance properties."}, {"q": "CalHFA programs are primarily designed to help:", "opts": ["Real estate investors purchasing multi-unit properties", "First-time buyers with income and purchase price limits who need down payment assistance", "Luxury buyers seeking jumbo loans at competitive rates", "Out-of-state buyers purchasing California vacation homes"], "ans": 1, "fb": "CalHFA (California Housing Finance Agency) provides below-market interest rates and down payment assistance programs specifically for qualifying first-time buyers in California, subject to income and purchase price limits that vary by county."}, {"q": "A veteran is purchasing a home using a VA loan with 0% down. Their one-time VA Funding Fee for first use is approximately:", "opts": ["0% \u2014 VA loans have no fees", "1.0% of the loan amount", "2.15% of the loan amount", "5% of the purchase price"], "ans": 2, "fb": "The VA Funding Fee for first-time VA loan use with 0% down is 2.15% of the loan amount (as of 2025). It can be paid upfront or rolled into the loan. This fee partially offsets the cost of the VA guarantee program. Veterans with service-connected disabilities may be exempt."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V"}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "Jonathan has a 620 credit score and wants to put 3.5% down. Which loan program is he most likely to use?", "opts": ["Conventional loan through Fannie Mae", "VA loan", "FHA loan", "Jumbo loan"], "ans": 2, "fb": "FHA loans allow as little as 3.5% down with a minimum credit score of 580. A 620 credit score with 3.5% down is a typical FHA borrower profile. Conventional loans generally require higher credit scores for the best terms."}, {"q": "Which of the following is a key advantage of a VA loan for an eligible veteran?", "opts": ["No property appraisal required", "No down payment required and no Private Mortgage Insurance", "FHA insurance backing that reduces the lender's risk", "Income limits that make it accessible to all first-time buyers"], "ans": 1, "fb": "VA loans offer two powerful benefits: no down payment required and no PMI (even at 0% down). Eligible veterans can finance 100% of the purchase price without paying monthly mortgage insurance. These are among the most competitive loan terms available."}, {"q": "FHA appraisers are known for applying property condition standards in addition to market value. For a California seller, this means:", "opts": ["FHA appraisals always come in higher than conventional appraisals", "The property may need repairs — like fixing peeling paint or broken handrails — before an FHA loan can close", "FHA loans close faster than conventional loans", "The seller receives a higher net profit with an FHA buyer"], "ans": 1, "fb": "FHA appraisers check that the property meets HUD minimum property standards (habitability requirements) in addition to determining market value. Required repairs must be completed before closing, which can create complications in transactions involving older or deferred-maintenance properties."}, {"q": "CalHFA programs are primarily designed to help:", "opts": ["Real estate investors purchasing multi-unit properties", "First-time buyers with income and purchase price limits who need down payment assistance", "Luxury buyers seeking jumbo loans at competitive rates", "Out-of-state buyers purchasing California vacation homes"], "ans": 1, "fb": "CalHFA (California Housing Finance Agency) provides below-market interest rates and down payment assistance programs specifically for qualifying first-time buyers in California, subject to income and purchase price limits that vary by county."}, {"q": "A veteran is purchasing a home using a VA loan with 0% down. Their one-time VA Funding Fee for first use is approximately:", "opts": ["0% — VA loans have no fees", "1.0% of the loan amount", "2.15% of the loan amount", "5% of the purchase price"], "ans": 2, "fb": "The VA Funding Fee for first-time VA loan use with 0% down is 2.15% of the loan amount (as of 2025). It can be paid upfront or rolled into the loan. This fee partially offsets the cost of the VA guarantee program. Veterans with service-connected disabilities may be exempt."}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
     card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
@@ -206,18 +183,17 @@ async function showScore(){
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
   circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"Review the lesson and try again.";
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch("https://zthiyivbiemgvojcrlyg.supabase.co/rest/v1/progress",{method:"POST",headers:{"apikey":"sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Authorization":"Bearer sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:"course7",lesson:4,completed:true})});
-    }catch(e){}
-  }
+  try{await EDR.saveLesson(4,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course7",num:7,lesson:4,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

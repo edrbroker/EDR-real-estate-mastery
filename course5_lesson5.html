@@ -148,38 +148,14 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Lesson 5 · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",LESSON_NUM=5;
-const QUESTIONS=[{"q": "The lead-based paint disclosure is required for residential properties built:", "opts": ["Before 1980", "Before 1978", "Before 1985", "Before 1970"], "ans": 1, "fb": "Federal law (CFR Title 40, Part 745) requires lead disclosure for all residential properties built before January 1, 1978. This is a hard cutoff date — not 1980 or any other year."}, {"q": "5555 Winners Lane was built in 1968. What must the seller provide to the Okonkwos regarding lead?", "opts": ["A certified lead inspection report", "The EPA pamphlet and a completed Lead-Based Paint Disclosure form", "A written guarantee that no lead is present", "Only the TDS is required — lead is already covered there"], "ans": 1, "fb": "For pre-1978 properties, sellers must provide the EPA "Protect Your Family" pamphlet AND a completed Lead-Based Paint Disclosure form. They must also offer buyers a 10-day window to inspect for lead (which buyers can waive in writing)."}, {"q": "An agent fails to provide the lead-based paint disclosure on a 1965 property. The maximum federal fine per violation is:", "opts": ["$500", "$2,500", "$11,000", "$25,000"], "ans": 2, "fb": "Federal penalties for failing to provide lead disclosure can reach $11,000 per violation. This is federal enforcement under the EPA — not DRE. It"s one of the more serious individual-transaction compliance risks for agents."}, {"q": "During your walkthrough of 5555 Winners Lane, you notice what appears to be popcorn ceiling texture throughout the home. As the agent, you should:", "opts": ["Say nothing — ceiling aesthetics are not material", "Note it on your AVID and recommend an asbestos test since popcorn ceilings in pre-1980 homes often contain asbestos", "Remove a sample and send it to a lab yourself", "Ask the escrow officer to flag it on the closing disclosure"], "ans": 1, "fb": "Popcorn ceilings in pre-1980 homes frequently contain asbestos. This is a material fact worth noting on your AVID and recommending a specialist inspection. While not mandatory to test, informing your clients of the risk is part of your disclosure duty."}, {"q": "Under California law, a seller who knows a property was previously used as a methamphetamine lab must:", "opts": ["Disclose it only if the buyer specifically asks", "Disclose it under Health & Safety Code §25400.28 regardless of remediation status", "Keep it confidential to protect seller privacy", "Only disclose if remediation was not completed"], "ans": 1, "fb": "California Health & Safety Code §25400.28 requires sellers to disclose if a property was used for methamphetamine manufacturing. This disclosure is mandatory regardless of whether remediation occurred — buyers need to know and can verify remediation with the local health department."}];
-function edrSave(ag){localStorage.setItem("edr_agent",JSON.stringify(ag));sessionStorage.setItem("edr_agent",JSON.stringify(ag));}
-function edrLoad(){return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");}
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){ag=saved;document.getElementById("edr-auth-wrap").style.display="none";document.getElementById("lc").style.display="block";document.getElementById("nb-badge").textContent=ag.name;document.getElementById("nb-badge").style.display="inline-block";buildQuiz();}
-};
+const QUESTIONS=[{"q": "The lead-based paint disclosure is required for residential properties built:", "fb": "Federal law (CFR Title 40, Part 745) requires lead disclosure for all residential properties built before January 1, 1978. This is a hard cutoff date — not 1980 or any other year.", "opts": ["Before 1980", "Before 1978", "Before 1985", "Before 1970"], "ans": 1}, {"q": "5555 Winners Lane was built in 1968. What must the seller provide to the Okonkwos regarding lead?", "fb": "For pre-1978 properties, sellers must provide the EPA 'Protect Your Family' pamphlet AND a completed Lead-Based Paint Disclosure form. They must also offer buyers a 10-day window to inspect for lead (which buyers can waive in writing).", "opts": ["A certified lead inspection report", "The EPA pamphlet and a completed Lead-Based Paint Disclosure form", "A written guarantee that no lead is present", "Only the TDS is required — lead is already covered there"], "ans": 1}, {"q": "An agent fails to provide the lead-based paint disclosure on a 1965 property. The maximum federal fine per violation is:", "fb": "Federal penalties for failing to provide lead disclosure can reach $11,000 per violation. This is federal enforcement under the EPA — not DRE. It's one of the more serious individual-transaction compliance risks for agents.", "opts": ["$500", "$2,500", "$11,000", "$25,000"], "ans": 2}, {"q": "During your walkthrough of 5555 Winners Lane, you notice what appears to be popcorn ceiling texture throughout the home. As the agent, you should:", "fb": "Popcorn ceilings in pre-1980 homes frequently contain asbestos. This is a material fact worth noting on your AVID and recommending a specialist inspection. While not mandatory to test, informing your clients of the risk is part of your disclosure duty.", "opts": ["Say nothing — ceiling aesthetics are not material", "Note it on your AVID and recommend an asbestos test since popcorn ceilings in pre-1980 homes often contain asbestos", "Remove a sample and send it to a lab yourself", "Ask the escrow officer to flag it on the closing disclosure"], "ans": 1}, {"q": "Under California law, a seller who knows a property was previously used as a methamphetamine lab must:", "fb": "California Health & Safety Code §25400.28 requires sellers to disclose if a property was used for methamphetamine manufacturing. This disclosure is mandatory regardless of whether remediation occurred — buyers need to know and can verify remediation with the local health department.", "opts": ["Disclose it only if the buyer specifically asks", "Disclose it under Health & Safety Code §25400.28 regardless of remediation status", "Keep it confidential to protect seller privacy", "Only disclose if remediation was not completed"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
   const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
     const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of 5</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
@@ -193,26 +169,25 @@ function pick(qi,oi){
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
   fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/5*100)+"%";
-  if(revealed===5)showScore();
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
   const passed=score>=4;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/5";
-  document.getElementById("sc-title").textContent=passed?"Lesson Passed! ✓":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Great work! You're ready to move on.":"Review the lesson above and try again.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Lesson Passed! \u2713":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Great work. Move on to the next lesson.":"You need 4 of 5 to pass. Review the lesson and try again.";
   document.getElementById("btn-next").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id&&passed){
-    try{
-      await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:LESSON_NUM,completed:true})});
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveLesson(5,score,answers);}catch(e){}
 }
 function retryQuiz(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
+function backToPortal(){window.location.href="index.html";}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:5,lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>

@@ -90,96 +90,46 @@ footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255
 </div>
 <footer>EDR Realty Group · Course 5 Final Exam · DISCLOSURES & COMPLIANCE · California DRE Standards</footer>
 <script>
-const SB_URL="https://zthiyivbiemgvojcrlyg.supabase.co",SB_KEY="sb_publishable_TGjtCA2-ofJ2Lh2nGsxcWg_czcaS9_V",COURSE_KEY="course5",PASS_SCORE=8,TOTAL=10;
-const QUESTIONS=[{"q": "California Civil Code §1102 requires the Transfer Disclosure Statement for the sale of:", "opts": ["All real property, including commercial", "1–4 unit residential property", "Only properties built before 1978", "Properties with an HOA only"], "ans": 1, "fb": "Civil Code §1102 mandates the TDS for the sale of 1–4 unit residential properties. Commercial, industrial, and agricultural sales are generally exempt."}, {"q": "5555 Winners Lane was built in 1968. Which additional disclosure does this trigger under federal law?", "opts": ["Mello-Roos Special Tax Disclosure", "Lead-Based Paint Disclosure under CFR Title 40, Part 745", "Radon Gas Disclosure under EPA guidelines", "Military Ordnance Disclosure"], "ans": 1, "fb": "Federal law (CFR Title 40, Part 745) requires a Lead-Based Paint Disclosure for all residential properties built before January 1, 1978. This is federal — not state — law."}, {"q": "Under California Civil Code §2079, the Agent Visual Inspection Disclosure (AVID) must be completed by:", "opts": ["The escrow holder", "The seller"s attorney", "Both the listing agent and the buyer"s agent independently", "Only the listing agent"], "ans": 2, "fb": "Both agents have independent AVID obligations under Civil Code §2079. Each must conduct their own visual inspection and document their findings on the form."}, {"q": "A buyer directly asks you if anyone died in the home 5 years ago. You know someone did. You must:", "opts": ["Say no — the 3-year rule means you don"t have to disclose it", "Answer honestly — the 3-year rule eliminates proactive disclosure, not the duty to answer truthfully", "Refer the buyer to public records and say nothing", "Only answer if the death was a homicide"], "ans": 1, "fb": "Civil Code §1710.2"s 3-year rule only eliminates the obligation to proactively volunteer information about deaths. It does not authorize a false answer to a direct question. Answering "no" when you know a death occurred is fraud."}, {"q": "The NHD report reveals that a property is in a Very High Fire Hazard Severity Zone (VHFHSZ). The most immediate practical concern for buyers is:", "opts": ["Required foundation upgrades before closing", "Availability and affordability of homeowner"s insurance", "Mandatory installation of a fire suppression system", "Automatic disqualification from FHA financing"], "ans": 1, "fb": "Properties in VHFHSZ zones face serious homeowner"s insurance challenges in California. Many carriers have stopped writing policies in these areas. Buyers must confirm coverage availability before removing the insurance contingency."}, {"q": "Under Civil Code §1368, which document must be included in the HOA disclosure package?", "opts": ["The escrow company"s fee schedule", "The HOA reserve fund study and current budget", "A list of all homeowners and their dues payment history", "The appraisal report for the common areas"], "ans": 1, "fb": "Civil Code §1368 requires the full HOA disclosure package, including CC&Rs, bylaws, budget, reserve study, and meeting minutes. The reserve fund study is particularly important — an underfunded reserve signals potential special assessments."}, {"q": "A seller built a room addition without permits 6 years ago. On the SPQ, the seller should:", "opts": ["Leave it blank since permits are not required for additions under 500 square feet", "Disclose it — unpermitted work is a material fact regardless of how long ago it was done", "Mark "unknown" to avoid liability", "Only disclose it if the buyer"s inspector discovers it"], "ans": 1, "fb": "Unpermitted additions are material facts that must be disclosed on the SPQ. There is no time limit after which disclosure becomes unnecessary. Failing to disclose known unpermitted work creates post-closing liability for the seller."}, {"q": "California Civil Code §2079 gives buyers how long to bring a civil claim against an agent for failure to disclose visual inspection findings?", "opts": ["1 year from the date of purchase", "2 years from the date of recordation", "5 years from the date of closing", "The duration of any applicable warranty period"], "ans": 1, "fb": "Civil Code §2079 establishes a 2-year statute of limitations running from the date of recordation (close of escrow). This is why complete AVID documentation at the time of transaction is critical."}, {"q": "Under the California agency disclosure framework, dual agency requires:", "opts": ["Approval from the California Department of Real Estate", "Written informed consent from both buyer and seller", "Only verbal acknowledgment from both parties", "No additional disclosure beyond the standard C.A.R. Form AD"], "ans": 1, "fb": "Dual agency is legal in California with written informed consent from both parties. Without this written consent, dual agency is an undisclosed conflict of interest that can void the agency relationship and create significant liability."}, {"q": "Under Business & Professions Code §10176, advising a seller not to disclose a known roof leak on the TDS is:", "opts": ["Acceptable if the repair was completed more than 2 years ago", "A potential violation that could result in license suspension or revocation", "Standard practice when the defect has been repaired", "Permissible if the seller signs a waiver of liability"], "ans": 1, "fb": "Advising a client to conceal known material facts violates B&P §10176 — specifically the prohibition on substantial misrepresentation and pursuing misrepresentation through agents. This can result in DRE license suspension or revocation and civil fraud liability."}];
-
-function edrSave(ag){
-  localStorage.setItem("edr_agent",JSON.stringify(ag));
-  sessionStorage.setItem("edr_agent",JSON.stringify(ag));
-}
-function edrLoad(){
-  return JSON.parse(localStorage.getItem("edr_agent")||sessionStorage.getItem("edr_agent")||"null");
-}
-
-let ag=null,answers=[],revealed=0;
-async function edrLogin(){
-  const em=document.getElementById("edr-email").value.trim(),pw=document.getElementById("edr-pass").value.trim();
-  const err=document.getElementById("edr-err"),spin=document.getElementById("edr-spin");
-  err.style.display="none";spin.style.display="block";
-  try{
-    const r=await fetch(SB_URL+"/rest/v1/agents?email=eq."+encodeURIComponent(em)+"&select=*",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-    const data=await r.json();
-    if(!data.length){err.textContent="No account found with that email.";err.style.display="block";spin.style.display="none";return;}
-    const a=data[0];
-    if(a.password!==pw){err.textContent="Incorrect password.";err.style.display="block";spin.style.display="none";return;}
-    ag=a;edrSave(ag);
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }catch(e){err.textContent="Connection error. Please try again.";err.style.display="block";spin.style.display="none";}
-}
-window.onload=function(){
-  const saved=edrLoad();
-  if(saved&&saved.id){
-    ag=saved;
-    document.getElementById("edr-auth-wrap").style.display="none";
-    document.getElementById("lc").style.display="block";
-    document.getElementById("nb-badge").textContent=ag.name;
-    document.getElementById("nb-badge").style.display="inline-block";
-    buildQuiz();
-  }
-};
+const QUESTIONS=[{"q": "California Civil Code §1102 requires the Transfer Disclosure Statement for the sale of:", "fb": "Civil Code §1102 mandates the TDS for the sale of 1–4 unit residential properties. Commercial, industrial, and agricultural sales are generally exempt.", "opts": ["All real property, including commercial", "1–4 unit residential property", "Only properties built before 1978", "Properties with an HOA only"], "ans": 1}, {"q": "5555 Winners Lane was built in 1968. Which additional disclosure does this trigger under federal law?", "fb": "Federal law (CFR Title 40, Part 745) requires a Lead-Based Paint Disclosure for all residential properties built before January 1, 1978. This is federal — not state — law.", "opts": ["Mello-Roos Special Tax Disclosure", "Lead-Based Paint Disclosure under CFR Title 40, Part 745", "Radon Gas Disclosure under EPA guidelines", "Military Ordnance Disclosure"], "ans": 1}, {"q": "Under California Civil Code §2079, the Agent Visual Inspection Disclosure (AVID) must be completed by:", "fb": "Both agents have independent AVID obligations under Civil Code §2079. Each must conduct their own visual inspection and document their findings on the form.", "opts": ["The escrow holder", "The seller's attorney", "Both the listing agent and the buyer's agent independently", "Only the listing agent"], "ans": 2}, {"q": "A buyer directly asks you if anyone died in the home 5 years ago. You know someone did. You must:", "fb": "Civil Code §1710.2's 3-year rule only eliminates the obligation to proactively volunteer information about deaths. It does not authorize a false answer to a direct question. Answering 'no' when you know a death occurred is fraud.", "opts": ["Say no — the 3-year rule means you don't have to disclose it", "Answer honestly — the 3-year rule eliminates proactive disclosure, not the duty to answer truthfully", "Refer the buyer to public records and say nothing", "Only answer if the death was a homicide"], "ans": 1}, {"q": "The NHD report reveals that a property is in a Very High Fire Hazard Severity Zone (VHFHSZ). The most immediate practical concern for buyers is:", "fb": "Properties in VHFHSZ zones face serious homeowner's insurance challenges in California. Many carriers have stopped writing policies in these areas. Buyers must confirm coverage availability before removing the insurance contingency.", "opts": ["Required foundation upgrades before closing", "Availability and affordability of homeowner's insurance", "Mandatory installation of a fire suppression system", "Automatic disqualification from FHA financing"], "ans": 1}, {"q": "Under Civil Code §1368, which document must be included in the HOA disclosure package?", "fb": "Civil Code §1368 requires the full HOA disclosure package, including CC&Rs, bylaws, budget, reserve study, and meeting minutes. The reserve fund study is particularly important — an underfunded reserve signals potential special assessments.", "opts": ["The escrow company's fee schedule", "The HOA reserve fund study and current budget", "A list of all homeowners and their dues payment history", "The appraisal report for the common areas"], "ans": 1}, {"q": "A seller built a room addition without permits 6 years ago. On the SPQ, the seller should:", "fb": "Unpermitted additions are material facts that must be disclosed on the SPQ. There is no time limit after which disclosure becomes unnecessary. Failing to disclose known unpermitted work creates post-closing liability for the seller.", "opts": ["Leave it blank since permits are not required for additions under 500 square feet", "Disclose it — unpermitted work is a material fact regardless of how long ago it was done", "Mark 'unknown' to avoid liability", "Only disclose it if the buyer's inspector discovers it"], "ans": 1}, {"q": "California Civil Code §2079 gives buyers how long to bring a civil claim against an agent for failure to disclose visual inspection findings?", "fb": "Civil Code §2079 establishes a 2-year statute of limitations running from the date of recordation (close of escrow). This is why complete AVID documentation at the time of transaction is critical.", "opts": ["1 year from the date of purchase", "2 years from the date of recordation", "5 years from the date of closing", "The duration of any applicable warranty period"], "ans": 1}, {"q": "Under the California agency disclosure framework, dual agency requires:", "fb": "Dual agency is legal in California with written informed consent from both parties. Without this written consent, dual agency is an undisclosed conflict of interest that can void the agency relationship and create significant liability.", "opts": ["Approval from the California Department of Real Estate", "Written informed consent from both buyer and seller", "Only verbal acknowledgment from both parties", "No additional disclosure beyond the standard C.A.R. Form AD"], "ans": 1}, {"q": "Under Business & Professions Code §10176, advising a seller not to disclose a known roof leak on the TDS is:", "fb": "Advising a client to conceal known material facts violates B&P §10176 — specifically the prohibition on substantial misrepresentation and pursuing misrepresentation through agents. This can result in DRE license suspension or revocation and civil fraud liability.", "opts": ["Acceptable if the repair was completed more than 2 years ago", "A potential violation that could result in license suspension or revocation", "Standard practice when the defect has been repaired", "Permissible if the seller signs a waiver of liability"], "ans": 1}];
+let answers=[],revealed=0;
 function buildQuiz(){
-  const wrap=document.getElementById("quiz-wrap");
-  wrap.innerHTML="";
-  answers=[];revealed=0;
+  const wrap=document.getElementById("quiz-wrap");wrap.innerHTML="";answers=[];revealed=0;
+  document.getElementById("prog").style.width="0%";
   QUESTIONS.forEach((q,i)=>{
-    const card=document.createElement("div");
-    card.className="question-card";card.id="qc"+i;
-    card.innerHTML=`<div class="q-label">Question ${i+1} of ${TOTAL}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
+    const card=document.createElement("div");card.className="question-card";card.id="qc"+i;
+    card.innerHTML=`<div class="q-label">Question ${i+1} of ${QUESTIONS.length}</div><div class="q-text">${q.q}</div><div class="options" id="opts${i}">${q.opts.map((o,j)=>`<button class="option-btn" onclick="pick(${i},${j})">${o}</button>`).join("")}</div><div class="feedback-box" id="fb${i}"></div>`;
     wrap.appendChild(card);
   });
 }
 function pick(qi,oi){
-  if(answers[qi]!==undefined)return;
-  answers[qi]=oi;revealed++;
+  if(answers[qi]!==undefined)return;answers[qi]=oi;revealed++;
   const q=QUESTIONS[qi];
   const opts=document.querySelectorAll("#opts"+qi+" .option-btn");
   opts.forEach((b,j)=>{b.disabled=true;if(j===q.ans)b.classList.add("correct");else if(j===oi)b.classList.add("wrong");});
-  const fb=document.getElementById("fb"+qi);
-  const correct=oi===q.ans;
+  const fb=document.getElementById("fb"+qi);const correct=oi===q.ans;
   fb.style.background=correct?"rgba(45,122,79,.15)":"rgba(163,45,45,.15)";
   fb.style.border=correct?"1px solid rgba(45,122,79,.4)":"1px solid rgba(163,45,45,.4)";
   fb.innerHTML=`<span class="fb-label" style="color:${correct?"#7ed4a0":"#e88"}">${correct?"✓ Correct!":"✗ Not quite."}</span> ${q.fb}`;
-  fb.classList.add("show");
-  document.getElementById("qc"+qi).classList.add("revealed");
-  document.getElementById("prog").style.width=(revealed/TOTAL*100)+"%";
-  if(revealed===TOTAL)showScore();
+  fb.classList.add("show");document.getElementById("qc"+qi).classList.add("revealed");
+  document.getElementById("prog").style.width=(revealed/QUESTIONS.length*100)+"%";
+  if(revealed===QUESTIONS.length)setTimeout(showScore,600);
 }
 async function showScore(){
   const score=answers.filter((a,i)=>a===QUESTIONS[i].ans).length;
-  const passed=score>=PASS_SCORE;
+  const passed=score>=8;
   const circ=document.getElementById("sc-circ");
-  circ.className="sc-circ "+(passed?"pass":"fail");
-  circ.textContent=score+"/"+TOTAL;
-  document.getElementById("sc-title").textContent=passed?"Exam Passed! 🎉":"Keep Practicing";
-  document.getElementById("sc-msg").textContent=passed?"Excellent work! You've demonstrated mastery of Escrow & Title. Head back to the portal to continue your training.":"You need "+PASS_SCORE+" correct to pass. Review the lessons and try again — you've got this.";
+  circ.className="sc-circ "+(passed?"pass":"fail");circ.textContent=score+"/"+QUESTIONS.length;
+  document.getElementById("sc-title").textContent=passed?"Course 5 Complete! \ud83c\udf89":"Keep Practicing";
+  document.getElementById("sc-msg").textContent=passed?"Excellent work. You passed the Disclosures & Compliance final exam. Head back to the portal to continue your training.":"You need 8 of 10 to pass. Review the lessons and try again.";
   document.getElementById("btn-portal").style.display=passed?"inline-block":"none";
   document.getElementById("btn-retry").style.display=passed?"none":"inline-block";
   document.getElementById("score-card").classList.add("show");
-  if(ag&&ag.id){
-    try{
-      await fetch(SB_URL+"/rest/v1/final_quiz",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,score:score,total:TOTAL,passed:passed,taken_at:new Date().toISOString()})});
-      if(passed){
-        await fetch(SB_URL+"/rest/v1/progress",{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},body:JSON.stringify({agent_id:ag.id,course:COURSE_KEY,lesson:999,completed:true})});
-      }
-    }catch(e){console.log("Save error",e);}
-  }
+  try{await EDR.saveFinal(score,passed,answers);}catch(e){}
 }
+function retryExam(){document.getElementById("score-card").classList.remove("show");buildQuiz();document.querySelector(".quiz-section").scrollIntoView({behavior:"smooth"});}
 function backToPortal(){window.location.href="index.html";}
-function retryExam(){document.getElementById("score-card").classList.remove("show");buildQuiz();window.scrollTo(0,0);}
 </script>
+<script>window.EDR_PAGE={course:"course5",num:5,lesson:"final",lessons:10};</script>
+<script src="edr_shared.js"></script>
 </body>
 </html>
